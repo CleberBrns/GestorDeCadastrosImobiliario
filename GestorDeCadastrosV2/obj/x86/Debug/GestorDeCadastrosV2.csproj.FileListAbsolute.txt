@@ -1,0 +1,11 @@
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\bin\Debug\GestorDeCadastrosV2.exe
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\bin\Debug\GestorDeCadastrosV2.pdb
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastros_V2.CadastroLocatario.resources
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.Properties.Resources.resources
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.csproj.GenerateResource.Cache
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.exe
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.pdb
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\bin\Debug\GestorCadastros.sdf
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\bin\Debug\GestorDeCadastrosV2.exe.config
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.FormTester.resources
+C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.csprojResolveAssemblyReference.cache
