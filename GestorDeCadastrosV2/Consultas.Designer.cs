@@ -38,10 +38,6 @@
             this.rbLocatario = new System.Windows.Forms.RadioButton();
             this.label12 = new System.Windows.Forms.Label();
             this.dgvCadastros = new System.Windows.Forms.DataGridView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tpRecibosP = new System.Windows.Forms.TabPage();
-            this.tpRecibosL = new System.Windows.Forms.TabPage();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.Locatario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CpfLocatario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EnderecoImovel = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,6 +45,11 @@
             this.btGerarRecibo = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btAlterar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idCadastro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tpRecibosP = new System.Windows.Forms.TabPage();
+            this.tpRecibosL = new System.Windows.Forms.TabPage();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btInicio = new System.Windows.Forms.Button();
             this.tpLocatarios.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCadastros)).BeginInit();
@@ -173,40 +174,6 @@
             this.dgvCadastros.TabIndex = 0;
             this.dgvCadastros.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCadastros_CellContentClick);
             // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tpLocatarios);
-            this.tabControl1.Controls.Add(this.tpRecibosP);
-            this.tabControl1.Controls.Add(this.tpRecibosL);
-            this.tabControl1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(8, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(982, 500);
-            this.tabControl1.TabIndex = 1;
-            // 
-            // tpRecibosP
-            // 
-            this.tpRecibosP.Location = new System.Drawing.Point(4, 26);
-            this.tpRecibosP.Name = "tpRecibosP";
-            this.tpRecibosP.Size = new System.Drawing.Size(974, 470);
-            this.tpRecibosP.TabIndex = 2;
-            this.tpRecibosP.Text = "Recibos Principais";
-            this.tpRecibosP.UseVisualStyleBackColor = true;
-            // 
-            // tpRecibosL
-            // 
-            this.tpRecibosL.Location = new System.Drawing.Point(4, 26);
-            this.tpRecibosL.Name = "tpRecibosL";
-            this.tpRecibosL.Size = new System.Drawing.Size(974, 470);
-            this.tpRecibosL.TabIndex = 3;
-            this.tpRecibosL.Text = "Recibos Locador";
-            this.tpRecibosL.UseVisualStyleBackColor = true;
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // Locatario
             // 
             this.Locatario.DataPropertyName = "Locatario";
@@ -264,11 +231,59 @@
             this.idCadastro.ReadOnly = true;
             this.idCadastro.Visible = false;
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tpLocatarios);
+            this.tabControl1.Controls.Add(this.tpRecibosP);
+            this.tabControl1.Controls.Add(this.tpRecibosL);
+            this.tabControl1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(8, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(982, 500);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tpRecibosP
+            // 
+            this.tpRecibosP.Location = new System.Drawing.Point(4, 26);
+            this.tpRecibosP.Name = "tpRecibosP";
+            this.tpRecibosP.Size = new System.Drawing.Size(974, 470);
+            this.tpRecibosP.TabIndex = 2;
+            this.tpRecibosP.Text = "Recibos Principais";
+            this.tpRecibosP.UseVisualStyleBackColor = true;
+            // 
+            // tpRecibosL
+            // 
+            this.tpRecibosL.Location = new System.Drawing.Point(4, 26);
+            this.tpRecibosL.Name = "tpRecibosL";
+            this.tpRecibosL.Size = new System.Drawing.Size(974, 470);
+            this.tpRecibosL.TabIndex = 3;
+            this.tpRecibosL.Text = "Recibos Locador";
+            this.tpRecibosL.UseVisualStyleBackColor = true;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // btInicio
+            // 
+            this.btInicio.BackColor = System.Drawing.Color.DimGray;
+            this.btInicio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btInicio.ForeColor = System.Drawing.Color.Black;
+            this.btInicio.Location = new System.Drawing.Point(880, 518);
+            this.btInicio.Name = "btInicio";
+            this.btInicio.Size = new System.Drawing.Size(79, 35);
+            this.btInicio.TabIndex = 14;
+            this.btInicio.Text = "Início";
+            this.btInicio.UseVisualStyleBackColor = false;
+            this.btInicio.Click += new System.EventHandler(this.btInicio_Click);
+            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 561);
+            this.Controls.Add(this.btInicio);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Consultas";
@@ -306,6 +321,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn btGerarRecibo;
         private System.Windows.Forms.DataGridViewButtonColumn btAlterar;
         private System.Windows.Forms.DataGridViewTextBoxColumn idCadastro;
+        private System.Windows.Forms.Button btInicio;
 
 
     }

@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.tcCadastros = new System.Windows.Forms.TabControl();
+            this.tcRecibos = new System.Windows.Forms.TabControl();
             this.tpPrincipal = new System.Windows.Forms.TabPage();
+            this.btMostraReciboLc = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btConcluir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btTranscreveValor = new System.Windows.Forms.Button();
+            this.label39 = new System.Windows.Forms.Label();
             this.ckbEditaValorExtenso = new System.Windows.Forms.CheckBox();
             this.btCalcular = new System.Windows.Forms.Button();
             this.ckbEditNumRecibo = new System.Windows.Forms.CheckBox();
@@ -92,39 +95,38 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tpLocador = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btSalvarRecbLc = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblAviso = new System.Windows.Forms.Label();
+            this.btCalcularTotalLc = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.maskedTextBox7 = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtTotalRecbLc = new System.Windows.Forms.MaskedTextBox();
             this.label29 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
-            this.maskedTextBox9 = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtAluguelRecbLc = new System.Windows.Forms.MaskedTextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
-            this.maskedTextBox11 = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtComissaoRecbLc = new System.Windows.Forms.MaskedTextBox();
             this.label51 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
-            this.maskedTextBox12 = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtDespCondRecbLc = new System.Windows.Forms.MaskedTextBox();
             this.label53 = new System.Windows.Forms.Label();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.nudPorcentMulta = new System.Windows.Forms.NumericUpDown();
             this.label61 = new System.Windows.Forms.Label();
-            this.label62 = new System.Windows.Forms.Label();
+            this.lblIdRecibo = new System.Windows.Forms.Label();
             this.label63 = new System.Windows.Forms.Label();
-            this.maskedTextBox13 = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtMultaRecbLc = new System.Windows.Forms.MaskedTextBox();
             this.label64 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label39 = new System.Windows.Forms.Label();
-            this.btTranscreveValor = new System.Windows.Forms.Button();
-            this.tcCadastros.SuspendLayout();
+            this.btInicio = new System.Windows.Forms.Button();
+            this.lblNomeLocador = new System.Windows.Forms.Label();
+            this.tcRecibos.SuspendLayout();
             this.tpPrincipal.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumRecibo)).BeginInit();
@@ -132,24 +134,26 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudQtdRecibos)).BeginInit();
             this.tpLocador.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPorcentMulta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // tcCadastros
+            // tcRecibos
             // 
-            this.tcCadastros.Controls.Add(this.tpPrincipal);
-            this.tcCadastros.Controls.Add(this.tpLocador);
-            this.tcCadastros.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tcCadastros.Location = new System.Drawing.Point(12, 12);
-            this.tcCadastros.Name = "tcCadastros";
-            this.tcCadastros.SelectedIndex = 0;
-            this.tcCadastros.Size = new System.Drawing.Size(774, 587);
-            this.tcCadastros.TabIndex = 2;
+            this.tcRecibos.Controls.Add(this.tpPrincipal);
+            this.tcRecibos.Controls.Add(this.tpLocador);
+            this.tcRecibos.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcRecibos.Location = new System.Drawing.Point(12, 12);
+            this.tcRecibos.Name = "tcRecibos";
+            this.tcRecibos.SelectedIndex = 0;
+            this.tcRecibos.Size = new System.Drawing.Size(774, 587);
+            this.tcRecibos.TabIndex = 2;
+            this.tcRecibos.SelectedIndexChanged += new System.EventHandler(this.tcRecibos_SelectedIndexChanged);
             // 
             // tpPrincipal
             // 
             this.tpPrincipal.BackColor = System.Drawing.Color.DimGray;
+            this.tpPrincipal.Controls.Add(this.btMostraReciboLc);
             this.tpPrincipal.Controls.Add(this.button2);
             this.tpPrincipal.Controls.Add(this.btConcluir);
             this.tpPrincipal.Controls.Add(this.panel1);
@@ -159,6 +163,18 @@
             this.tpPrincipal.Size = new System.Drawing.Size(766, 557);
             this.tpPrincipal.TabIndex = 0;
             this.tpPrincipal.Text = "Principal";
+            // 
+            // btMostraReciboLc
+            // 
+            this.btMostraReciboLc.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btMostraReciboLc.Location = new System.Drawing.Point(504, 503);
+            this.btMostraReciboLc.Name = "btMostraReciboLc";
+            this.btMostraReciboLc.Size = new System.Drawing.Size(119, 35);
+            this.btMostraReciboLc.TabIndex = 20;
+            this.btMostraReciboLc.Text = "Recibo Locador";
+            this.btMostraReciboLc.UseVisualStyleBackColor = true;
+            this.btMostraReciboLc.Visible = false;
+            this.btMostraReciboLc.Click += new System.EventHandler(this.btReciboLc_Click);
             // 
             // button2
             // 
@@ -250,6 +266,27 @@
             this.panel1.Size = new System.Drawing.Size(733, 481);
             this.panel1.TabIndex = 0;
             // 
+            // btTranscreveValor
+            // 
+            this.btTranscreveValor.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btTranscreveValor.Location = new System.Drawing.Point(340, 329);
+            this.btTranscreveValor.Name = "btTranscreveValor";
+            this.btTranscreveValor.Size = new System.Drawing.Size(155, 33);
+            this.btTranscreveValor.TabIndex = 105;
+            this.btTranscreveValor.Text = "Transcrever Valor";
+            this.btTranscreveValor.UseVisualStyleBackColor = true;
+            this.btTranscreveValor.Click += new System.EventHandler(this.btTranscreveValor_Click);
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.ForeColor = System.Drawing.Color.Red;
+            this.label39.Location = new System.Drawing.Point(175, 288);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(14, 17);
+            this.label39.TabIndex = 104;
+            this.label39.Text = "*";
+            // 
             // ckbEditaValorExtenso
             // 
             this.ckbEditaValorExtenso.AutoSize = true;
@@ -271,6 +308,7 @@
             this.btCalcular.TabIndex = 101;
             this.btCalcular.Text = "Calcular";
             this.btCalcular.UseVisualStyleBackColor = true;
+            this.btCalcular.Click += new System.EventHandler(this.btCalcular_Click);
             // 
             // ckbEditNumRecibo
             // 
@@ -291,6 +329,11 @@
             this.nudNumRecibo.Name = "nudNumRecibo";
             this.nudNumRecibo.Size = new System.Drawing.Size(41, 25);
             this.nudNumRecibo.TabIndex = 2;
+            this.nudNumRecibo.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label4
             // 
@@ -316,7 +359,7 @@
             // 
             this.rbDesconto.AutoSize = true;
             this.rbDesconto.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbDesconto.Location = new System.Drawing.Point(438, 205);
+            this.rbDesconto.Location = new System.Drawing.Point(448, 205);
             this.rbDesconto.Name = "rbDesconto";
             this.rbDesconto.Size = new System.Drawing.Size(94, 22);
             this.rbDesconto.TabIndex = 95;
@@ -329,7 +372,7 @@
             // 
             this.rbAcrescimo.AutoSize = true;
             this.rbAcrescimo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbAcrescimo.Location = new System.Drawing.Point(324, 206);
+            this.rbAcrescimo.Location = new System.Drawing.Point(334, 206);
             this.rbAcrescimo.Name = "rbAcrescimo";
             this.rbAcrescimo.Size = new System.Drawing.Size(99, 22);
             this.rbAcrescimo.TabIndex = 94;
@@ -392,7 +435,7 @@
             this.mtxtValorTotal.Location = new System.Drawing.Point(150, 333);
             this.mtxtValorTotal.Mask = "99,999.99";
             this.mtxtValorTotal.Name = "mtxtValorTotal";
-            this.mtxtValorTotal.Size = new System.Drawing.Size(77, 25);
+            this.mtxtValorTotal.Size = new System.Drawing.Size(76, 25);
             this.mtxtValorTotal.TabIndex = 15;
             this.mtxtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -472,9 +515,9 @@
             // 
             this.mtxtCompPagamento.Enabled = false;
             this.mtxtCompPagamento.Location = new System.Drawing.Point(243, 205);
-            this.mtxtCompPagamento.Mask = "999.99";
+            this.mtxtCompPagamento.Mask = "9,999.99";
             this.mtxtCompPagamento.Name = "mtxtCompPagamento";
-            this.mtxtCompPagamento.Size = new System.Drawing.Size(55, 25);
+            this.mtxtCompPagamento.Size = new System.Drawing.Size(64, 25);
             this.mtxtCompPagamento.TabIndex = 11;
             this.mtxtCompPagamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -805,26 +848,14 @@
             // tpLocador
             // 
             this.tpLocador.BackColor = System.Drawing.Color.DimGray;
-            this.tpLocador.Controls.Add(this.button4);
             this.tpLocador.Controls.Add(this.button5);
-            this.tpLocador.Controls.Add(this.button6);
+            this.tpLocador.Controls.Add(this.btSalvarRecbLc);
             this.tpLocador.Controls.Add(this.panel2);
             this.tpLocador.Location = new System.Drawing.Point(4, 26);
             this.tpLocador.Name = "tpLocador";
             this.tpLocador.Size = new System.Drawing.Size(766, 557);
             this.tpLocador.TabIndex = 1;
             this.tpLocador.Text = "Locador";
-            // 
-            // button4
-            // 
-            this.button4.Enabled = false;
-            this.button4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(549, 504);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(79, 35);
-            this.button4.TabIndex = 7;
-            this.button4.Text = "Calcular";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
@@ -837,43 +868,44 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Visible = false;
             // 
-            // button6
+            // btSalvarRecbLc
             // 
-            this.button6.Enabled = false;
-            this.button6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(642, 504);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(79, 35);
-            this.button6.TabIndex = 8;
-            this.button6.Text = "Salvar";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btSalvarRecbLc.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSalvarRecbLc.Location = new System.Drawing.Point(642, 504);
+            this.btSalvarRecbLc.Name = "btSalvarRecbLc";
+            this.btSalvarRecbLc.Size = new System.Drawing.Size(79, 35);
+            this.btSalvarRecbLc.TabIndex = 8;
+            this.btSalvarRecbLc.Text = "Concluir";
+            this.btSalvarRecbLc.UseVisualStyleBackColor = true;
+            this.btSalvarRecbLc.Click += new System.EventHandler(this.btSalvarRecbLc_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.lblAviso);
+            this.panel2.Controls.Add(this.lblNomeLocador);
+            this.panel2.Controls.Add(this.btCalcularTotalLc);
             this.panel2.Controls.Add(this.label33);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label23);
-            this.panel2.Controls.Add(this.maskedTextBox7);
+            this.panel2.Controls.Add(this.mtxtTotalRecbLc);
             this.panel2.Controls.Add(this.label29);
             this.panel2.Controls.Add(this.label43);
             this.panel2.Controls.Add(this.label44);
-            this.panel2.Controls.Add(this.maskedTextBox9);
+            this.panel2.Controls.Add(this.mtxtAluguelRecbLc);
             this.panel2.Controls.Add(this.label45);
             this.panel2.Controls.Add(this.label49);
             this.panel2.Controls.Add(this.label50);
-            this.panel2.Controls.Add(this.maskedTextBox11);
+            this.panel2.Controls.Add(this.mtxtComissaoRecbLc);
             this.panel2.Controls.Add(this.label51);
             this.panel2.Controls.Add(this.label52);
-            this.panel2.Controls.Add(this.maskedTextBox12);
+            this.panel2.Controls.Add(this.mtxtDespCondRecbLc);
             this.panel2.Controls.Add(this.label53);
-            this.panel2.Controls.Add(this.numericUpDown3);
+            this.panel2.Controls.Add(this.nudPorcentMulta);
             this.panel2.Controls.Add(this.label61);
-            this.panel2.Controls.Add(this.label62);
+            this.panel2.Controls.Add(this.lblIdRecibo);
             this.panel2.Controls.Add(this.label63);
-            this.panel2.Controls.Add(this.maskedTextBox13);
+            this.panel2.Controls.Add(this.mtxtMultaRecbLc);
             this.panel2.Controls.Add(this.label64);
             this.panel2.Controls.Add(this.label65);
             this.panel2.Controls.Add(this.label66);
@@ -882,22 +914,22 @@
             this.panel2.Size = new System.Drawing.Size(733, 481);
             this.panel2.TabIndex = 6;
             // 
-            // lblAviso
+            // btCalcularTotalLc
             // 
-            this.lblAviso.AutoSize = true;
-            this.lblAviso.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAviso.ForeColor = System.Drawing.Color.Red;
-            this.lblAviso.Location = new System.Drawing.Point(8, 293);
-            this.lblAviso.Name = "lblAviso";
-            this.lblAviso.Size = new System.Drawing.Size(712, 22);
-            this.lblAviso.TabIndex = 95;
-            this.lblAviso.Text = "O uso do campo será habilitado após o processamento do Recibo Principal!";
+            this.btCalcularTotalLc.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCalcularTotalLc.Location = new System.Drawing.Point(304, 198);
+            this.btCalcularTotalLc.Name = "btCalcularTotalLc";
+            this.btCalcularTotalLc.Size = new System.Drawing.Size(75, 33);
+            this.btCalcularTotalLc.TabIndex = 102;
+            this.btCalcularTotalLc.Text = "Calcular";
+            this.btCalcularTotalLc.UseVisualStyleBackColor = true;
+            this.btCalcularTotalLc.Click += new System.EventHandler(this.btCalcularTotalLc_Click);
             // 
             // label33
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(433, 99);
+            this.label33.Location = new System.Drawing.Point(434, 99);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(25, 18);
             this.label33.TabIndex = 94;
@@ -923,15 +955,14 @@
             this.label23.TabIndex = 89;
             this.label23.Text = "R$:";
             // 
-            // maskedTextBox7
+            // mtxtTotalRecbLc
             // 
-            this.maskedTextBox7.Enabled = false;
-            this.maskedTextBox7.Location = new System.Drawing.Point(170, 202);
-            this.maskedTextBox7.Mask = "99,999.99";
-            this.maskedTextBox7.Name = "maskedTextBox7";
-            this.maskedTextBox7.Size = new System.Drawing.Size(73, 25);
-            this.maskedTextBox7.TabIndex = 6;
-            this.maskedTextBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtxtTotalRecbLc.Location = new System.Drawing.Point(170, 202);
+            this.mtxtTotalRecbLc.Mask = "99,999.99";
+            this.mtxtTotalRecbLc.Name = "mtxtTotalRecbLc";
+            this.mtxtTotalRecbLc.Size = new System.Drawing.Size(73, 25);
+            this.mtxtTotalRecbLc.TabIndex = 6;
+            this.mtxtTotalRecbLc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label29
             // 
@@ -947,7 +978,7 @@
             // 
             this.label43.AutoSize = true;
             this.label43.ForeColor = System.Drawing.Color.Red;
-            this.label43.Location = new System.Drawing.Point(102, 99);
+            this.label43.Location = new System.Drawing.Point(113, 99);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(14, 17);
             this.label43.TabIndex = 77;
@@ -963,21 +994,20 @@
             this.label44.TabIndex = 76;
             this.label44.Text = "R$:";
             // 
-            // maskedTextBox9
+            // mtxtAluguelRecbLc
             // 
-            this.maskedTextBox9.Enabled = false;
-            this.maskedTextBox9.Location = new System.Drawing.Point(171, 99);
-            this.maskedTextBox9.Mask = "99,999.99";
-            this.maskedTextBox9.Name = "maskedTextBox9";
-            this.maskedTextBox9.Size = new System.Drawing.Size(72, 25);
-            this.maskedTextBox9.TabIndex = 1;
-            this.maskedTextBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtxtAluguelRecbLc.Location = new System.Drawing.Point(171, 99);
+            this.mtxtAluguelRecbLc.Mask = "9,999.99";
+            this.mtxtAluguelRecbLc.Name = "mtxtAluguelRecbLc";
+            this.mtxtAluguelRecbLc.Size = new System.Drawing.Size(72, 25);
+            this.mtxtAluguelRecbLc.TabIndex = 1;
+            this.mtxtAluguelRecbLc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label45
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(41, 101);
+            this.label45.Location = new System.Drawing.Point(52, 101);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(65, 18);
             this.label45.TabIndex = 74;
@@ -1003,15 +1033,14 @@
             this.label50.TabIndex = 68;
             this.label50.Text = "R$:";
             // 
-            // maskedTextBox11
+            // mtxtComissaoRecbLc
             // 
-            this.maskedTextBox11.Enabled = false;
-            this.maskedTextBox11.Location = new System.Drawing.Point(171, 150);
-            this.maskedTextBox11.Mask = "99,999.99";
-            this.maskedTextBox11.Name = "maskedTextBox11";
-            this.maskedTextBox11.Size = new System.Drawing.Size(72, 25);
-            this.maskedTextBox11.TabIndex = 4;
-            this.maskedTextBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtxtComissaoRecbLc.Location = new System.Drawing.Point(171, 150);
+            this.mtxtComissaoRecbLc.Mask = "9,999.99";
+            this.mtxtComissaoRecbLc.Name = "mtxtComissaoRecbLc";
+            this.mtxtComissaoRecbLc.Size = new System.Drawing.Size(72, 25);
+            this.mtxtComissaoRecbLc.TabIndex = 4;
+            this.mtxtComissaoRecbLc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label51
             // 
@@ -1033,15 +1062,14 @@
             this.label52.TabIndex = 65;
             this.label52.Text = "R$:";
             // 
-            // maskedTextBox12
+            // mtxtDespCondRecbLc
             // 
-            this.maskedTextBox12.Enabled = false;
-            this.maskedTextBox12.Location = new System.Drawing.Point(504, 150);
-            this.maskedTextBox12.Mask = "9,999.99";
-            this.maskedTextBox12.Name = "maskedTextBox12";
-            this.maskedTextBox12.Size = new System.Drawing.Size(68, 25);
-            this.maskedTextBox12.TabIndex = 5;
-            this.maskedTextBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtxtDespCondRecbLc.Location = new System.Drawing.Point(504, 150);
+            this.mtxtDespCondRecbLc.Mask = "999.99";
+            this.mtxtDespCondRecbLc.Name = "mtxtDespCondRecbLc";
+            this.mtxtDespCondRecbLc.Size = new System.Drawing.Size(55, 25);
+            this.mtxtDespCondRecbLc.TabIndex = 5;
+            this.mtxtDespCondRecbLc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label53
             // 
@@ -1053,14 +1081,13 @@
             this.label53.TabIndex = 63;
             this.label53.Text = "Despesa Condomínio:";
             // 
-            // numericUpDown3
+            // nudPorcentMulta
             // 
-            this.numericUpDown3.Enabled = false;
-            this.numericUpDown3.Location = new System.Drawing.Point(394, 96);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(41, 25);
-            this.numericUpDown3.TabIndex = 2;
-            this.numericUpDown3.Value = new decimal(new int[] {
+            this.nudPorcentMulta.Location = new System.Drawing.Point(389, 96);
+            this.nudPorcentMulta.Name = "nudPorcentMulta";
+            this.nudPorcentMulta.Size = new System.Drawing.Size(41, 25);
+            this.nudPorcentMulta.TabIndex = 2;
+            this.nudPorcentMulta.Value = new decimal(new int[] {
             10,
             0,
             0,
@@ -1075,15 +1102,15 @@
             this.label61.Size = new System.Drawing.Size(0, 22);
             this.label61.TabIndex = 48;
             // 
-            // label62
+            // lblIdRecibo
             // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(38, 22);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(79, 17);
-            this.label62.TabIndex = 47;
-            this.label62.Text = "lblIdRecibo";
-            this.label62.Visible = false;
+            this.lblIdRecibo.AutoSize = true;
+            this.lblIdRecibo.Location = new System.Drawing.Point(38, 22);
+            this.lblIdRecibo.Name = "lblIdRecibo";
+            this.lblIdRecibo.Size = new System.Drawing.Size(79, 17);
+            this.lblIdRecibo.TabIndex = 47;
+            this.lblIdRecibo.Text = "lblIdRecibo";
+            this.lblIdRecibo.Visible = false;
             // 
             // label63
             // 
@@ -1095,15 +1122,14 @@
             this.label63.TabIndex = 46;
             this.label63.Text = "R$:";
             // 
-            // maskedTextBox13
+            // mtxtMultaRecbLc
             // 
-            this.maskedTextBox13.Enabled = false;
-            this.maskedTextBox13.Location = new System.Drawing.Point(517, 95);
-            this.maskedTextBox13.Mask = "999.99";
-            this.maskedTextBox13.Name = "maskedTextBox13";
-            this.maskedTextBox13.Size = new System.Drawing.Size(55, 25);
-            this.maskedTextBox13.TabIndex = 3;
-            this.maskedTextBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.mtxtMultaRecbLc.Location = new System.Drawing.Point(504, 94);
+            this.mtxtMultaRecbLc.Mask = "999.99";
+            this.mtxtMultaRecbLc.Name = "mtxtMultaRecbLc";
+            this.mtxtMultaRecbLc.Size = new System.Drawing.Size(55, 25);
+            this.mtxtMultaRecbLc.TabIndex = 3;
+            this.mtxtMultaRecbLc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label64
             // 
@@ -1120,7 +1146,7 @@
             // 
             this.label65.AutoSize = true;
             this.label65.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label65.Location = new System.Drawing.Point(345, 99);
+            this.label65.Location = new System.Drawing.Point(340, 99);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(47, 18);
             this.label65.TabIndex = 10;
@@ -1140,39 +1166,40 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // label39
+            // btInicio
             // 
-            this.label39.AutoSize = true;
-            this.label39.ForeColor = System.Drawing.Color.Red;
-            this.label39.Location = new System.Drawing.Point(175, 288);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(14, 17);
-            this.label39.TabIndex = 104;
-            this.label39.Text = "*";
+            this.btInicio.BackColor = System.Drawing.Color.DimGray;
+            this.btInicio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btInicio.ForeColor = System.Drawing.Color.Black;
+            this.btInicio.Location = new System.Drawing.Point(657, 613);
+            this.btInicio.Name = "btInicio";
+            this.btInicio.Size = new System.Drawing.Size(93, 45);
+            this.btInicio.TabIndex = 14;
+            this.btInicio.Text = "Início";
+            this.btInicio.UseVisualStyleBackColor = false;
             // 
-            // btTranscreveValor
+            // lblNomeLocador
             // 
-            this.btTranscreveValor.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btTranscreveValor.Location = new System.Drawing.Point(340, 329);
-            this.btTranscreveValor.Name = "btTranscreveValor";
-            this.btTranscreveValor.Size = new System.Drawing.Size(155, 33);
-            this.btTranscreveValor.TabIndex = 105;
-            this.btTranscreveValor.Text = "Transcrever Valor";
-            this.btTranscreveValor.UseVisualStyleBackColor = true;
-            this.btTranscreveValor.Click += new System.EventHandler(this.btTranscreveValor_Click);
+            this.lblNomeLocador.AutoSize = true;
+            this.lblNomeLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeLocador.Location = new System.Drawing.Point(124, 37);
+            this.lblNomeLocador.Name = "lblNomeLocador";
+            this.lblNomeLocador.Size = new System.Drawing.Size(0, 22);
+            this.lblNomeLocador.TabIndex = 103;
             // 
             // Recibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(799, 611);
-            this.Controls.Add(this.tcCadastros);
+            this.ClientSize = new System.Drawing.Size(800, 677);
+            this.Controls.Add(this.btInicio);
+            this.Controls.Add(this.tcRecibos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Recibos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recibos";
             this.Load += new System.EventHandler(this.Recibos_Load);
-            this.tcCadastros.ResumeLayout(false);
+            this.tcRecibos.ResumeLayout(false);
             this.tpPrincipal.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -1182,7 +1209,7 @@
             this.tpLocador.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPorcentMulta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -1190,7 +1217,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TabControl tcCadastros;
+        private System.Windows.Forms.TabControl tcRecibos;
         private System.Windows.Forms.TabPage tpPrincipal;
         private System.Windows.Forms.Button btConcluir;
         private System.Windows.Forms.Panel panel1;
@@ -1246,35 +1273,33 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btSalvarRecbLc;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox7;
+        private System.Windows.Forms.MaskedTextBox mtxtTotalRecbLc;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox9;
+        private System.Windows.Forms.MaskedTextBox mtxtAluguelRecbLc;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox11;
+        private System.Windows.Forms.MaskedTextBox mtxtComissaoRecbLc;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox12;
+        private System.Windows.Forms.MaskedTextBox mtxtDespCondRecbLc;
         private System.Windows.Forms.Label label53;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown nudPorcentMulta;
         private System.Windows.Forms.Label label61;
-        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Label lblIdRecibo;
         private System.Windows.Forms.Label label63;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox13;
+        private System.Windows.Forms.MaskedTextBox mtxtMultaRecbLc;
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.Label lblAviso;
         private System.Windows.Forms.RadioButton rbDesconto;
         private System.Windows.Forms.RadioButton rbAcrescimo;
         private System.Windows.Forms.CheckBox ckbEditNumRecibo;
@@ -1285,5 +1310,9 @@
         private System.Windows.Forms.Button btCalcular;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Button btTranscreveValor;
+        private System.Windows.Forms.Button btInicio;
+        private System.Windows.Forms.Button btCalcularTotalLc;
+        private System.Windows.Forms.Button btMostraReciboLc;
+        private System.Windows.Forms.Label lblNomeLocador;
     }
 }

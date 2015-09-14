@@ -33,6 +33,7 @@ namespace GestorDeCadastros
                 idLocatario = 2;
                 lblIdLocatario.Text = idLocatario.ToString();
                 CarregaDadosReciboPrincipal();
+                //tcRecibos.TabPages.Remove(tpLocador);
             }
             catch (Exception ex)
             {
@@ -57,7 +58,7 @@ namespace GestorDeCadastros
         {
             sdaDados = new SqlCeDataAdapter();
 
-            SqlCeCommand cmd = MetodosAuxiliares.retornaConexao().CreateCommand();
+            SqlCeCommand cmd = Auxiliar.retornaConexao().CreateCommand();
 
             if (tipoTabela == 1)
             {
@@ -73,11 +74,15 @@ namespace GestorDeCadastros
             }
             else
             {
-                cmd.CommandText = "select Lc.Locatario, Lc.Aluguel, Rp.Quantidade, Rp.Iptu, Rp.ParcelasIptu, Rp.DespesaCondominio, Rp.Luz, Rp.Agua" +
-                                  " from Locatarios Lc" +
+                cmd.CommandText = "select top(1) Lct.Locatario, Lct.Aluguel, Rp.Quantidade, Rp.Numero, Rp.Iptu, Rp.ParcelasIptu, Rp.DespesaCondominio, Rp.Luz, Rp.Agua," +
+                                  " Rp.Data, Rp.Id as IdRecibo, Lcd.Locador" +
+                                  " from Locatarios Lct" +
                                   " inner join RecibosPrincipais Rp" +
-                                  " on Lc.Id = Rp.fkIdLocatario" +
-                                  " where Lc.Ativo = 1 and Lc.Id = " + idLocatario + "";
+                                  " on Lct.Id = Rp.fkIdLocatario" +
+                                  " inner join Locadores Lcd" +
+                                  " on Lct.fkIdLocador = Lcd.Id" +
+                                  " where Lct.Ativo = 1 and Lct.Id = " + idLocatario + " order by Rp.Data desc";
+
             }
 
             sdaDados.SelectCommand = cmd;
@@ -111,35 +116,35 @@ namespace GestorDeCadastros
                 dr["fkIdLocatario"] = lblIdLocatario.Text.Trim();
                 dr["Quantidade"] = nudQtdRecibos.Value.ToString().Trim();
                 dr["Numero"] = nudNumRecibo.Value.ToString();
-                dr["Data"] = RetornaDataAtual();
-                dr["Periodo"] = dtpInicial.ToString() + " a " + dtpFinal.ToString();
+                dr["Data"] = DateTime.Now;
+                dr["Periodo"] = Convert.ToDateTime(dtpInicial.Value).ToShortDateString() + " a " + Convert.ToDateTime(dtpFinal.Value).ToShortDateString();
                 dr["Iptu"] = RetornaValorCamposOpcionais(mtxtIptu, 2);
                 dr["ParcelasIptu"] = nudParcelasIptu.Value.ToString();
                 dr["DespesaCondominio"] = RetornaValorCamposOpcionais(mtxtDespCondominio, 2);
-                dr["Luz"] = MetodosAuxiliares.FormataValorSalvar(mtxtLuz, 2);
-                dr["Agua"] = MetodosAuxiliares.FormataValorSalvar(mtxtAgua, 2);
-                dr["Aluguel"] = MetodosAuxiliares.FormataValorSalvar(mtxtAluguel, 1);
+                dr["Luz"] = Auxiliar.FormataValorSalvar(mtxtLuz, 2);
+                dr["Agua"] = Auxiliar.FormataValorSalvar(mtxtAgua, 2);
+                dr["Aluguel"] = Auxiliar.FormataValorSalvar(mtxtAluguel, 1);
                 dr["ComplementoPagamento"] = RetornaValorCamposOpcionais(mtxtCompPagamento, 2);
                 dr["DescricaoComplementoPagamento"] = txtDescricaoCompPagto.Text.Trim();
                 dr["FormaPagamento"] = txtFormaPagto.Text.Trim();
-                dr["DataPagamento"] = dtpVencimento.Text.Trim();
-                dr["TotalPagamento"] = MetodosAuxiliares.FormataValorSalvar(mtxtValorTotal, 2);
+                dr["DataPagamento"] = Convert.ToDateTime(dtpVencimento.Value).ToShortDateString();
+                dr["TotalPagamento"] = Auxiliar.FormataValorSalvar(mtxtValorTotal, 2);
                 dr["ExtensoTotalPagamento"] = txtExtensoValorTotal.Text.Trim();
 
             }
             else if (tipoInsercao == 2)
             {
-                //dr["Locador"] = txtNomeLocador.Text.Trim();
-                //dr["Cpf"] = FormataDocPrioritario(mtxtCpfLocador.Text.Trim(), 1);
-                //dr["Cnpj"] = FormataDocPrioritario(mtxtCnpjLocador.Text.Trim(), 2);
-                //dr["Contato"] = txtContatoLocador.Text.Trim();
-                //dr["Ativo"] = 1;
-                //dr["Endereco"] = txtEndereco.Text.Trim();
-                //dr["Bairro"] = txtBairro.Text.Trim();
+                dr["Aluguel"] = Auxiliar.FormataValorSalvar(mtxtAluguelRecbLc, 1);
+                dr["Multa"] = RetornaValorCamposOpcionais(mtxtMultaRecbLc, 2);
+                dr["PorcentagemMulta"] = nudPorcentMulta.Value;
+                dr["Comissao"] = Auxiliar.FormataValorSalvar(mtxtComissaoRecbLc, 1);
+                dr["DespesaCondominio"] = RetornaValorCamposOpcionais(mtxtDespCondRecbLc, 2); ;
+                dr["Total"] = Auxiliar.FormataValorSalvar(mtxtTotalRecbLc, 1);
+                dr["fkIdRecibo"] = Convert.ToInt32(lblIdRecibo.Text.Trim());
             }
 
             dsInclusao.Tables[0].Rows.Add(dr);
-            //sdaInclusao.Update(dsInclusao);
+            sdaInclusao.Update(dsInclusao);
         }
 
         /// <summary>
@@ -151,19 +156,19 @@ namespace GestorDeCadastros
         /// <returns></returns>
         private object RetornaValorCamposOpcionais(MaskedTextBox maskedTxt, int tipoValor)
         {
-            if (string.IsNullOrEmpty(MetodosAuxiliares.VerificaMtxtVazio(mtxtIptu)))
+            if (string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtIptu)))
             {
                 return 0;
             }
             else
             {
-                return MetodosAuxiliares.FormataValorSalvar(maskedTxt, tipoValor);
+                return Auxiliar.FormataValorSalvar(maskedTxt, tipoValor);
             }
         }
 
-        private string RetornaNumeroRecibo(string p)
+        private decimal RetornaNumeroReciboAtual(int numeroReciboAnterior)
         {
-            throw new NotImplementedException();
+            return numeroReciboAnterior + 1;
         }
 
         private string RetornaDataAtual()
@@ -189,13 +194,49 @@ namespace GestorDeCadastros
 
         private void CarregaDadosReciboPrincipal()
         {
-            DataTable dadosLocatario = CarregaDadosTabela(3);
-
-            if (dadosLocatario.Rows.Count > 0)
+            try
             {
-                lblLocatario.Text = dadosLocatario.DefaultView[0]["Locatario"].ToString();
-                mtxtAluguel.Text = MetodosAuxiliares.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), 1);
+                DataTable dadosLocatario = CarregaDadosTabela(4);
+                if (dadosLocatario.Rows.Count > 0)
+                {
+                    lblLocatario.Text = dadosLocatario.DefaultView[0]["Locatario"].ToString();
+
+                    nudQtdRecibos.Value = Convert.ToDecimal(dadosLocatario.DefaultView[0]["Quantidade"].ToString());
+                    nudQtdRecibos.Enabled = false;
+
+                    nudNumRecibo.Value = RetornaNumeroReciboAtual(Convert.ToInt32(dadosLocatario.DefaultView[0]["Numero"].ToString()));
+
+                    if (dadosLocatario.DefaultView[0]["Iptu"].ToString() != "0")
+                    {
+                        mtxtIptu.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Iptu"].ToString(), 2);
+                    }
+
+                    if (dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString() != "0")
+                    {
+                        nudParcelasIptu.Value = Convert.ToDecimal(dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString()) - 1;
+                    }
+
+                    mtxtLuz.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Luz"].ToString(), 2);
+                    mtxtAgua.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Agua"].ToString(), 2);
+
+                    mtxtAluguel.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), 1);
+                }
+                else
+                {
+                    dadosLocatario = CarregaDadosTabela(3);
+                    if (dadosLocatario.Rows.Count > 0)
+                    {
+                        lblLocatario.Text = dadosLocatario.DefaultView[0]["Locatario"].ToString();
+                        mtxtAluguel.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), 1);
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                //MessageBox.Show("Falha ao carregador os dados do Usuário.");
+            }
+
         }
 
         private void rbComplementoPagto_CheckedChanged(object sender, EventArgs e)
@@ -210,6 +251,8 @@ namespace GestorDeCadastros
                 mtxtCompPagamento.Enabled = true;
                 mtxtCompPagamento.BackColor = Color.PaleGreen;
             }
+
+            mtxtCompPagamento.Text = string.Empty;
         }
 
         private void ckbEditNumRecibo_CheckedChanged(object sender, EventArgs e)
@@ -244,28 +287,48 @@ namespace GestorDeCadastros
         {
             if (!string.IsNullOrEmpty(lblIdLocatario.Text.Trim()))
             {
-                if (MetodosAuxiliares.validaCampoMtxt(mtxtLuz, errorProvider1))
+                if (Auxiliar.validaCampoMtxt(mtxtLuz, errorProvider1))
                 {
-                    if (MetodosAuxiliares.validaCampoMtxt(mtxtAgua, errorProvider1))
+                    if (Auxiliar.validaCampoMtxt(mtxtAgua, errorProvider1))
                     {
-                        if (MetodosAuxiliares.validaCampoMtxt(mtxtAluguel, errorProvider1))
+                        if (Auxiliar.validaCampoMtxt(mtxtAluguel, errorProvider1))
                         {
-                            if (MetodosAuxiliares.validaCampoTxt(txtFormaPagto, errorProvider1))
+                            if (Auxiliar.validaCampoTxt(txtFormaPagto, errorProvider1))
                             {
-                                if (MetodosAuxiliares.validaCampoMtxt(mtxtValorTotal, errorProvider1))
+                                if (Auxiliar.validaCampoMtxt(mtxtValorTotal, errorProvider1))
                                 {
-                                    if (MetodosAuxiliares.validaCampoTxt(txtExtensoValorTotal, errorProvider1))
+                                    if (Auxiliar.validaCampoTxt(txtExtensoValorTotal, errorProvider1))
                                     {
-                                        try
+                                        if (nudQtdRecibos.Value == 0)
                                         {
-                                            InsereDados(1);
-                                            MessageBox.Show("Recibo inserido com Sucesso!");
+                                            if (DialogResult.Yes == MessageBox.Show("O campo Quatidade de Recibos está zerado. Deseja continuar mesmo assim?", "Confirmação",
+                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+                                            {
+                                                try
+                                                {
+                                                    InsereDados(1);
+                                                    MessageBox.Show("Recibo armazenado com Sucesso!");
+                                                    btMostraReciboLc.Visible = true;
+                                                }
+                                                catch (Exception ex)
+                                                {
+                                                    MessageBox.Show(ex.ToString());
+                                                }
+                                            }
                                         }
-                                        catch (Exception ex)
+                                        else
                                         {
-                                            MessageBox.Show(ex.ToString());
+                                            try
+                                            {
+                                                InsereDados(1);
+                                                MessageBox.Show("Recibo armazenado com Sucesso!");
+                                                btMostraReciboLc.Visible = true;
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MessageBox.Show(ex.ToString());
+                                            }
                                         }
-
                                     }
                                 }
                             }
@@ -277,17 +340,67 @@ namespace GestorDeCadastros
 
         private void btCalcular_Click(object sender, EventArgs e)
         {
+            CalcularValorTotal();
+        }
 
+        private void CalcularValorTotal()
+        {
+            decimal valorTotal = 0;
+            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtIptu)))
+            {
+                valorTotal = Auxiliar.FormataValorSalvar(mtxtIptu, 2);
+            }
+
+            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtDespCondominio)))
+            {
+                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtDespCondominio, 2);
+            }
+
+            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtLuz)))
+            {
+                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtLuz, 2);
+            }
+
+            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtAgua)))
+            {
+                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtAgua, 2);
+            }
+
+            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtAluguel)))
+            {
+                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtAluguel, 1);
+            }
+
+            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtCompPagamento)))
+            {
+                if (rbAcrescimo.Checked)
+                {
+                    if (Auxiliar.validaCampoMtxt(mtxtCompPagamento, errorProvider1))
+                    {
+                        valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtCompPagamento, 1);
+                    }
+                }
+                else if (rbDesconto.Checked)
+                {
+                    if (Auxiliar.validaCampoMtxt(mtxtCompPagamento, errorProvider1))
+                    {
+                        valorTotal = valorTotal - Auxiliar.FormataValorSalvar(mtxtCompPagamento, 1);
+                    }
+                }
+            }
+
+            txtExtensoValorTotal.Text = Auxiliar.valorPorExtenso(valorTotal);
+            mtxtValorTotal.Text = Auxiliar.FormataValorArmazenado(valorTotal.ToString(), 0);
         }
 
         private void btTranscreveValor_Click(object sender, EventArgs e)
         {
             try
             {
-                if (MetodosAuxiliares.validaCampoMtxt(mtxtValorTotal, errorProvider1))
+                if (Auxiliar.validaCampoMtxt(mtxtValorTotal, errorProvider1))
                 {
-                    decimal valorTotal = MetodosAuxiliares.FormataValorSalvar(mtxtValorTotal, 1);
-                    txtExtensoValorTotal.Text = MetodosAuxiliares.valorPorExtenso(valorTotal);
+                    decimal valorTotal = Auxiliar.FormataValorSalvar(mtxtValorTotal, 1);
+                    txtExtensoValorTotal.Text = Auxiliar.valorPorExtenso(valorTotal);
                 }
             }
             catch (Exception ex)
@@ -297,5 +410,116 @@ namespace GestorDeCadastros
 
         }
 
+        private void btInicio_Click(object sender, EventArgs e)
+        {
+            Inicio formInicio = new Inicio();
+            this.Hide();
+            formInicio.ShowDialog();
+            this.Close();
+        }
+
+        private void btReciboLc_Click(object sender, EventArgs e)
+        {
+            tcRecibos.TabPages.Add(tpLocador);
+
+            tcRecibos.SelectedTab = tpLocador;
+        }
+
+        private void tcRecibos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tcRecibos.SelectedTab == tpPrincipal)
+            {
+                tcRecibos.TabPages.Remove(tpLocador);
+                btMostraReciboLc.Visible = false;
+            }
+            else
+            {
+                CarregaDadosReciboLocador();
+            }
+        }
+
+        private void CarregaDadosReciboLocador()
+        {
+            try
+            {
+                DataTable dadosLocatario = CarregaDadosTabela(4);
+                if (dadosLocatario.Rows.Count > 0)
+                {
+                    lblIdRecibo.Text = dadosLocatario.DefaultView[0]["IdRecibo"].ToString();
+                    lblNomeLocador.Text = dadosLocatario.DefaultView[0]["Locador"].ToString();
+
+                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["DespesaCondominio"].ToString()) && 
+                        dadosLocatario.DefaultView[0]["DespesaCondominio"].ToString() != "0")
+                    {
+                        mtxtDespCondRecbLc.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["DespesaCondominio"].ToString(), 2);
+                    }
+                    mtxtAluguelRecbLc.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), 1);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                //MessageBox.Show("Falha ao carregador os dados do Usuário.");
+            }
+        }
+
+        private void btCalcularTotalLc_Click(object sender, EventArgs e)
+        {
+            decimal valorTotal = 0;
+            if (Auxiliar.validaCampoMtxt(mtxtAluguelRecbLc, errorProvider1))
+            {
+                if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtAluguelRecbLc)))
+                {
+                    valorTotal = Auxiliar.FormataValorSalvar(mtxtAluguelRecbLc, 1);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtMultaRecbLc)))
+            {
+                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtMultaRecbLc, 2);
+            }
+
+            if (Auxiliar.validaCampoMtxt(mtxtComissaoRecbLc, errorProvider1))
+            {
+
+                if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtComissaoRecbLc)))
+                {
+                    valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtComissaoRecbLc, 1);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtDespCondRecbLc)))
+            {
+                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtDespCondRecbLc, 2);
+            }
+
+            mtxtTotalRecbLc.Text = Auxiliar.FormataValorArmazenado(valorTotal.ToString(), 0);
+        }
+
+        private void btSalvarRecbLc_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(lblIdRecibo.Text.Trim()))
+            {
+                if (Auxiliar.validaCampoMtxt(mtxtLuz, errorProvider1))
+                {
+                    if (Auxiliar.validaCampoMtxt(mtxtAgua, errorProvider1))
+                    {
+                        if (Auxiliar.validaCampoMtxt(mtxtAluguel, errorProvider1))
+                        {
+                            try
+                            {
+                                InsereDados(2);
+                                MessageBox.Show("Recibo armazenado com Sucesso!");
+                                btMostraReciboLc.Visible = true;
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.ToString());
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

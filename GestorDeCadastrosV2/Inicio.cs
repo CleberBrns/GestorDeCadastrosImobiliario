@@ -32,6 +32,5 @@ namespace GestorDeCadastros
             this.Close();
         }
 
-
     }
 }

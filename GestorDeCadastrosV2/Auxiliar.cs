@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace GestorDeCadastros
 {
-    class MetodosAuxiliares
+    class Auxiliar
     {
         public static SqlCeConnection retornaConexao()
         {
@@ -91,6 +91,7 @@ namespace GestorDeCadastros
         }
 
         /// <summary>
+        /// tipoValor 0 = Valor Total
         /// tipoValor 1 = Aluguel
         /// tipoValor 2 = Outros Campos
         /// </summary>
@@ -100,9 +101,37 @@ namespace GestorDeCadastros
         public static string FormataValorArmazenado(string valor, int tipoValor)
         {
             string valorFinal = string.Empty;
+            if (!string.IsNullOrEmpty(valor) && valor.Contains(','))
+            {
+                 valor = InsereZeroAposVirgula(valor);
+            }
+           
             valorFinal = valor.Replace(".", string.Empty).Replace(",", string.Empty).Trim();
 
-            if (tipoValor == 1)
+            if (tipoValor == 0)
+            {
+                if (valorFinal.Length >= 5)
+                {
+                    valorFinal = "00." + valor.Trim();
+                }
+                else if (valorFinal.Length == 4)
+                {
+                    valorFinal = "00.0" + valor.Trim();
+                }
+                else if (valorFinal.Length == 3)
+                {
+                    valorFinal = "00.00" + valor.Trim();
+                }
+                else if (valorFinal.Length == 2)
+                {
+                    valorFinal = "00.000" + valor.Trim();
+                }
+                else
+                {
+                    valorFinal = valor.Trim();
+                }
+            }
+            else if (tipoValor == 1)
             {
                 if (valorFinal.Length == 5)
                 {
@@ -125,7 +154,7 @@ namespace GestorDeCadastros
                     valorFinal = valor.Trim();
                 }
             }
-            else
+            else if (tipoValor == 2)
             {
                 if (valorFinal.Length == 4)
                 {
@@ -150,6 +179,18 @@ namespace GestorDeCadastros
             }
 
             return valorFinal;
+        }
+
+        private static string InsereZeroAposVirgula(string valorVirgula)
+        {
+            string[] aValor = valorVirgula.Split(',');
+
+            if (aValor[1].Length == 1)
+            {
+                valorVirgula = valorVirgula + "0";
+            }
+
+            return valorVirgula;          
         }
 
         /// <summary>

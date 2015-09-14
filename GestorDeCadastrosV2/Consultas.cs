@@ -268,5 +268,13 @@ namespace GestorDeCadastros
                 }
             }
         }
+
+        private void btInicio_Click(object sender, EventArgs e)
+        {
+            Inicio formInicio = new Inicio();
+            this.Hide();
+            formInicio.ShowDialog();
+            this.Close();
+        }
     }
 }

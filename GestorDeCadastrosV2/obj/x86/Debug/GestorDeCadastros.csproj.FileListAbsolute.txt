@@ -6,7 +6,6 @@ C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2
 C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastros.Cadastros.resources
 C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastros.Inicio.resources
 C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastros.Properties.Resources.resources
-C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastros.FormTester.resources
 C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastros.csproj.GenerateResource.Cache
 C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.exe
 C:\Users\Cleber - Work\documents\visual studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.pdb

@@ -110,6 +110,7 @@
             this.label30 = new System.Windows.Forms.Label();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btInicio = new System.Windows.Forms.Button();
             this.tcCadastros.SuspendLayout();
             this.tpLocatario.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -1005,11 +1006,25 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btInicio
+            // 
+            this.btInicio.BackColor = System.Drawing.Color.DimGray;
+            this.btInicio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btInicio.ForeColor = System.Drawing.Color.Black;
+            this.btInicio.Location = new System.Drawing.Point(454, 525);
+            this.btInicio.Name = "btInicio";
+            this.btInicio.Size = new System.Drawing.Size(79, 35);
+            this.btInicio.TabIndex = 13;
+            this.btInicio.Text = "Início";
+            this.btInicio.UseVisualStyleBackColor = false;
+            this.btInicio.Click += new System.EventHandler(this.btInicio_Click);
+            // 
             // Cadastros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(605, 572);
+            this.Controls.Add(this.btInicio);
             this.Controls.Add(this.tcCadastros);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Cadastros";
@@ -1113,5 +1128,6 @@
         private System.Windows.Forms.RadioButton rbCelular;
         private System.Windows.Forms.RadioButton rbTelefone;
         private System.Windows.Forms.MaskedTextBox mtxtCelular;
+        private System.Windows.Forms.Button btInicio;
     }
 }

@@ -36,7 +36,7 @@ namespace GestorDeCadastros
         {
             sdaDados = new SqlCeDataAdapter();
 
-            SqlCeCommand cmd = MetodosAuxiliares.retornaConexao().CreateCommand();
+            SqlCeCommand cmd = Auxiliar.retornaConexao().CreateCommand();
 
             if (tipoTabela == 1)
             {
@@ -97,7 +97,7 @@ namespace GestorDeCadastros
                 dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
                 dr["Telefone"] = RetornaTelefoneSelecionado();
                 dr["Email"] = txtEmail.Text.Trim();
-                dr["Aluguel"] = MetodosAuxiliares.FormataValorSalvar(mtxtAluguel, 1);
+                dr["Aluguel"] = Auxiliar.FormataValorSalvar(mtxtAluguel, 1);
                 dr["fkIdImovel"] = cbImoveis.SelectedValue.ToString().Trim();
                 dr["fkIdLocador"] = cbLocadores.SelectedValue.ToString().Trim();
                 dr["Ativo"] = 1;
@@ -181,13 +181,13 @@ namespace GestorDeCadastros
 
         private void btCadastrarIm_Click(object sender, EventArgs e)
         {
-            if (MetodosAuxiliares.validaCampoTxt(txtEndereco, errorProvider1))
+            if (Auxiliar.validaCampoTxt(txtEndereco, errorProvider1))
             {
-                if (MetodosAuxiliares.validaCampoTxt(txtBairro, errorProvider1))
+                if (Auxiliar.validaCampoTxt(txtBairro, errorProvider1))
                 {
-                    if (MetodosAuxiliares.validaCampoTxt(txtCidade, errorProvider1))
+                    if (Auxiliar.validaCampoTxt(txtCidade, errorProvider1))
                     {
-                        if (MetodosAuxiliares.validaCampoMtxt(mtxtCep, errorProvider1) && MetodosAuxiliares.verificaPrenchimentoMtxt(mtxtCep, errorProvider1))
+                        if (Auxiliar.validaCampoMtxt(mtxtCep, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCep, errorProvider1))
                         {
                             try
                             {
@@ -229,7 +229,7 @@ namespace GestorDeCadastros
 
         private void btCadastrarLocador_Click(object sender, EventArgs e)
         {
-            if (MetodosAuxiliares.validaCampoTxt(txtNomeLocador, errorProvider1))
+            if (Auxiliar.validaCampoTxt(txtNomeLocador, errorProvider1))
             {
                 if (verificaDocPrioritario())
                 {
@@ -260,14 +260,14 @@ namespace GestorDeCadastros
             {
                 if (rbCpf.Checked)
                 {
-                    if (MetodosAuxiliares.validaCampoMtxt(mtxtCpfLocador, errorProvider1) && MetodosAuxiliares.verificaPrenchimentoMtxt(mtxtCpfLocador, errorProvider1))
+                    if (Auxiliar.validaCampoMtxt(mtxtCpfLocador, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCpfLocador, errorProvider1))
                     {
                         campoValido = true;
                     }
                 }
                 else if (rbCnpj.Checked)
                 {
-                    if (MetodosAuxiliares.validaCampoMtxt(mtxtCnpjLocador, errorProvider1) && MetodosAuxiliares.verificaPrenchimentoMtxt(mtxtCnpjLocador, errorProvider1))
+                    if (Auxiliar.validaCampoMtxt(mtxtCnpjLocador, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCnpjLocador, errorProvider1))
                     {
                         campoValido = true;
                     }
@@ -395,13 +395,13 @@ namespace GestorDeCadastros
 
         private void btCadastrarLocatario_Click(object sender, EventArgs e)
         {
-            if (MetodosAuxiliares.validaCampoTxt(txtNomeLocatario, errorProvider1))
+            if (Auxiliar.validaCampoTxt(txtNomeLocatario, errorProvider1))
             {
-                if (MetodosAuxiliares.validaCampoMtxt(mtxtCpfLocatario, errorProvider1) && MetodosAuxiliares.verificaPrenchimentoMtxt(mtxtCpfLocatario, errorProvider1))
+                if (Auxiliar.validaCampoMtxt(mtxtCpfLocatario, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCpfLocatario, errorProvider1))
                 {
                     if (verificaTelPrioritario())
                     {
-                        if (MetodosAuxiliares.validaCampoMtxt(mtxtAluguel, errorProvider1) && MetodosAuxiliares.verificaPrenchimentoMtxt(mtxtAluguel, errorProvider1))
+                        if (Auxiliar.validaCampoMtxt(mtxtAluguel, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtAluguel, errorProvider1))
                         {
                             if (validaCombo(cbImoveis))
                             {
@@ -437,14 +437,14 @@ namespace GestorDeCadastros
             {
                 if (rbTelefone.Checked)
                 {
-                    if (MetodosAuxiliares.validaCampoMtxt(mtxtTelefone, errorProvider1) && MetodosAuxiliares.verificaPrenchimentoMtxt(mtxtTelefone,errorProvider1))
+                    if (Auxiliar.validaCampoMtxt(mtxtTelefone, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtTelefone,errorProvider1))
                     {
                         campoValido = true;
                     }
                 }
                 else if (rbCelular.Checked)
                 {
-                    if (MetodosAuxiliares.validaCampoMtxt(mtxtCelular, errorProvider1) && MetodosAuxiliares.verificaPrenchimentoMtxt(mtxtCelular, errorProvider1))
+                    if (Auxiliar.validaCampoMtxt(mtxtCelular, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCelular, errorProvider1))
                     {
                         campoValido = true;
                     }
@@ -527,5 +527,13 @@ namespace GestorDeCadastros
         }
 
         #endregion
+
+        private void btInicio_Click(object sender, EventArgs e)
+        {
+            Inicio formInicio = new Inicio();
+            this.Hide();
+            formInicio.ShowDialog();
+            this.Close();
+        }
     }
 }
