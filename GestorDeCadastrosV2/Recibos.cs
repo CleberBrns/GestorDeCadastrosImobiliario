@@ -30,10 +30,10 @@ namespace GestorDeCadastros
         {
             try
             {
-                idLocatario = 2;
+                //idLocatario = 2;
                 lblIdLocatario.Text = idLocatario.ToString();
                 CarregaDadosReciboPrincipal();
-                //tcRecibos.TabPages.Remove(tpLocador);
+                tcRecibos.TabPages.Remove(tpLocador);
             }
             catch (Exception ex)
             {
@@ -309,6 +309,7 @@ namespace GestorDeCadastros
                                                     InsereDados(1);
                                                     MessageBox.Show("Recibo armazenado com Sucesso!");
                                                     btMostraReciboLc.Visible = true;
+                                                    btConcluir.Enabled = false;
                                                 }
                                                 catch (Exception ex)
                                                 {
@@ -323,6 +324,7 @@ namespace GestorDeCadastros
                                                 InsereDados(1);
                                                 MessageBox.Show("Recibo armazenado com Sucesso!");
                                                 btMostraReciboLc.Visible = true;
+                                                btConcluir.Enabled = false;
                                             }
                                             catch (Exception ex)
                                             {
@@ -511,6 +513,7 @@ namespace GestorDeCadastros
                                 InsereDados(2);
                                 MessageBox.Show("Recibo armazenado com Sucesso!");
                                 btMostraReciboLc.Visible = true;
+                                btSalvarRecbLc.Enabled = false;
                             }
                             catch (Exception ex)
                             {

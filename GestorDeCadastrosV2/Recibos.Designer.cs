@@ -98,6 +98,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.btSalvarRecbLc = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblNomeLocador = new System.Windows.Forms.Label();
             this.btCalcularTotalLc = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -124,8 +125,6 @@
             this.label65 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btInicio = new System.Windows.Forms.Button();
-            this.lblNomeLocador = new System.Windows.Forms.Label();
             this.tcRecibos.SuspendLayout();
             this.tpPrincipal.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -914,6 +913,15 @@
             this.panel2.Size = new System.Drawing.Size(733, 481);
             this.panel2.TabIndex = 6;
             // 
+            // lblNomeLocador
+            // 
+            this.lblNomeLocador.AutoSize = true;
+            this.lblNomeLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeLocador.Location = new System.Drawing.Point(124, 37);
+            this.lblNomeLocador.Name = "lblNomeLocador";
+            this.lblNomeLocador.Size = new System.Drawing.Size(0, 22);
+            this.lblNomeLocador.TabIndex = 103;
+            // 
             // btCalcularTotalLc
             // 
             this.btCalcularTotalLc.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1166,33 +1174,11 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // btInicio
-            // 
-            this.btInicio.BackColor = System.Drawing.Color.DimGray;
-            this.btInicio.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btInicio.ForeColor = System.Drawing.Color.Black;
-            this.btInicio.Location = new System.Drawing.Point(657, 613);
-            this.btInicio.Name = "btInicio";
-            this.btInicio.Size = new System.Drawing.Size(93, 45);
-            this.btInicio.TabIndex = 14;
-            this.btInicio.Text = "Início";
-            this.btInicio.UseVisualStyleBackColor = false;
-            // 
-            // lblNomeLocador
-            // 
-            this.lblNomeLocador.AutoSize = true;
-            this.lblNomeLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNomeLocador.Location = new System.Drawing.Point(124, 37);
-            this.lblNomeLocador.Name = "lblNomeLocador";
-            this.lblNomeLocador.Size = new System.Drawing.Size(0, 22);
-            this.lblNomeLocador.TabIndex = 103;
-            // 
             // Recibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 677);
-            this.Controls.Add(this.btInicio);
+            this.ClientSize = new System.Drawing.Size(800, 619);
             this.Controls.Add(this.tcRecibos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Recibos";
@@ -1310,7 +1296,6 @@
         private System.Windows.Forms.Button btCalcular;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Button btTranscreveValor;
-        private System.Windows.Forms.Button btInicio;
         private System.Windows.Forms.Button btCalcularTotalLc;
         private System.Windows.Forms.Button btMostraReciboLc;
         private System.Windows.Forms.Label lblNomeLocador;

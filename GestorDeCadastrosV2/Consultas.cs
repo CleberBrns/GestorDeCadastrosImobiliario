@@ -263,7 +263,7 @@ namespace GestorDeCadastros
                         formRecibos.getIdLocatario = Convert.ToInt32(sIdCadastro);
                         this.Hide();
                         formRecibos.ShowDialog();
-                        this.Close();
+                        //this.Close();
                     }
                 }
             }

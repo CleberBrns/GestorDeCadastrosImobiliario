@@ -13,3 +13,6 @@ C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2
 C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\bin\Debug\CadastrosAplicacao.sdf
 C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastros.Consultas.resources
 C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastros.Recibos.resources
+C:\Users\cleber.debrito\Docs\Works\GestorDeCadastrosImobiliario\GestorDeCadastrosV2\bin\Debug\GestorDeCadastrosV2.exe.config
+C:\Users\cleber.debrito\Docs\Works\GestorDeCadastrosImobiliario\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.exe
+C:\Users\cleber.debrito\Docs\Works\GestorDeCadastrosImobiliario\GestorDeCadastrosV2\obj\x86\Debug\GestorDeCadastrosV2.pdb
