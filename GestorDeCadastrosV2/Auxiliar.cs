@@ -223,6 +223,36 @@ namespace GestorDeCadastros
             return dValor;
         }
 
+        /// <summary>
+        /// tipoValor 1 = Campo Aluguel, Campo Valor Total
+        /// tipoValor 2 = Outros Campos
+        /// </summary>
+        /// <param name="maskedTxt"></param>
+        /// <param name="tipoValor"></param>
+        /// <returns></returns>
+        public static Decimal FormataValorSalvar(TextBox maskedTxt, int tipoValor)
+        {
+            decimal dValor = 0;
+            string valorFinal = string.Empty;
+            valorFinal = maskedTxt.Text.Replace(".", string.Empty).Replace(",", string.Empty).Trim();
+
+            if (!string.IsNullOrEmpty(valorFinal))
+            {
+                if (tipoValor == 1)
+                {
+                    valorFinal = maskedTxt.Text.Replace(".", string.Empty).Trim();
+                }
+                else
+                {
+                    valorFinal = maskedTxt.Text.Trim();
+                }
+
+                dValor = Convert.ToDecimal(valorFinal);
+            }
+
+            return dValor;
+        }
+
         #region Retorna Valor Por Extenso
 
         // O método valorPorExtenso recebe um valor do tipo decimal

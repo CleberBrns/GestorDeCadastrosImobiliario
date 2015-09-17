@@ -36,7 +36,6 @@
             this.btConcluir = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btTranscreveValor = new System.Windows.Forms.Button();
-            this.label39 = new System.Windows.Forms.Label();
             this.ckbEditaValorExtenso = new System.Windows.Forms.CheckBox();
             this.btCalcular = new System.Windows.Forms.Button();
             this.ckbEditNumRecibo = new System.Windows.Forms.CheckBox();
@@ -65,11 +64,9 @@
             this.label24 = new System.Windows.Forms.Label();
             this.mtxtAluguel = new System.Windows.Forms.MaskedTextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.mtxtAgua = new System.Windows.Forms.MaskedTextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.mtxtLuz = new System.Windows.Forms.MaskedTextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -125,6 +122,7 @@
             this.label65 = new System.Windows.Forms.Label();
             this.label66 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ckbDesmarcaComPagto = new System.Windows.Forms.CheckBox();
             this.tcRecibos.SuspendLayout();
             this.tpPrincipal.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -201,8 +199,8 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.LightGray;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.ckbDesmarcaComPagto);
             this.panel1.Controls.Add(this.btTranscreveValor);
-            this.panel1.Controls.Add(this.label39);
             this.panel1.Controls.Add(this.ckbEditaValorExtenso);
             this.panel1.Controls.Add(this.btCalcular);
             this.panel1.Controls.Add(this.ckbEditNumRecibo);
@@ -231,11 +229,9 @@
             this.panel1.Controls.Add(this.label24);
             this.panel1.Controls.Add(this.mtxtAluguel);
             this.panel1.Controls.Add(this.label25);
-            this.panel1.Controls.Add(this.label19);
             this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.mtxtAgua);
             this.panel1.Controls.Add(this.label21);
-            this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.mtxtLuz);
             this.panel1.Controls.Add(this.label17);
@@ -275,16 +271,6 @@
             this.btTranscreveValor.Text = "Transcrever Valor";
             this.btTranscreveValor.UseVisualStyleBackColor = true;
             this.btTranscreveValor.Click += new System.EventHandler(this.btTranscreveValor_Click);
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.ForeColor = System.Drawing.Color.Red;
-            this.label39.Location = new System.Drawing.Point(175, 288);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(14, 17);
-            this.label39.TabIndex = 104;
-            this.label39.Text = "*";
             // 
             // ckbEditaValorExtenso
             // 
@@ -358,7 +344,7 @@
             // 
             this.rbDesconto.AutoSize = true;
             this.rbDesconto.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbDesconto.Location = new System.Drawing.Point(448, 205);
+            this.rbDesconto.Location = new System.Drawing.Point(452, 205);
             this.rbDesconto.Name = "rbDesconto";
             this.rbDesconto.Size = new System.Drawing.Size(94, 22);
             this.rbDesconto.TabIndex = 95;
@@ -371,7 +357,7 @@
             // 
             this.rbAcrescimo.AutoSize = true;
             this.rbAcrescimo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbAcrescimo.Location = new System.Drawing.Point(334, 206);
+            this.rbAcrescimo.Location = new System.Drawing.Point(338, 206);
             this.rbAcrescimo.Name = "rbAcrescimo";
             this.rbAcrescimo.Size = new System.Drawing.Size(99, 22);
             this.rbAcrescimo.TabIndex = 94;
@@ -432,9 +418,9 @@
             // mtxtValorTotal
             // 
             this.mtxtValorTotal.Location = new System.Drawing.Point(150, 333);
-            this.mtxtValorTotal.Mask = "99,999.99";
+            this.mtxtValorTotal.Mask = "999,999.99";
             this.mtxtValorTotal.Name = "mtxtValorTotal";
-            this.mtxtValorTotal.Size = new System.Drawing.Size(76, 25);
+            this.mtxtValorTotal.Size = new System.Drawing.Size(85, 25);
             this.mtxtValorTotal.TabIndex = 15;
             this.mtxtValorTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -468,7 +454,7 @@
             // 
             // txtFormaPagto
             // 
-            this.txtFormaPagto.Location = new System.Drawing.Point(190, 288);
+            this.txtFormaPagto.Location = new System.Drawing.Point(185, 288);
             this.txtFormaPagto.Name = "txtFormaPagto";
             this.txtFormaPagto.Size = new System.Drawing.Size(206, 25);
             this.txtFormaPagto.TabIndex = 13;
@@ -514,9 +500,9 @@
             // 
             this.mtxtCompPagamento.Enabled = false;
             this.mtxtCompPagamento.Location = new System.Drawing.Point(243, 205);
-            this.mtxtCompPagamento.Mask = "9,999.99";
+            this.mtxtCompPagamento.Mask = "99,999.00";
             this.mtxtCompPagamento.Name = "mtxtCompPagamento";
-            this.mtxtCompPagamento.Size = new System.Drawing.Size(64, 25);
+            this.mtxtCompPagamento.Size = new System.Drawing.Size(76, 25);
             this.mtxtCompPagamento.TabIndex = 11;
             this.mtxtCompPagamento.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -553,9 +539,9 @@
             // mtxtAluguel
             // 
             this.mtxtAluguel.Location = new System.Drawing.Point(454, 161);
-            this.mtxtAluguel.Mask = "9,999.99";
+            this.mtxtAluguel.Mask = "99,999.00";
             this.mtxtAluguel.Name = "mtxtAluguel";
-            this.mtxtAluguel.Size = new System.Drawing.Size(70, 25);
+            this.mtxtAluguel.Size = new System.Drawing.Size(74, 25);
             this.mtxtAluguel.TabIndex = 10;
             this.mtxtAluguel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -568,16 +554,6 @@
             this.label25.Size = new System.Drawing.Size(65, 18);
             this.label25.TabIndex = 74;
             this.label25.Text = "Aluguel:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.Red;
-            this.label19.Location = new System.Drawing.Point(221, 165);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(14, 17);
-            this.label19.TabIndex = 73;
-            this.label19.Text = "*";
             // 
             // label20
             // 
@@ -607,16 +583,6 @@
             this.label21.Size = new System.Drawing.Size(47, 18);
             this.label21.TabIndex = 70;
             this.label21.Text = "Água:";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.Red;
-            this.label18.Location = new System.Drawing.Point(52, 165);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(14, 17);
-            this.label18.TabIndex = 69;
-            this.label18.Text = "*";
             // 
             // label16
             // 
@@ -651,7 +617,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(478, 123);
+            this.label15.Location = new System.Drawing.Point(524, 123);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(31, 18);
             this.label15.TabIndex = 65;
@@ -659,10 +625,10 @@
             // 
             // mtxtDespCondominio
             // 
-            this.mtxtDespCondominio.Location = new System.Drawing.Point(510, 119);
-            this.mtxtDespCondominio.Mask = "999.99";
+            this.mtxtDespCondominio.Location = new System.Drawing.Point(556, 119);
+            this.mtxtDespCondominio.Mask = "9,999.00";
             this.mtxtDespCondominio.Name = "mtxtDespCondominio";
-            this.mtxtDespCondominio.Size = new System.Drawing.Size(55, 25);
+            this.mtxtDespCondominio.Size = new System.Drawing.Size(69, 25);
             this.mtxtDespCondominio.TabIndex = 7;
             this.mtxtDespCondominio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -670,7 +636,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(318, 123);
+            this.label14.Location = new System.Drawing.Point(364, 123);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(163, 18);
             this.label14.TabIndex = 63;
@@ -678,7 +644,7 @@
             // 
             // nudParcelasIptu
             // 
-            this.nudParcelasIptu.Location = new System.Drawing.Point(260, 121);
+            this.nudParcelasIptu.Location = new System.Drawing.Point(285, 121);
             this.nudParcelasIptu.Name = "nudParcelasIptu";
             this.nudParcelasIptu.Size = new System.Drawing.Size(41, 25);
             this.nudParcelasIptu.TabIndex = 6;
@@ -687,7 +653,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(157, 123);
+            this.label13.Location = new System.Drawing.Point(182, 123);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(104, 18);
             this.label13.TabIndex = 61;
@@ -807,9 +773,9 @@
             // mtxtIptu
             // 
             this.mtxtIptu.Location = new System.Drawing.Point(87, 119);
-            this.mtxtIptu.Mask = "999.99";
+            this.mtxtIptu.Mask = "9,999.99";
             this.mtxtIptu.Name = "mtxtIptu";
-            this.mtxtIptu.Size = new System.Drawing.Size(55, 25);
+            this.mtxtIptu.Size = new System.Drawing.Size(69, 25);
             this.mtxtIptu.TabIndex = 5;
             this.mtxtIptu.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -1174,6 +1140,18 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // ckbDesmarcaComPagto
+            // 
+            this.ckbDesmarcaComPagto.AutoSize = true;
+            this.ckbDesmarcaComPagto.Enabled = false;
+            this.ckbDesmarcaComPagto.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckbDesmarcaComPagto.Location = new System.Drawing.Point(552, 206);
+            this.ckbDesmarcaComPagto.Name = "ckbDesmarcaComPagto";
+            this.ckbDesmarcaComPagto.Size = new System.Drawing.Size(103, 22);
+            this.ckbDesmarcaComPagto.TabIndex = 106;
+            this.ckbDesmarcaComPagto.Text = "Desmarcar";
+            this.ckbDesmarcaComPagto.UseVisualStyleBackColor = true;
+            // 
             // Recibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1238,11 +1216,9 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.MaskedTextBox mtxtAluguel;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.MaskedTextBox mtxtAgua;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtExtensoValorTotal;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
@@ -1294,10 +1270,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox ckbEditaValorExtenso;
         private System.Windows.Forms.Button btCalcular;
-        private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Button btTranscreveValor;
         private System.Windows.Forms.Button btCalcularTotalLc;
         private System.Windows.Forms.Button btMostraReciboLc;
         private System.Windows.Forms.Label lblNomeLocador;
+        private System.Windows.Forms.CheckBox ckbDesmarcaComPagto;
     }
 }

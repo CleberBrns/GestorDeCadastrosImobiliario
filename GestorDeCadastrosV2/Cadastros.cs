@@ -97,7 +97,7 @@ namespace GestorDeCadastros
                 dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
                 dr["Telefone"] = RetornaTelefoneSelecionado();
                 dr["Email"] = txtEmail.Text.Trim();
-                dr["Aluguel"] = Auxiliar.FormataValorSalvar(mtxtAluguel, 1);
+                dr["Aluguel"] = Auxiliar.FormataValorSalvar(txtAluguel, 1);
                 dr["fkIdImovel"] = cbImoveis.SelectedValue.ToString().Trim();
                 dr["fkIdLocador"] = cbLocadores.SelectedValue.ToString().Trim();
                 dr["Ativo"] = 1;
@@ -401,7 +401,7 @@ namespace GestorDeCadastros
                 {
                     if (verificaTelPrioritario())
                     {
-                        if (Auxiliar.validaCampoMtxt(mtxtAluguel, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtAluguel, errorProvider1))
+                        if (Auxiliar.validaCampoTxt(txtAluguel, errorProvider1))
                         {
                             if (validaCombo(cbImoveis))
                             {
@@ -480,7 +480,7 @@ namespace GestorDeCadastros
             mtxtCpfLocatario.Text = string.Empty;
             mtxtTelefone.Text = string.Empty;
             txtEmail.Text = string.Empty;
-            mtxtAluguel.Text = string.Empty;
+            txtAluguel.Text = string.Empty;
             cbImoveis.SelectedValue = "0";
             cbLocadores.SelectedValue = "0";
             rbTelefone.Checked = true;
@@ -535,5 +535,12 @@ namespace GestorDeCadastros
             formInicio.ShowDialog();
             this.Close();
         }
+
+        private void btInsereAluguel_Click(object sender, EventArgs e)
+        {
+            InsereValores dlgInsereValores = new InsereValores();
+            if (dlgInsereValores.ShowDialog() == DialogResult.OK)
+                txtAluguel.Text = dlgInsereValores.getValorInserido;
+        }         
     }
 }
