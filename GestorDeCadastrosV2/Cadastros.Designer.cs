@@ -31,11 +31,14 @@
             this.components = new System.ComponentModel.Container();
             this.tcCadastros = new System.Windows.Forms.TabControl();
             this.tpLocatario = new System.Windows.Forms.TabPage();
-            this.btExcluir = new System.Windows.Forms.Button();
-            this.btAtualizar = new System.Windows.Forms.Button();
+            this.btInicio = new System.Windows.Forms.Button();
+            this.btExcluirLocatario = new System.Windows.Forms.Button();
+            this.btAtualizarLocatario = new System.Windows.Forms.Button();
             this.btCadastrarLocatario = new System.Windows.Forms.Button();
             this.btLimparFormLocatario = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtAluguel = new System.Windows.Forms.TextBox();
+            this.btInsereAluguel = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.rbCelular = new System.Windows.Forms.RadioButton();
@@ -67,7 +70,7 @@
             this.btExcluirLocador = new System.Windows.Forms.Button();
             this.btAtualizarLocador = new System.Windows.Forms.Button();
             this.btCadastrarLocador = new System.Windows.Forms.Button();
-            this.btLimparFromLocador = new System.Windows.Forms.Button();
+            this.btLimparFormLocador = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblVerificaDocPri = new System.Windows.Forms.Label();
             this.lblSelecionarDocPri = new System.Windows.Forms.Label();
@@ -86,10 +89,10 @@
             this.label33 = new System.Windows.Forms.Label();
             this.txtNomeLocador = new System.Windows.Forms.TextBox();
             this.tpImovel = new System.Windows.Forms.TabPage();
-            this.btExcluirIm = new System.Windows.Forms.Button();
-            this.btAtualizarIm = new System.Windows.Forms.Button();
-            this.btCadastrarIm = new System.Windows.Forms.Button();
-            this.btLimparIm = new System.Windows.Forms.Button();
+            this.btExcluirImovel = new System.Windows.Forms.Button();
+            this.btAtualizarImovel = new System.Windows.Forms.Button();
+            this.btCadastrarImovel = new System.Windows.Forms.Button();
+            this.btLimparFormImovel = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
@@ -97,7 +100,7 @@
             this.mtxtCep = new System.Windows.Forms.MaskedTextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtCidade = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblIdImovel = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -106,9 +109,8 @@
             this.label30 = new System.Windows.Forms.Label();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btInicio = new System.Windows.Forms.Button();
-            this.btInsereAluguel = new System.Windows.Forms.Button();
-            this.txtAluguel = new System.Windows.Forms.TextBox();
+            this.lblIdTipoAcao = new System.Windows.Forms.Label();
+            this.lblIdTipoCadastro = new System.Windows.Forms.Label();
             this.tcCadastros.SuspendLayout();
             this.tpLocatario.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -135,8 +137,9 @@
             // tpLocatario
             // 
             this.tpLocatario.BackColor = System.Drawing.Color.DimGray;
-            this.tpLocatario.Controls.Add(this.btExcluir);
-            this.tpLocatario.Controls.Add(this.btAtualizar);
+            this.tpLocatario.Controls.Add(this.btInicio);
+            this.tpLocatario.Controls.Add(this.btExcluirLocatario);
+            this.tpLocatario.Controls.Add(this.btAtualizarLocatario);
             this.tpLocatario.Controls.Add(this.btCadastrarLocatario);
             this.tpLocatario.Controls.Add(this.btLimparFormLocatario);
             this.tpLocatario.Controls.Add(this.panel1);
@@ -148,29 +151,43 @@
             this.tpLocatario.TabIndex = 0;
             this.tpLocatario.Text = "Locatário";
             // 
-            // btExcluir
+            // btInicio
             // 
-            this.btExcluir.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btExcluir.Location = new System.Drawing.Point(177, 460);
-            this.btExcluir.Name = "btExcluir";
-            this.btExcluir.Size = new System.Drawing.Size(105, 50);
-            this.btExcluir.TabIndex = 12;
-            this.btExcluir.Text = "Excluir";
-            this.btExcluir.UseVisualStyleBackColor = true;
-            this.btExcluir.Visible = false;
-            this.btExcluir.Click += new System.EventHandler(this.btExcluir_Click);
+            this.btInicio.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btInicio.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btInicio.ForeColor = System.Drawing.Color.Black;
+            this.btInicio.Location = new System.Drawing.Point(367, 462);
+            this.btInicio.Name = "btInicio";
+            this.btInicio.Size = new System.Drawing.Size(100, 50);
+            this.btInicio.TabIndex = 13;
+            this.btInicio.Text = "Início";
+            this.btInicio.UseVisualStyleBackColor = false;
+            this.btInicio.Click += new System.EventHandler(this.btInicio_Click);
             // 
-            // btAtualizar
+            // btExcluirLocatario
             // 
-            this.btAtualizar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAtualizar.Location = new System.Drawing.Point(30, 460);
-            this.btAtualizar.Name = "btAtualizar";
-            this.btAtualizar.Size = new System.Drawing.Size(120, 50);
-            this.btAtualizar.TabIndex = 11;
-            this.btAtualizar.Text = "Atualizar";
-            this.btAtualizar.UseVisualStyleBackColor = true;
-            this.btAtualizar.Visible = false;
-            this.btAtualizar.Click += new System.EventHandler(this.btAtualizar_Click);
+            this.btExcluirLocatario.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btExcluirLocatario.Location = new System.Drawing.Point(177, 460);
+            this.btExcluirLocatario.Name = "btExcluirLocatario";
+            this.btExcluirLocatario.Size = new System.Drawing.Size(105, 50);
+            this.btExcluirLocatario.TabIndex = 12;
+            this.btExcluirLocatario.Text = "Excluir";
+            this.btExcluirLocatario.UseVisualStyleBackColor = true;
+            this.btExcluirLocatario.Visible = false;
+            this.btExcluirLocatario.Click += new System.EventHandler(this.btExcluirLocatario_Click);
+            // 
+            // btAtualizarLocatario
+            // 
+            this.btAtualizarLocatario.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btAtualizarLocatario.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAtualizarLocatario.Location = new System.Drawing.Point(30, 460);
+            this.btAtualizarLocatario.Name = "btAtualizarLocatario";
+            this.btAtualizarLocatario.Size = new System.Drawing.Size(120, 50);
+            this.btAtualizarLocatario.TabIndex = 11;
+            this.btAtualizarLocatario.Text = "Atualizar";
+            this.btAtualizarLocatario.UseVisualStyleBackColor = true;
+            this.btAtualizarLocatario.Visible = false;
+            this.btAtualizarLocatario.Click += new System.EventHandler(this.cadastraAtualizaLocatario_Click);
             // 
             // btCadastrarLocatario
             // 
@@ -181,7 +198,7 @@
             this.btCadastrarLocatario.TabIndex = 9;
             this.btCadastrarLocatario.Text = "Cadastrar";
             this.btCadastrarLocatario.UseVisualStyleBackColor = true;
-            this.btCadastrarLocatario.Click += new System.EventHandler(this.btCadastrarLocatario_Click);
+            this.btCadastrarLocatario.Click += new System.EventHandler(this.cadastraAtualizaLocatario_Click);
             // 
             // btLimparFormLocatario
             // 
@@ -231,6 +248,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(888, 440);
             this.panel1.TabIndex = 0;
+            // 
+            // txtAluguel
+            // 
+            this.txtAluguel.Enabled = false;
+            this.txtAluguel.Location = new System.Drawing.Point(201, 227);
+            this.txtAluguel.Name = "txtAluguel";
+            this.txtAluguel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtAluguel.Size = new System.Drawing.Size(130, 29);
+            this.txtAluguel.TabIndex = 58;
+            // 
+            // btInsereAluguel
+            // 
+            this.btInsereAluguel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btInsereAluguel.Location = new System.Drawing.Point(350, 223);
+            this.btInsereAluguel.Name = "btInsereAluguel";
+            this.btInsereAluguel.Size = new System.Drawing.Size(80, 39);
+            this.btInsereAluguel.TabIndex = 57;
+            this.btInsereAluguel.Text = "Inserir";
+            this.btInsereAluguel.UseVisualStyleBackColor = true;
+            this.btInsereAluguel.Click += new System.EventHandler(this.btInsereAluguel_Click);
             // 
             // label22
             // 
@@ -505,7 +542,7 @@
             this.tpLocador.Controls.Add(this.btExcluirLocador);
             this.tpLocador.Controls.Add(this.btAtualizarLocador);
             this.tpLocador.Controls.Add(this.btCadastrarLocador);
-            this.tpLocador.Controls.Add(this.btLimparFromLocador);
+            this.tpLocador.Controls.Add(this.btLimparFormLocador);
             this.tpLocador.Controls.Add(this.panel2);
             this.tpLocador.Location = new System.Drawing.Point(4, 31);
             this.tpLocador.Name = "tpLocador";
@@ -534,6 +571,7 @@
             this.btAtualizarLocador.Text = "Atualizar";
             this.btAtualizarLocador.UseVisualStyleBackColor = true;
             this.btAtualizarLocador.Visible = false;
+            this.btAtualizarLocador.Click += new System.EventHandler(this.cadastraAtualizaLocador_Click);
             // 
             // btCadastrarLocador
             // 
@@ -544,18 +582,18 @@
             this.btCadastrarLocador.TabIndex = 5;
             this.btCadastrarLocador.Text = "Cadastrar";
             this.btCadastrarLocador.UseVisualStyleBackColor = true;
-            this.btCadastrarLocador.Click += new System.EventHandler(this.btCadastrarLocador_Click);
+            this.btCadastrarLocador.Click += new System.EventHandler(this.cadastraAtualizaLocador_Click);
             // 
-            // btLimparFromLocador
+            // btLimparFormLocador
             // 
-            this.btLimparFromLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLimparFromLocador.Location = new System.Drawing.Point(530, 460);
-            this.btLimparFromLocador.Name = "btLimparFromLocador";
-            this.btLimparFromLocador.Size = new System.Drawing.Size(210, 50);
-            this.btLimparFromLocador.TabIndex = 6;
-            this.btLimparFromLocador.Text = "Limpar Formulário";
-            this.btLimparFromLocador.UseVisualStyleBackColor = true;
-            this.btLimparFromLocador.Click += new System.EventHandler(this.btLimparFromLocador_Click);
+            this.btLimparFormLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLimparFormLocador.Location = new System.Drawing.Point(530, 460);
+            this.btLimparFormLocador.Name = "btLimparFormLocador";
+            this.btLimparFormLocador.Size = new System.Drawing.Size(210, 50);
+            this.btLimparFormLocador.TabIndex = 6;
+            this.btLimparFormLocador.Text = "Limpar Formulário";
+            this.btLimparFormLocador.UseVisualStyleBackColor = true;
+            this.btLimparFormLocador.Click += new System.EventHandler(this.btLimparFromLocador_Click);
             // 
             // panel2
             // 
@@ -748,10 +786,10 @@
             // tpImovel
             // 
             this.tpImovel.BackColor = System.Drawing.Color.DimGray;
-            this.tpImovel.Controls.Add(this.btExcluirIm);
-            this.tpImovel.Controls.Add(this.btAtualizarIm);
-            this.tpImovel.Controls.Add(this.btCadastrarIm);
-            this.tpImovel.Controls.Add(this.btLimparIm);
+            this.tpImovel.Controls.Add(this.btExcluirImovel);
+            this.tpImovel.Controls.Add(this.btAtualizarImovel);
+            this.tpImovel.Controls.Add(this.btCadastrarImovel);
+            this.tpImovel.Controls.Add(this.btLimparFormImovel);
             this.tpImovel.Controls.Add(this.panel3);
             this.tpImovel.Location = new System.Drawing.Point(4, 31);
             this.tpImovel.Name = "tpImovel";
@@ -759,49 +797,50 @@
             this.tpImovel.TabIndex = 2;
             this.tpImovel.Text = "Imóvel";
             // 
-            // btExcluirIm
+            // btExcluirImovel
             // 
-            this.btExcluirIm.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btExcluirIm.Location = new System.Drawing.Point(177, 460);
-            this.btExcluirIm.Name = "btExcluirIm";
-            this.btExcluirIm.Size = new System.Drawing.Size(105, 50);
-            this.btExcluirIm.TabIndex = 8;
-            this.btExcluirIm.Text = "Excluir";
-            this.btExcluirIm.UseVisualStyleBackColor = true;
-            this.btExcluirIm.Visible = false;
+            this.btExcluirImovel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btExcluirImovel.Location = new System.Drawing.Point(177, 460);
+            this.btExcluirImovel.Name = "btExcluirImovel";
+            this.btExcluirImovel.Size = new System.Drawing.Size(105, 50);
+            this.btExcluirImovel.TabIndex = 8;
+            this.btExcluirImovel.Text = "Excluir";
+            this.btExcluirImovel.UseVisualStyleBackColor = true;
+            this.btExcluirImovel.Visible = false;
             // 
-            // btAtualizarIm
+            // btAtualizarImovel
             // 
-            this.btAtualizarIm.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btAtualizarIm.Location = new System.Drawing.Point(29, 460);
-            this.btAtualizarIm.Name = "btAtualizarIm";
-            this.btAtualizarIm.Size = new System.Drawing.Size(120, 50);
-            this.btAtualizarIm.TabIndex = 7;
-            this.btAtualizarIm.Text = "Atualizar";
-            this.btAtualizarIm.UseVisualStyleBackColor = true;
-            this.btAtualizarIm.Visible = false;
+            this.btAtualizarImovel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAtualizarImovel.Location = new System.Drawing.Point(29, 460);
+            this.btAtualizarImovel.Name = "btAtualizarImovel";
+            this.btAtualizarImovel.Size = new System.Drawing.Size(120, 50);
+            this.btAtualizarImovel.TabIndex = 7;
+            this.btAtualizarImovel.Text = "Atualizar";
+            this.btAtualizarImovel.UseVisualStyleBackColor = true;
+            this.btAtualizarImovel.Visible = false;
+            this.btAtualizarImovel.Click += new System.EventHandler(this.cadastraAtualizaImovel_Click);
             // 
-            // btCadastrarIm
+            // btCadastrarImovel
             // 
-            this.btCadastrarIm.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btCadastrarIm.Location = new System.Drawing.Point(770, 460);
-            this.btCadastrarIm.Name = "btCadastrarIm";
-            this.btCadastrarIm.Size = new System.Drawing.Size(125, 50);
-            this.btCadastrarIm.TabIndex = 5;
-            this.btCadastrarIm.Text = "Cadastrar";
-            this.btCadastrarIm.UseVisualStyleBackColor = true;
-            this.btCadastrarIm.Click += new System.EventHandler(this.btCadastrarIm_Click);
+            this.btCadastrarImovel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btCadastrarImovel.Location = new System.Drawing.Point(770, 460);
+            this.btCadastrarImovel.Name = "btCadastrarImovel";
+            this.btCadastrarImovel.Size = new System.Drawing.Size(125, 50);
+            this.btCadastrarImovel.TabIndex = 5;
+            this.btCadastrarImovel.Text = "Cadastrar";
+            this.btCadastrarImovel.UseVisualStyleBackColor = true;
+            this.btCadastrarImovel.Click += new System.EventHandler(this.cadastraAtualizaImovel_Click);
             // 
-            // btLimparIm
+            // btLimparFormImovel
             // 
-            this.btLimparIm.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btLimparIm.Location = new System.Drawing.Point(530, 460);
-            this.btLimparIm.Name = "btLimparIm";
-            this.btLimparIm.Size = new System.Drawing.Size(210, 50);
-            this.btLimparIm.TabIndex = 6;
-            this.btLimparIm.Text = "Limpar Formulário";
-            this.btLimparIm.UseVisualStyleBackColor = true;
-            this.btLimparIm.Click += new System.EventHandler(this.btLimparIm_Click);
+            this.btLimparFormImovel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLimparFormImovel.Location = new System.Drawing.Point(530, 460);
+            this.btLimparFormImovel.Name = "btLimparFormImovel";
+            this.btLimparFormImovel.Size = new System.Drawing.Size(210, 50);
+            this.btLimparFormImovel.TabIndex = 6;
+            this.btLimparFormImovel.Text = "Limpar Formulário";
+            this.btLimparFormImovel.UseVisualStyleBackColor = true;
+            this.btLimparFormImovel.Click += new System.EventHandler(this.btLimparIm_Click);
             // 
             // panel3
             // 
@@ -813,7 +852,7 @@
             this.panel3.Controls.Add(this.mtxtCep);
             this.panel3.Controls.Add(this.label31);
             this.panel3.Controls.Add(this.txtCidade);
-            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.lblIdImovel);
             this.panel3.Controls.Add(this.label13);
             this.panel3.Controls.Add(this.label18);
             this.panel3.Controls.Add(this.label19);
@@ -879,15 +918,15 @@
             this.txtCidade.Size = new System.Drawing.Size(151, 29);
             this.txtCidade.TabIndex = 3;
             // 
-            // label5
+            // lblIdImovel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(605, 30);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(129, 22);
-            this.label5.TabIndex = 47;
-            this.label5.Text = "lblIdEndereco";
-            this.label5.Visible = false;
+            this.lblIdImovel.AutoSize = true;
+            this.lblIdImovel.Location = new System.Drawing.Point(605, 30);
+            this.lblIdImovel.Name = "lblIdImovel";
+            this.lblIdImovel.Size = new System.Drawing.Size(103, 22);
+            this.lblIdImovel.TabIndex = 47;
+            this.lblIdImovel.Text = "lblIdImovel";
+            this.lblIdImovel.Visible = false;
             // 
             // label13
             // 
@@ -962,52 +1001,39 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // btInicio
+            // lblIdTipoAcao
             // 
-            this.btInicio.BackColor = System.Drawing.Color.DimGray;
-            this.btInicio.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btInicio.ForeColor = System.Drawing.Color.Black;
-            this.btInicio.Location = new System.Drawing.Point(785, 579);
-            this.btInicio.Name = "btInicio";
-            this.btInicio.Size = new System.Drawing.Size(100, 50);
-            this.btInicio.TabIndex = 13;
-            this.btInicio.Text = "Início";
-            this.btInicio.UseVisualStyleBackColor = false;
-            this.btInicio.Click += new System.EventHandler(this.btInicio_Click);
+            this.lblIdTipoAcao.Location = new System.Drawing.Point(1086, 156);
+            this.lblIdTipoAcao.Name = "lblIdTipoAcao";
+            this.lblIdTipoAcao.Size = new System.Drawing.Size(100, 23);
+            this.lblIdTipoAcao.TabIndex = 2;
+            this.lblIdTipoAcao.Text = "lblIdTipoAcao";
+            this.lblIdTipoAcao.Visible = false;
             // 
-            // btInsereAluguel
+            // lblIdTipoCadastro
             // 
-            this.btInsereAluguel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btInsereAluguel.Location = new System.Drawing.Point(350, 223);
-            this.btInsereAluguel.Name = "btInsereAluguel";
-            this.btInsereAluguel.Size = new System.Drawing.Size(80, 39);
-            this.btInsereAluguel.TabIndex = 57;
-            this.btInsereAluguel.Text = "Inserir";
-            this.btInsereAluguel.UseVisualStyleBackColor = true;
-            this.btInsereAluguel.Click += new System.EventHandler(this.btInsereAluguel_Click);
-            // 
-            // txtAluguel
-            // 
-            this.txtAluguel.Enabled = false;
-            this.txtAluguel.Location = new System.Drawing.Point(201, 227);
-            this.txtAluguel.Name = "txtAluguel";
-            this.txtAluguel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtAluguel.Size = new System.Drawing.Size(130, 29);
-            this.txtAluguel.TabIndex = 58;
+            this.lblIdTipoCadastro.Location = new System.Drawing.Point(1086, 189);
+            this.lblIdTipoCadastro.Name = "lblIdTipoCadastro";
+            this.lblIdTipoCadastro.Size = new System.Drawing.Size(100, 23);
+            this.lblIdTipoCadastro.TabIndex = 3;
+            this.lblIdTipoCadastro.Text = "lblIdTipoCadastro";
+            this.lblIdTipoCadastro.Visible = false;
             // 
             // Cadastros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(951, 641);
-            this.Controls.Add(this.btInicio);
+            this.ClientSize = new System.Drawing.Size(1360, 641);
+            this.Controls.Add(this.lblIdTipoCadastro);
+            this.Controls.Add(this.lblIdTipoAcao);
             this.Controls.Add(this.tcCadastros);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Cadastros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cadastros";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Cadastros_Load);
             this.tcCadastros.ResumeLayout(false);
             this.tpLocatario.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -1027,7 +1053,7 @@
 
         private System.Windows.Forms.TabControl tcCadastros;
         private System.Windows.Forms.TabPage tpLocatario;
-        private System.Windows.Forms.Button btAtualizar;
+        private System.Windows.Forms.Button btAtualizarLocatario;
         private System.Windows.Forms.Button btCadastrarLocatario;
         private System.Windows.Forms.Button btLimparFormLocatario;
         private System.Windows.Forms.Panel panel1;
@@ -1051,7 +1077,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNomeLocatario;
-        private System.Windows.Forms.Button btExcluir;
+        private System.Windows.Forms.Button btExcluirLocatario;
         private System.Windows.Forms.TabPage tpLocador;
         private System.Windows.Forms.TabPage tpImovel;
         private System.Windows.Forms.ComboBox cbLocadores;
@@ -1071,7 +1097,7 @@
         private System.Windows.Forms.MaskedTextBox mtxtCep;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox txtCidade;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblIdImovel;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
@@ -1082,13 +1108,13 @@
         private System.Windows.Forms.Button btExcluirLocador;
         private System.Windows.Forms.Button btAtualizarLocador;
         private System.Windows.Forms.Button btCadastrarLocador;
-        private System.Windows.Forms.Button btLimparFromLocador;
+        private System.Windows.Forms.Button btLimparFormLocador;
         private System.Windows.Forms.MaskedTextBox mtxtCnpjLocador;
         private System.Windows.Forms.Label lblCnpj;
-        private System.Windows.Forms.Button btExcluirIm;
-        private System.Windows.Forms.Button btAtualizarIm;
-        private System.Windows.Forms.Button btCadastrarIm;
-        private System.Windows.Forms.Button btLimparIm;
+        private System.Windows.Forms.Button btExcluirImovel;
+        private System.Windows.Forms.Button btAtualizarImovel;
+        private System.Windows.Forms.Button btCadastrarImovel;
+        private System.Windows.Forms.Button btLimparFormImovel;
         private System.Windows.Forms.RadioButton rbCnpj;
         private System.Windows.Forms.RadioButton rbCpf;
         private System.Windows.Forms.Label lblSelecionarDocPri;
@@ -1105,5 +1131,7 @@
         private System.Windows.Forms.Button btInicio;
         private System.Windows.Forms.Button btInsereAluguel;
         private System.Windows.Forms.TextBox txtAluguel;
+        private System.Windows.Forms.Label lblIdTipoAcao;
+        private System.Windows.Forms.Label lblIdTipoCadastro;
     }
 }

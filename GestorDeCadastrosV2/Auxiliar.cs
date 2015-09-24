@@ -10,6 +10,36 @@ namespace GestorDeCadastros
 {
     class Auxiliar
     {
+        /// <summary>
+        /// tipoMensagem 1 = Confirmação
+        /// tipoMensagem 2 = Alerta/Informação
+        /// tipoMensagem 3 = Falha/Erro
+        /// </summary>
+        /// <param name="mensagem"></param>
+        /// <param name="tipoMensagem"></param>
+        public static void MostraMensagemAlerta(string mensagem, int tipoMensagem)
+        {
+            if (tipoMensagem == 1)
+            {
+                MessageBox.Show(mensagem, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (tipoMensagem == 2)
+            {
+                MessageBox.Show(mensagem, "Atençao", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (tipoMensagem == 3)
+            {
+                MessageBox.Show(mensagem, "Falha", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        public static void CentralizaControle(Control ctlToCenter, Form frmParent)
+        {
+            ctlToCenter.Left = (frmParent.ClientSize.Width - ctlToCenter.Width) / 2;
+            ctlToCenter.Top = (frmParent.ClientSize.Height - ctlToCenter.Height) / 2;
+        }
+
         public static SqlCeConnection retornaConexao()
         {
             SqlCeConnection conexao = new SqlCeConnection("Data Source="
@@ -90,161 +120,35 @@ namespace GestorDeCadastros
             }
         }
 
-        /// <summary>
-        /// tipoValor 0 = Valor Total
-        /// tipoValor 1 = Aluguel
-        /// tipoValor 2 = Outros Campos
-        /// </summary>
-        /// <param name="valor"></param>
-        /// <param name="tipoValor"></param>
-        /// <returns></returns>
-        public static string FormataValorArmazenado(string valor, int tipoValor)
+        public static string FormataValoresExibicao(string valor)
         {
             string valorFinal = string.Empty;
-            if (!string.IsNullOrEmpty(valor) && valor.Contains(','))
-            {
-                 valor = InsereZeroAposVirgula(valor);
-            }
-           
-            valorFinal = valor.Replace(".", string.Empty).Replace(",", string.Empty).Trim();
+            decimal dValor = 0;           
 
-            if (tipoValor == 0)
+            if (!string.IsNullOrEmpty(valor) || valor != "0")
             {
-                if (valorFinal.Length >= 5)
-                {
-                    valorFinal = "00." + valor.Trim();
-                }
-                else if (valorFinal.Length == 4)
-                {
-                    valorFinal = "00.0" + valor.Trim();
-                }
-                else if (valorFinal.Length == 3)
-                {
-                    valorFinal = "00.00" + valor.Trim();
-                }
-                else if (valorFinal.Length == 2)
-                {
-                    valorFinal = "00.000" + valor.Trim();
-                }
-                else
-                {
-                    valorFinal = valor.Trim();
-                }
-            }
-            else if (tipoValor == 1)
-            {
-                if (valorFinal.Length == 5)
-                {
-                    valorFinal = "0." + valor.Trim();
-                }
-                else if (valorFinal.Length == 4)
-                {
-                    valorFinal = "0.0" + valor.Trim();
-                }
-                else if (valorFinal.Length == 3)
-                {
-                    valorFinal = "0.00" + valor.Trim();
-                }
-                else if (valorFinal.Length == 2)
-                {
-                    valorFinal = "0.000" + valor.Trim();
-                }
-                else
-                {
-                    valorFinal = valor.Trim();
-                }
-            }
-            else if (tipoValor == 2)
-            {
-                if (valorFinal.Length == 4)
-                {
-                    valorFinal = "0" + valor.Trim();
-                }
-                else if (valorFinal.Length == 3)
-                {
-                    valorFinal = "00" + valor.Trim();
-                }
-                else if (valorFinal.Length == 2)
-                {
-                    valorFinal = "000" + valor.Trim();
-                }
-                else if (valorFinal.Length == 1)
-                {
-                    valorFinal = "000,0" + valor.Trim();
-                }
-                else
-                {
-                    valorFinal = valor.Trim();
-                }
+                dValor = Convert.ToDecimal(valor);
+                valorFinal = string.Format("{0:C}", dValor).Replace("R$", string.Empty).Trim();
             }
 
             return valorFinal;
         }
 
-        private static string InsereZeroAposVirgula(string valorVirgula)
-        {
-            string[] aValor = valorVirgula.Split(',');
-
-            if (aValor[1].Length == 1)
-            {
-                valorVirgula = valorVirgula + "0";
-            }
-
-            return valorVirgula;          
-        }
-
-        /// <summary>
-        /// tipoValor 1 = Campo Aluguel, Campo Valor Total
-        /// tipoValor 2 = Outros Campos
-        /// </summary>
-        /// <param name="maskedTxt"></param>
-        /// <param name="tipoValor"></param>
-        /// <returns></returns>
-        public static Decimal FormataValorSalvar(MaskedTextBox maskedTxt, int tipoValor)
+        public static Decimal FormataValorParaUso(TextBox txtValorUso)
         {
             decimal dValor = 0;
             string valorFinal = string.Empty;
-            valorFinal = maskedTxt.Text.Replace(".", string.Empty).Replace(",", string.Empty).Trim();
+            valorFinal = txtValorUso.Text.Replace(".", string.Empty).Replace(",", string.Empty).Trim();
 
             if (!string.IsNullOrEmpty(valorFinal))
             {
-                if (tipoValor == 1)
+                if (txtValorUso.Text.Contains("."))
                 {
-                    valorFinal = maskedTxt.Text.Replace(".", string.Empty).Trim();
+                    valorFinal = txtValorUso.Text.Replace(".", string.Empty).Trim();
                 }
                 else
                 {
-                    valorFinal = maskedTxt.Text.Trim();
-                }
-
-                dValor = Convert.ToDecimal(valorFinal);
-            }
-
-            return dValor;
-        }
-
-        /// <summary>
-        /// tipoValor 1 = Campo Aluguel, Campo Valor Total
-        /// tipoValor 2 = Outros Campos
-        /// </summary>
-        /// <param name="maskedTxt"></param>
-        /// <param name="tipoValor"></param>
-        /// <returns></returns>
-        public static Decimal FormataValorSalvar(TextBox maskedTxt, int tipoValor)
-        {
-            decimal dValor = 0;
-            string valorFinal = string.Empty;
-            valorFinal = maskedTxt.Text.Replace(".", string.Empty).Replace(",", string.Empty).Trim();
-
-            if (!string.IsNullOrEmpty(valorFinal))
-            {
-                if (tipoValor == 1)
-                {
-                    valorFinal = maskedTxt.Text.Replace(".", string.Empty).Trim();
-                }
-                else
-                {
-                    valorFinal = maskedTxt.Text.Trim();
+                    valorFinal = txtValorUso.Text.Trim();
                 }
 
                 dValor = Convert.ToDecimal(valorFinal);

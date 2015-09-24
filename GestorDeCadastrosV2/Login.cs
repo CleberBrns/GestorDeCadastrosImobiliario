@@ -9,11 +9,12 @@ using System.Windows.Forms;
 
 namespace GestorDeCadastros
 {
-    public partial class Inicio : Form
+    public partial class Login : Form
     {
-        public Inicio()
+        public Login()
         {
             InitializeComponent();
+            Auxiliar.CentralizaControle(panel1, this);
         }
 
         private void btCadastros_Click(object sender, EventArgs e)

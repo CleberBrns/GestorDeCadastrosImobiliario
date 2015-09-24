@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlServerCe;
 using System.IO;
+using System.Configuration;
 
 namespace GestorDeCadastros
 {
@@ -24,6 +25,8 @@ namespace GestorDeCadastros
         public Recibos()
         {
             InitializeComponent();
+
+            Auxiliar.CentralizaControle(tcRecibos, this);
         }
 
         private void Recibos_Load(object sender, EventArgs e)
@@ -39,7 +42,6 @@ namespace GestorDeCadastros
             {
                 MessageBox.Show(ex.ToString());
             }
-
         }
 
         #region Ações Banco de Dados
@@ -48,7 +50,7 @@ namespace GestorDeCadastros
         /// tipoTabela 1 = Recibo Principal
         /// tipoTabela 2 = Recibo Locador
         /// tipoTabela 3 = Locatarios (Quando ainda não existem Recibos Cadastrados)
-        /// tipoTabela 4 = Recibo Locatário + Locatarios
+        /// tipoTabela 4 = Recibo Principal + Locadores
         /// </summary>
         /// <param name="dsDados"></param>
         /// <param name="sdaDados"></param>
@@ -75,7 +77,7 @@ namespace GestorDeCadastros
             else
             {
                 cmd.CommandText = "select top(1) Lct.Locatario, Lct.Aluguel, Rp.Quantidade, Rp.Numero, Rp.Iptu, Rp.ParcelasIptu, Rp.DespesaCondominio, Rp.Luz, Rp.Agua," +
-                                  " Rp.Data, Rp.Id as IdRecibo, Lcd.Locador" +
+                                  " Rp.Data, Rp.Id as IdRecibo, Rp.NumeroParcelaIptu, Lcd.Locador" +
                                   " from Locatarios Lct" +
                                   " inner join RecibosPrincipais Rp" +
                                   " on Lct.Id = Rp.fkIdLocatario" +
@@ -113,33 +115,46 @@ namespace GestorDeCadastros
 
             if (tipoInsercao == 1)
             {
+                DateTime dtTestes = Convert.ToDateTime("28/08/2015");
                 dr["fkIdLocatario"] = lblIdLocatario.Text.Trim();
                 dr["Quantidade"] = nudQtdRecibos.Value.ToString().Trim();
                 dr["Numero"] = nudNumRecibo.Value.ToString();
-                dr["Data"] = DateTime.Now;
+                dr["Data"] = DateTime.Now;                
                 dr["Periodo"] = Convert.ToDateTime(dtpInicial.Value).ToShortDateString() + " a " + Convert.ToDateTime(dtpFinal.Value).ToShortDateString();
-                dr["Iptu"] = RetornaValorCamposOpcionais(mtxtIptu, 2);
+                dr["Iptu"] = RetornaValorCamposOpcionais(txtIptuRcPrincipal);
                 dr["ParcelasIptu"] = nudParcelasIptu.Value.ToString();
-                dr["DespesaCondominio"] = RetornaValorCamposOpcionais(mtxtDespCondominio, 2);
-                dr["Luz"] = Auxiliar.FormataValorSalvar(mtxtLuz, 2);
-                dr["Agua"] = Auxiliar.FormataValorSalvar(mtxtAgua, 2);
-                dr["Aluguel"] = Auxiliar.FormataValorSalvar(mtxtAluguel, 1);
-                dr["ComplementoPagamento"] = RetornaValorCamposOpcionais(mtxtCompPagamento, 2);
+                dr["NumeroParcelaIptu"] = nudNumeroParcIptu.Value.ToString();
+                dr["DespesaCondominio"] = RetornaValorCamposOpcionais(txtDespCondRcPrincipal);
+                dr["Luz"] = Auxiliar.FormataValorParaUso(txtLuz);
+                dr["Agua"] = Auxiliar.FormataValorParaUso(txtAgua);
+                dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguelRcPrincipal);
+                dr["ComplementoPagamento"] = RetornaValorCamposOpcionais(txtCompPagto);
                 dr["DescricaoComplementoPagamento"] = txtDescricaoCompPagto.Text.Trim();
                 dr["FormaPagamento"] = txtFormaPagto.Text.Trim();
                 dr["DataPagamento"] = Convert.ToDateTime(dtpVencimento.Value).ToShortDateString();
-                dr["TotalPagamento"] = Auxiliar.FormataValorSalvar(mtxtValorTotal, 2);
+                dr["TotalPagamento"] = Auxiliar.FormataValorParaUso(txtTotalRcPrincipal);
                 dr["ExtensoTotalPagamento"] = txtExtensoValorTotal.Text.Trim();
+
+                if (pnlReajuste.Visible == true)
+                {
+                    dr["ReajusteAluguel"] = lblReajuste.Text.Trim() + " " + Convert.ToDateTime(dtpReajusteAluguel.Value).ToShortDateString();
+                }
+                else
+                {
+                    dr["ReajusteAluguel"] = string.Empty;
+                }               
 
             }
             else if (tipoInsercao == 2)
             {
-                dr["Aluguel"] = Auxiliar.FormataValorSalvar(mtxtAluguelRecbLc, 1);
-                dr["Multa"] = RetornaValorCamposOpcionais(mtxtMultaRecbLc, 2);
-                dr["PorcentagemMulta"] = nudPorcentMulta.Value;
-                dr["Comissao"] = Auxiliar.FormataValorSalvar(mtxtComissaoRecbLc, 1);
-                dr["DespesaCondominio"] = RetornaValorCamposOpcionais(mtxtDespCondRecbLc, 2); ;
-                dr["Total"] = Auxiliar.FormataValorSalvar(mtxtTotalRecbLc, 1);
+                dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguelRcLocador);
+                dr["PorcentagemMulta"] = Convert.ToInt32(nudPctMulta.Value);
+                dr["Multa"] = RetornaValorCamposOpcionais(txtMulta);
+                dr["PorcentagemComissao"] = Convert.ToInt32(nudPctComissao.Value);
+                dr["Comissao"] = Auxiliar.FormataValorParaUso(txtComissao);
+                dr["Complemento"] = RetornaValorCamposOpcionais(txtComplementoRL);
+                dr["DescricaoComplemento"] = txtDescricaoComplementoRL.Text.Trim();
+                dr["Total"] = Auxiliar.FormataValorParaUso(txtTotalRcLocador);
                 dr["fkIdRecibo"] = Convert.ToInt32(lblIdRecibo.Text.Trim());
             }
 
@@ -147,35 +162,26 @@ namespace GestorDeCadastros
             sdaInclusao.Update(dsInclusao);
         }
 
-        /// <summary>
-        /// tipoValor 1 = Campo Aluguel, Campo Valor Total
-        /// tipoValor 2 = Outros Campos
-        /// </summary>
-        /// <param name="maskedTxt"></param>
-        /// <param name="tipoValor"></param>
-        /// <returns></returns>
-        private object RetornaValorCamposOpcionais(MaskedTextBox maskedTxt, int tipoValor)
+        private object RetornaValorCamposOpcionais(TextBox txtValor)
         {
-            if (string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtIptu)))
+            if (string.IsNullOrEmpty(txtValor.Text.Trim()))
             {
                 return 0;
             }
             else
             {
-                return Auxiliar.FormataValorSalvar(maskedTxt, tipoValor);
+                return Auxiliar.FormataValorParaUso(txtValor);
             }
         }
 
-        private decimal RetornaNumeroReciboAtual(int numeroReciboAnterior)
+        private decimal RetornaNumeroContagemAtual(int numeroAnterior)
         {
-            return numeroReciboAnterior + 1;
+            return numeroAnterior + 1;
         }
 
         private string RetornaDataAtual()
         {
-            string dataAtual = DateTime.Now.ToShortDateString();
-
-            return dataAtual;
+            return DateTime.Now.ToShortDateString();
         }
 
         private DataTable CarregaDadosTabela(int tipoPesquisa)
@@ -197,44 +203,75 @@ namespace GestorDeCadastros
             try
             {
                 DataTable dadosLocatario = CarregaDadosTabela(4);
-                if (dadosLocatario.Rows.Count > 0)
+                if (dadosLocatario.Rows.Count > 0)//Já possui Recibos Cadastrados
                 {
+                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Data"].ToString()))
+                    {
+                        VerificaMesReajuste(Convert.ToDateTime(dadosLocatario.DefaultView[0]["Data"].ToString()));
+                    }
+
                     lblLocatario.Text = dadosLocatario.DefaultView[0]["Locatario"].ToString();
+                    lblLocatario.Visible = true;
 
                     nudQtdRecibos.Value = Convert.ToDecimal(dadosLocatario.DefaultView[0]["Quantidade"].ToString());
-                    nudQtdRecibos.Enabled = false;
+                    nudParcelasIptu.Value = Convert.ToDecimal(dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString());
 
-                    nudNumRecibo.Value = RetornaNumeroReciboAtual(Convert.ToInt32(dadosLocatario.DefaultView[0]["Numero"].ToString()));
+                    if (nudQtdRecibos.Value != 0)
+                    {
+                        nudQtdRecibos.Enabled = false;
+                        if (nudQtdRecibos.Value == Convert.ToInt32(dadosLocatario.DefaultView[0]["Numero"].ToString()))
+                        {
+                            nudNumRecibo.Value = 0;
+                        }
+                        else
+                        {
+                            nudNumRecibo.Value = RetornaNumeroContagemAtual(Convert.ToInt32(dadosLocatario.DefaultView[0]["Numero"].ToString()));
+                        }
 
+                    } 
+                    
                     if (dadosLocatario.DefaultView[0]["Iptu"].ToString() != "0")
                     {
-                        mtxtIptu.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Iptu"].ToString(), 2);
-                    }
+                        txtIptuRcPrincipal.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Iptu"].ToString());
+                    }  
 
-                    if (dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString() != "0")
+                    if (nudParcelasIptu.Value != 0)
                     {
-                        nudParcelasIptu.Value = Convert.ToDecimal(dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString()) - 1;
+                        nudParcelasIptu.Enabled = false;
+                        if (nudParcelasIptu.Value == Convert.ToInt32(dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString()))
+                        {
+                            nudNumeroParcIptu.Value = 0;
+                            txtIptuRcPrincipal.Text = string.Empty;
+                        }
+                        else
+                        {
+                            nudNumeroParcIptu.Value = RetornaNumeroContagemAtual(Convert.ToInt32(dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString()));
+                        }
                     }
 
-                    mtxtLuz.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Luz"].ToString(), 2);
-                    mtxtAgua.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Agua"].ToString(), 2);
 
-                    mtxtAluguel.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), 1);
+                                   
+
+                    txtLuz.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Luz"].ToString());
+                    txtAgua.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Agua"].ToString());
+
+                    txtAluguelRcPrincipal.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());
                 }
-                else
+                else//Cadastro do primeiro recibo
                 {
                     dadosLocatario = CarregaDadosTabela(3);
                     if (dadosLocatario.Rows.Count > 0)
                     {
                         lblLocatario.Text = dadosLocatario.DefaultView[0]["Locatario"].ToString();
-                        mtxtAluguel.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), 1);
+                        lblLocatario.Visible = true;
+                        txtAluguelRcPrincipal.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                //MessageBox.Show("Falha ao carregador os dados do Usuário.");
+                //MessageBox.Show(ex.ToString());                
+                Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Recibo.", 3);
             }
 
         }
@@ -243,30 +280,54 @@ namespace GestorDeCadastros
         {
             if (rbAcrescimo.Checked)
             {
-                mtxtCompPagamento.Enabled = true;
-                mtxtCompPagamento.BackColor = Color.PaleGreen;
+                txtCompPagto.BackColor = Color.PaleGreen;
             }
             else if (rbDesconto.Checked)
             {
-                mtxtCompPagamento.Enabled = true;
-                mtxtCompPagamento.BackColor = Color.PaleGreen;
-            }
-
-            mtxtCompPagamento.Text = string.Empty;
-        }
-
-        private void ckbEditNumRecibo_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ckbEditNumRecibo.Checked)
-            {
-                nudNumRecibo.Enabled = true;
-                nudNumRecibo.BackColor = Color.PaleGreen;
+                txtCompPagto.BackColor = Color.PaleGreen;
             }
             else
             {
-                nudNumRecibo.Enabled = false;
-                nudNumRecibo.BackColor = Color.White;
+                txtCompPagto.BackColor = Color.White;
             }
+
+            ckbDesmarcaComPagto.Enabled = true;
+            ckbDesmarcaComPagto.Checked = false;
+        }
+
+        private void ckbEdicaoNumeros_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender == ckbEditNumRecibo)
+            {
+                if (ckbEditNumRecibo.Checked)
+                {
+                    nudQtdRecibos.Enabled = true;
+                    nudNumRecibo.Enabled = true;
+                    nudNumRecibo.BackColor = Color.PaleGreen;
+                }
+                else
+                {
+                    nudQtdRecibos.Enabled = false;
+                    nudNumRecibo.Enabled = false;
+                    nudNumRecibo.BackColor = Color.White;
+                }
+            }
+            else if (sender == ckbEdicaoIptu)
+            {
+                if (ckbEdicaoIptu.Checked)
+                {
+                    nudParcelasIptu.Enabled = true;
+                    nudNumeroParcIptu.Enabled = true;
+                    nudNumeroParcIptu.BackColor = Color.PaleGreen;
+                }
+                else
+                {
+                    nudParcelasIptu.Enabled = false;
+                    nudNumeroParcIptu.Enabled = false;
+                    nudNumeroParcIptu.BackColor = Color.White;
+                }
+            }
+
         }
 
         private void ckbEditaValorExtenso_CheckedChanged(object sender, EventArgs e)
@@ -283,55 +344,52 @@ namespace GestorDeCadastros
             }
         }
 
-        private void btConcluir_Click(object sender, EventArgs e)
+        private void btConcluirRcPrincipal_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(lblIdLocatario.Text.Trim()))
             {
-                if (Auxiliar.validaCampoMtxt(mtxtLuz, errorProvider1))
+                if (Auxiliar.validaCampoTxt(txtAluguelRcPrincipal, errorProvider1))
                 {
-                    if (Auxiliar.validaCampoMtxt(mtxtAgua, errorProvider1))
+                    if (Auxiliar.validaCampoTxt(txtAluguelRcPrincipal, errorProvider1))
                     {
-                        if (Auxiliar.validaCampoMtxt(mtxtAluguel, errorProvider1))
+                        if (Auxiliar.validaCampoTxt(txtExtensoValorTotal, errorProvider1))
                         {
-                            if (Auxiliar.validaCampoTxt(txtFormaPagto, errorProvider1))
+                            if (nudQtdRecibos.Value == 0)
                             {
-                                if (Auxiliar.validaCampoMtxt(mtxtValorTotal, errorProvider1))
+                                if (DialogResult.Yes == MessageBox.Show("O campo Quatidade de Recibos está zerado. Deseja continuar mesmo assim?", "Confirmação",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
                                 {
-                                    if (Auxiliar.validaCampoTxt(txtExtensoValorTotal, errorProvider1))
+                                    try
                                     {
-                                        if (nudQtdRecibos.Value == 0)
-                                        {
-                                            if (DialogResult.Yes == MessageBox.Show("O campo Quatidade de Recibos está zerado. Deseja continuar mesmo assim?", "Confirmação",
-                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
-                                            {
-                                                try
-                                                {
-                                                    InsereDados(1);
-                                                    MessageBox.Show("Recibo armazenado com Sucesso!");
-                                                    btMostraReciboLc.Visible = true;
-                                                    btConcluir.Enabled = false;
-                                                }
-                                                catch (Exception ex)
-                                                {
-                                                    MessageBox.Show(ex.ToString());
-                                                }
-                                            }
-                                        }
-                                        else
-                                        {
-                                            try
-                                            {
-                                                InsereDados(1);
-                                                MessageBox.Show("Recibo armazenado com Sucesso!");
-                                                btMostraReciboLc.Visible = true;
-                                                btConcluir.Enabled = false;
-                                            }
-                                            catch (Exception ex)
-                                            {
-                                                MessageBox.Show(ex.ToString());
-                                            }
-                                        }
+                                        InsereDados(1);
+                                        Auxiliar.MostraMensagemAlerta("Recibo armazenado com Sucesso!", 1);
+                                        btConcluir.Enabled = false;
+
+                                        tcRecibos.TabPages.Add(tpLocador);
+                                        tcRecibos.SelectedTab = tpLocador;
                                     }
+                                    catch (Exception ex)
+                                    {
+                                        //MessageBox.Show(ex.ToString());                                        
+                                        Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    InsereDados(1);
+                                    Auxiliar.MostraMensagemAlerta("Recibo armazenado com Sucesso!", 1);
+                                    btConcluir.Enabled = false;
+
+                                    tcRecibos.TabPages.Add(tpLocador);
+                                    tcRecibos.SelectedTab = tpLocador;
+                                }
+                                catch (Exception ex)
+                                {
+                                    //MessageBox.Show(ex.ToString());                                    
+                                    Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
                                 }
                             }
                         }
@@ -340,68 +398,68 @@ namespace GestorDeCadastros
             }
         }
 
-        private void btCalcular_Click(object sender, EventArgs e)
+        private void btCalcularRcPrincipal_Click(object sender, EventArgs e)
         {
-            CalcularValorTotal();
+            CalcularValorTotalRcPrincipal();
         }
 
-        private void CalcularValorTotal()
+        private void CalcularValorTotalRcPrincipal()
         {
             decimal valorTotal = 0;
-            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtIptu)))
+            if (!string.IsNullOrEmpty(txtIptuRcPrincipal.Text.Trim()))
             {
-                valorTotal = Auxiliar.FormataValorSalvar(mtxtIptu, 2);
+                valorTotal = Auxiliar.FormataValorParaUso(txtIptuRcPrincipal);
             }
 
-            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtDespCondominio)))
+            if (!string.IsNullOrEmpty(txtDespCondRcPrincipal.Text.Trim()))
             {
-                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtDespCondominio, 2);
+                valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtDespCondRcPrincipal);
             }
 
-            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtLuz)))
+            if (!string.IsNullOrEmpty(txtLuz.Text.Trim()))
             {
-                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtLuz, 2);
+                valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtLuz);
             }
 
-            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtAgua)))
+            if (!string.IsNullOrEmpty(txtAgua.Text.Trim()))
             {
-                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtAgua, 2);
+                valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtAgua);
             }
 
-            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtAluguel)))
+            if (!string.IsNullOrEmpty(txtAluguelRcPrincipal.Text.Trim()))
             {
-                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtAluguel, 1);
+                valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtAluguelRcPrincipal);
             }
 
-            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtCompPagamento)))
+            if (!string.IsNullOrEmpty(txtCompPagto.Text.Trim()))
             {
                 if (rbAcrescimo.Checked)
                 {
-                    if (Auxiliar.validaCampoMtxt(mtxtCompPagamento, errorProvider1))
+                    if (Auxiliar.validaCampoTxt(txtCompPagto, errorProvider1))
                     {
-                        valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtCompPagamento, 1);
+                        valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtCompPagto);
                     }
                 }
                 else if (rbDesconto.Checked)
                 {
-                    if (Auxiliar.validaCampoMtxt(mtxtCompPagamento, errorProvider1))
+                    if (Auxiliar.validaCampoTxt(txtCompPagto, errorProvider1))
                     {
-                        valorTotal = valorTotal - Auxiliar.FormataValorSalvar(mtxtCompPagamento, 1);
+                        valorTotal = valorTotal - Auxiliar.FormataValorParaUso(txtCompPagto);
                     }
                 }
             }
 
             txtExtensoValorTotal.Text = Auxiliar.valorPorExtenso(valorTotal);
-            mtxtValorTotal.Text = Auxiliar.FormataValorArmazenado(valorTotal.ToString(), 0);
+            txtTotalRcPrincipal.Text = Auxiliar.FormataValoresExibicao(valorTotal.ToString());
         }
 
         private void btTranscreveValor_Click(object sender, EventArgs e)
         {
             try
             {
-                if (Auxiliar.validaCampoMtxt(mtxtValorTotal, errorProvider1))
+                if (Auxiliar.validaCampoTxt(txtTotalRcPrincipal, errorProvider1))
                 {
-                    decimal valorTotal = Auxiliar.FormataValorSalvar(mtxtValorTotal, 1);
+                    decimal valorTotal = Auxiliar.FormataValorParaUso(txtTotalRcPrincipal);
                     txtExtensoValorTotal.Text = Auxiliar.valorPorExtenso(valorTotal);
                 }
             }
@@ -414,27 +472,15 @@ namespace GestorDeCadastros
 
         private void btInicio_Click(object sender, EventArgs e)
         {
-            Inicio formInicio = new Inicio();
+            Login formInicio = new Login();
             this.Hide();
             formInicio.ShowDialog();
             this.Close();
         }
 
-        private void btReciboLc_Click(object sender, EventArgs e)
-        {
-            tcRecibos.TabPages.Add(tpLocador);
-
-            tcRecibos.SelectedTab = tpLocador;
-        }
-
         private void tcRecibos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tcRecibos.SelectedTab == tpPrincipal)
-            {
-                tcRecibos.TabPages.Remove(tpLocador);
-                btMostraReciboLc.Visible = false;
-            }
-            else
+            if (tcRecibos.SelectedTab == tpLocador)
             {
                 CarregaDadosReciboLocador();
             }
@@ -444,85 +490,302 @@ namespace GestorDeCadastros
         {
             try
             {
+                nudPctMulta.Value = Convert.ToDecimal(ConfigurationSettings.AppSettings["PorcentagemMulta"]);
+                nudPctComissao.Value = Convert.ToDecimal(ConfigurationSettings.AppSettings["PorcentagemComissao"]);
+
                 DataTable dadosLocatario = CarregaDadosTabela(4);
                 if (dadosLocatario.Rows.Count > 0)
                 {
                     lblIdRecibo.Text = dadosLocatario.DefaultView[0]["IdRecibo"].ToString();
-                    lblNomeLocador.Text = dadosLocatario.DefaultView[0]["Locador"].ToString();
+                    lblLocador.Text = dadosLocatario.DefaultView[0]["Locador"].ToString();
+                    lblLocador.Visible = true;
 
-                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["DespesaCondominio"].ToString()) && 
-                        dadosLocatario.DefaultView[0]["DespesaCondominio"].ToString() != "0")
-                    {
-                        mtxtDespCondRecbLc.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["DespesaCondominio"].ToString(), 2);
-                    }
-                    mtxtAluguelRecbLc.Text = Auxiliar.FormataValorArmazenado(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), 1);
+                    txtAluguelRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
+                Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Usuário.", 3);
                 //MessageBox.Show("Falha ao carregador os dados do Usuário.");
             }
         }
 
-        private void btCalcularTotalLc_Click(object sender, EventArgs e)
+        private void btCalcularTotalLocador_Click(object sender, EventArgs e)
         {
             decimal valorTotal = 0;
-            if (Auxiliar.validaCampoMtxt(mtxtAluguelRecbLc, errorProvider1))
+            if (Auxiliar.validaCampoTxt(txtAluguelRcLocador, errorProvider1))
             {
-                if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtAluguelRecbLc)))
+                if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text))
                 {
-                    valorTotal = Auxiliar.FormataValorSalvar(mtxtAluguelRecbLc, 1);
+                    valorTotal = Auxiliar.FormataValorParaUso(txtAluguelRcLocador);
                 }
             }
 
-            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtMultaRecbLc)))
+            if (!string.IsNullOrEmpty(txtMulta.Text))
             {
-                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtMultaRecbLc, 2);
+                valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtMulta);
             }
 
-            if (Auxiliar.validaCampoMtxt(mtxtComissaoRecbLc, errorProvider1))
+            if (Auxiliar.validaCampoTxt(txtComissao, errorProvider1))
             {
-
-                if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtComissaoRecbLc)))
+                if (!string.IsNullOrEmpty(txtComissao.Text.Trim()))
                 {
-                    valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtComissaoRecbLc, 1);
+                    valorTotal = (valorTotal - Auxiliar.FormataValorParaUso(txtComissao));
                 }
             }
 
-            if (!string.IsNullOrEmpty(Auxiliar.VerificaMtxtVazio(mtxtDespCondRecbLc)))
+            if (!string.IsNullOrEmpty(txtComplementoRL.Text))
             {
-                valorTotal = valorTotal + Auxiliar.FormataValorSalvar(mtxtDespCondRecbLc, 2);
+                valorTotal = valorTotal - Auxiliar.FormataValorParaUso(txtComplementoRL);
             }
 
-            mtxtTotalRecbLc.Text = Auxiliar.FormataValorArmazenado(valorTotal.ToString(), 0);
+            txtTotalRcLocador.Text = Auxiliar.FormataValoresExibicao(valorTotal.ToString());
         }
 
-        private void btSalvarRecbLc_Click(object sender, EventArgs e)
+        private void btSalvarRcLocador_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(lblIdRecibo.Text.Trim()))
             {
-                if (Auxiliar.validaCampoMtxt(mtxtLuz, errorProvider1))
+                if (Auxiliar.validaCampoTxt(txtAluguelRcLocador, errorProvider1))
                 {
-                    if (Auxiliar.validaCampoMtxt(mtxtAgua, errorProvider1))
+                    if (Auxiliar.validaCampoTxt(txtComissao, errorProvider1))
                     {
-                        if (Auxiliar.validaCampoMtxt(mtxtAluguel, errorProvider1))
+                        if (Auxiliar.validaCampoTxt(txtTotalRcLocador, errorProvider1))
                         {
                             try
                             {
                                 InsereDados(2);
-                                MessageBox.Show("Recibo armazenado com Sucesso!");
-                                btMostraReciboLc.Visible = true;
-                                btSalvarRecbLc.Enabled = false;
+                                Auxiliar.MostraMensagemAlerta("Recibo armazenado com Sucesso!", 1);
+                                btSalvarRecbLc.Enabled = false;                              
                             }
                             catch (Exception ex)
                             {
-                                MessageBox.Show(ex.ToString());
+                                //MessageBox.Show(ex.ToString());
+                                Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
                             }
                         }
                     }
                 }
             }
         }
+
+        private void btInsereValores_Click(object sender, EventArgs e)
+        {
+            if (sender == btIptuRcPrincipal)
+            {
+                ModalInsereValores(txtIptuRcPrincipal);
+            }
+            else if (sender == btAluguelRcPrincipal)
+            {
+                ModalInsereValores(txtAluguelRcPrincipal);
+            }
+            else if (sender == btLuz)
+            {
+                ModalInsereValores(txtLuz);
+            }
+            else if (sender == btAgua)
+            {
+                ModalInsereValores(txtAgua);
+            }
+            else if (sender == btCompPagto)
+            {
+                ModalInsereValores(txtCompPagto);
+            }
+            else if (sender == btTotalRcPrincipal)
+            {
+                ModalInsereValores(txtTotalRcPrincipal);
+            }
+            else if (sender == btAluguelRcLocador)
+            {
+                ModalInsereValores(txtAluguelRcLocador);
+            }
+            else if (sender == btMulta)
+            {
+                ModalInsereValores(txtMulta);
+            }
+            else if (sender == btComissao)
+            {
+                ModalInsereValores(txtComissao);
+            }
+            else if (sender == btComplementoRL)
+            {
+                ModalInsereValores(txtComplementoRL);
+            }
+        }
+
+        private void ModalInsereValores(TextBox txtParaInsercao)
+        {
+            InsereValores dlgInsereValores = new InsereValores();
+            if (dlgInsereValores.ShowDialog() == DialogResult.OK)
+                txtParaInsercao.Text = dlgInsereValores.getValorInserido;
+        }
+
+        private void txtAluguelRcLocador_TextChanged(object sender, EventArgs e)
+        {
+            if (ckbComMulta.Checked)
+            {
+                if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text))
+                {
+                    txtMulta.Text = Auxiliar.FormataValoresExibicao(calculaPorcentagem(nudPctMulta.Value, txtAluguelRcLocador.Text.Trim()));
+
+                    CalculaExibeComissaoSubTotal1();
+                }
+            }
+            else
+            {
+                CalculaExibeComissaoSubTotal1();
+            }
+
+        }
+
+        private void CalculaExibeComissaoSubTotal1()
+        {
+            if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && !string.IsNullOrEmpty(txtMulta.Text.Trim()))
+            {
+                decimal subTotal1 = Auxiliar.FormataValorParaUso(txtAluguelRcLocador) + Auxiliar.FormataValorParaUso(txtMulta);
+                txtSubTotal1.Text = subTotal1.ToString();
+                txtComissao.Text = calculaPorcentagem(nudPctComissao.Value, subTotal1.ToString());
+            }
+            else if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && string.IsNullOrEmpty(txtMulta.Text.Trim()))
+            {
+                txtSubTotal1.Text = txtAluguelRcLocador.Text;
+                txtComissao.Text = calculaPorcentagem(nudPctComissao.Value, Auxiliar.FormataValorParaUso(txtAluguelRcLocador).ToString());
+            }
+
+        }
+
+        private string calculaPorcentagem(decimal porcentagem, string valorCalcular)
+        {
+            decimal valorPorcentagem = 0;
+
+            if (valorCalcular.Contains("."))
+                valorCalcular = valorCalcular.Replace(".", string.Empty).Trim();
+
+            valorPorcentagem = Convert.ToDecimal(valorCalcular);
+            valorPorcentagem = (valorPorcentagem * porcentagem / 100);
+
+            return Auxiliar.FormataValoresExibicao(valorPorcentagem.ToString());
+        }
+
+        private void btCalculaSubTotais_Click(object sender, EventArgs e)
+        {
+            errorProvider1.Clear();
+            if (sender == btSubTotal1)
+            {
+                if (Auxiliar.validaCampoTxt(txtAluguelRcLocador, errorProvider1))
+                {
+                    decimal valor1 = Auxiliar.FormataValorParaUso(txtAluguelRcLocador);
+                    decimal valor2 = 0;
+
+                    if (!string.IsNullOrEmpty(txtMulta.Text.Trim()))
+                    {
+                        valor2 = Auxiliar.FormataValorParaUso(txtMulta);
+                    }
+
+                    txtSubTotal1.Text = Auxiliar.FormataValoresExibicao((valor1 + valor2).ToString());
+                }
+
+                CalculaExibeComissaoSubTotal1();
+
+            }
+            else if (sender == btSubTotal3)
+            {
+                if (Auxiliar.validaCampoTxt(txtSubTotal2, errorProvider1))
+                {
+                    decimal subTotal2 = Auxiliar.FormataValorParaUso(txtSubTotal2);
+
+                    CalculaSubTotal3(subTotal2);
+                }
+            }
+        }
+
+        private void txtComissao_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtSubTotal1.Text.Trim()))
+            {
+                decimal valor1 = Auxiliar.FormataValorParaUso(txtSubTotal1);
+                decimal valor2 = 0;
+
+                if (!string.IsNullOrEmpty(txtComissao.Text.Trim()))
+                {
+                    valor2 = Auxiliar.FormataValorParaUso(txtComissao);
+                }
+
+                txtSubTotal2.Text = Auxiliar.FormataValoresExibicao((valor1 - valor2).ToString());
+                txtTotalRcLocador.Text = txtSubTotal2.Text.Trim();
+            }
+        }
+
+        private void somaSubTotal3_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtSubTotal2.Text))
+            {
+                decimal subTotal2 = Auxiliar.FormataValorParaUso(txtSubTotal2);
+                CalculaSubTotal3(subTotal2);
+            }
+        }
+
+        private void CalculaSubTotal3(decimal subTotal2)
+        {
+            decimal dComplemento = 0;
+
+            if (!string.IsNullOrEmpty(txtComplementoRL.Text.Trim()))
+            {
+                dComplemento = Auxiliar.FormataValorParaUso(txtComplementoRL);
+            }
+
+            txtSubTotal3.Text = Auxiliar.FormataValoresExibicao((subTotal2 - dComplemento).ToString());
+        }
+
+        private void txtSubTotal3_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtSubTotal3.Text.Trim()))
+            {
+                txtTotalRcLocador.Text = Auxiliar.FormataValoresExibicao(txtSubTotal3.Text.Trim());
+            }
+        }
+
+        /// <summary>
+        /// Verifica se o mês atual é multiplo de 12
+        /// O 12º mês representa um reajuste no valor do Aluguel
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        private void VerificaMesReajuste(DateTime dataCadastroRecibo)
+        {
+            DateTime dataAnoReajuste = dataCadastroRecibo.AddYears(1);
+            if (dataCadastroRecibo.Month == dataAnoReajuste.Month && dataCadastroRecibo.Year == dataAnoReajuste.Year)
+            {
+                pnlReajuste.Visible = true;
+            }
+        }
+
+        private void dtpInicial_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpInicial.Value.Month != dtpFinal.Value.Month)
+            {
+                DateTime proximoMes = dtpInicial.Value.AddMonths(1);
+                dtpFinal.Value = proximoMes;
+            }
+        }
+
+        private void ckbDesmarcaComPagto_CheckedChanged(object sender, EventArgs e)
+        {
+            rbAcrescimo.Checked = false;
+            rbDesconto.Checked = false;
+            txtCompPagto.BackColor = Color.White;
+            txtCompPagto.Text = string.Empty;
+        }
+
+        private void txtCompPagto_TextChanged(object sender, EventArgs e)
+        {
+            if (!rbAcrescimo.Checked && !rbDesconto.Checked)
+            {
+                rbAcrescimo.Checked = true;
+            }
+        }
+
     }
 }

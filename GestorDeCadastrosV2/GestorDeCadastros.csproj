@@ -85,6 +85,18 @@
     <Compile Include="Consultas.Designer.cs">
       <DependentUpon>Consultas.cs</DependentUpon>
     </Compile>
+    <Compile Include="PreviewImpressaoRP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PreviewImpressaoRP.Designer.cs">
+      <DependentUpon>PreviewImpressaoRP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VisuzalizaRecibo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VisuzalizaRecibo.Designer.cs">
+      <DependentUpon>VisuzalizaRecibo.cs</DependentUpon>
+    </Compile>
     <Compile Include="GestorCadastrosDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -95,11 +107,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GestorCadastrosDataSet1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Inicio.cs">
+    <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inicio.Designer.cs">
-      <DependentUpon>Inicio.cs</DependentUpon>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Auxiliar.cs" />
     <Compile Include="InsereValores.cs">
@@ -125,8 +137,14 @@
     <EmbeddedResource Include="Consultas.resx">
       <DependentUpon>Consultas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inicio.resx">
-      <DependentUpon>Inicio.cs</DependentUpon>
+    <EmbeddedResource Include="PreviewImpressaoRP.resx">
+      <DependentUpon>PreviewImpressaoRP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VisuzalizaRecibo.resx">
+      <DependentUpon>VisuzalizaRecibo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsereValores.resx">
       <DependentUpon>InsereValores.cs</DependentUpon>
@@ -144,7 +162,9 @@
     <EmbeddedResource Include="Recibos.resx">
       <DependentUpon>Recibos.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="CadastrosAplicacaoDataSet.xsc">
       <DependentUpon>CadastrosAplicacaoDataSet.xsd</DependentUpon>
     </None>
