@@ -11,6 +11,50 @@ namespace GestorDeCadastros
     class Auxiliar
     {
         /// <summary>
+        /// tipoRecibo 1 = Principal
+        /// tipoRecibo 2 = Locador
+        /// </summary>
+        /// <param name="tipoRecibo"></param>
+        /// <param name="idRecibo"></param>
+        public static void VisualizaRecibo(int tipoRecibo, int idRecibo)
+        {
+            if (tipoRecibo == 1)
+            {
+                VisualizaRecibo visualizaRP = new VisualizaRecibo();
+                visualizaRP.getIdReciboPrincipal = idRecibo;
+                visualizaRP.ShowDialog();
+            }
+            else if (tipoRecibo == 2)
+            {
+                VisualizaRecibo visualizaRP = new VisualizaRecibo();
+                visualizaRP.getIdReciboLocador = idRecibo;
+                visualizaRP.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// tipoRecibo 1 = Principal
+        /// tipoRecibo 2 = Locador
+        /// </summary>
+        /// <param name="tipoRecibo"></param>
+        /// <param name="idRecibo"></param>
+        public static void PreviewReciboImpressao(int tipoRecibo, int idRecibo)
+        {
+            if (tipoRecibo == 1)
+            {
+                PreviewImpressaoRP previewRP = new PreviewImpressaoRP();
+                previewRP.getIdReciboPrincipal = idRecibo;
+                previewRP.ShowDialog();
+            }
+            else if (tipoRecibo == 2)
+            {
+                PreviewImpressaoRL previewRL = new PreviewImpressaoRL();
+                previewRL.getIdReciboLocador = idRecibo;
+                previewRL.ShowDialog();
+            }
+        }
+
+        /// <summary>
         /// tipoMensagem 1 = Confirmação
         /// tipoMensagem 2 = Alerta/Informação
         /// tipoMensagem 3 = Falha/Erro
@@ -134,21 +178,21 @@ namespace GestorDeCadastros
             return valorFinal;
         }
 
-        public static Decimal FormataValorParaUso(TextBox txtValorUso)
+        public static Decimal FormataValorParaUso(Control valorParaUso)
         {
             decimal dValor = 0;
             string valorFinal = string.Empty;
-            valorFinal = txtValorUso.Text.Replace(".", string.Empty).Replace(",", string.Empty).Trim();
+            valorFinal = valorParaUso.Text.Replace(".", string.Empty).Replace(",", string.Empty).Trim();
 
             if (!string.IsNullOrEmpty(valorFinal))
             {
-                if (txtValorUso.Text.Contains("."))
+                if (valorParaUso.Text.Contains("."))
                 {
-                    valorFinal = txtValorUso.Text.Replace(".", string.Empty).Trim();
+                    valorFinal = valorParaUso.Text.Replace(".", string.Empty).Trim();
                 }
                 else
                 {
-                    valorFinal = txtValorUso.Text.Trim();
+                    valorFinal = valorParaUso.Text.Trim();
                 }
 
                 dValor = Convert.ToDecimal(valorFinal);

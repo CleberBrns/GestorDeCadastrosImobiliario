@@ -56,15 +56,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(173, 94);
+            this.label1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(165, 94);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 22);
+            this.label1.Size = new System.Drawing.Size(43, 29);
             this.label1.TabIndex = 2;
             this.label1.Text = "R$";
             // 
             // btInserir
             // 
+            this.btInserir.BackColor = System.Drawing.Color.Green;
             this.btInserir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btInserir.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btInserir.Enabled = false;
@@ -74,7 +75,7 @@
             this.btInserir.Size = new System.Drawing.Size(100, 40);
             this.btInserir.TabIndex = 3;
             this.btInserir.Text = "Inserir";
-            this.btInserir.UseVisualStyleBackColor = true;
+            this.btInserir.UseVisualStyleBackColor = false;
             this.btInserir.Click += new System.EventHandler(this.btInserir_Click);
             // 
             // label2
@@ -90,6 +91,7 @@
             // 
             // btCancelar
             // 
+            this.btCancelar.BackColor = System.Drawing.Color.Red;
             this.btCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btCancelar.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -98,17 +100,17 @@
             this.btCancelar.Size = new System.Drawing.Size(110, 40);
             this.btCancelar.TabIndex = 7;
             this.btCancelar.Text = "Cancelar";
-            this.btCancelar.UseVisualStyleBackColor = true;
+            this.btCancelar.UseVisualStyleBackColor = false;
             this.btCancelar.Click += new System.EventHandler(this.btCancelar_Click);
             // 
             // txtResultado
             // 
             this.txtResultado.Enabled = false;
-            this.txtResultado.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtResultado.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtResultado.Location = new System.Drawing.Point(210, 90);
             this.txtResultado.Name = "txtResultado";
             this.txtResultado.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtResultado.Size = new System.Drawing.Size(139, 32);
+            this.txtResultado.Size = new System.Drawing.Size(140, 35);
             this.txtResultado.TabIndex = 8;
             // 
             // label3
@@ -116,7 +118,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(211, 43);
+            this.label3.Location = new System.Drawing.Point(191, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(17, 22);
             this.label3.TabIndex = 9;
@@ -127,7 +129,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(101, 47);
+            this.label4.Location = new System.Drawing.Point(81, 47);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 22);
             this.label4.TabIndex = 10;
@@ -135,12 +137,12 @@
             // 
             // txtInsercao
             // 
-            this.txtInsercao.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInsercao.Location = new System.Drawing.Point(228, 43);
+            this.txtInsercao.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInsercao.Location = new System.Drawing.Point(211, 43);
             this.txtInsercao.MaxLength = 9;
             this.txtInsercao.Name = "txtInsercao";
             this.txtInsercao.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtInsercao.Size = new System.Drawing.Size(120, 32);
+            this.txtInsercao.Size = new System.Drawing.Size(140, 35);
             this.txtInsercao.TabIndex = 0;
             this.txtInsercao.TextChanged += new System.EventHandler(this.txtInsercao_TextChanged);
             this.txtInsercao.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtInsercao_KeyPress);
@@ -154,7 +156,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(55, 308);
+            this.label5.Location = new System.Drawing.Point(55, 324);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(474, 22);
             this.label5.TabIndex = 11;

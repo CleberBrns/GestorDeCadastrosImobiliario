@@ -62,12 +62,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CadastroLocatario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CadastroLocatario.designer.cs">
-      <DependentUpon>CadastroLocatario.cs</DependentUpon>
-    </Compile>
     <Compile Include="Cadastros.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,33 +79,35 @@
     <Compile Include="Consultas.Designer.cs">
       <DependentUpon>Consultas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PreviewImpressaoRL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PreviewImpressaoRL.Designer.cs">
+      <DependentUpon>PreviewImpressaoRL.cs</DependentUpon>
+    </Compile>
     <Compile Include="PreviewImpressaoRP.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PreviewImpressaoRP.Designer.cs">
       <DependentUpon>PreviewImpressaoRP.cs</DependentUpon>
     </Compile>
-    <Compile Include="VisuzalizaRecibo.cs">
+    <Compile Include="VisualizaRecibo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VisuzalizaRecibo.Designer.cs">
-      <DependentUpon>VisuzalizaRecibo.cs</DependentUpon>
+    <Compile Include="VisualizaRecibo.Designer.cs">
+      <DependentUpon>VisualizaRecibo.cs</DependentUpon>
     </Compile>
-    <Compile Include="GestorCadastrosDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GestorCadastrosDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="GestorCadastrosDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GestorCadastrosDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="Inicio.Designer.cs">
+      <DependentUpon>Inicio.cs</DependentUpon>
     </Compile>
     <Compile Include="Auxiliar.cs" />
     <Compile Include="InsereValores.cs">
@@ -128,23 +124,26 @@
     <Compile Include="Recibos.Designer.cs">
       <DependentUpon>Recibos.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="CadastroLocatario.resx">
-      <DependentUpon>CadastroLocatario.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Cadastros.resx">
       <DependentUpon>Cadastros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consultas.resx">
       <DependentUpon>Consultas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviewImpressaoRL.resx">
+      <DependentUpon>PreviewImpressaoRL.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PreviewImpressaoRP.resx">
       <DependentUpon>PreviewImpressaoRP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VisuzalizaRecibo.resx">
-      <DependentUpon>VisuzalizaRecibo.cs</DependentUpon>
+    <EmbeddedResource Include="VisualizaRecibo.resx">
+      <DependentUpon>VisualizaRecibo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="Inicio.resx">
+      <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InsereValores.resx">
       <DependentUpon>InsereValores.cs</DependentUpon>
@@ -176,28 +175,6 @@
     <None Include="CadastrosAplicacaoDataSet.xss">
       <DependentUpon>CadastrosAplicacaoDataSet.xsd</DependentUpon>
     </None>
-    <None Include="GestorCadastrosDataSet.xsc">
-      <DependentUpon>GestorCadastrosDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GestorCadastrosDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GestorCadastrosDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GestorCadastrosDataSet.xss">
-      <DependentUpon>GestorCadastrosDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GestorCadastrosDataSet1.xsc">
-      <DependentUpon>GestorCadastrosDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="GestorCadastrosDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GestorCadastrosDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GestorCadastrosDataSet1.xss">
-      <DependentUpon>GestorCadastrosDataSet1.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -210,9 +187,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CadastrosAplicacao.sdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="GestorCadastros.sdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

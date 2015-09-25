@@ -12,7 +12,7 @@ using System.Configuration;
 
 namespace GestorDeCadastros
 {
-    public partial class VisuzalizaRecibo : Form
+    public partial class VisualizaRecibo : Form
     {
         private int idReciboPrincipal;
         private int idReciboLocador;
@@ -30,7 +30,7 @@ namespace GestorDeCadastros
         }
 
 
-        public VisuzalizaRecibo()
+        public VisualizaRecibo()
         {
             InitializeComponent();
             Auxiliar.CentralizaControle(tcRecibos, this);
@@ -40,7 +40,7 @@ namespace GestorDeCadastros
         {
             try
             {
-                idReciboLocador = 1;
+                //idReciboPrincipal = 1;
                 if (idReciboPrincipal != 0)
                 {
                     lblIdReciboPrincipal.Text = idReciboPrincipal.ToString();
@@ -60,7 +60,7 @@ namespace GestorDeCadastros
 
             }
             catch (Exception ex)
-            {               
+            {
                 //Auxiliar.MostraMensagemAlerta(ex.ToString(), 2);
                 Auxiliar.MostraMensagemAlerta("Não foi possivel resgatar os dados da pesquisa.", 2);
             }
@@ -251,6 +251,13 @@ namespace GestorDeCadastros
             }
         }
 
+        private void btPVImpressaoRP_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Auxiliar.PreviewReciboImpressao(1, Convert.ToInt32(lblIdReciboPrincipal.Text.Trim()));
+            //this.Close();
+        }
+
         #endregion
 
         #region Dados Recibo Locador
@@ -281,7 +288,7 @@ namespace GestorDeCadastros
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Multa"].ToString()) && dadosLocatario.DefaultView[0]["Multa"].ToString() != "0")
                     {
-                         txtMulta.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Multa"].ToString());
+                        txtMulta.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Multa"].ToString());
                     }
 
                     CalculaExibeSubTotal1();
@@ -310,8 +317,8 @@ namespace GestorDeCadastros
                         CalculaSubTotal3(Auxiliar.FormataValorParaUso(txtComplementoRL));
                     }
 
-                    txtTotalRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Total"].ToString());                   
-                 
+                    txtTotalRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Total"].ToString());
+
                 }
             }
             catch (Exception ex)
@@ -326,11 +333,11 @@ namespace GestorDeCadastros
             if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && !string.IsNullOrEmpty(txtMulta.Text.Trim()))
             {
                 decimal subTotal1 = Auxiliar.FormataValorParaUso(txtAluguelRcLocador) + Auxiliar.FormataValorParaUso(txtMulta);
-                txtSubTotal1.Text = subTotal1.ToString();                
+                txtSubTotal1.Text = subTotal1.ToString();
             }
             else if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && string.IsNullOrEmpty(txtMulta.Text.Trim()))
             {
-                txtSubTotal1.Text = txtAluguelRcLocador.Text;                
+                txtSubTotal1.Text = txtAluguelRcLocador.Text;
             }
         }
 
@@ -346,7 +353,7 @@ namespace GestorDeCadastros
                     valor2 = Auxiliar.FormataValorParaUso(txtComissao);
                 }
 
-                txtSubTotal2.Text = Auxiliar.FormataValoresExibicao((valor1 - valor2).ToString());                
+                txtSubTotal2.Text = Auxiliar.FormataValoresExibicao((valor1 - valor2).ToString());
             }
         }
 
@@ -373,6 +380,13 @@ namespace GestorDeCadastros
             valorPorcentagem = (valorPorcentagem * porcentagem / 100);
 
             return Auxiliar.FormataValoresExibicao(valorPorcentagem.ToString());
+        }
+
+        private void btPVImpressaoRL_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Auxiliar.PreviewReciboImpressao(2, Convert.ToInt32(lblIdReciboLocador.Text.Trim()));
+            //this.Close();
         }
 
         #endregion

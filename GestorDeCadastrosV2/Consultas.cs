@@ -77,7 +77,7 @@ namespace GestorDeCadastros
 
         private void btInicio_Click(object sender, EventArgs e)
         {
-            Login formInicio = new Login();
+            Inicio formInicio = new Inicio();
             this.Hide();
             formInicio.ShowDialog();
             this.Close();
@@ -671,6 +671,33 @@ namespace GestorDeCadastros
             cboRecibosPrincipais.Enabled = false;
         }
 
+        private void dgvRecibosPrincipais_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvRecibosPrincipais.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                int idxbtVisualizarRP = Convert.ToInt32(dgvRecibosPrincipais.Columns["btVisualizarRP"].Index.ToString());
+                int idxbtPreviewRP = Convert.ToInt32(dgvRecibosPrincipais.Columns["btPreviewRP"].Index.ToString());
+                int idxIdRecibo = Convert.ToInt32(dgvRecibosPrincipais.Columns["IdRP"].Index.ToString());
+
+                string sIdRecibo = dgvRecibosPrincipais.Rows[e.RowIndex].Cells[idxIdRecibo].Value.ToString().Trim();
+
+                if (dgvRecibosPrincipais.Rows[e.RowIndex].Cells[idxbtVisualizarRP].Selected)
+                {
+                    if (!string.IsNullOrEmpty(sIdRecibo) && sIdRecibo != "0")
+                    {
+                        Auxiliar.VisualizaRecibo(1, Convert.ToInt32(sIdRecibo));
+                    }
+                }
+                else if (dgvRecibosPrincipais.Rows[e.RowIndex].Cells[idxbtPreviewRP].Selected)
+                {
+                    if (!string.IsNullOrEmpty(sIdRecibo) && sIdRecibo != "0")
+                    {
+                        Auxiliar.PreviewReciboImpressao(1, Convert.ToInt32(sIdRecibo));
+                    }
+                }
+            }
+        }
+
         #endregion
 
         #region Ações aba Recibos Locador
@@ -717,6 +744,33 @@ namespace GestorDeCadastros
                 dgvRecibosLocador.DataSource = dadosPesquisa;
 
                 Auxiliar.MostraMensagemAlerta("Não existem Recibos salvos para essa pesquisa!", 2);
+            }
+        }
+
+        private void dgvRecibosLocador_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvRecibosLocador.Rows.Count > 0 && e.RowIndex != -1)
+            {
+                int idxbtVisualizarRL = Convert.ToInt32(dgvRecibosLocador.Columns["btVisualizarRL"].Index.ToString());
+                int idxbtPreviewRL = Convert.ToInt32(dgvRecibosLocador.Columns["btPreviewRL"].Index.ToString());
+                int idxIdRecibo = Convert.ToInt32(dgvRecibosLocador.Columns["IdRL"].Index.ToString());
+
+                string sIdRecibo = dgvRecibosLocador.Rows[e.RowIndex].Cells[idxIdRecibo].Value.ToString().Trim();
+
+                if (dgvRecibosLocador.Rows[e.RowIndex].Cells[idxbtVisualizarRL].Selected)
+                {
+                    if (!string.IsNullOrEmpty(sIdRecibo) && sIdRecibo != "0")
+                    {
+                        Auxiliar.VisualizaRecibo(2, Convert.ToInt32(sIdRecibo));
+                    }
+                }
+                else if (dgvRecibosLocador.Rows[e.RowIndex].Cells[idxbtPreviewRL].Selected)
+                {
+                    if (!string.IsNullOrEmpty(sIdRecibo) && sIdRecibo != "0")
+                    {
+                        Auxiliar.PreviewReciboImpressao(2, Convert.ToInt32(sIdRecibo));
+                    }
+                }
             }
         }
 
@@ -800,7 +854,7 @@ namespace GestorDeCadastros
             }
         }
 
-        #endregion
+        #endregion             
 
     }
 }

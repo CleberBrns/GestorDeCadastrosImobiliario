@@ -87,7 +87,7 @@ namespace GestorDeCadastros
                 btLimparFormLocatario.Visible = false;
 
                 btAtualizarLocatario.Visible = true;
-                btExcluirLocatario.Visible = true;
+                //btExcluirLocatario.Visible = true;
 
                 CarregaDadosCadastro(idLocatario, 3);
 
@@ -103,7 +103,7 @@ namespace GestorDeCadastros
                 btLimparFormLocador.Visible = false;
 
                 btAtualizarLocador.Visible = true;
-                btExcluirLocador.Visible = true;
+                //btExcluirLocador.Visible = true;
 
                 CarregaDadosCadastro(idLocador, 2);
             }
@@ -118,7 +118,7 @@ namespace GestorDeCadastros
                 btLimparFormImovel.Visible = false;
 
                 btAtualizarImovel.Visible = true;
-                btExcluirImovel.Visible = true;
+                //btExcluirImovel.Visible = true;
 
                 CarregaDadosCadastro(idImovel, 1);
             }
@@ -425,7 +425,7 @@ namespace GestorDeCadastros
 
         private void btInicio_Click(object sender, EventArgs e)
         {
-            Login formInicio = new Login();
+            Inicio formInicio = new Inicio();
             this.Hide();
             formInicio.ShowDialog();
             this.Close();

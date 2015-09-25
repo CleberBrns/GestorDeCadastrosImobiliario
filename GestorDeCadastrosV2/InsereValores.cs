@@ -63,6 +63,15 @@ namespace GestorDeCadastros
 
             if (!string.IsNullOrEmpty(txtResultado.Text))
             {
+                txtResultado.BackColor = Color.PaleGreen;
+            }
+            else
+            {
+                txtResultado.BackColor = Color.White;
+            }
+
+            if (!string.IsNullOrEmpty(txtResultado.Text))
+            {
                 decimal valorConvercao = Convert.ToDecimal(txtResultado.Text.Replace(".", string.Empty).Trim());
 
                 if (valorConvercao != 0)
@@ -149,6 +158,5 @@ namespace GestorDeCadastros
         }
 
         #endregion
-
     }
 }

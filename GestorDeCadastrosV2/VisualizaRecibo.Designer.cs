@@ -1,6 +1,6 @@
 ﻿namespace GestorDeCadastros
 {
-    partial class VisuzalizaRecibo
+    partial class VisualizaRecibo
     {
         /// <summary>
         /// Required designer variable.
@@ -97,6 +97,9 @@
             this.txtRejuste = new System.Windows.Forms.TextBox();
             this.tpLocador = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel20 = new System.Windows.Forms.Panel();
+            this.label66 = new System.Windows.Forms.Label();
+            this.lblLocador = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
             this.txtComplementoRL = new System.Windows.Forms.TextBox();
@@ -104,7 +107,7 @@
             this.label52 = new System.Windows.Forms.Label();
             this.txtDescricaoComplementoRL = new System.Windows.Forms.TextBox();
             this.panel26 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btPVImpressaoRL = new System.Windows.Forms.Button();
             this.label51 = new System.Windows.Forms.Label();
             this.panel24 = new System.Windows.Forms.Panel();
             this.label47 = new System.Windows.Forms.Label();
@@ -137,12 +140,9 @@
             this.panel18 = new System.Windows.Forms.Panel();
             this.label38 = new System.Windows.Forms.Label();
             this.txtAluguelRcLocador = new System.Windows.Forms.TextBox();
-            this.lblLocador = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
             this.lblIdReciboLocador = new System.Windows.Forms.Label();
-            this.label66 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.panel20 = new System.Windows.Forms.Panel();
             this.tcRecibos.SuspendLayout();
             this.tpPrincipal.SuspendLayout();
             this.pnlInfoLocatario.SuspendLayout();
@@ -168,6 +168,7 @@
             this.pnlReajuste.SuspendLayout();
             this.tpLocador.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel20.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel26.SuspendLayout();
             this.panel24.SuspendLayout();
@@ -180,7 +181,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudPctMulta)).BeginInit();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.panel20.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcRecibos
@@ -278,20 +278,23 @@
             this.panel25.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel25.Controls.Add(this.btPVImpressaoRP);
             this.panel25.Controls.Add(this.label50);
-            this.panel25.Location = new System.Drawing.Point(808, 462);
+            this.panel25.Location = new System.Drawing.Point(767, 401);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(172, 95);
+            this.panel25.Size = new System.Drawing.Size(199, 138);
             this.panel25.TabIndex = 132;
             // 
             // btPVImpressaoRP
             // 
-            this.btPVImpressaoRP.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPVImpressaoRP.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btPVImpressaoRP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPVImpressaoRP.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btPVImpressaoRP.Location = new System.Drawing.Point(12, 40);
             this.btPVImpressaoRP.Name = "btPVImpressaoRP";
-            this.btPVImpressaoRP.Size = new System.Drawing.Size(141, 35);
+            this.btPVImpressaoRP.Size = new System.Drawing.Size(168, 44);
             this.btPVImpressaoRP.TabIndex = 19;
             this.btPVImpressaoRP.Text = "Preview Impressão";
-            this.btPVImpressaoRP.UseVisualStyleBackColor = true;
+            this.btPVImpressaoRP.UseVisualStyleBackColor = false;
+            this.btPVImpressaoRP.Click += new System.EventHandler(this.btPVImpressaoRP_Click);
             // 
             // label50
             // 
@@ -356,6 +359,7 @@
             // 
             // txtFormaPagto
             // 
+            this.txtFormaPagto.Enabled = false;
             this.txtFormaPagto.Location = new System.Drawing.Point(166, 7);
             this.txtFormaPagto.Name = "txtFormaPagto";
             this.txtFormaPagto.Size = new System.Drawing.Size(206, 25);
@@ -490,6 +494,7 @@
             // 
             // txtDescricaoCompPagto
             // 
+            this.txtDescricaoCompPagto.Enabled = false;
             this.txtDescricaoCompPagto.Location = new System.Drawing.Point(271, 45);
             this.txtDescricaoCompPagto.Name = "txtDescricaoCompPagto";
             this.txtDescricaoCompPagto.Size = new System.Drawing.Size(391, 25);
@@ -924,6 +929,38 @@
             this.panel2.Size = new System.Drawing.Size(1300, 680);
             this.panel2.TabIndex = 6;
             // 
+            // panel20
+            // 
+            this.panel20.BackColor = System.Drawing.Color.DarkGray;
+            this.panel20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel20.Controls.Add(this.label66);
+            this.panel20.Controls.Add(this.lblLocador);
+            this.panel20.Location = new System.Drawing.Point(259, 7);
+            this.panel20.Name = "panel20";
+            this.panel20.Size = new System.Drawing.Size(849, 45);
+            this.panel20.TabIndex = 130;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label66.Location = new System.Drawing.Point(3, 8);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(95, 22);
+            this.label66.TabIndex = 1;
+            this.label66.Text = "Locador;";
+            // 
+            // lblLocador
+            // 
+            this.lblLocador.AutoSize = true;
+            this.lblLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocador.Location = new System.Drawing.Point(92, 8);
+            this.lblLocador.Name = "lblLocador";
+            this.lblLocador.Size = new System.Drawing.Size(110, 22);
+            this.lblLocador.TabIndex = 103;
+            this.lblLocador.Text = "lblLocador";
+            this.lblLocador.Visible = false;
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGray;
@@ -979,6 +1016,7 @@
             // 
             // txtDescricaoComplementoRL
             // 
+            this.txtDescricaoComplementoRL.Enabled = false;
             this.txtDescricaoComplementoRL.Location = new System.Drawing.Point(9, 77);
             this.txtDescricaoComplementoRL.Name = "txtDescricaoComplementoRL";
             this.txtDescricaoComplementoRL.Size = new System.Drawing.Size(391, 25);
@@ -988,22 +1026,25 @@
             // 
             this.panel26.BackColor = System.Drawing.Color.DarkGray;
             this.panel26.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel26.Controls.Add(this.button5);
+            this.panel26.Controls.Add(this.btPVImpressaoRL);
             this.panel26.Controls.Add(this.label51);
-            this.panel26.Location = new System.Drawing.Point(498, 482);
+            this.panel26.Location = new System.Drawing.Point(946, 72);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(162, 126);
+            this.panel26.Size = new System.Drawing.Size(185, 147);
             this.panel26.TabIndex = 123;
             // 
-            // button5
+            // btPVImpressaoRL
             // 
-            this.button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(9, 44);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(141, 35);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Preview Impressão";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btPVImpressaoRL.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btPVImpressaoRL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPVImpressaoRL.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPVImpressaoRL.Location = new System.Drawing.Point(6, 43);
+            this.btPVImpressaoRL.Name = "btPVImpressaoRL";
+            this.btPVImpressaoRL.Size = new System.Drawing.Size(168, 44);
+            this.btPVImpressaoRL.TabIndex = 8;
+            this.btPVImpressaoRL.Text = "Preview Impressão";
+            this.btPVImpressaoRL.UseVisualStyleBackColor = false;
+            this.btPVImpressaoRL.Click += new System.EventHandler(this.btPVImpressaoRL_Click);
             // 
             // label51
             // 
@@ -1341,17 +1382,6 @@
             this.txtAluguelRcLocador.Size = new System.Drawing.Size(86, 25);
             this.txtAluguelRcLocador.TabIndex = 117;
             // 
-            // lblLocador
-            // 
-            this.lblLocador.AutoSize = true;
-            this.lblLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocador.Location = new System.Drawing.Point(92, 8);
-            this.lblLocador.Name = "lblLocador";
-            this.lblLocador.Size = new System.Drawing.Size(110, 22);
-            this.lblLocador.TabIndex = 103;
-            this.lblLocador.Text = "lblLocador";
-            this.lblLocador.Visible = false;
-            // 
             // label61
             // 
             this.label61.AutoSize = true;
@@ -1371,39 +1401,18 @@
             this.lblIdReciboLocador.Text = "lblIdReciboLocador";
             this.lblIdReciboLocador.Visible = false;
             // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label66.Location = new System.Drawing.Point(3, 8);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(95, 22);
-            this.label66.TabIndex = 1;
-            this.label66.Text = "Locador;";
-            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // panel20
-            // 
-            this.panel20.BackColor = System.Drawing.Color.DarkGray;
-            this.panel20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel20.Controls.Add(this.label66);
-            this.panel20.Controls.Add(this.lblLocador);
-            this.panel20.Location = new System.Drawing.Point(259, 7);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(849, 45);
-            this.panel20.TabIndex = 130;
-            // 
-            // VisuzalizaRecibo
+            // VisualizaRecibo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1360, 739);
             this.Controls.Add(this.tcRecibos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
-            this.Name = "VisuzalizaRecibo";
+            this.Name = "VisualizaRecibo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Recibos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -1451,6 +1460,8 @@
             this.tpLocador.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel20.ResumeLayout(false);
+            this.panel20.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel26.ResumeLayout(false);
@@ -1472,8 +1483,6 @@
             this.panel18.ResumeLayout(false);
             this.panel18.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            this.panel20.ResumeLayout(false);
-            this.panel20.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1548,7 +1557,7 @@
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TextBox txtDescricaoComplementoRL;
         private System.Windows.Forms.Panel panel26;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btPVImpressaoRL;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.Label label47;

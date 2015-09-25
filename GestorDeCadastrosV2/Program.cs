@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using GestorDeCadastros_V2;
 
 namespace GestorDeCadastros
 {
@@ -16,7 +15,7 @@ namespace GestorDeCadastros
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PreviewImpressaoRP());
+            Application.Run(new Login());
         }
     }
 }

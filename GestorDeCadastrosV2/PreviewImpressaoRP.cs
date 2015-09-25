@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Drawing.Printing;
 using System.Data.SqlServerCe;
 
 namespace GestorDeCadastros
@@ -23,13 +24,18 @@ namespace GestorDeCadastros
         public PreviewImpressaoRP()
         {
             InitializeComponent();
+
+            printDocument1.PrintPage += new PrintPageEventHandler(printdoc1_PrintPage);
+            lblInfoImobiliaria.Text = "CCM.8.548.409-1 — CRECI 15373 — SIND. 17.522 — CPF/MF. 608.750.468-00";
         }
 
-        private void PreviewImpressaoRP_Load(object sender, EventArgs e)
+        #region Ações Gerais
+
+        private void ImpressaoRP_Load(object sender, EventArgs e)
         {
             try
             {
-                idReciboPrincipal = 1;
+                //idReciboPrincipal = 1;//Para Testes
                 if (idReciboPrincipal != 0)
                 {
                     lblIdReciboPrincipal.Text = idReciboPrincipal.ToString();
@@ -47,6 +53,56 @@ namespace GestorDeCadastros
                 Auxiliar.MostraMensagemAlerta("Não foi possivel resgatar os dados da pesquisa.", 2);
             }
         }
+
+        #endregion
+
+        #region Impressão
+
+        private void btImprimir_Click(object sender, EventArgs e)
+        {
+            Print(pnlImpressao);
+        }
+
+        Bitmap MemoryImage;
+        public void GetPrintArea(Panel pnl)
+        {
+            int pnlWidth = pnl.Width;
+            int pnlHeight = pnl.Height;
+
+            MemoryImage = new Bitmap(pnlWidth, pnlHeight);
+            Rectangle rect = new Rectangle(0, 0, pnlWidth, pnlHeight);
+            pnl.DrawToBitmap(MemoryImage, new Rectangle(0, 0, pnlWidth, pnlHeight));
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            MemoryImage = new Bitmap(pnlImpressao.Width, pnlImpressao.Height);
+            e.Graphics.DrawImage(MemoryImage, 0, 0);
+            base.OnPaint(e);
+        }
+
+        void printdoc1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Rectangle pagearea = e.PageBounds;
+            e.Graphics.DrawImage(MemoryImage, 12, 12);
+        }
+
+        public void Print(Panel pnl)
+        {
+            GetPrintArea(pnl);
+
+            PrintDialog printDlg = new PrintDialog();
+            PrintDocument printDoc = printDocument1;
+            printDoc.DocumentName = "Print Document";
+            printDlg.Document = printDoc;
+            printDlg.AllowSelection = true;
+            printDlg.AllowSomePages = true;
+            //Call ShowDialog
+            if (printDlg.ShowDialog() == DialogResult.OK)
+                printDoc.Print();
+        }
+
+        #endregion
 
         #region Ações Banco de Dados
 
@@ -94,16 +150,7 @@ namespace GestorDeCadastros
 
         #endregion
 
-        #region Ações Gerais
-
-        private string RetornaDataAtual()
-        {
-            return DateTime.Now.ToShortDateString();
-        }
-
-        #endregion
-
-        #region Dados Recibo Principal
+        #region Carrega Dados Recibo
 
         private void CarregaDadosReciboPrincipal()
         {
@@ -113,7 +160,7 @@ namespace GestorDeCadastros
                 if (dadosLocatario.Rows.Count > 0)
                 {
                     string quantidade = dadosLocatario.DefaultView[0]["Quantidade"].ToString() + "/" + dadosLocatario.DefaultView[0]["Numero"].ToString();
-                    HabilitaCampoTexto(quantidade, lblNumeracaoRecibo);
+                    HabilitaLabelTexto(quantidade, lblQtdNumeroRecibo);
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Periodo"].ToString()))
                     {
@@ -122,29 +169,41 @@ namespace GestorDeCadastros
                             string[] aPeriodo = dadosLocatario.DefaultView[0]["Periodo"].ToString().Split('a');
                             string periodo = "de " + aPeriodo[0].ToString() + " a " + aPeriodo[1].ToString();
 
-                            HabilitaCampoTexto(periodo, lblPeriodo);
+                            HabilitaLabelTexto(periodo, lblPeriodo);
                         }
                         catch (Exception) { }
                     }
 
-                    HabilitaCampoTexto(dadosLocatario.DefaultView[0]["Locatario"].ToString(), lblLocatario);
-                    HabilitaCampoTexto(dadosLocatario.DefaultView[0]["Endereco"].ToString(), lblEndImovel);
-                    HabilitaCampoTexto(dadosLocatario.DefaultView[0]["Locador"].ToString(), lblLocador);
+                    try
+                    {
+                        string vencimento = Convert.ToDateTime(dadosLocatario.DefaultView[0]["DataPagamento"].ToString()).ToShortDateString();
+                        HabilitaLabelTexto(vencimento, lblVencimento);
+                    }
+                    catch (Exception ex) { }
+
+                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Locatario"].ToString().Trim(), lblLocatario);
+                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["CpfLocatario"].ToString().Trim(), lblCpfLocatario);
+                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Endereco"].ToString().Trim(), lblEnderecoImovel);
+                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Locador"].ToString().Trim(), lblLocador);                    
 
                     //VerificacaoDeDocumentoSalvo
-                    HabilitaCampoTexto(dadosLocatario.DefaultView[0]["Cpf"].ToString(), lblDocLocador);
-
-                    HabilitaCampoTexto(dadosLocatario.DefaultView[0]["DescricaoComplementoPagamento"].ToString(), lblDescricaoComplemento);
-                    if (lblDescricaoComplemento.Visible == true)
+                    if (VerificaCampoDoc(dadosLocatario.DefaultView[0]["Cpf"].ToString()))
                     {
-                        txtCampoDescComp.Visible = true;
+                        HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Cpf"].ToString().Trim(), lblDocLocador);
                     }
-                    HabilitaCampoTexto(dadosLocatario.DefaultView[0]["FormaPagamento"].ToString(), lblFormaPagamento);
-                    HabilitaCampoTexto(dadosLocatario.DefaultView[0]["ExtensoTotalPagamento"].ToString(), lblTotalPorExtenso);
-                    HabilitaCampoTexto(dadosLocatario.DefaultView[0]["ReajusteAluguel"].ToString(), lblReajuste);
+                    else if (VerificaCampoDoc(dadosLocatario.DefaultView[0]["Cnpj"].ToString()))
+                    {
+                        HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Cnpj"].ToString().Trim(), lblDocLocador);
+                    }
 
-                    HabilitaCampoValor(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), lblAlugel);
-                    HabilitaCampoValor(dadosLocatario.DefaultView[0]["Iptu"].ToString(), lblItpu);
+                    HabilitaTextBox(dadosLocatario.DefaultView[0]["DescricaoComplementoPagamento"].ToString(), txtDescComplemento);
+
+                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["FormaPagamento"].ToString(), lblFormaPagamento);
+                    HabilitaTextBox(dadosLocatario.DefaultView[0]["ExtensoTotalPagamento"].ToString(), txtTotalExtenso);
+                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["ReajusteAluguel"].ToString(), lblReajuste);
+
+                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), lblAluguel);
+                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Iptu"].ToString(), lblIptu);
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString()) && dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString() != "0")
                     {
@@ -154,22 +213,22 @@ namespace GestorDeCadastros
                             string quatidadeIptu = dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString() + "/" +
                                                    dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString();
 
-                            HabilitaCampoTexto(quatidadeIptu, lblNumeroParcelasIptu);
-                            if (lblNumeroParcelasIptu.Visible == true)
+                            HabilitaLabelTexto(quatidadeIptu, lblQtdNumeroIptu);
+                            if (lblQtdNumeroIptu.Visible == true)
                             {
                                 lblParcelasIptu.Visible = true;
                             }
                         }
                     }
 
-                    HabilitaCampoValor(dadosLocatario.DefaultView[0]["DespesaCondominio"].ToString(), lblDespCondominio);
-                    HabilitaCampoValor(dadosLocatario.DefaultView[0]["Luz"].ToString(), lblLuz);
-                    HabilitaCampoValor(dadosLocatario.DefaultView[0]["Agua"].ToString(), lblAgua);
-                    HabilitaCampoValor(dadosLocatario.DefaultView[0]["ComplementoPagamento"].ToString(), lblComplemento);
-                    HabilitaCampoValor(dadosLocatario.DefaultView[0]["TotalPagamento"].ToString(), lblTotal);
+                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["DespesaCondominio"].ToString(), lblDespCondominio);
+                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Luz"].ToString(), lblLuz);
+                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Agua"].ToString(), lblAgua);
+                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["ComplementoPagamento"].ToString(), lblComPagamento);
+                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["TotalPagamento"].ToString(), lblTotal);
 
-                    lblDataFormatada.Text = "São Paulo, " + DateTime.Now.ToLongDateString();
-                    
+                    lblDataFormatada.Text = "São Paulo, " + RetornaDataFormatada();
+
                 }
             }
             catch (Exception ex)
@@ -179,7 +238,35 @@ namespace GestorDeCadastros
             }
         }
 
-        private void HabilitaCampoTexto(string textoExibicao, Label lblExibicao)
+        private string RetornaDataFormatada()
+        {
+            try
+            {
+                string longDate = DateTime.Now.ToLongDateString();
+                string[] aData = longDate.Split(',');
+
+                return aData[1].ToString().Trim();
+            }
+            catch (Exception)
+            {
+                return DateTime.Now.ToShortDateString();
+            }
+        }
+
+        private bool VerificaCampoDoc(string docLocador)
+        {
+            bool docValidado = false;
+            string docLitera = docLocador.Replace(".", string.Empty).Trim().Replace("/", string.Empty).Trim().Replace("-", string.Empty).Trim();
+
+            if (!string.IsNullOrEmpty(docLitera.Trim()))
+            {
+                docValidado = true;
+            }
+
+            return docValidado;
+        }
+
+        private void HabilitaLabelTexto(string textoExibicao, Label lblExibicao)
         {
             if (!string.IsNullOrEmpty(textoExibicao))
             {
@@ -188,7 +275,16 @@ namespace GestorDeCadastros
             }
         }
 
-        private void HabilitaCampoValor(string textoExibicao, Label lblExibicao)
+        private void HabilitaTextBox(string textoExibicao, TextBox txtExibicao)
+        {
+            if (!string.IsNullOrEmpty(textoExibicao))
+            {
+                txtExibicao.Text = textoExibicao;
+                txtExibicao.Visible = true;
+            }
+        }
+
+        private void HabilitaLabelValor(string textoExibicao, Label lblExibicao)
         {
             if (!string.IsNullOrEmpty(textoExibicao) && textoExibicao != "0")
             {

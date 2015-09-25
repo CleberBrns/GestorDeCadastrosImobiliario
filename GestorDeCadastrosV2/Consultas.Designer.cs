@@ -49,6 +49,7 @@
             this.tcConsultas = new System.Windows.Forms.TabControl();
             this.tpRcbPrincipais = new System.Windows.Forms.TabPage();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btDesmarcaPesquisasRP = new System.Windows.Forms.Button();
             this.rbLocadorRP = new System.Windows.Forms.RadioButton();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -66,10 +67,18 @@
             this.LocadorRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EnderecoRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DataReciboRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btVisualizarRP = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btPreviewRP = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpRcbLocadores = new System.Windows.Forms.TabPage();
             this.dgvRecibosLocador = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btVisualizarRL = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btPreviewRL = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdRL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -106,13 +115,6 @@
             this.IdImovel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AtivoLocador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btAlterarImovel = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btDesmarcaPesquisasRP = new System.Windows.Forms.Button();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tpLocatarios.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -192,6 +194,7 @@
             // rbLocador
             // 
             this.rbLocador.AutoSize = true;
+            this.rbLocador.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbLocador.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbLocador.Location = new System.Drawing.Point(252, 17);
             this.rbLocador.Name = "rbLocador";
@@ -205,6 +208,7 @@
             // rbEndereco
             // 
             this.rbEndereco.AutoSize = true;
+            this.rbEndereco.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbEndereco.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbEndereco.Location = new System.Drawing.Point(336, 16);
             this.rbEndereco.Name = "rbEndereco";
@@ -218,6 +222,7 @@
             // rbLocatario
             // 
             this.rbLocatario.AutoSize = true;
+            this.rbLocatario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbLocatario.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbLocatario.Location = new System.Drawing.Point(160, 17);
             this.rbLocatario.Name = "rbLocatario";
@@ -251,6 +256,7 @@
             this.btGerarRecibo,
             this.btAlterar,
             this.idCadastro});
+            this.dgvCadastros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvCadastros.Location = new System.Drawing.Point(60, 69);
             this.dgvCadastros.Name = "dgvCadastros";
             this.dgvCadastros.ReadOnly = true;
@@ -322,7 +328,7 @@
             this.tcConsultas.Controls.Add(this.tpRcbLocadores);
             this.tcConsultas.Controls.Add(this.tpLocadores);
             this.tcConsultas.Controls.Add(this.tpImoveis);
-            this.tcConsultas.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tcConsultas.Cursor = System.Windows.Forms.Cursors.Default;
             this.tcConsultas.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcConsultas.Location = new System.Drawing.Point(46, 12);
             this.tcConsultas.Name = "tcConsultas";
@@ -360,9 +366,23 @@
             this.panel4.Size = new System.Drawing.Size(1150, 105);
             this.panel4.TabIndex = 1;
             // 
+            // btDesmarcaPesquisasRP
+            // 
+            this.btDesmarcaPesquisasRP.BackColor = System.Drawing.Color.Silver;
+            this.btDesmarcaPesquisasRP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btDesmarcaPesquisasRP.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btDesmarcaPesquisasRP.Location = new System.Drawing.Point(229, 49);
+            this.btDesmarcaPesquisasRP.Name = "btDesmarcaPesquisasRP";
+            this.btDesmarcaPesquisasRP.Size = new System.Drawing.Size(170, 31);
+            this.btDesmarcaPesquisasRP.TabIndex = 18;
+            this.btDesmarcaPesquisasRP.Text = "Desmarcar seleção";
+            this.btDesmarcaPesquisasRP.UseVisualStyleBackColor = false;
+            this.btDesmarcaPesquisasRP.Click += new System.EventHandler(this.btDesmarcaPesquisasRP_Click);
+            // 
             // rbLocadorRP
             // 
             this.rbLocadorRP.AutoSize = true;
+            this.rbLocadorRP.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbLocadorRP.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbLocadorRP.Location = new System.Drawing.Point(282, 17);
             this.rbLocadorRP.Name = "rbLocadorRP";
@@ -467,6 +487,7 @@
             // rbEnderecoRp
             // 
             this.rbEnderecoRp.AutoSize = true;
+            this.rbEnderecoRp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbEnderecoRp.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbEnderecoRp.Location = new System.Drawing.Point(367, 17);
             this.rbEnderecoRp.Name = "rbEnderecoRp";
@@ -480,6 +501,7 @@
             // rbLocatarioRp
             // 
             this.rbLocatarioRp.AutoSize = true;
+            this.rbLocatarioRp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbLocatarioRp.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbLocatarioRp.Location = new System.Drawing.Point(190, 17);
             this.rbLocatarioRp.Name = "rbLocatarioRp";
@@ -510,13 +532,16 @@
             this.LocadorRP,
             this.EnderecoRP,
             this.DataReciboRP,
+            this.btVisualizarRP,
             this.btPreviewRP,
             this.IdRP});
+            this.dgvRecibosPrincipais.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvRecibosPrincipais.Location = new System.Drawing.Point(38, 121);
             this.dgvRecibosPrincipais.Name = "dgvRecibosPrincipais";
             this.dgvRecibosPrincipais.ReadOnly = true;
             this.dgvRecibosPrincipais.Size = new System.Drawing.Size(1150, 432);
             this.dgvRecibosPrincipais.TabIndex = 0;
+            this.dgvRecibosPrincipais.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibosPrincipais_CellContentClick);
             // 
             // LocatarioRP
             // 
@@ -524,7 +549,7 @@
             this.LocatarioRP.HeaderText = "Locatário";
             this.LocatarioRP.Name = "LocatarioRP";
             this.LocatarioRP.ReadOnly = true;
-            this.LocatarioRP.Width = 250;
+            this.LocatarioRP.Width = 240;
             // 
             // LocadorRP
             // 
@@ -532,7 +557,7 @@
             this.LocadorRP.HeaderText = "Locador";
             this.LocadorRP.Name = "LocadorRP";
             this.LocadorRP.ReadOnly = true;
-            this.LocadorRP.Width = 250;
+            this.LocadorRP.Width = 240;
             // 
             // EnderecoRP
             // 
@@ -540,7 +565,7 @@
             this.EnderecoRP.HeaderText = "Endereço Imóvel";
             this.EnderecoRP.Name = "EnderecoRP";
             this.EnderecoRP.ReadOnly = true;
-            this.EnderecoRP.Width = 250;
+            this.EnderecoRP.Width = 240;
             // 
             // DataReciboRP
             // 
@@ -548,7 +573,15 @@
             this.DataReciboRP.HeaderText = "Data Cadastro";
             this.DataReciboRP.Name = "DataReciboRP";
             this.DataReciboRP.ReadOnly = true;
-            this.DataReciboRP.Width = 150;
+            this.DataReciboRP.Width = 130;
+            // 
+            // btVisualizarRP
+            // 
+            this.btVisualizarRP.HeaderText = "Visualizar";
+            this.btVisualizarRP.Name = "btVisualizarRP";
+            this.btVisualizarRP.ReadOnly = true;
+            this.btVisualizarRP.Text = "Ok";
+            this.btVisualizarRP.UseColumnTextForButtonValue = true;
             // 
             // btPreviewRP
             // 
@@ -557,7 +590,7 @@
             this.btPreviewRP.ReadOnly = true;
             this.btPreviewRP.Text = "Ok";
             this.btPreviewRP.UseColumnTextForButtonValue = true;
-            this.btPreviewRP.Width = 200;
+            this.btPreviewRP.Width = 150;
             // 
             // IdRP
             // 
@@ -589,13 +622,73 @@
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn11,
             this.dataGridViewTextBoxColumn12,
-            this.dataGridViewButtonColumn1,
-            this.dataGridViewTextBoxColumn13});
+            this.btVisualizarRL,
+            this.btPreviewRL,
+            this.IdRL});
+            this.dgvRecibosLocador.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvRecibosLocador.Location = new System.Drawing.Point(54, 121);
             this.dgvRecibosLocador.Name = "dgvRecibosLocador";
             this.dgvRecibosLocador.ReadOnly = true;
             this.dgvRecibosLocador.Size = new System.Drawing.Size(1150, 413);
             this.dgvRecibosLocador.TabIndex = 2;
+            this.dgvRecibosLocador.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibosLocador_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "LocadorRL";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Locador";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 240;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "LocatarioRL";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Locatário";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 240;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "EnderecoRL";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Endereço Imóvel";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Width = 240;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "DataReciboRL";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Data Cadastro";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Width = 130;
+            // 
+            // btVisualizarRL
+            // 
+            this.btVisualizarRL.HeaderText = "Visualizar";
+            this.btVisualizarRL.Name = "btVisualizarRL";
+            this.btVisualizarRL.ReadOnly = true;
+            this.btVisualizarRL.Text = "Ok";
+            this.btVisualizarRL.UseColumnTextForButtonValue = true;
+            // 
+            // btPreviewRL
+            // 
+            this.btPreviewRL.HeaderText = "Preview Impressão";
+            this.btPreviewRL.Name = "btPreviewRL";
+            this.btPreviewRL.ReadOnly = true;
+            this.btPreviewRL.Text = "Ok";
+            this.btPreviewRL.UseColumnTextForButtonValue = true;
+            this.btPreviewRL.Width = 150;
+            // 
+            // IdRL
+            // 
+            this.IdRL.DataPropertyName = "IdRL";
+            this.IdRL.HeaderText = "IdCadastro";
+            this.IdRL.Name = "IdRL";
+            this.IdRL.ReadOnly = true;
+            this.IdRL.Visible = false;
             // 
             // panel5
             // 
@@ -777,6 +870,7 @@
             this.btAlterarLocador,
             this.IdLocador,
             this.Ativo});
+            this.dgvLocadores.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvLocadores.Location = new System.Drawing.Point(92, 69);
             this.dgvLocadores.Name = "dgvLocadores";
             this.dgvLocadores.ReadOnly = true;
@@ -911,6 +1005,7 @@
             this.IdImovel,
             this.AtivoLocador,
             this.btAlterarImovel});
+            this.dgvImoveis.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dgvImoveis.Location = new System.Drawing.Point(174, 69);
             this.dgvImoveis.Name = "dgvImoveis";
             this.dgvImoveis.ReadOnly = true;
@@ -973,68 +1068,6 @@
             this.btAlterarImovel.ReadOnly = true;
             this.btAlterarImovel.Text = "Ok";
             this.btAlterarImovel.UseColumnTextForButtonValue = true;
-            // 
-            // btDesmarcaPesquisasRP
-            // 
-            this.btDesmarcaPesquisasRP.BackColor = System.Drawing.Color.Silver;
-            this.btDesmarcaPesquisasRP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btDesmarcaPesquisasRP.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btDesmarcaPesquisasRP.Location = new System.Drawing.Point(229, 49);
-            this.btDesmarcaPesquisasRP.Name = "btDesmarcaPesquisasRP";
-            this.btDesmarcaPesquisasRP.Size = new System.Drawing.Size(170, 31);
-            this.btDesmarcaPesquisasRP.TabIndex = 18;
-            this.btDesmarcaPesquisasRP.Text = "Desmarcar seleção";
-            this.btDesmarcaPesquisasRP.UseVisualStyleBackColor = false;
-            this.btDesmarcaPesquisasRP.Click += new System.EventHandler(this.btDesmarcaPesquisasRP_Click);
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "LocadorRL";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Locador";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "LocatarioRL";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Locatário";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "EnderecoRL";
-            this.dataGridViewTextBoxColumn11.HeaderText = "Endereço Imóvel";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "DataReciboRL";
-            this.dataGridViewTextBoxColumn12.HeaderText = "Data Cadastro";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Width = 150;
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            this.dataGridViewButtonColumn1.HeaderText = "Preview Impressão";
-            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            this.dataGridViewButtonColumn1.ReadOnly = true;
-            this.dataGridViewButtonColumn1.Text = "Ok";
-            this.dataGridViewButtonColumn1.UseColumnTextForButtonValue = true;
-            this.dataGridViewButtonColumn1.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn13
-            // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "IdRL";
-            this.dataGridViewTextBoxColumn13.HeaderText = "IdCadastro";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Visible = false;
             // 
             // Consultas
             // 
@@ -1137,12 +1170,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn btAlterar;
         private System.Windows.Forms.DataGridViewTextBoxColumn idCadastro;
         private System.Windows.Forms.DataGridView dgvRecibosPrincipais;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LocatarioRP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LocadorRP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EnderecoRP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DataReciboRP;
-        private System.Windows.Forms.DataGridViewButtonColumn btPreviewRP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdRP;
         private System.Windows.Forms.DataGridView dgvRecibosLocador;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label6;
@@ -1162,8 +1189,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewButtonColumn btVisualizarRL;
+        private System.Windows.Forms.DataGridViewButtonColumn btPreviewRL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdRL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LocatarioRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LocadorRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EnderecoRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DataReciboRP;
+        private System.Windows.Forms.DataGridViewButtonColumn btVisualizarRP;
+        private System.Windows.Forms.DataGridViewButtonColumn btPreviewRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdRP;
 
 
     }

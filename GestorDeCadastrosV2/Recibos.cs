@@ -115,11 +115,10 @@ namespace GestorDeCadastros
 
             if (tipoInsercao == 1)
             {
-                DateTime dtTestes = Convert.ToDateTime("28/08/2015");
                 dr["fkIdLocatario"] = lblIdLocatario.Text.Trim();
                 dr["Quantidade"] = nudQtdRecibos.Value.ToString().Trim();
                 dr["Numero"] = nudNumRecibo.Value.ToString();
-                dr["Data"] = DateTime.Now;                
+                dr["Data"] = DateTime.Now;
                 dr["Periodo"] = Convert.ToDateTime(dtpInicial.Value).ToShortDateString() + " a " + Convert.ToDateTime(dtpFinal.Value).ToShortDateString();
                 dr["Iptu"] = RetornaValorCamposOpcionais(txtIptuRcPrincipal);
                 dr["ParcelasIptu"] = nudParcelasIptu.Value.ToString();
@@ -142,7 +141,7 @@ namespace GestorDeCadastros
                 else
                 {
                     dr["ReajusteAluguel"] = string.Empty;
-                }               
+                }
 
             }
             else if (tipoInsercao == 2)
@@ -198,6 +197,120 @@ namespace GestorDeCadastros
 
         #endregion
 
+        #region Ações Gerais
+
+        private void ModalInsereValores(TextBox txtParaInsercao)
+        {
+            InsereValores dlgInsereValores = new InsereValores();
+            if (dlgInsereValores.ShowDialog() == DialogResult.OK)
+                txtParaInsercao.Text = dlgInsereValores.getValorInserido;
+        }
+
+        private void btInicio_Click(object sender, EventArgs e)
+        {
+            Inicio formInicio = new Inicio();
+            this.Hide();
+            formInicio.ShowDialog();
+            this.Close();
+        }
+
+        private void tcRecibos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tcRecibos.SelectedTab == tpLocador)
+            {
+                CarregaDadosReciboLocador();
+            }
+        }
+
+        private void btInsereValores_Click(object sender, EventArgs e)
+        {
+            if (sender == btIptuRcPrincipal)
+            {
+                ModalInsereValores(txtIptuRcPrincipal);
+            }
+            else if (sender == btAluguelRcPrincipal)
+            {
+                ModalInsereValores(txtAluguelRcPrincipal);
+            }
+            else if (sender == btLuz)
+            {
+                ModalInsereValores(txtLuz);
+            }
+            else if (sender == btAgua)
+            {
+                ModalInsereValores(txtAgua);
+            }
+            else if (sender == btCompPagto)
+            {
+                ModalInsereValores(txtCompPagto);
+            }
+            else if (sender == btTotalRcPrincipal)
+            {
+                ModalInsereValores(txtTotalRcPrincipal);
+            }
+            else if (sender == btAluguelRcLocador)
+            {
+                ModalInsereValores(txtAluguelRcLocador);
+            }
+            else if (sender == btMulta)
+            {
+                ModalInsereValores(txtMulta);
+            }
+            else if (sender == btComissao)
+            {
+                ModalInsereValores(txtComissao);
+            }
+            else if (sender == btComplementoRL)
+            {
+                ModalInsereValores(txtComplementoRL);
+            }
+        }
+
+        /// <summary>
+        /// Verifica se o mês atual é multiplo de 12
+        /// O 12º mês representa um reajuste no valor do Aluguel
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        private void VerificaMesReajuste(DateTime dataCadastroRecibo)
+        {
+            DateTime dataAnoReajuste = dataCadastroRecibo.AddYears(1);
+            if (dataCadastroRecibo.Month == dataAnoReajuste.Month && dataCadastroRecibo.Year == dataAnoReajuste.Year)
+            {
+                pnlReajuste.Visible = true;
+            }
+        }
+
+        private void dtpInicial_ValueChanged(object sender, EventArgs e)
+        {
+            if (dtpInicial.Value.Month != dtpFinal.Value.Month)
+            {
+                DateTime proximoMes = dtpInicial.Value.AddMonths(1);
+                dtpFinal.Value = proximoMes;
+            }
+        }
+
+        private void ckbDesmarcaComPagto_CheckedChanged(object sender, EventArgs e)
+        {
+            rbAcrescimo.Checked = false;
+            rbDesconto.Checked = false;
+            txtCompPagto.BackColor = Color.White;
+            txtCompPagto.Text = string.Empty;
+        }
+
+        private void txtCompPagto_TextChanged(object sender, EventArgs e)
+        {
+            if (!rbAcrescimo.Checked && !rbDesconto.Checked)
+            {
+                rbAcrescimo.Checked = true;
+            }
+        }
+
+        #endregion
+
+        #region Ações Recibo Principal
+
         private void CarregaDadosReciboPrincipal()
         {
             try
@@ -228,12 +341,12 @@ namespace GestorDeCadastros
                             nudNumRecibo.Value = RetornaNumeroContagemAtual(Convert.ToInt32(dadosLocatario.DefaultView[0]["Numero"].ToString()));
                         }
 
-                    } 
-                    
+                    }
+
                     if (dadosLocatario.DefaultView[0]["Iptu"].ToString() != "0")
                     {
                         txtIptuRcPrincipal.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Iptu"].ToString());
-                    }  
+                    }
 
                     if (nudParcelasIptu.Value != 0)
                     {
@@ -248,9 +361,6 @@ namespace GestorDeCadastros
                             nudNumeroParcIptu.Value = RetornaNumeroContagemAtual(Convert.ToInt32(dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString()));
                         }
                     }
-
-
-                                   
 
                     txtLuz.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Luz"].ToString());
                     txtAgua.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Agua"].ToString());
@@ -470,21 +580,9 @@ namespace GestorDeCadastros
 
         }
 
-        private void btInicio_Click(object sender, EventArgs e)
-        {
-            Login formInicio = new Login();
-            this.Hide();
-            formInicio.ShowDialog();
-            this.Close();
-        }
+        #endregion
 
-        private void tcRecibos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tcRecibos.SelectedTab == tpLocador)
-            {
-                CarregaDadosReciboLocador();
-            }
-        }
+        #region Ações Recibo Locador
 
         private void CarregaDadosReciboLocador()
         {
@@ -557,7 +655,7 @@ namespace GestorDeCadastros
                             {
                                 InsereDados(2);
                                 Auxiliar.MostraMensagemAlerta("Recibo armazenado com Sucesso!", 1);
-                                btSalvarRecbLc.Enabled = false;                              
+                                btSalvarRecbLc.Enabled = false;
                             }
                             catch (Exception ex)
                             {
@@ -568,57 +666,6 @@ namespace GestorDeCadastros
                     }
                 }
             }
-        }
-
-        private void btInsereValores_Click(object sender, EventArgs e)
-        {
-            if (sender == btIptuRcPrincipal)
-            {
-                ModalInsereValores(txtIptuRcPrincipal);
-            }
-            else if (sender == btAluguelRcPrincipal)
-            {
-                ModalInsereValores(txtAluguelRcPrincipal);
-            }
-            else if (sender == btLuz)
-            {
-                ModalInsereValores(txtLuz);
-            }
-            else if (sender == btAgua)
-            {
-                ModalInsereValores(txtAgua);
-            }
-            else if (sender == btCompPagto)
-            {
-                ModalInsereValores(txtCompPagto);
-            }
-            else if (sender == btTotalRcPrincipal)
-            {
-                ModalInsereValores(txtTotalRcPrincipal);
-            }
-            else if (sender == btAluguelRcLocador)
-            {
-                ModalInsereValores(txtAluguelRcLocador);
-            }
-            else if (sender == btMulta)
-            {
-                ModalInsereValores(txtMulta);
-            }
-            else if (sender == btComissao)
-            {
-                ModalInsereValores(txtComissao);
-            }
-            else if (sender == btComplementoRL)
-            {
-                ModalInsereValores(txtComplementoRL);
-            }
-        }
-
-        private void ModalInsereValores(TextBox txtParaInsercao)
-        {
-            InsereValores dlgInsereValores = new InsereValores();
-            if (dlgInsereValores.ShowDialog() == DialogResult.OK)
-                txtParaInsercao.Text = dlgInsereValores.getValorInserido;
         }
 
         private void txtAluguelRcLocador_TextChanged(object sender, EventArgs e)
@@ -746,46 +793,6 @@ namespace GestorDeCadastros
             }
         }
 
-        /// <summary>
-        /// Verifica se o mês atual é multiplo de 12
-        /// O 12º mês representa um reajuste no valor do Aluguel
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="n"></param>
-        /// <returns></returns>
-        private void VerificaMesReajuste(DateTime dataCadastroRecibo)
-        {
-            DateTime dataAnoReajuste = dataCadastroRecibo.AddYears(1);
-            if (dataCadastroRecibo.Month == dataAnoReajuste.Month && dataCadastroRecibo.Year == dataAnoReajuste.Year)
-            {
-                pnlReajuste.Visible = true;
-            }
-        }
-
-        private void dtpInicial_ValueChanged(object sender, EventArgs e)
-        {
-            if (dtpInicial.Value.Month != dtpFinal.Value.Month)
-            {
-                DateTime proximoMes = dtpInicial.Value.AddMonths(1);
-                dtpFinal.Value = proximoMes;
-            }
-        }
-
-        private void ckbDesmarcaComPagto_CheckedChanged(object sender, EventArgs e)
-        {
-            rbAcrescimo.Checked = false;
-            rbDesconto.Checked = false;
-            txtCompPagto.BackColor = Color.White;
-            txtCompPagto.Text = string.Empty;
-        }
-
-        private void txtCompPagto_TextChanged(object sender, EventArgs e)
-        {
-            if (!rbAcrescimo.Checked && !rbDesconto.Checked)
-            {
-                rbAcrescimo.Checked = true;
-            }
-        }
-
+        #endregion       
     }
 }

@@ -154,6 +154,7 @@
             // btInicio
             // 
             this.btInicio.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btInicio.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btInicio.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btInicio.ForeColor = System.Drawing.Color.Black;
             this.btInicio.Location = new System.Drawing.Point(367, 462);
@@ -166,6 +167,7 @@
             // 
             // btExcluirLocatario
             // 
+            this.btExcluirLocatario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btExcluirLocatario.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btExcluirLocatario.Location = new System.Drawing.Point(177, 460);
             this.btExcluirLocatario.Name = "btExcluirLocatario";
@@ -191,6 +193,7 @@
             // 
             // btCadastrarLocatario
             // 
+            this.btCadastrarLocatario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCadastrarLocatario.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btCadastrarLocatario.Location = new System.Drawing.Point(770, 460);
             this.btCadastrarLocatario.Name = "btCadastrarLocatario";
@@ -202,6 +205,7 @@
             // 
             // btLimparFormLocatario
             // 
+            this.btLimparFormLocatario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btLimparFormLocatario.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btLimparFormLocatario.Location = new System.Drawing.Point(530, 460);
             this.btLimparFormLocatario.Name = "btLimparFormLocatario";
@@ -260,13 +264,14 @@
             // 
             // btInsereAluguel
             // 
+            this.btInsereAluguel.BackColor = System.Drawing.Color.Green;
             this.btInsereAluguel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btInsereAluguel.Location = new System.Drawing.Point(350, 223);
             this.btInsereAluguel.Name = "btInsereAluguel";
             this.btInsereAluguel.Size = new System.Drawing.Size(80, 39);
             this.btInsereAluguel.TabIndex = 57;
             this.btInsereAluguel.Text = "Inserir";
-            this.btInsereAluguel.UseVisualStyleBackColor = true;
+            this.btInsereAluguel.UseVisualStyleBackColor = false;
             this.btInsereAluguel.Click += new System.EventHandler(this.btInsereAluguel_Click);
             // 
             // label22
@@ -342,7 +347,7 @@
             // lblIdLocatario
             // 
             this.lblIdLocatario.AutoSize = true;
-            this.lblIdLocatario.Location = new System.Drawing.Point(538, 33);
+            this.lblIdLocatario.Location = new System.Drawing.Point(346, 76);
             this.lblIdLocatario.Name = "lblIdLocatario";
             this.lblIdLocatario.Size = new System.Drawing.Size(124, 22);
             this.lblIdLocatario.TabIndex = 47;
@@ -365,7 +370,7 @@
             this.mtxtCpfLocatario.Mask = "999,999,999-90";
             this.mtxtCpfLocatario.Name = "mtxtCpfLocatario";
             this.mtxtCpfLocatario.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mtxtCpfLocatario.Size = new System.Drawing.Size(112, 29);
+            this.mtxtCpfLocatario.Size = new System.Drawing.Size(151, 29);
             this.mtxtCpfLocatario.TabIndex = 2;
             this.mtxtCpfLocatario.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -455,7 +460,7 @@
             // 
             this.txtEmail.Location = new System.Drawing.Point(162, 181);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(232, 29);
+            this.txtEmail.Size = new System.Drawing.Size(299, 29);
             this.txtEmail.TabIndex = 5;
             // 
             // label10
@@ -533,7 +538,7 @@
             this.txtNomeLocatario.ForeColor = System.Drawing.Color.Black;
             this.txtNomeLocatario.Location = new System.Drawing.Point(160, 26);
             this.txtNomeLocatario.Name = "txtNomeLocatario";
-            this.txtNomeLocatario.Size = new System.Drawing.Size(340, 29);
+            this.txtNomeLocatario.Size = new System.Drawing.Size(473, 29);
             this.txtNomeLocatario.TabIndex = 1;
             // 
             // tpLocador
@@ -552,6 +557,7 @@
             // 
             // btExcluirLocador
             // 
+            this.btExcluirLocador.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btExcluirLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btExcluirLocador.Location = new System.Drawing.Point(177, 460);
             this.btExcluirLocador.Name = "btExcluirLocador";
@@ -563,6 +569,7 @@
             // 
             // btAtualizarLocador
             // 
+            this.btAtualizarLocador.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btAtualizarLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAtualizarLocador.Location = new System.Drawing.Point(30, 460);
             this.btAtualizarLocador.Name = "btAtualizarLocador";
@@ -575,6 +582,7 @@
             // 
             // btCadastrarLocador
             // 
+            this.btCadastrarLocador.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCadastrarLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btCadastrarLocador.Location = new System.Drawing.Point(770, 460);
             this.btCadastrarLocador.Name = "btCadastrarLocador";
@@ -586,6 +594,7 @@
             // 
             // btLimparFormLocador
             // 
+            this.btLimparFormLocador.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btLimparFormLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btLimparFormLocador.Location = new System.Drawing.Point(530, 460);
             this.btLimparFormLocador.Name = "btLimparFormLocador";
@@ -633,7 +642,7 @@
             this.lblSelecionarDocPri.AutoSize = true;
             this.lblSelecionarDocPri.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelecionarDocPri.ForeColor = System.Drawing.Color.Red;
-            this.lblSelecionarDocPri.Location = new System.Drawing.Point(312, 110);
+            this.lblSelecionarDocPri.Location = new System.Drawing.Point(366, 110);
             this.lblSelecionarDocPri.Name = "lblSelecionarDocPri";
             this.lblSelecionarDocPri.Size = new System.Drawing.Size(205, 19);
             this.lblSelecionarDocPri.TabIndex = 54;
@@ -642,7 +651,7 @@
             // rbCnpj
             // 
             this.rbCnpj.AutoSize = true;
-            this.rbCnpj.Location = new System.Drawing.Point(312, 135);
+            this.rbCnpj.Location = new System.Drawing.Point(366, 135);
             this.rbCnpj.Name = "rbCnpj";
             this.rbCnpj.Size = new System.Drawing.Size(153, 26);
             this.rbCnpj.TabIndex = 52;
@@ -655,7 +664,7 @@
             // 
             this.rbCpf.AutoSize = true;
             this.rbCpf.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbCpf.Location = new System.Drawing.Point(312, 77);
+            this.rbCpf.Location = new System.Drawing.Point(366, 77);
             this.rbCpf.Name = "rbCpf";
             this.rbCpf.Size = new System.Drawing.Size(153, 26);
             this.rbCpf.TabIndex = 51;
@@ -671,7 +680,7 @@
             this.mtxtCnpjLocador.Mask = "99,999,999/9999-99";
             this.mtxtCnpjLocador.Name = "mtxtCnpjLocador";
             this.mtxtCnpjLocador.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mtxtCnpjLocador.Size = new System.Drawing.Size(140, 29);
+            this.mtxtCnpjLocador.Size = new System.Drawing.Size(187, 29);
             this.mtxtCnpjLocador.TabIndex = 3;
             this.mtxtCnpjLocador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -702,7 +711,7 @@
             this.mtxtCpfLocador.Mask = "999,999,999-90";
             this.mtxtCpfLocador.Name = "mtxtCpfLocador";
             this.mtxtCpfLocador.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.mtxtCpfLocador.Size = new System.Drawing.Size(112, 29);
+            this.mtxtCpfLocador.Size = new System.Drawing.Size(150, 29);
             this.mtxtCpfLocador.TabIndex = 2;
             this.mtxtCpfLocador.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -780,7 +789,7 @@
             this.txtNomeLocador.ForeColor = System.Drawing.Color.Black;
             this.txtNomeLocador.Location = new System.Drawing.Point(160, 26);
             this.txtNomeLocador.Name = "txtNomeLocador";
-            this.txtNomeLocador.Size = new System.Drawing.Size(300, 29);
+            this.txtNomeLocador.Size = new System.Drawing.Size(411, 29);
             this.txtNomeLocador.TabIndex = 1;
             // 
             // tpImovel
@@ -799,6 +808,7 @@
             // 
             // btExcluirImovel
             // 
+            this.btExcluirImovel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btExcluirImovel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btExcluirImovel.Location = new System.Drawing.Point(177, 460);
             this.btExcluirImovel.Name = "btExcluirImovel";
@@ -810,6 +820,7 @@
             // 
             // btAtualizarImovel
             // 
+            this.btAtualizarImovel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btAtualizarImovel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAtualizarImovel.Location = new System.Drawing.Point(29, 460);
             this.btAtualizarImovel.Name = "btAtualizarImovel";
@@ -822,6 +833,7 @@
             // 
             // btCadastrarImovel
             // 
+            this.btCadastrarImovel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCadastrarImovel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btCadastrarImovel.Location = new System.Drawing.Point(770, 460);
             this.btCadastrarImovel.Name = "btCadastrarImovel";
@@ -833,6 +845,7 @@
             // 
             // btLimparFormImovel
             // 
+            this.btLimparFormImovel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btLimparFormImovel.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btLimparFormImovel.Location = new System.Drawing.Point(530, 460);
             this.btLimparFormImovel.Name = "btLimparFormImovel";
@@ -898,7 +911,7 @@
             this.mtxtCep.Location = new System.Drawing.Point(220, 171);
             this.mtxtCep.Mask = "99999-999";
             this.mtxtCep.Name = "mtxtCep";
-            this.mtxtCep.Size = new System.Drawing.Size(94, 29);
+            this.mtxtCep.Size = new System.Drawing.Size(105, 29);
             this.mtxtCep.TabIndex = 4;
             // 
             // label31
@@ -921,7 +934,7 @@
             // lblIdImovel
             // 
             this.lblIdImovel.AutoSize = true;
-            this.lblIdImovel.Location = new System.Drawing.Point(605, 30);
+            this.lblIdImovel.Location = new System.Drawing.Point(419, 79);
             this.lblIdImovel.Name = "lblIdImovel";
             this.lblIdImovel.Size = new System.Drawing.Size(103, 22);
             this.lblIdImovel.TabIndex = 47;
@@ -994,7 +1007,7 @@
             this.txtEndereco.ForeColor = System.Drawing.Color.Black;
             this.txtEndereco.Location = new System.Drawing.Point(220, 27);
             this.txtEndereco.Name = "txtEndereco";
-            this.txtEndereco.Size = new System.Drawing.Size(346, 29);
+            this.txtEndereco.Size = new System.Drawing.Size(503, 29);
             this.txtEndereco.TabIndex = 1;
             // 
             // errorProvider1
