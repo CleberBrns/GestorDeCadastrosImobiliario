@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestorDeCadastros", "GestorDeCadastrosV2\GestorDeCadastros.csproj", "{FCEA4F5D-96F6-480F-AA4D-6E7C6363A04A}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestorDeCadastros", "GestorDeCadastros\GestorDeCadastros.csproj", "{FCEA4F5D-96F6-480F-AA4D-6E7C6363A04A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
