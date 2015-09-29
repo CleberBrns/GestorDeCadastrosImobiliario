@@ -63,11 +63,11 @@ namespace GestorDeCadastros
 
             if (tipoTabela == 1)
             {
-                cmd.CommandText = "select * from RecibosPrincipais";
+                cmd.CommandText = "select top (1) * from RecibosPrincipais order by Id desc";
             }
             else if (tipoTabela == 2)
             {
-                cmd.CommandText = "select * from RecibosLocadores";
+                cmd.CommandText = "select top (1) * from RecibosLocadores order by Id desc";
             }
             else if (tipoTabela == 3)
             {
@@ -198,6 +198,35 @@ namespace GestorDeCadastros
 
         #region Ações Gerais
 
+        /// <summary>
+        /// tipoPreview 1 = Preview RP
+        /// tipoPreview 2 = Preview RL
+        /// </summary>
+        /// <param name="tipoPreview"></param>
+        private void HabilitaPreviewImpressao(int tipoPreview)
+        {
+            try
+            {
+                if (tipoPreview == 1)
+                {
+                    DataTable dtRP = CarregaDadosTabela(1);
+                    lblIdReciboPrincipal.Text = dtRP.DefaultView[0]["Id"].ToString();
+                    btPreviewRP.Visible = true;
+                }
+                else
+                {
+                    DataTable dtRL = CarregaDadosTabela(2);
+                    lblIdReciboLocador.Text = dtRL.DefaultView[0]["Id"].ToString();
+                    btPreviewRL.Visible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
         private void ModalInsereValores(TextBox txtParaInsercao)
         {
             InsereValores dlgInsereValores = new InsereValores();
@@ -304,6 +333,11 @@ namespace GestorDeCadastros
             {
                 rbAcrescimo.Checked = true;
             }
+        }
+
+        private void fechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         #endregion
@@ -473,9 +507,12 @@ namespace GestorDeCadastros
                                         InsereDados(1);
                                         Auxiliar.MostraMensagemAlerta("Recibo armazenado com Sucesso!", 1);
                                         btConcluir.Enabled = false;
+                                        btFechaRP.Visible = true;
+
+                                        HabilitaPreviewImpressao(1);
 
                                         tcRecibos.TabPages.Add(tpLocador);
-                                        tcRecibos.SelectedTab = tpLocador;
+                                        tcRecibos.SelectedTab = tpLocador;                                        
                                     }
                                     catch (Exception ex)
                                     {
@@ -491,6 +528,9 @@ namespace GestorDeCadastros
                                     InsereDados(1);
                                     Auxiliar.MostraMensagemAlerta("Recibo armazenado com Sucesso!", 1);
                                     btConcluir.Enabled = false;
+                                    btFechaRP.Visible = true;
+
+                                    HabilitaPreviewImpressao(1);
 
                                     tcRecibos.TabPages.Add(tpLocador);
                                     tcRecibos.SelectedTab = tpLocador;
@@ -579,6 +619,15 @@ namespace GestorDeCadastros
 
         }
 
+        private void btPreviewRP_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(lblIdReciboPrincipal.Text.Trim()) && lblIdReciboPrincipal.Text.Trim() != "0")
+            {
+                this.Hide();
+                Auxiliar.PreviewReciboImpressao(1, Convert.ToInt32(lblIdReciboPrincipal.Text.Trim()));
+            }          
+        }
+
         #endregion
 
         #region Ações Recibo Locador
@@ -654,7 +703,10 @@ namespace GestorDeCadastros
                             {
                                 InsereDados(2);
                                 Auxiliar.MostraMensagemAlerta("Recibo armazenado com Sucesso!", 1);
+                                btFecharRL.Visible = true;
                                 btSalvarRecbLc.Enabled = false;
+
+                                HabilitaPreviewImpressao(2);
                             }
                             catch (Exception ex)
                             {
@@ -792,6 +844,16 @@ namespace GestorDeCadastros
             }
         }
 
-        #endregion       
+        private void btPreviewRL_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(lblIdReciboLocador.Text.Trim()) && lblIdReciboLocador.Text.Trim() != "0")
+            {
+                this.Hide();
+                Auxiliar.PreviewReciboImpressao(2, Convert.ToInt32(lblIdReciboLocador.Text.Trim()));
+            }          
+        }
+
+        #endregion              
+      
     }
 }

@@ -37,6 +37,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblIdReciboPrincipal = new System.Windows.Forms.Label();
             this.panel25 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btRL = new System.Windows.Forms.Button();
             this.btPVImpressaoRP = new System.Windows.Forms.Button();
             this.label50 = new System.Windows.Forms.Label();
             this.panel15 = new System.Windows.Forms.Panel();
@@ -107,6 +109,8 @@
             this.label52 = new System.Windows.Forms.Label();
             this.txtDescricaoComplementoRL = new System.Windows.Forms.TextBox();
             this.panel26 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btRP = new System.Windows.Forms.Button();
             this.btPVImpressaoRL = new System.Windows.Forms.Button();
             this.label51 = new System.Windows.Forms.Label();
             this.panel24 = new System.Windows.Forms.Panel();
@@ -275,12 +279,40 @@
             // 
             this.panel25.BackColor = System.Drawing.Color.DarkGray;
             this.panel25.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel25.Controls.Add(this.button2);
+            this.panel25.Controls.Add(this.btRL);
             this.panel25.Controls.Add(this.btPVImpressaoRP);
             this.panel25.Controls.Add(this.label50);
             this.panel25.Location = new System.Drawing.Point(767, 401);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(199, 138);
+            this.panel25.Size = new System.Drawing.Size(200, 210);
             this.panel25.TabIndex = 132;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Red;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(55, 150);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 44);
+            this.button2.TabIndex = 131;
+            this.button2.Text = "Fechar";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.fechar_Click);
+            // 
+            // btRL
+            // 
+            this.btRL.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btRL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btRL.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRL.Location = new System.Drawing.Point(12, 95);
+            this.btRL.Name = "btRL";
+            this.btRL.Size = new System.Drawing.Size(168, 44);
+            this.btRL.TabIndex = 128;
+            this.btRL.Text = "Recibo Locador";
+            this.btRL.UseVisualStyleBackColor = false;
+            this.btRL.Click += new System.EventHandler(this.btRL_Click);
             // 
             // btPVImpressaoRP
             // 
@@ -298,10 +330,10 @@
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label50.Location = new System.Drawing.Point(18, 9);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(51, 18);
+            this.label50.Size = new System.Drawing.Size(57, 19);
             this.label50.TabIndex = 127;
             this.label50.Text = "Ações";
             // 
@@ -1024,19 +1056,47 @@
             // 
             this.panel26.BackColor = System.Drawing.Color.DarkGray;
             this.panel26.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel26.Controls.Add(this.button1);
+            this.panel26.Controls.Add(this.btRP);
             this.panel26.Controls.Add(this.btPVImpressaoRL);
             this.panel26.Controls.Add(this.label51);
             this.panel26.Location = new System.Drawing.Point(793, 62);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(185, 147);
+            this.panel26.Size = new System.Drawing.Size(200, 210);
             this.panel26.TabIndex = 123;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(53, 146);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 44);
+            this.button1.TabIndex = 130;
+            this.button1.Text = "Fechar";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.fechar_Click);
+            // 
+            // btRP
+            // 
+            this.btRP.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btRP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btRP.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btRP.Location = new System.Drawing.Point(11, 95);
+            this.btRP.Name = "btRP";
+            this.btRP.Size = new System.Drawing.Size(168, 44);
+            this.btRP.TabIndex = 129;
+            this.btRP.Text = "Recibo Principal";
+            this.btRP.UseVisualStyleBackColor = false;
+            this.btRP.Click += new System.EventHandler(this.btRP_Click);
             // 
             // btPVImpressaoRL
             // 
             this.btPVImpressaoRL.BackColor = System.Drawing.Color.RoyalBlue;
             this.btPVImpressaoRL.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btPVImpressaoRL.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPVImpressaoRL.Location = new System.Drawing.Point(6, 43);
+            this.btPVImpressaoRL.Location = new System.Drawing.Point(11, 39);
             this.btPVImpressaoRL.Name = "btPVImpressaoRL";
             this.btPVImpressaoRL.Size = new System.Drawing.Size(168, 44);
             this.btPVImpressaoRL.TabIndex = 8;
@@ -1047,10 +1107,10 @@
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label51.Location = new System.Drawing.Point(8, 12);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(51, 18);
+            this.label51.Size = new System.Drawing.Size(57, 19);
             this.label51.TabIndex = 128;
             this.label51.Text = "Ações";
             // 
@@ -1382,7 +1442,7 @@
             // lblIdReciboLocador
             // 
             this.lblIdReciboLocador.AutoSize = true;
-            this.lblIdReciboLocador.Location = new System.Drawing.Point(803, 233);
+            this.lblIdReciboLocador.Location = new System.Drawing.Point(803, 283);
             this.lblIdReciboLocador.Name = "lblIdReciboLocador";
             this.lblIdReciboLocador.Size = new System.Drawing.Size(132, 17);
             this.lblIdReciboLocador.TabIndex = 47;
@@ -1590,5 +1650,9 @@
         private System.Windows.Forms.TextBox txtVencimento;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel20;
+        private System.Windows.Forms.Button btRL;
+        private System.Windows.Forms.Button btRP;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

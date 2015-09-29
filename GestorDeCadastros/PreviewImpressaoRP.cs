@@ -107,7 +107,7 @@ namespace GestorDeCadastros
             printDlg.Document = printDoc;
             printDlg.AllowSelection = true;
             printDlg.AllowSomePages = true;
-        
+
             if (printDlg.ShowDialog() == DialogResult.OK)
                 printDoc.Print();
         }
@@ -169,7 +169,7 @@ namespace GestorDeCadastros
                 DataTable dadosLocatario = CarregaDadosTabela(Convert.ToInt32(lblIdReciboPrincipal.Text.Trim()));
                 if (dadosLocatario.Rows.Count > 0)
                 {
-                    string quantidade = dadosLocatario.DefaultView[0]["Quantidade"].ToString() + "/" + dadosLocatario.DefaultView[0]["Numero"].ToString();
+                    string quantidade = dadosLocatario.DefaultView[0]["Numero"].ToString() + "/" + dadosLocatario.DefaultView[0]["Quantidade"].ToString();
                     HabilitaLabelTexto(quantidade, lblQtdNumeroRecibo);
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Periodo"].ToString()))
@@ -194,7 +194,7 @@ namespace GestorDeCadastros
                     HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Locatario"].ToString().Trim(), lblLocatario);
                     HabilitaLabelTexto(dadosLocatario.DefaultView[0]["CpfLocatario"].ToString().Trim(), lblCpfLocatario);
                     HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Endereco"].ToString().Trim(), lblEnderecoImovel);
-                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Locador"].ToString().Trim(), lblLocador);                    
+                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Locador"].ToString().Trim(), lblLocador);
 
                     //VerificacaoDeDocumentoSalvo
                     if (VerificaCampoDoc(dadosLocatario.DefaultView[0]["Cpf"].ToString()))
@@ -204,6 +204,13 @@ namespace GestorDeCadastros
                     else if (VerificaCampoDoc(dadosLocatario.DefaultView[0]["Cnpj"].ToString()))
                     {
                         HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Cnpj"].ToString().Trim(), lblDocLocador);
+                    }
+
+                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["DescricaoComplementoPagamento"].ToString()))
+                    {
+                        txtDescComplemento.Text = dadosLocatario.DefaultView[0]["DescricaoComplementoPagamento"].ToString().Trim();
+                        txtDescComplemento.Visible = true;
+                        lblDescComplemento.Visible = true;
                     }
 
                     HabilitaTextBox(dadosLocatario.DefaultView[0]["DescricaoComplementoPagamento"].ToString(), txtDescComplemento);
@@ -220,8 +227,8 @@ namespace GestorDeCadastros
                         if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString()) &&
                        dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString() != "0")
                         {
-                            string quatidadeIptu = dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString() + "/" +
-                                                   dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString();
+                            string quatidadeIptu = dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString() + "/" +
+                                                   dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString();
 
                             HabilitaLabelTexto(quatidadeIptu, lblQtdNumeroIptu);
                             if (lblQtdNumeroIptu.Visible == true)
@@ -237,7 +244,7 @@ namespace GestorDeCadastros
                     HabilitaLabelValor(dadosLocatario.DefaultView[0]["ComplementoPagamento"].ToString(), lblComPagamento);
                     HabilitaLabelValor(dadosLocatario.DefaultView[0]["TotalPagamento"].ToString(), lblTotal);
 
-                    lblDataFormatada.Text = "São Paulo, " + RetornaDataFormatada();
+                    //lblDataFormatada.Text = "São Paulo, " + RetornaDataFormatada();
 
                 }
             }

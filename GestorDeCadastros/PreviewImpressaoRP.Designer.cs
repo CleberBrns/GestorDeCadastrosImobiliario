@@ -37,7 +37,7 @@
             this.lblLuz = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.txtDescComplemento = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
+            this.lblDescComplemento = new System.Windows.Forms.Label();
             this.lblComPagamento = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.lblDespCondominio = new System.Windows.Forms.Label();
@@ -94,7 +94,7 @@
             this.pnlImpressao.Controls.Add(this.lblLuz);
             this.pnlImpressao.Controls.Add(this.label40);
             this.pnlImpressao.Controls.Add(this.txtDescComplemento);
-            this.pnlImpressao.Controls.Add(this.label38);
+            this.pnlImpressao.Controls.Add(this.lblDescComplemento);
             this.pnlImpressao.Controls.Add(this.lblComPagamento);
             this.pnlImpressao.Controls.Add(this.label37);
             this.pnlImpressao.Controls.Add(this.lblDespCondominio);
@@ -146,9 +146,9 @@
             this.lblTotal.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.Location = new System.Drawing.Point(666, 375);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(74, 21);
+            this.lblTotal.Size = new System.Drawing.Size(64, 21);
             this.lblTotal.TabIndex = 47;
-            this.lblTotal.Text = "1.298,40";
+            this.lblTotal.Text = "xxxxxx";
             this.lblTotal.Visible = false;
             // 
             // label45
@@ -177,9 +177,9 @@
             this.lblAgua.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAgua.Location = new System.Drawing.Point(679, 327);
             this.lblAgua.Name = "lblAgua";
-            this.lblAgua.Size = new System.Drawing.Size(45, 19);
+            this.lblAgua.Size = new System.Drawing.Size(51, 19);
             this.lblAgua.TabIndex = 44;
-            this.lblAgua.Text = "98,40";
+            this.lblAgua.Text = "xxxxxx";
             this.lblAgua.Visible = false;
             // 
             // label42
@@ -198,9 +198,9 @@
             this.lblLuz.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLuz.Location = new System.Drawing.Point(677, 300);
             this.lblLuz.Name = "lblLuz";
-            this.lblLuz.Size = new System.Drawing.Size(45, 19);
+            this.lblLuz.Size = new System.Drawing.Size(51, 19);
             this.lblLuz.TabIndex = 42;
-            this.lblLuz.Text = "98,40";
+            this.lblLuz.Text = "xxxxxx";
             this.lblLuz.Visible = false;
             // 
             // label40
@@ -215,6 +215,7 @@
             // 
             // txtDescComplemento
             // 
+            this.txtDescComplemento.BackColor = System.Drawing.Color.White;
             this.txtDescComplemento.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDescComplemento.Enabled = false;
             this.txtDescComplemento.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -223,19 +224,18 @@
             this.txtDescComplemento.Name = "txtDescComplemento";
             this.txtDescComplemento.Size = new System.Drawing.Size(148, 95);
             this.txtDescComplemento.TabIndex = 40;
-            this.txtDescComplemento.Text = "Exemplo; Multa";
             this.txtDescComplemento.Visible = false;
             // 
-            // label38
+            // lblDescComplemento
             // 
-            this.label38.AutoSize = true;
-            this.label38.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(282, 273);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(109, 19);
-            this.label38.TabIndex = 39;
-            this.label38.Text = "Descri, Comp.:";
-            this.label38.Visible = false;
+            this.lblDescComplemento.AutoSize = true;
+            this.lblDescComplemento.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescComplemento.Location = new System.Drawing.Point(282, 273);
+            this.lblDescComplemento.Name = "lblDescComplemento";
+            this.lblDescComplemento.Size = new System.Drawing.Size(109, 19);
+            this.lblDescComplemento.TabIndex = 39;
+            this.lblDescComplemento.Text = "Descri, Comp.:";
+            this.lblDescComplemento.Visible = false;
             // 
             // lblComPagamento
             // 
@@ -243,9 +243,9 @@
             this.lblComPagamento.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblComPagamento.Location = new System.Drawing.Point(677, 273);
             this.lblComPagamento.Name = "lblComPagamento";
-            this.lblComPagamento.Size = new System.Drawing.Size(45, 19);
+            this.lblComPagamento.Size = new System.Drawing.Size(51, 19);
             this.lblComPagamento.TabIndex = 38;
-            this.lblComPagamento.Text = "98,40";
+            this.lblComPagamento.Text = "xxxxxx";
             this.lblComPagamento.Visible = false;
             // 
             // label37
@@ -264,9 +264,9 @@
             this.lblDespCondominio.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDespCondominio.Location = new System.Drawing.Point(677, 243);
             this.lblDespCondominio.Name = "lblDespCondominio";
-            this.lblDespCondominio.Size = new System.Drawing.Size(45, 19);
+            this.lblDespCondominio.Size = new System.Drawing.Size(51, 19);
             this.lblDespCondominio.TabIndex = 36;
-            this.lblDespCondominio.Text = "98,40";
+            this.lblDespCondominio.Text = "xxxxxx";
             this.lblDespCondominio.Visible = false;
             // 
             // label35
@@ -307,9 +307,9 @@
             this.lblIptu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIptu.Location = new System.Drawing.Point(677, 213);
             this.lblIptu.Name = "lblIptu";
-            this.lblIptu.Size = new System.Drawing.Size(45, 19);
+            this.lblIptu.Size = new System.Drawing.Size(51, 19);
             this.lblIptu.TabIndex = 32;
-            this.lblIptu.Text = "98,40";
+            this.lblIptu.Text = "xxxxxx";
             this.lblIptu.Visible = false;
             // 
             // label31
@@ -328,9 +328,9 @@
             this.lblAluguel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAluguel.Location = new System.Drawing.Point(675, 185);
             this.lblAluguel.Name = "lblAluguel";
-            this.lblAluguel.Size = new System.Drawing.Size(65, 19);
+            this.lblAluguel.Size = new System.Drawing.Size(51, 19);
             this.lblAluguel.TabIndex = 30;
-            this.lblAluguel.Text = "1.298,40";
+            this.lblAluguel.Text = "xxxxxx";
             this.lblAluguel.Visible = false;
             // 
             // label28
@@ -402,12 +402,12 @@
             // lblDataFormatada
             // 
             this.lblDataFormatada.AutoSize = true;
-            this.lblDataFormatada.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataFormatada.Location = new System.Drawing.Point(492, 511);
+            this.lblDataFormatada.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataFormatada.Location = new System.Drawing.Point(468, 511);
             this.lblDataFormatada.Name = "lblDataFormatada";
-            this.lblDataFormatada.Size = new System.Drawing.Size(243, 19);
+            this.lblDataFormatada.Size = new System.Drawing.Size(271, 19);
             this.lblDataFormatada.TabIndex = 23;
-            this.lblDataFormatada.Text = "São Paulo, 24 de Setembro de 2015";
+            this.lblDataFormatada.Text = "São Paulo,        de                     de 20      ";
             // 
             // label22
             // 
@@ -734,7 +734,7 @@
         private System.Windows.Forms.Label lblAluguel;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox txtDescComplemento;
-        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label lblDescComplemento;
         private System.Windows.Forms.Label lblAgua;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label lblLuz;

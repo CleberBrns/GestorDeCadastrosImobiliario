@@ -39,10 +39,6 @@ namespace GestorDeCadastros
             {
                 CarregaDadosAba(4);
             }
-            else if (tcConsultas.SelectedTab == tpRcbLocadores)
-            {
-                CarregaDadosAba(5);
-            }
             else if (tcConsultas.SelectedTab == tpLocadores)
             {
                 CarregaDadosAba(2);
@@ -58,12 +54,6 @@ namespace GestorDeCadastros
             if (tipoCadastro == 4)
             {
 
-            }
-            else if (tipoCadastro == 5)
-            {
-                CarregaComboPesquisa(2, cboRecibosLocador);
-                dtpInicialRL.Value = DateTime.Now;
-                dtpInicialRL.Value = DateTime.Now;
             }
             else if (tipoCadastro == 2)
             {
@@ -97,10 +87,6 @@ namespace GestorDeCadastros
             if (sender == dtpInicialRP)
             {
                 defineDataFinal(dtpInicialRP, dtpFinalRP);
-            }
-            else if (sender == dtpInicialRL)
-            {
-                defineDataFinal(dtpInicialRL, dtpFinalRL);
             }
         }
 
@@ -236,6 +222,7 @@ namespace GestorDeCadastros
         }
 
         /// <summary>
+        /// TipoPesquisa 0 = Somente por data
         /// TipoPesquisa 1 = Endereço
         /// TipoPesquisa 2 = Locador
         /// TipoPesquisa 3 = Locatário
@@ -268,9 +255,8 @@ namespace GestorDeCadastros
 
             if (tipoPesquisa == 0)
             {
-
-
-                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP, rp.Data as DataReciboRP" +
+                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP," +
+                                                " rp.Data as DataReciboRP, rl.Id as IdRL" +
                                                 " from RecibosPrincipais rp" +
                                                 " inner join Locatarios lct" +
                                                 " on lct.Id = rp.fkIdLocatario " +
@@ -278,11 +264,14 @@ namespace GestorDeCadastros
                                                 " on lct.fkIdImovel = im.Id " +
                                                 " inner join Locadores lcds" +
                                                 " on lct.fkIdLocador = lcds.Id " +
+                                                " inner join RecibosLocadores rl" +
+                                                " on rl.fkIdRecibo = rp.Id " +
                                                 comandoData + " order by rp.Data desc";
             }
             else if (tipoPesquisa == 1)
             {
-                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP, rp.Data as DataReciboRP" +
+                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP," +
+                                                " rp.Data as DataReciboRP, rl.Id as IdRL" +
                                                 " from RecibosPrincipais rp" +
                                                 " inner join Locatarios lct" +
                                                 " on lct.Id = rp.fkIdLocatario " +
@@ -290,11 +279,14 @@ namespace GestorDeCadastros
                                                 " on lct.fkIdImovel = im.Id " +
                                                 " inner join Locadores lcds" +
                                                 " on lct.fkIdLocador = lcds.Id " +
+                                                " inner join RecibosLocadores rl" +
+                                                " on rl.fkIdRecibo = rp.Id " +
                                                 comandoData + " and im.Id = " + idCadastro + " order by rp.Data desc";
             }
             else if (tipoPesquisa == 2)
             {
-                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP, rp.Data as DataReciboRP" +
+                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP," +
+                                " rp.Data as DataReciboRP, rl.Id as IdRL" +
                                 " from RecibosPrincipais rp" +
                                 " inner join Locatarios lct" +
                                 " on lct.Id = rp.fkIdLocatario " +
@@ -302,11 +294,14 @@ namespace GestorDeCadastros
                                 " on lct.fkIdImovel = im.Id " +
                                 " inner join Locadores lcds" +
                                 " on lct.fkIdLocador = lcds.Id " +
+                                " inner join RecibosLocadores rl" +
+                                " on rl.fkIdRecibo = rp.Id " +
                                 comandoData + " and lcds.Id = " + idCadastro + " order by rp.Data desc";
             }
             else
             {
-                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP, rp.Data as DataReciboRP" +
+                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP,"+
+                                  " rp.Data as DataReciboRP, rl.Id as IdRL" +
                                   " from RecibosPrincipais rp" +
                                   " inner join Locatarios lct" +
                                   " on lct.Id = rp.fkIdLocatario " +
@@ -314,73 +309,9 @@ namespace GestorDeCadastros
                                   " on lct.fkIdImovel = im.Id " +
                                   " inner join Locadores lcds" +
                                   " on lct.fkIdLocador = lcds.Id " +
+                                  " inner join RecibosLocadores rl" +
+                                  " on rl.fkIdRecibo = rp.Id " +
                                   comandoData + " and lct.Id = " + idCadastro + " order by rp.Data desc";
-            }
-
-            sdaDados.SelectCommand = cmd;
-
-            dsDados = new DataSet();
-            sdaDados.Fill(dsDados);
-        }
-
-        /// <summary>
-        /// TipoPesquisa 1 = Endereço
-        /// TipoPesquisa 2 = Locador
-        /// TipoPesquisa 3 = Locatário
-        /// </summary>
-        /// <param name="dsDados"></param>
-        /// <param name="sdaDados"></param>
-        /// <param name="tipoPesquisa"></param>
-        /// <param name="idCadastro"></param>
-        private static void PreenchePesquisaRecibosLocadores(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int tipoPesquisa, int idCadastro,
-                                                             DateTime dataIncial, DateTime dataFinal)
-        {
-            sdaDados = new SqlCeDataAdapter();
-
-            SqlCeCommand cmd = retornaConexao().CreateCommand();
-
-            string formatoDataBD = "yyyy/M/d";
-
-            string comandoData = string.Empty;
-
-            string sdataInicial = dataIncial.ToString(formatoDataBD) + " 00:00:00";
-            string sdataFinal = dataFinal.ToString(formatoDataBD) + " 23:59:59";
-
-            //Data Igual pesquisa o mesmo dia, o dia todo
-            if (dataIncial.ToShortDateString() == dataFinal.ToShortDateString())
-            {
-                sdataFinal = dataFinal.ToString(formatoDataBD) + " 23:59:59";
-            }
-
-            comandoData = " where rp.Data between '" + sdataInicial + "' and '" + sdataFinal + "'";
-
-            if (tipoPesquisa == 0)
-            {
-                cmd.CommandText = "select rl.Id as IdRL, lcd.Locador as LocadorRL, lct.Locatario as LocatarioRL, im.Endereco as EnderecoRL, rp.Data as DataReciboRL" +
-                              " from RecibosLocadores rl" +
-                              " inner join RecibosPrincipais rp" +
-                              " on rl.fkIdRecibo = rp.Id" +
-                              " inner join Locatarios lct" +
-                              " on rp.fkIdLocatario = lct.Id" +
-                              " inner join Locadores lcd" +
-                              " on lct.fkIdLocador = lcd.Id" +
-                              " inner join Imoveis im" +
-                              " on lct.fkIdImovel = im.Id" +
-                              comandoData + " order by rp.Data";
-            }
-            else
-            {
-                cmd.CommandText = "select rl.Id as IdRL, lcd.Locador as LocadorRL, lct.Locatario as LocatarioRL, im.Endereco as EnderecoRL, rp.Data as DataReciboRL" +
-                                              " from RecibosLocadores rl" +
-                                              " inner join RecibosPrincipais rp" +
-                                              " on rl.fkIdRecibo = rp.Id" +
-                                              " inner join Locatarios lct" +
-                                              " on rp.fkIdLocatario = lct.Id" +
-                                              " inner join Locadores lcd" +
-                                              " on lct.fkIdLocador = lcd.Id" +
-                                              " inner join Imoveis im" +
-                                              " on lct.fkIdImovel = im.Id" +
-                                              comandoData + " and rl.Id = " + idCadastro + " order by rp.Data";
             }
 
             sdaDados.SelectCommand = cmd;
@@ -474,10 +405,6 @@ namespace GestorDeCadastros
             else if (tipoCarramento == 4)
             {
                 PreenchePesquisaRecibosPrincipais(out dsSelecao, out sdaSelecao, tipoPesquisa, idCadastro, dataIncial, dataFinal);
-            }
-            else if (tipoCarramento == 5)
-            {
-                PreenchePesquisaRecibosLocadores(out dsSelecao, out sdaSelecao, tipoPesquisa, idCadastro, dataIncial, dataFinal);
             }
 
             tabelaCombos = dsSelecao.Tables[0];
@@ -648,6 +575,7 @@ namespace GestorDeCadastros
             else
             {
                 dadosPesquisa = new DataTable();
+                dadosPesquisa.Columns.Add("IdRL");
                 dadosPesquisa.Columns.Add("IdRP");
                 dadosPesquisa.Columns.Add("LocatarioRP");
                 dadosPesquisa.Columns.Add("LocadorRP");
@@ -677,9 +605,12 @@ namespace GestorDeCadastros
             {
                 int idxbtVisualizarRP = Convert.ToInt32(dgvRecibosPrincipais.Columns["btVisualizarRP"].Index.ToString());
                 int idxbtPreviewRP = Convert.ToInt32(dgvRecibosPrincipais.Columns["btPreviewRP"].Index.ToString());
+                int idxbtRL = Convert.ToInt32(dgvRecibosPrincipais.Columns["btRL"].Index.ToString());
                 int idxIdRecibo = Convert.ToInt32(dgvRecibosPrincipais.Columns["IdRP"].Index.ToString());
+                int idxIdRL = Convert.ToInt32(dgvRecibosPrincipais.Columns["IdRL"].Index.ToString());
 
                 string sIdRecibo = dgvRecibosPrincipais.Rows[e.RowIndex].Cells[idxIdRecibo].Value.ToString().Trim();
+                string sIdRL = dgvRecibosPrincipais.Rows[e.RowIndex].Cells[idxIdRL].Value.ToString().Trim();
 
                 if (dgvRecibosPrincipais.Rows[e.RowIndex].Cells[idxbtVisualizarRP].Selected)
                 {
@@ -695,80 +626,11 @@ namespace GestorDeCadastros
                         Auxiliar.PreviewReciboImpressao(1, Convert.ToInt32(sIdRecibo));
                     }
                 }
-            }
-        }
-
-        #endregion
-
-        #region Ações aba Recibos Locador
-
-        private void btBuscarRL_Click(object sender, EventArgs e)
-        {
-            if (cboRecibosLocador.Items.Count != 0 && cboRecibosLocador.SelectedValue.ToString() != "0" &&
-               cboRecibosLocador.SelectedValue.ToString() != "System.Data.DataRowView")
-            {
-                CarregaDadosGridRL(Convert.ToInt32(cboRecibosLocador.SelectedValue.ToString()), dtpInicialRL.Value, dtpFinalRL.Value);
-            }
-            else
-            {
-                CarregaDadosGridRL(0, dtpInicialRL.Value, dtpFinalRL.Value);
-            }
-        }
-
-        private void CarregaDadosGridRL(int idComboSelecionado, DateTime dataIncial, DateTime dataFinal)
-        {
-            DataTable dadosPesquisa = new DataTable();
-
-            if (idComboSelecionado == 0)
-            {
-                dadosPesquisa = PreencheDadosTabela(0, 5, idComboSelecionado, dataIncial, dataFinal);
-            }
-            else
-            {
-                dadosPesquisa = PreencheDadosTabela(2, 5, idComboSelecionado, dataIncial, dataFinal);
-            }
-
-            if (dadosPesquisa.Rows.Count > 0)
-            {
-                dgvRecibosLocador.DataSource = dadosPesquisa;
-            }
-            else
-            {
-                dadosPesquisa = new DataTable();
-                dadosPesquisa.Columns.Add("IdRL");
-                dadosPesquisa.Columns.Add("LocadorRL");
-                dadosPesquisa.Columns.Add("LocatarioRL");                
-                dadosPesquisa.Columns.Add("EnderecoRL");
-                dadosPesquisa.Columns.Add("DataReciboRL");
-
-                dgvRecibosLocador.DataSource = dadosPesquisa;
-
-                Auxiliar.MostraMensagemAlerta("Não existem Recibos salvos para essa pesquisa!", 2);
-            }
-        }
-
-        private void dgvRecibosLocador_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (dgvRecibosLocador.Rows.Count > 0 && e.RowIndex != -1)
-            {
-                int idxbtVisualizarRL = Convert.ToInt32(dgvRecibosLocador.Columns["btVisualizarRL"].Index.ToString());
-                int idxbtPreviewRL = Convert.ToInt32(dgvRecibosLocador.Columns["btPreviewRL"].Index.ToString());
-                int idxIdRecibo = Convert.ToInt32(dgvRecibosLocador.Columns["IdRL"].Index.ToString());
-
-                string sIdRecibo = dgvRecibosLocador.Rows[e.RowIndex].Cells[idxIdRecibo].Value.ToString().Trim();
-
-                if (dgvRecibosLocador.Rows[e.RowIndex].Cells[idxbtVisualizarRL].Selected)
+                else if (dgvRecibosPrincipais.Rows[e.RowIndex].Cells[idxbtRL].Selected)
                 {
-                    if (!string.IsNullOrEmpty(sIdRecibo) && sIdRecibo != "0")
+                    if (!string.IsNullOrEmpty(sIdRL) && sIdRL != "0")
                     {
-                        Auxiliar.VisualizaRecibo(2, Convert.ToInt32(sIdRecibo));
-                    }
-                }
-                else if (dgvRecibosLocador.Rows[e.RowIndex].Cells[idxbtPreviewRL].Selected)
-                {
-                    if (!string.IsNullOrEmpty(sIdRecibo) && sIdRecibo != "0")
-                    {
-                        Auxiliar.PreviewReciboImpressao(2, Convert.ToInt32(sIdRecibo));
+                        Auxiliar.VisualizaRecibo(2, Convert.ToInt32(sIdRL));
                     }
                 }
             }
@@ -854,7 +716,7 @@ namespace GestorDeCadastros
             }
         }
 
-        #endregion             
+        #endregion
 
     }
 }

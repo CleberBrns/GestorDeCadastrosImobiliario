@@ -55,3 +55,21 @@ C:\Users\cleber.debrito\Docs\Works\GestorDeCadastrosImobiliario\GestorDeCadastro
 C:\Users\cleber.debrito\Docs\Works\GestorDeCadastrosImobiliario\GestorDeCadastrosImobiliario\GestorDeCadastros\bin\Debug\GestorDeCadastros.pdb
 C:\Users\cleber.debrito\Docs\Works\GestorDeCadastrosImobiliario\GestorDeCadastrosImobiliario\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.exe
 C:\Users\cleber.debrito\Docs\Works\GestorDeCadastrosImobiliario\GestorDeCadastrosImobiliario\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.pdb
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\bin\Debug\CadastrosAplicacao.sdf
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\bin\Debug\GestorDeCadastros.exe.config
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\bin\Debug\GestorDeCadastros.exe
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\bin\Debug\GestorDeCadastros.pdb
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.csprojResolveAssemblyReference.cache
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.Cadastros.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.Consultas.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.Login.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.PreviewImpressaoRL.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.PreviewImpressaoRP.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.VisualizaRecibo.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.Inicio.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.InsereValores.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.Properties.Resources.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.Recibos.resources
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.csproj.GenerateResource.Cache
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.exe
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.pdb

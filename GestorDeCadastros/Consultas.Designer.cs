@@ -63,32 +63,6 @@
             this.rbLocatarioRp = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvRecibosPrincipais = new System.Windows.Forms.DataGridView();
-            this.LocatarioRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LocadorRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnderecoRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataReciboRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btVisualizarRP = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btPreviewRP = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tpRcbLocadores = new System.Windows.Forms.TabPage();
-            this.dgvRecibosLocador = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btVisualizarRL = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btPreviewRL = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdRL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btBuscarRL = new System.Windows.Forms.Button();
-            this.dtpFinalRL = new System.Windows.Forms.DateTimePicker();
-            this.dtpInicialRL = new System.Windows.Forms.DateTimePicker();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.cboRecibosLocador = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.tpLocadores = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -115,6 +89,15 @@
             this.IdImovel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AtivoLocador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btAlterarImovel = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.LocatarioRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LocadorRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnderecoRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataReciboRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btVisualizarRP = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btPreviewRP = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btRL = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdRL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tpLocatarios.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -124,10 +107,6 @@
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibosPrincipais)).BeginInit();
-            this.tpRcbLocadores.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRecibosLocador)).BeginInit();
-            this.panel5.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.tpLocadores.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocadores)).BeginInit();
@@ -325,7 +304,6 @@
             // 
             this.tcConsultas.Controls.Add(this.tpLocatarios);
             this.tcConsultas.Controls.Add(this.tpRcbPrincipais);
-            this.tcConsultas.Controls.Add(this.tpRcbLocadores);
             this.tcConsultas.Controls.Add(this.tpLocadores);
             this.tcConsultas.Controls.Add(this.tpImoveis);
             this.tcConsultas.Cursor = System.Windows.Forms.Cursors.Default;
@@ -534,270 +512,16 @@
             this.DataReciboRP,
             this.btVisualizarRP,
             this.btPreviewRP,
-            this.IdRP});
+            this.btRL,
+            this.IdRP,
+            this.IdRL});
             this.dgvRecibosPrincipais.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dgvRecibosPrincipais.Location = new System.Drawing.Point(38, 121);
+            this.dgvRecibosPrincipais.Location = new System.Drawing.Point(6, 121);
             this.dgvRecibosPrincipais.Name = "dgvRecibosPrincipais";
             this.dgvRecibosPrincipais.ReadOnly = true;
-            this.dgvRecibosPrincipais.Size = new System.Drawing.Size(1150, 432);
+            this.dgvRecibosPrincipais.Size = new System.Drawing.Size(1234, 432);
             this.dgvRecibosPrincipais.TabIndex = 0;
             this.dgvRecibosPrincipais.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibosPrincipais_CellContentClick);
-            // 
-            // LocatarioRP
-            // 
-            this.LocatarioRP.DataPropertyName = "LocatarioRP";
-            this.LocatarioRP.HeaderText = "Locatário";
-            this.LocatarioRP.Name = "LocatarioRP";
-            this.LocatarioRP.ReadOnly = true;
-            this.LocatarioRP.Width = 240;
-            // 
-            // LocadorRP
-            // 
-            this.LocadorRP.DataPropertyName = "LocadorRP";
-            this.LocadorRP.HeaderText = "Locador";
-            this.LocadorRP.Name = "LocadorRP";
-            this.LocadorRP.ReadOnly = true;
-            this.LocadorRP.Width = 240;
-            // 
-            // EnderecoRP
-            // 
-            this.EnderecoRP.DataPropertyName = "EnderecoRP";
-            this.EnderecoRP.HeaderText = "Endereço Imóvel";
-            this.EnderecoRP.Name = "EnderecoRP";
-            this.EnderecoRP.ReadOnly = true;
-            this.EnderecoRP.Width = 240;
-            // 
-            // DataReciboRP
-            // 
-            this.DataReciboRP.DataPropertyName = "DataReciboRP";
-            this.DataReciboRP.HeaderText = "Data Cadastro";
-            this.DataReciboRP.Name = "DataReciboRP";
-            this.DataReciboRP.ReadOnly = true;
-            this.DataReciboRP.Width = 130;
-            // 
-            // btVisualizarRP
-            // 
-            this.btVisualizarRP.HeaderText = "Visualizar";
-            this.btVisualizarRP.Name = "btVisualizarRP";
-            this.btVisualizarRP.ReadOnly = true;
-            this.btVisualizarRP.Text = "Ok";
-            this.btVisualizarRP.UseColumnTextForButtonValue = true;
-            // 
-            // btPreviewRP
-            // 
-            this.btPreviewRP.HeaderText = "Preview Impressão";
-            this.btPreviewRP.Name = "btPreviewRP";
-            this.btPreviewRP.ReadOnly = true;
-            this.btPreviewRP.Text = "Ok";
-            this.btPreviewRP.UseColumnTextForButtonValue = true;
-            this.btPreviewRP.Width = 150;
-            // 
-            // IdRP
-            // 
-            this.IdRP.DataPropertyName = "IdRP";
-            this.IdRP.HeaderText = "IdCadastro";
-            this.IdRP.Name = "IdRP";
-            this.IdRP.ReadOnly = true;
-            this.IdRP.Visible = false;
-            // 
-            // tpRcbLocadores
-            // 
-            this.tpRcbLocadores.BackColor = System.Drawing.Color.DimGray;
-            this.tpRcbLocadores.Controls.Add(this.dgvRecibosLocador);
-            this.tpRcbLocadores.Controls.Add(this.panel5);
-            this.tpRcbLocadores.Location = new System.Drawing.Point(4, 26);
-            this.tpRcbLocadores.Name = "tpRcbLocadores";
-            this.tpRcbLocadores.Padding = new System.Windows.Forms.Padding(3);
-            this.tpRcbLocadores.Size = new System.Drawing.Size(1246, 579);
-            this.tpRcbLocadores.TabIndex = 10;
-            this.tpRcbLocadores.Text = "Recibos Locador";
-            // 
-            // dgvRecibosLocador
-            // 
-            this.dgvRecibosLocador.AllowDrop = true;
-            this.dgvRecibosLocador.AllowUserToAddRows = false;
-            this.dgvRecibosLocador.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvRecibosLocador.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.btVisualizarRL,
-            this.btPreviewRL,
-            this.IdRL});
-            this.dgvRecibosLocador.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.dgvRecibosLocador.Location = new System.Drawing.Point(54, 121);
-            this.dgvRecibosLocador.Name = "dgvRecibosLocador";
-            this.dgvRecibosLocador.ReadOnly = true;
-            this.dgvRecibosLocador.Size = new System.Drawing.Size(1150, 413);
-            this.dgvRecibosLocador.TabIndex = 2;
-            this.dgvRecibosLocador.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibosLocador_CellContentClick);
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "LocadorRL";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Locador";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Width = 240;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "LocatarioRL";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Locatário";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 240;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "EnderecoRL";
-            this.dataGridViewTextBoxColumn11.HeaderText = "Endereço Imóvel";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Width = 240;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "DataReciboRL";
-            this.dataGridViewTextBoxColumn12.HeaderText = "Data Cadastro";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Width = 130;
-            // 
-            // btVisualizarRL
-            // 
-            this.btVisualizarRL.HeaderText = "Visualizar";
-            this.btVisualizarRL.Name = "btVisualizarRL";
-            this.btVisualizarRL.ReadOnly = true;
-            this.btVisualizarRL.Text = "Ok";
-            this.btVisualizarRL.UseColumnTextForButtonValue = true;
-            // 
-            // btPreviewRL
-            // 
-            this.btPreviewRL.HeaderText = "Preview Impressão";
-            this.btPreviewRL.Name = "btPreviewRL";
-            this.btPreviewRL.ReadOnly = true;
-            this.btPreviewRL.Text = "Ok";
-            this.btPreviewRL.UseColumnTextForButtonValue = true;
-            this.btPreviewRL.Width = 150;
-            // 
-            // IdRL
-            // 
-            this.IdRL.DataPropertyName = "IdRL";
-            this.IdRL.HeaderText = "IdCadastro";
-            this.IdRL.Name = "IdRL";
-            this.IdRL.ReadOnly = true;
-            this.IdRL.Visible = false;
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Controls.Add(this.panel7);
-            this.panel5.Controls.Add(this.button4);
-            this.panel5.Controls.Add(this.cboRecibosLocador);
-            this.panel5.Controls.Add(this.label4);
-            this.panel5.Location = new System.Drawing.Point(54, 10);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1150, 105);
-            this.panel5.TabIndex = 1;
-            // 
-            // panel7
-            // 
-            this.panel7.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel7.Controls.Add(this.label7);
-            this.panel7.Controls.Add(this.btBuscarRL);
-            this.panel7.Controls.Add(this.dtpFinalRL);
-            this.panel7.Controls.Add(this.dtpInicialRL);
-            this.panel7.Controls.Add(this.label8);
-            this.panel7.Location = new System.Drawing.Point(291, 48);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(445, 46);
-            this.panel7.TabIndex = 16;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(199, 12);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(16, 18);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "a";
-            // 
-            // btBuscarRL
-            // 
-            this.btBuscarRL.BackColor = System.Drawing.Color.Green;
-            this.btBuscarRL.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btBuscarRL.Location = new System.Drawing.Point(343, 3);
-            this.btBuscarRL.Name = "btBuscarRL";
-            this.btBuscarRL.Size = new System.Drawing.Size(84, 35);
-            this.btBuscarRL.TabIndex = 23;
-            this.btBuscarRL.Text = "Buscar";
-            this.btBuscarRL.UseVisualStyleBackColor = false;
-            this.btBuscarRL.Click += new System.EventHandler(this.btBuscarRL_Click);
-            // 
-            // dtpFinalRL
-            // 
-            this.dtpFinalRL.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFinalRL.Location = new System.Drawing.Point(222, 8);
-            this.dtpFinalRL.Name = "dtpFinalRL";
-            this.dtpFinalRL.Size = new System.Drawing.Size(113, 25);
-            this.dtpFinalRL.TabIndex = 22;
-            // 
-            // dtpInicialRL
-            // 
-            this.dtpInicialRL.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpInicialRL.Location = new System.Drawing.Point(79, 8);
-            this.dtpInicialRL.Name = "dtpInicialRL";
-            this.dtpInicialRL.Size = new System.Drawing.Size(113, 25);
-            this.dtpInicialRL.TabIndex = 21;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(3, 11);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 18);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Período:";
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.RoyalBlue;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.Black;
-            this.button4.Location = new System.Drawing.Point(1033, 9);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(79, 35);
-            this.button4.TabIndex = 14;
-            this.button4.Text = "Início";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.btInicio_Click);
-            // 
-            // cboRecibosLocador
-            // 
-            this.cboRecibosLocador.BackColor = System.Drawing.Color.Silver;
-            this.cboRecibosLocador.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboRecibosLocador.Enabled = false;
-            this.cboRecibosLocador.FormattingEnabled = true;
-            this.cboRecibosLocador.Location = new System.Drawing.Point(291, 14);
-            this.cboRecibosLocador.Name = "cboRecibosLocador";
-            this.cboRecibosLocador.Size = new System.Drawing.Size(445, 25);
-            this.cboRecibosLocador.TabIndex = 6;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(174, 18);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(111, 18);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Pesquisar por:";
             // 
             // tpLocadores
             // 
@@ -1069,6 +793,80 @@
             this.btAlterarImovel.Text = "Ok";
             this.btAlterarImovel.UseColumnTextForButtonValue = true;
             // 
+            // LocatarioRP
+            // 
+            this.LocatarioRP.DataPropertyName = "LocatarioRP";
+            this.LocatarioRP.HeaderText = "Locatário";
+            this.LocatarioRP.Name = "LocatarioRP";
+            this.LocatarioRP.ReadOnly = true;
+            this.LocatarioRP.Width = 220;
+            // 
+            // LocadorRP
+            // 
+            this.LocadorRP.DataPropertyName = "LocadorRP";
+            this.LocadorRP.HeaderText = "Locador";
+            this.LocadorRP.Name = "LocadorRP";
+            this.LocadorRP.ReadOnly = true;
+            this.LocadorRP.Width = 220;
+            // 
+            // EnderecoRP
+            // 
+            this.EnderecoRP.DataPropertyName = "EnderecoRP";
+            this.EnderecoRP.HeaderText = "Endereço Imóvel";
+            this.EnderecoRP.Name = "EnderecoRP";
+            this.EnderecoRP.ReadOnly = true;
+            this.EnderecoRP.Width = 215;
+            // 
+            // DataReciboRP
+            // 
+            this.DataReciboRP.DataPropertyName = "DataReciboRP";
+            this.DataReciboRP.HeaderText = "Data Cadastro";
+            this.DataReciboRP.Name = "DataReciboRP";
+            this.DataReciboRP.ReadOnly = true;
+            this.DataReciboRP.Width = 150;
+            // 
+            // btVisualizarRP
+            // 
+            this.btVisualizarRP.HeaderText = "Visualizar";
+            this.btVisualizarRP.Name = "btVisualizarRP";
+            this.btVisualizarRP.ReadOnly = true;
+            this.btVisualizarRP.Text = "Ok";
+            this.btVisualizarRP.UseColumnTextForButtonValue = true;
+            // 
+            // btPreviewRP
+            // 
+            this.btPreviewRP.HeaderText = "Preview Impressão";
+            this.btPreviewRP.Name = "btPreviewRP";
+            this.btPreviewRP.ReadOnly = true;
+            this.btPreviewRP.Text = "Ok";
+            this.btPreviewRP.UseColumnTextForButtonValue = true;
+            this.btPreviewRP.Width = 150;
+            // 
+            // btRL
+            // 
+            this.btRL.HeaderText = "Recibo Locador";
+            this.btRL.Name = "btRL";
+            this.btRL.ReadOnly = true;
+            this.btRL.Text = "Ok";
+            this.btRL.UseColumnTextForButtonValue = true;
+            this.btRL.Width = 130;
+            // 
+            // IdRP
+            // 
+            this.IdRP.DataPropertyName = "IdRP";
+            this.IdRP.HeaderText = "IdRP";
+            this.IdRP.Name = "IdRP";
+            this.IdRP.ReadOnly = true;
+            this.IdRP.Visible = false;
+            // 
+            // IdRL
+            // 
+            this.IdRL.DataPropertyName = "IdRL";
+            this.IdRL.HeaderText = "IdRL";
+            this.IdRL.Name = "IdRL";
+            this.IdRL.ReadOnly = true;
+            this.IdRL.Visible = false;
+            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1093,12 +891,6 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecibosPrincipais)).EndInit();
-            this.tpRcbLocadores.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRecibosLocador)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.tpLocadores.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -1137,11 +929,6 @@
         private System.Windows.Forms.RadioButton rbEnderecoRp;
         private System.Windows.Forms.RadioButton rbLocatarioRp;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabPage tpRcbLocadores;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox cboRecibosLocador;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TabPage tpImoveis;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
@@ -1170,35 +957,23 @@
         private System.Windows.Forms.DataGridViewButtonColumn btAlterar;
         private System.Windows.Forms.DataGridViewTextBoxColumn idCadastro;
         private System.Windows.Forms.DataGridView dgvRecibosPrincipais;
-        private System.Windows.Forms.DataGridView dgvRecibosLocador;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btBuscarRP;
         private System.Windows.Forms.DateTimePicker dtpFinalRP;
         private System.Windows.Forms.DateTimePicker dtpInicialRP;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btBuscarRL;
-        private System.Windows.Forms.DateTimePicker dtpFinalRL;
-        private System.Windows.Forms.DateTimePicker dtpInicialRL;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.RadioButton rbLocadorRP;
         private System.Windows.Forms.Button btDesmarcaPesquisasRP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewButtonColumn btVisualizarRL;
-        private System.Windows.Forms.DataGridViewButtonColumn btPreviewRL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdRL;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocatarioRP;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocadorRP;
         private System.Windows.Forms.DataGridViewTextBoxColumn EnderecoRP;
         private System.Windows.Forms.DataGridViewTextBoxColumn DataReciboRP;
         private System.Windows.Forms.DataGridViewButtonColumn btVisualizarRP;
         private System.Windows.Forms.DataGridViewButtonColumn btPreviewRP;
+        private System.Windows.Forms.DataGridViewButtonColumn btRL;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdRP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdRL;
 
 
     }

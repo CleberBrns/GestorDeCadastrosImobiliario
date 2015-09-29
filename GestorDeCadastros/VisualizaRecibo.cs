@@ -88,16 +88,18 @@ namespace GestorDeCadastros
             {
                 cmd.CommandText = "select lct.Locatario, rp.Quantidade, rp.Numero, rp.Data, rp.Periodo, rp.Iptu, rp.ParcelasIptu, rp.NumeroParcelaIptu, rp.DespesaCondominio," +
                                   " rp.Luz, rp.Agua, rp.Aluguel, rp.ComplementoPagamento, rp.DescricaoComplementoPagamento, rp.FormaPagamento, rp.DataPagamento," +
-                                  " rp.TotalPagamento, rp.ExtensoTotalPagamento, rp.ReajusteAluguel" +
+                                  " rp.TotalPagamento, rp.ExtensoTotalPagamento, rp.ReajusteAluguel, rl.Id as IdRL" +
                                   " from RecibosPrincipais Rp" +
                                   " inner join Locatarios lct" +
                                   " on rp.fkIdLocatario = lct.Id" +
+                                  " inner join RecibosLocadores rl" +
+                                  " on rp.Id = rl.Id" +
                                   " where rp.Id = " + idCadastro;
             }
             else
             {
                 cmd.CommandText = "select lcd.Locador, rl.Aluguel, rl.PorcentagemMulta, rl.Multa, rl.PorcentagemComissao, rl.Comissao, rl.Complemento," +
-                                  " rl.DescricaoComplemento, rl.Total" +
+                                  " rl.DescricaoComplemento, rl.Total, rp.Id as IdRP" +
                                   " from RecibosLocadores rl" +
                                   " inner join RecibosPrincipais rp" +
                                   " on rl.fkIdRecibo = rp.Id" +
@@ -143,6 +145,11 @@ namespace GestorDeCadastros
                 {
                     lblLocatario.Text = dadosLocatario.DefaultView[0]["Locatario"].ToString();
                     lblLocatario.Visible = true;
+
+                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["IdRL"].ToString()))
+                    {
+                        lblIdReciboLocador.Text = dadosLocatario.DefaultView[0]["IdRL"].ToString().Trim();
+                    }
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Quantidade"].ToString()) && dadosLocatario.DefaultView[0]["Quantidade"].ToString() != "0")
                         nudQtdRecibos.Value = Convert.ToDecimal(dadosLocatario.DefaultView[0]["Quantidade"].ToString());
@@ -258,6 +265,20 @@ namespace GestorDeCadastros
             //this.Close();
         }
 
+        private void btRL_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(lblIdReciboLocador.Text.Trim()))
+            {
+                CarregaDadosReciboLocador();
+                tcRecibos.TabPages.Add(tpLocador);
+                tcRecibos.SelectedTab = tpLocador;
+            }
+            else
+            {
+                Auxiliar.MostraMensagemAlerta("Não foi possivel carregar o Recibo do Locador pois o mesmo não foi salvo no processo inicial.", 2);
+            }
+        }
+
         #endregion
 
         #region Dados Recibo Locador
@@ -271,6 +292,11 @@ namespace GestorDeCadastros
                 {
                     lblLocador.Text = dadosLocatario.DefaultView[0]["Locador"].ToString();
                     lblLocador.Visible = true;
+
+                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["IdRP"].ToString().Trim()))
+                    {
+                        lblIdReciboPrincipal.Text = dadosLocatario.DefaultView[0]["IdRP"].ToString().Trim();
+                    }
 
                     txtAluguelRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());
 
@@ -324,7 +350,7 @@ namespace GestorDeCadastros
             catch (Exception ex)
             {
                 //Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
-                Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Usuário.", 3);
+                Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Recibo.", 3);
             }
         }
 
@@ -389,6 +415,25 @@ namespace GestorDeCadastros
             //this.Close();
         }
 
+        private void btRP_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(lblIdReciboPrincipal.Text.Trim()))
+            {
+                CarregaDadosReciboPrincipal();
+                tcRecibos.TabPages.Add(tpPrincipal);
+                tcRecibos.SelectedTab = tpPrincipal;
+            }
+            else
+            {
+                Auxiliar.MostraMensagemAlerta("Por conta de algum erro não foi possivel carregar o Recibo.", 2);
+            }
+        }
+
         #endregion
+
+        private void fechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

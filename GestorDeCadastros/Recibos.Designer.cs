@@ -33,7 +33,7 @@
             this.tpPrincipal = new System.Windows.Forms.TabPage();
             this.pnlInfoLocatario = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btPreviewRP = new System.Windows.Forms.Button();
             this.label50 = new System.Windows.Forms.Label();
             this.btConcluir = new System.Windows.Forms.Button();
             this.label22 = new System.Windows.Forms.Label();
@@ -130,7 +130,7 @@
             this.label52 = new System.Windows.Forms.Label();
             this.txtDescricaoComplementoRL = new System.Windows.Forms.TextBox();
             this.panel26 = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btPreviewRL = new System.Windows.Forms.Button();
             this.label51 = new System.Windows.Forms.Label();
             this.btSalvarRecbLc = new System.Windows.Forms.Button();
             this.panel24 = new System.Windows.Forms.Panel();
@@ -177,6 +177,10 @@
             this.lblIdRecibo = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btFechaRP = new System.Windows.Forms.Button();
+            this.btFecharRL = new System.Windows.Forms.Button();
+            this.lblIdReciboPrincipal = new System.Windows.Forms.Label();
+            this.lblIdReciboLocador = new System.Windows.Forms.Label();
             this.tcRecibos.SuspendLayout();
             this.tpPrincipal.SuspendLayout();
             this.pnlInfoLocatario.SuspendLayout();
@@ -243,6 +247,7 @@
             // 
             this.pnlInfoLocatario.BackColor = System.Drawing.Color.LightGray;
             this.pnlInfoLocatario.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlInfoLocatario.Controls.Add(this.lblIdReciboPrincipal);
             this.pnlInfoLocatario.Controls.Add(this.panel25);
             this.pnlInfoLocatario.Controls.Add(this.label22);
             this.pnlInfoLocatario.Controls.Add(this.label49);
@@ -274,44 +279,49 @@
             // 
             this.panel25.BackColor = System.Drawing.Color.DarkGray;
             this.panel25.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel25.Controls.Add(this.button2);
+            this.panel25.Controls.Add(this.btFechaRP);
+            this.panel25.Controls.Add(this.btPreviewRP);
             this.panel25.Controls.Add(this.label50);
             this.panel25.Controls.Add(this.btConcluir);
-            this.panel25.Location = new System.Drawing.Point(808, 462);
+            this.panel25.Location = new System.Drawing.Point(773, 396);
             this.panel25.Name = "panel25";
-            this.panel25.Size = new System.Drawing.Size(172, 168);
+            this.panel25.Size = new System.Drawing.Size(200, 210);
             this.panel25.TabIndex = 132;
             // 
-            // button2
+            // btPreviewRP
             // 
-            this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(12, 75);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(141, 35);
-            this.button2.TabIndex = 19;
-            this.button2.Text = "Preview Impressão";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
+            this.btPreviewRP.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btPreviewRP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPreviewRP.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPreviewRP.Location = new System.Drawing.Point(14, 95);
+            this.btPreviewRP.Name = "btPreviewRP";
+            this.btPreviewRP.Size = new System.Drawing.Size(167, 44);
+            this.btPreviewRP.TabIndex = 19;
+            this.btPreviewRP.Text = "Preview Impressão";
+            this.btPreviewRP.UseVisualStyleBackColor = false;
+            this.btPreviewRP.Visible = false;
+            this.btPreviewRP.Click += new System.EventHandler(this.btPreviewRP_Click);
             // 
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label50.Location = new System.Drawing.Point(18, 9);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(51, 18);
+            this.label50.Size = new System.Drawing.Size(57, 19);
             this.label50.TabIndex = 127;
             this.label50.Text = "Ações";
             // 
             // btConcluir
             // 
-            this.btConcluir.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btConcluir.Location = new System.Drawing.Point(12, 34);
+            this.btConcluir.BackColor = System.Drawing.Color.Green;
+            this.btConcluir.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btConcluir.Location = new System.Drawing.Point(21, 40);
             this.btConcluir.Name = "btConcluir";
-            this.btConcluir.Size = new System.Drawing.Size(141, 35);
+            this.btConcluir.Size = new System.Drawing.Size(153, 44);
             this.btConcluir.TabIndex = 18;
             this.btConcluir.Text = "Finalizar e Salvar";
-            this.btConcluir.UseVisualStyleBackColor = true;
+            this.btConcluir.UseVisualStyleBackColor = false;
             this.btConcluir.Click += new System.EventHandler(this.btConcluirRcPrincipal_Click);
             // 
             // label22
@@ -1217,6 +1227,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.lblIdReciboLocador);
             this.panel2.Controls.Add(this.panel19);
             this.panel2.Controls.Add(this.panel1);
             this.panel2.Controls.Add(this.panel26);
@@ -1280,7 +1291,7 @@
             this.panel1.Controls.Add(this.btComplementoRL);
             this.panel1.Controls.Add(this.label52);
             this.panel1.Controls.Add(this.txtDescricaoComplementoRL);
-            this.panel1.Location = new System.Drawing.Point(498, 172);
+            this.panel1.Location = new System.Drawing.Point(376, 172);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(413, 120);
             this.panel1.TabIndex = 129;
@@ -1349,44 +1360,50 @@
             // 
             this.panel26.BackColor = System.Drawing.Color.DarkGray;
             this.panel26.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel26.Controls.Add(this.button5);
+            this.panel26.Controls.Add(this.btFecharRL);
+            this.panel26.Controls.Add(this.btPreviewRL);
             this.panel26.Controls.Add(this.label51);
             this.panel26.Controls.Add(this.btSalvarRecbLc);
-            this.panel26.Location = new System.Drawing.Point(498, 482);
+            this.panel26.Location = new System.Drawing.Point(838, 106);
             this.panel26.Name = "panel26";
-            this.panel26.Size = new System.Drawing.Size(162, 126);
+            this.panel26.Size = new System.Drawing.Size(200, 210);
             this.panel26.TabIndex = 123;
             // 
-            // button5
+            // btPreviewRL
             // 
-            this.button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(9, 74);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(141, 35);
-            this.button5.TabIndex = 8;
-            this.button5.Text = "Preview Impressão";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Visible = false;
+            this.btPreviewRL.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btPreviewRL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btPreviewRL.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPreviewRL.Location = new System.Drawing.Point(12, 97);
+            this.btPreviewRL.Name = "btPreviewRL";
+            this.btPreviewRL.Size = new System.Drawing.Size(169, 44);
+            this.btPreviewRL.TabIndex = 8;
+            this.btPreviewRL.Text = "Preview Impressão";
+            this.btPreviewRL.UseVisualStyleBackColor = false;
+            this.btPreviewRL.Visible = false;
+            this.btPreviewRL.Click += new System.EventHandler(this.btPreviewRL_Click);
             // 
             // label51
             // 
             this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label51.Location = new System.Drawing.Point(8, 12);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(51, 18);
+            this.label51.Size = new System.Drawing.Size(57, 19);
             this.label51.TabIndex = 128;
             this.label51.Text = "Ações";
             // 
             // btSalvarRecbLc
             // 
-            this.btSalvarRecbLc.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSalvarRecbLc.Location = new System.Drawing.Point(9, 33);
+            this.btSalvarRecbLc.BackColor = System.Drawing.Color.Green;
+            this.btSalvarRecbLc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btSalvarRecbLc.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btSalvarRecbLc.Location = new System.Drawing.Point(17, 43);
             this.btSalvarRecbLc.Name = "btSalvarRecbLc";
-            this.btSalvarRecbLc.Size = new System.Drawing.Size(141, 35);
+            this.btSalvarRecbLc.Size = new System.Drawing.Size(156, 44);
             this.btSalvarRecbLc.TabIndex = 8;
             this.btSalvarRecbLc.Text = "Finalizar e Salvar";
-            this.btSalvarRecbLc.UseVisualStyleBackColor = true;
+            this.btSalvarRecbLc.UseVisualStyleBackColor = false;
             this.btSalvarRecbLc.Click += new System.EventHandler(this.btSalvarRcLocador_Click);
             // 
             // panel24
@@ -1397,7 +1414,7 @@
             this.panel24.Controls.Add(this.btSubTotal3);
             this.panel24.Controls.Add(this.label40);
             this.panel24.Controls.Add(this.txtSubTotal3);
-            this.panel24.Location = new System.Drawing.Point(498, 310);
+            this.panel24.Location = new System.Drawing.Point(376, 310);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(365, 93);
             this.panel24.TabIndex = 122;
@@ -1451,7 +1468,7 @@
             this.panel23.Controls.Add(this.label39);
             this.panel23.Controls.Add(this.txtSubTotal2);
             this.panel23.Controls.Add(this.label53);
-            this.panel23.Location = new System.Drawing.Point(498, 62);
+            this.panel23.Location = new System.Drawing.Point(376, 62);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(278, 89);
             this.panel23.TabIndex = 122;
@@ -1489,7 +1506,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(815, 396);
+            this.label9.Location = new System.Drawing.Point(693, 416);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(14, 17);
             this.label9.TabIndex = 92;
@@ -1556,7 +1573,7 @@
             this.panel21.Controls.Add(this.label23);
             this.panel21.Controls.Add(this.txtTotalRcLocador);
             this.panel21.Controls.Add(this.btTotalRcLocador);
-            this.panel21.Location = new System.Drawing.Point(498, 416);
+            this.panel21.Location = new System.Drawing.Point(376, 416);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(311, 45);
             this.panel21.TabIndex = 122;
@@ -1865,6 +1882,54 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // btFechaRP
+            // 
+            this.btFechaRP.BackColor = System.Drawing.Color.Red;
+            this.btFechaRP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btFechaRP.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btFechaRP.Location = new System.Drawing.Point(55, 147);
+            this.btFechaRP.Name = "btFechaRP";
+            this.btFechaRP.Size = new System.Drawing.Size(85, 44);
+            this.btFechaRP.TabIndex = 132;
+            this.btFechaRP.Text = "Fechar";
+            this.btFechaRP.UseVisualStyleBackColor = false;
+            this.btFechaRP.Visible = false;
+            this.btFechaRP.Click += new System.EventHandler(this.fechar_Click);
+            // 
+            // btFecharRL
+            // 
+            this.btFecharRL.BackColor = System.Drawing.Color.Red;
+            this.btFecharRL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btFecharRL.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btFecharRL.Location = new System.Drawing.Point(51, 150);
+            this.btFecharRL.Name = "btFecharRL";
+            this.btFecharRL.Size = new System.Drawing.Size(85, 44);
+            this.btFecharRL.TabIndex = 133;
+            this.btFecharRL.Text = "Fechar";
+            this.btFecharRL.UseVisualStyleBackColor = false;
+            this.btFecharRL.Visible = false;
+            this.btFecharRL.Click += new System.EventHandler(this.fechar_Click);
+            // 
+            // lblIdReciboPrincipal
+            // 
+            this.lblIdReciboPrincipal.AutoSize = true;
+            this.lblIdReciboPrincipal.Location = new System.Drawing.Point(96, 29);
+            this.lblIdReciboPrincipal.Name = "lblIdReciboPrincipal";
+            this.lblIdReciboPrincipal.Size = new System.Drawing.Size(135, 17);
+            this.lblIdReciboPrincipal.TabIndex = 134;
+            this.lblIdReciboPrincipal.Text = "lblIdReciboPrincipal";
+            this.lblIdReciboPrincipal.Visible = false;
+            // 
+            // lblIdReciboLocador
+            // 
+            this.lblIdReciboLocador.AutoSize = true;
+            this.lblIdReciboLocador.Location = new System.Drawing.Point(928, 62);
+            this.lblIdReciboLocador.Name = "lblIdReciboLocador";
+            this.lblIdReciboLocador.Size = new System.Drawing.Size(132, 17);
+            this.lblIdReciboLocador.TabIndex = 131;
+            this.lblIdReciboLocador.Text = "lblIdReciboLocador";
+            this.lblIdReciboLocador.Visible = false;
+            // 
             // Recibos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1957,7 +2022,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage tpLocador;
         private System.Windows.Forms.Label lblLocatario;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btPreviewRP;
         private System.Windows.Forms.DateTimePicker dtpInicial;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ErrorProvider errorProvider1;
@@ -2046,7 +2111,7 @@
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TextBox txtDescricaoComplementoRL;
         private System.Windows.Forms.Panel panel26;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btPreviewRL;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Button btSalvarRecbLc;
         private System.Windows.Forms.Panel panel24;
@@ -2095,5 +2160,9 @@
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.Panel panel19;
+        private System.Windows.Forms.Button btFechaRP;
+        private System.Windows.Forms.Button btFecharRL;
+        private System.Windows.Forms.Label lblIdReciboPrincipal;
+        private System.Windows.Forms.Label lblIdReciboLocador;
     }
 }
