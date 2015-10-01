@@ -11,6 +11,17 @@ namespace GestorDeCadastros
     class Auxiliar
     {
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="msgErro"></param>
+        public static void MostraFormDeErros(string msgErro)
+        {
+            Erro formErro = new Erro();
+                formErro.getMsgErro = msgErro;
+                formErro.ShowDialog();
+        }
+
+        /// <summary>
         /// tipoRecibo 1 = Principal
         /// tipoRecibo 2 = Locador
         /// </summary>

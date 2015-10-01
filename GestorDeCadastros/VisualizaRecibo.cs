@@ -270,7 +270,11 @@ namespace GestorDeCadastros
             if (!string.IsNullOrEmpty(lblIdReciboLocador.Text.Trim()))
             {
                 CarregaDadosReciboLocador();
-                tcRecibos.TabPages.Add(tpLocador);
+                if (!tcRecibos.TabPages.Contains(tpLocador))
+                {
+                    tcRecibos.TabPages.Add(tpLocador);
+                }
+                
                 tcRecibos.SelectedTab = tpLocador;
             }
             else
@@ -420,7 +424,11 @@ namespace GestorDeCadastros
             if (!string.IsNullOrEmpty(lblIdReciboPrincipal.Text.Trim()))
             {
                 CarregaDadosReciboPrincipal();
-                tcRecibos.TabPages.Add(tpPrincipal);
+                if (!tcRecibos.TabPages.Contains(tpPrincipal))
+                {
+                     tcRecibos.TabPages.Add(tpPrincipal);
+                }
+               
                 tcRecibos.SelectedTab = tpPrincipal;
             }
             else

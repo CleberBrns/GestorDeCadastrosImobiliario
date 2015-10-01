@@ -111,6 +111,8 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.lblIdTipoAcao = new System.Windows.Forms.Label();
             this.lblIdTipoCadastro = new System.Windows.Forms.Label();
+            this.btInicioLcd = new System.Windows.Forms.Button();
+            this.btInicioIM = new System.Windows.Forms.Button();
             this.tcCadastros.SuspendLayout();
             this.tpLocatario.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -176,7 +178,7 @@
             this.btExcluirLocatario.Text = "Excluir";
             this.btExcluirLocatario.UseVisualStyleBackColor = true;
             this.btExcluirLocatario.Visible = false;
-            this.btExcluirLocatario.Click += new System.EventHandler(this.btExcluirLocatario_Click);
+            this.btExcluirLocatario.Click += new System.EventHandler(this.btExcluirCadastro_Click);
             // 
             // btAtualizarLocatario
             // 
@@ -544,6 +546,7 @@
             // tpLocador
             // 
             this.tpLocador.BackColor = System.Drawing.Color.DimGray;
+            this.tpLocador.Controls.Add(this.btInicioLcd);
             this.tpLocador.Controls.Add(this.btExcluirLocador);
             this.tpLocador.Controls.Add(this.btAtualizarLocador);
             this.tpLocador.Controls.Add(this.btCadastrarLocador);
@@ -566,6 +569,7 @@
             this.btExcluirLocador.Text = "Excluir";
             this.btExcluirLocador.UseVisualStyleBackColor = true;
             this.btExcluirLocador.Visible = false;
+            this.btExcluirLocador.Click += new System.EventHandler(this.btExcluirCadastro_Click);
             // 
             // btAtualizarLocador
             // 
@@ -795,6 +799,7 @@
             // tpImovel
             // 
             this.tpImovel.BackColor = System.Drawing.Color.DimGray;
+            this.tpImovel.Controls.Add(this.btInicioIM);
             this.tpImovel.Controls.Add(this.btExcluirImovel);
             this.tpImovel.Controls.Add(this.btAtualizarImovel);
             this.tpImovel.Controls.Add(this.btCadastrarImovel);
@@ -817,6 +822,7 @@
             this.btExcluirImovel.Text = "Excluir";
             this.btExcluirImovel.UseVisualStyleBackColor = true;
             this.btExcluirImovel.Visible = false;
+            this.btExcluirImovel.Click += new System.EventHandler(this.btExcluirCadastro_Click);
             // 
             // btAtualizarImovel
             // 
@@ -1032,6 +1038,34 @@
             this.lblIdTipoCadastro.Text = "lblIdTipoCadastro";
             this.lblIdTipoCadastro.Visible = false;
             // 
+            // btInicioLcd
+            // 
+            this.btInicioLcd.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btInicioLcd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btInicioLcd.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btInicioLcd.ForeColor = System.Drawing.Color.Black;
+            this.btInicioLcd.Location = new System.Drawing.Point(400, 460);
+            this.btInicioLcd.Name = "btInicioLcd";
+            this.btInicioLcd.Size = new System.Drawing.Size(100, 50);
+            this.btInicioLcd.TabIndex = 14;
+            this.btInicioLcd.Text = "Início";
+            this.btInicioLcd.UseVisualStyleBackColor = false;
+            this.btInicioLcd.Click += new System.EventHandler(this.btInicio_Click);
+            // 
+            // btInicioIM
+            // 
+            this.btInicioIM.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btInicioIM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btInicioIM.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btInicioIM.ForeColor = System.Drawing.Color.Black;
+            this.btInicioIM.Location = new System.Drawing.Point(405, 460);
+            this.btInicioIM.Name = "btInicioIM";
+            this.btInicioIM.Size = new System.Drawing.Size(100, 50);
+            this.btInicioIM.TabIndex = 14;
+            this.btInicioIM.Text = "Início";
+            this.btInicioIM.UseVisualStyleBackColor = false;
+            this.btInicioIM.Click += new System.EventHandler(this.btInicio_Click);
+            // 
             // Cadastros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1146,5 +1180,7 @@
         private System.Windows.Forms.TextBox txtAluguel;
         private System.Windows.Forms.Label lblIdTipoAcao;
         private System.Windows.Forms.Label lblIdTipoCadastro;
+        private System.Windows.Forms.Button btInicioLcd;
+        private System.Windows.Forms.Button btInicioIM;
     }
 }

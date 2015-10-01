@@ -32,7 +32,9 @@
             this.tcRecibos = new System.Windows.Forms.TabControl();
             this.tpPrincipal = new System.Windows.Forms.TabPage();
             this.pnlInfoLocatario = new System.Windows.Forms.Panel();
+            this.lblIdReciboPrincipal = new System.Windows.Forms.Label();
             this.panel25 = new System.Windows.Forms.Panel();
+            this.btFechaRP = new System.Windows.Forms.Button();
             this.btPreviewRP = new System.Windows.Forms.Button();
             this.label50 = new System.Windows.Forms.Label();
             this.btConcluir = new System.Windows.Forms.Button();
@@ -119,6 +121,7 @@
             this.label27 = new System.Windows.Forms.Label();
             this.tpLocador = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblIdReciboLocador = new System.Windows.Forms.Label();
             this.panel19 = new System.Windows.Forms.Panel();
             this.label66 = new System.Windows.Forms.Label();
             this.lblLocador = new System.Windows.Forms.Label();
@@ -130,6 +133,7 @@
             this.label52 = new System.Windows.Forms.Label();
             this.txtDescricaoComplementoRL = new System.Windows.Forms.TextBox();
             this.panel26 = new System.Windows.Forms.Panel();
+            this.btFecharRL = new System.Windows.Forms.Button();
             this.btPreviewRL = new System.Windows.Forms.Button();
             this.label51 = new System.Windows.Forms.Label();
             this.btSalvarRecbLc = new System.Windows.Forms.Button();
@@ -177,10 +181,6 @@
             this.lblIdRecibo = new System.Windows.Forms.Label();
             this.label64 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btFechaRP = new System.Windows.Forms.Button();
-            this.btFecharRL = new System.Windows.Forms.Button();
-            this.lblIdReciboPrincipal = new System.Windows.Forms.Label();
-            this.lblIdReciboLocador = new System.Windows.Forms.Label();
             this.tcRecibos.SuspendLayout();
             this.tpPrincipal.SuspendLayout();
             this.pnlInfoLocatario.SuspendLayout();
@@ -275,6 +275,16 @@
             this.pnlInfoLocatario.Size = new System.Drawing.Size(1321, 680);
             this.pnlInfoLocatario.TabIndex = 0;
             // 
+            // lblIdReciboPrincipal
+            // 
+            this.lblIdReciboPrincipal.AutoSize = true;
+            this.lblIdReciboPrincipal.Location = new System.Drawing.Point(96, 29);
+            this.lblIdReciboPrincipal.Name = "lblIdReciboPrincipal";
+            this.lblIdReciboPrincipal.Size = new System.Drawing.Size(135, 17);
+            this.lblIdReciboPrincipal.TabIndex = 134;
+            this.lblIdReciboPrincipal.Text = "lblIdReciboPrincipal";
+            this.lblIdReciboPrincipal.Visible = false;
+            // 
             // panel25
             // 
             this.panel25.BackColor = System.Drawing.Color.DarkGray;
@@ -287,6 +297,20 @@
             this.panel25.Name = "panel25";
             this.panel25.Size = new System.Drawing.Size(200, 210);
             this.panel25.TabIndex = 132;
+            // 
+            // btFechaRP
+            // 
+            this.btFechaRP.BackColor = System.Drawing.Color.Red;
+            this.btFechaRP.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btFechaRP.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btFechaRP.Location = new System.Drawing.Point(55, 147);
+            this.btFechaRP.Name = "btFechaRP";
+            this.btFechaRP.Size = new System.Drawing.Size(85, 44);
+            this.btFechaRP.TabIndex = 132;
+            this.btFechaRP.Text = "Fechar";
+            this.btFechaRP.UseVisualStyleBackColor = false;
+            this.btFechaRP.Visible = false;
+            this.btFechaRP.Click += new System.EventHandler(this.fechar_Click);
             // 
             // btPreviewRP
             // 
@@ -315,6 +339,7 @@
             // btConcluir
             // 
             this.btConcluir.BackColor = System.Drawing.Color.Green;
+            this.btConcluir.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btConcluir.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btConcluir.Location = new System.Drawing.Point(21, 40);
             this.btConcluir.Name = "btConcluir";
@@ -496,6 +521,7 @@
             // btCalcular
             // 
             this.btCalcular.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btCalcular.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btCalcular.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btCalcular.Location = new System.Drawing.Point(330, 7);
             this.btCalcular.Name = "btCalcular";
@@ -518,6 +544,7 @@
             // btTranscreveValor
             // 
             this.btTranscreveValor.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btTranscreveValor.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btTranscreveValor.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btTranscreveValor.Location = new System.Drawing.Point(420, 6);
             this.btTranscreveValor.Name = "btTranscreveValor";
@@ -540,6 +567,7 @@
             // 
             // dtpVencimento
             // 
+            this.dtpVencimento.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpVencimento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpVencimento.Location = new System.Drawing.Point(106, 7);
             this.dtpVencimento.Name = "dtpVencimento";
@@ -597,6 +625,7 @@
             // rbAcrescimo
             // 
             this.rbAcrescimo.AutoSize = true;
+            this.rbAcrescimo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbAcrescimo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbAcrescimo.Location = new System.Drawing.Point(415, 8);
             this.rbAcrescimo.Name = "rbAcrescimo";
@@ -610,6 +639,7 @@
             // rbDesconto
             // 
             this.rbDesconto.AutoSize = true;
+            this.rbDesconto.Cursor = System.Windows.Forms.Cursors.Hand;
             this.rbDesconto.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbDesconto.Location = new System.Drawing.Point(529, 7);
             this.rbDesconto.Name = "rbDesconto";
@@ -731,6 +761,7 @@
             // 
             // dtpInicial
             // 
+            this.dtpInicial.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpInicial.Location = new System.Drawing.Point(91, 8);
             this.dtpInicial.Name = "dtpInicial";
@@ -750,6 +781,7 @@
             // 
             // dtpFinal
             // 
+            this.dtpFinal.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFinal.Location = new System.Drawing.Point(247, 8);
             this.dtpFinal.Name = "dtpFinal";
@@ -782,6 +814,7 @@
             // 
             // nudQtdRecibos
             // 
+            this.nudQtdRecibos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.nudQtdRecibos.Location = new System.Drawing.Point(178, 8);
             this.nudQtdRecibos.Name = "nudQtdRecibos";
             this.nudQtdRecibos.Size = new System.Drawing.Size(41, 25);
@@ -800,6 +833,7 @@
             // 
             // nudNumRecibo
             // 
+            this.nudNumRecibo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.nudNumRecibo.Enabled = false;
             this.nudNumRecibo.Location = new System.Drawing.Point(316, 8);
             this.nudNumRecibo.Name = "nudNumRecibo";
@@ -815,6 +849,7 @@
             // ckbEditNumRecibo
             // 
             this.ckbEditNumRecibo.AutoSize = true;
+            this.ckbEditNumRecibo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ckbEditNumRecibo.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckbEditNumRecibo.Location = new System.Drawing.Point(376, 9);
             this.ckbEditNumRecibo.Name = "ckbEditNumRecibo";
@@ -1092,6 +1127,7 @@
             // ckbEdicaoIptu
             // 
             this.ckbEdicaoIptu.AutoSize = true;
+            this.ckbEdicaoIptu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ckbEdicaoIptu.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckbEdicaoIptu.Location = new System.Drawing.Point(684, 9);
             this.ckbEdicaoIptu.Name = "ckbEdicaoIptu";
@@ -1123,6 +1159,7 @@
             // 
             // nudNumeroParcIptu
             // 
+            this.nudNumeroParcIptu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.nudNumeroParcIptu.Enabled = false;
             this.nudNumeroParcIptu.Location = new System.Drawing.Point(614, 10);
             this.nudNumeroParcIptu.Name = "nudNumeroParcIptu";
@@ -1147,6 +1184,7 @@
             // 
             // nudParcelasIptu
             // 
+            this.nudParcelasIptu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.nudParcelasIptu.Location = new System.Drawing.Point(440, 9);
             this.nudParcelasIptu.Name = "nudParcelasIptu";
             this.nudParcelasIptu.Size = new System.Drawing.Size(41, 25);
@@ -1177,6 +1215,7 @@
             // 
             // dtpReajusteAluguel
             // 
+            this.dtpReajusteAluguel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dtpReajusteAluguel.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpReajusteAluguel.Location = new System.Drawing.Point(348, 16);
             this.dtpReajusteAluguel.Name = "dtpReajusteAluguel";
@@ -1248,6 +1287,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1300, 680);
             this.panel2.TabIndex = 6;
+            // 
+            // lblIdReciboLocador
+            // 
+            this.lblIdReciboLocador.AutoSize = true;
+            this.lblIdReciboLocador.Location = new System.Drawing.Point(928, 62);
+            this.lblIdReciboLocador.Name = "lblIdReciboLocador";
+            this.lblIdReciboLocador.Size = new System.Drawing.Size(132, 17);
+            this.lblIdReciboLocador.TabIndex = 131;
+            this.lblIdReciboLocador.Text = "lblIdReciboLocador";
+            this.lblIdReciboLocador.Visible = false;
             // 
             // panel19
             // 
@@ -1369,6 +1418,20 @@
             this.panel26.Size = new System.Drawing.Size(200, 210);
             this.panel26.TabIndex = 123;
             // 
+            // btFecharRL
+            // 
+            this.btFecharRL.BackColor = System.Drawing.Color.Red;
+            this.btFecharRL.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btFecharRL.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btFecharRL.Location = new System.Drawing.Point(51, 150);
+            this.btFecharRL.Name = "btFecharRL";
+            this.btFecharRL.Size = new System.Drawing.Size(85, 44);
+            this.btFecharRL.TabIndex = 133;
+            this.btFecharRL.Text = "Fechar";
+            this.btFecharRL.UseVisualStyleBackColor = false;
+            this.btFecharRL.Visible = false;
+            this.btFecharRL.Click += new System.EventHandler(this.fechar_Click);
+            // 
             // btPreviewRL
             // 
             this.btPreviewRL.BackColor = System.Drawing.Color.RoyalBlue;
@@ -1432,6 +1495,7 @@
             // btSubTotal3
             // 
             this.btSubTotal3.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btSubTotal3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSubTotal3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSubTotal3.Location = new System.Drawing.Point(214, 47);
             this.btSubTotal3.Name = "btSubTotal3";
@@ -1538,6 +1602,7 @@
             // btSubTotal1
             // 
             this.btSubTotal1.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btSubTotal1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btSubTotal1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSubTotal1.Location = new System.Drawing.Point(214, 43);
             this.btSubTotal1.Name = "btSubTotal1";
@@ -1600,6 +1665,7 @@
             // btTotalRcLocador
             // 
             this.btTotalRcLocador.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btTotalRcLocador.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btTotalRcLocador.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btTotalRcLocador.Location = new System.Drawing.Point(221, 3);
             this.btTotalRcLocador.Name = "btTotalRcLocador";
@@ -1656,6 +1722,7 @@
             // 
             // nudPctComissao
             // 
+            this.nudPctComissao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.nudPctComissao.Location = new System.Drawing.Point(87, 9);
             this.nudPctComissao.Name = "nudPctComissao";
             this.nudPctComissao.Size = new System.Drawing.Size(41, 25);
@@ -1680,6 +1747,7 @@
             // btComissao
             // 
             this.btComissao.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btComissao.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btComissao.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btComissao.Location = new System.Drawing.Point(138, 40);
             this.btComissao.Name = "btComissao";
@@ -1746,6 +1814,7 @@
             // 
             // nudPctMulta
             // 
+            this.nudPctMulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.nudPctMulta.Location = new System.Drawing.Point(58, 6);
             this.nudPctMulta.Name = "nudPctMulta";
             this.nudPctMulta.Size = new System.Drawing.Size(41, 25);
@@ -1806,6 +1875,7 @@
             // ckbComMulta
             // 
             this.ckbComMulta.AutoSize = true;
+            this.ckbComMulta.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ckbComMulta.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ckbComMulta.Location = new System.Drawing.Point(92, 42);
             this.ckbComMulta.Name = "ckbComMulta";
@@ -1881,54 +1951,6 @@
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
-            // 
-            // btFechaRP
-            // 
-            this.btFechaRP.BackColor = System.Drawing.Color.Red;
-            this.btFechaRP.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btFechaRP.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btFechaRP.Location = new System.Drawing.Point(55, 147);
-            this.btFechaRP.Name = "btFechaRP";
-            this.btFechaRP.Size = new System.Drawing.Size(85, 44);
-            this.btFechaRP.TabIndex = 132;
-            this.btFechaRP.Text = "Fechar";
-            this.btFechaRP.UseVisualStyleBackColor = false;
-            this.btFechaRP.Visible = false;
-            this.btFechaRP.Click += new System.EventHandler(this.fechar_Click);
-            // 
-            // btFecharRL
-            // 
-            this.btFecharRL.BackColor = System.Drawing.Color.Red;
-            this.btFecharRL.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btFecharRL.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btFecharRL.Location = new System.Drawing.Point(51, 150);
-            this.btFecharRL.Name = "btFecharRL";
-            this.btFecharRL.Size = new System.Drawing.Size(85, 44);
-            this.btFecharRL.TabIndex = 133;
-            this.btFecharRL.Text = "Fechar";
-            this.btFecharRL.UseVisualStyleBackColor = false;
-            this.btFecharRL.Visible = false;
-            this.btFecharRL.Click += new System.EventHandler(this.fechar_Click);
-            // 
-            // lblIdReciboPrincipal
-            // 
-            this.lblIdReciboPrincipal.AutoSize = true;
-            this.lblIdReciboPrincipal.Location = new System.Drawing.Point(96, 29);
-            this.lblIdReciboPrincipal.Name = "lblIdReciboPrincipal";
-            this.lblIdReciboPrincipal.Size = new System.Drawing.Size(135, 17);
-            this.lblIdReciboPrincipal.TabIndex = 134;
-            this.lblIdReciboPrincipal.Text = "lblIdReciboPrincipal";
-            this.lblIdReciboPrincipal.Visible = false;
-            // 
-            // lblIdReciboLocador
-            // 
-            this.lblIdReciboLocador.AutoSize = true;
-            this.lblIdReciboLocador.Location = new System.Drawing.Point(928, 62);
-            this.lblIdReciboLocador.Name = "lblIdReciboLocador";
-            this.lblIdReciboLocador.Size = new System.Drawing.Size(132, 17);
-            this.lblIdReciboLocador.TabIndex = 131;
-            this.lblIdReciboLocador.Text = "lblIdReciboLocador";
-            this.lblIdReciboLocador.Visible = false;
             // 
             // Recibos
             // 

@@ -68,8 +68,10 @@ namespace GestorDeCadastros
                 //Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
                 Auxiliar.MostraMensagemAlerta("Falha ao carregar os dados.", 3);
             }
-           
+
         }
+
+        #region Métodos Gerais
 
         private void Cadastros_Load(object sender, EventArgs e)
         {
@@ -81,6 +83,8 @@ namespace GestorDeCadastros
                 {
                     lblIdTipoAcao.Text = idTipoAcao.ToString();
                     btInicio.Visible = false;
+                    btInicioLcd.Visible = false;
+                    btInicioIM.Visible = false;
                 }
                 else
                 {
@@ -98,7 +102,7 @@ namespace GestorDeCadastros
                     btLimparFormLocatario.Visible = false;
 
                     btAtualizarLocatario.Visible = true;
-                    //btExcluirLocatario.Visible = true;
+                    btExcluirLocatario.Visible = true;
 
                     CarregaDadosCadastro(idLocatario, 3);
 
@@ -114,7 +118,7 @@ namespace GestorDeCadastros
                     btLimparFormLocador.Visible = false;
 
                     btAtualizarLocador.Visible = true;
-                    //btExcluirLocador.Visible = true;
+                    btExcluirLocador.Visible = true;
 
                     CarregaDadosCadastro(idLocador, 2);
                 }
@@ -129,7 +133,7 @@ namespace GestorDeCadastros
                     btLimparFormImovel.Visible = false;
 
                     btAtualizarImovel.Visible = true;
-                    //btExcluirImovel.Visible = true;
+                    btExcluirImovel.Visible = true;
 
                     CarregaDadosCadastro(idImovel, 1);
                 }
@@ -141,7 +145,7 @@ namespace GestorDeCadastros
                 //Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
                 Auxiliar.MostraMensagemAlerta("Falha ao carregar os dados.", 3);
             }
-        }        
+        }
 
         private void CarregaDadosCadastro(int idCadastro, int tipoCadastro)
         {
@@ -205,199 +209,6 @@ namespace GestorDeCadastros
             }
         }
 
-        private DataTable CarregaDadosTabela(int idCadastro, int tipoCadastro)
-        {
-            DataTable tabelaCombos = new DataTable();
-            SqlCeDataAdapter sdaSelecao;
-            DataSet dsSelecao;
-            PreencheDataset(out dsSelecao, out sdaSelecao, tipoCadastro, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), idCadastro);
-
-            tabelaCombos = dsSelecao.Tables[0];
-
-            return tabelaCombos;
-        }
-
-
-        #region Ações Banco de Dados
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dsDados"></param>
-        /// <param name="sdaDados"></param>
-        /// <param name="tipoCadastro"></param>
-        /// <param name="tipoAcao"></param>
-        /// <param name="idCadastro"></param>
-        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int tipoCadastro, int tipoAcao, int idCadastro)
-        {
-            sdaDados = new SqlCeDataAdapter();
-
-            SqlCeCommand cmd = Auxiliar.retornaConexao().CreateCommand();
-
-            if (tipoCadastro == 1)
-            {
-                if (tipoAcao == 2)
-                {
-                    cmd.CommandText = "select * from Imoveis where Ativo = 1 and Id = " + idCadastro + "";
-                }
-                else
-                {
-                    cmd.CommandText = "select * from Imoveis where Ativo = 1";
-                }
-            }
-            else if (tipoCadastro == 2)
-            {
-                if (tipoAcao == 2)
-                {
-                    cmd.CommandText = "select * from Locadores where Ativo = 1 and Id = " + idCadastro + "";
-                }
-                else
-                {
-                    cmd.CommandText = "select * from Locadores where Ativo = 1";
-                }
-
-            }
-            else
-            {
-                if (tipoAcao == 2)
-                {
-                    cmd.CommandText = "select * from Locatarios where Ativo = 1 and Id = " + idCadastro + "";
-                }
-                else
-                {
-                    cmd.CommandText = "select * from Locatarios where Ativo = 1";
-                }
-
-            }
-
-            sdaDados.SelectCommand = cmd;
-
-            SqlCeCommandBuilder cb = new SqlCeCommandBuilder(sdaDados);
-            sdaDados.UpdateCommand = cb.GetUpdateCommand();
-
-            dsDados = new DataSet();
-            sdaDados.Fill(dsDados);
-        }
-
-        /// <summary>        
-        ///tipoCadastro 1 = Imovel
-        ///tipoCadastro 2 = Locador
-        ///tipoCadastro 3 = Locatario
-        ///tipoAcao 1 = Cadastro
-        ///tipoAcao 2 = Atualizacao
-        /// </summary>
-        /// <param name="tipoCadastro"></param>
-        private void InsereDados(int tipoCadastro, int tipoAcao, int idCadastro)
-        {
-            try
-            {
-                SqlCeDataAdapter sdaInclusao;
-                DataSet dsInclusao;
-                DataRow dr = null;
-                PreencheDataset(out dsInclusao, out sdaInclusao, tipoCadastro, tipoAcao, idCadastro);
-                //Cria nova Linha para a inserção.
-                dr = dsInclusao.Tables[0].NewRow();
-
-                DataRow[] tempdata = dsInclusao.Tables[0].AsEnumerable().Where(p => p["id"].ToString() == idCadastro.ToString()).ToArray();
-
-                if (tipoAcao == 1)
-                {
-                    if (tipoCadastro == 1)
-                    {
-                        dr["Endereco"] = txtEndereco.Text.Trim();
-                        dr["Bairro"] = txtBairro.Text.Trim();
-                        dr["Cidade"] = txtCidade.Text.Trim();
-                        dr["Cep"] = mtxtCep.Text.Trim();
-                        dr["Ativo"] = 1;
-                    }
-                    else if (tipoCadastro == 2)
-                    {
-                        dr["Locador"] = txtNomeLocador.Text.Trim();
-                        dr["Cpf"] = FormataDocPrioritario(mtxtCpfLocador.Text.Trim(), 1);
-                        dr["Cnpj"] = FormataDocPrioritario(mtxtCnpjLocador.Text.Trim(), 2);
-                        dr["Contato"] = txtContatoLocador.Text.Trim();
-                        dr["Ativo"] = 1;
-                    }
-                    else
-                    {
-                        dr["Locatario"] = txtNomeLocatario.Text.Trim();
-                        dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
-                        dr["Telefone"] = RetornaTelefoneSelecionado();
-                        dr["Email"] = txtEmail.Text.Trim();
-                        dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguel);
-                        dr["fkIdImovel"] = cbImoveis.SelectedValue.ToString().Trim();
-                        dr["fkIdLocador"] = cbLocadores.SelectedValue.ToString().Trim();
-                        dr["Ativo"] = 1;
-                    }
-
-                    dsInclusao.Tables[0].Rows.Add(dr);
-                }
-                else if (tipoAcao == 2)
-                {
-                    if (tipoCadastro == 1)
-                    {
-                        if (tempdata.Length > 0)
-                        {
-                            dr = tempdata[0];
-                            dr["Endereco"] = txtEndereco.Text.Trim();
-                            dr["Bairro"] = txtBairro.Text.Trim();
-                            dr["Cidade"] = txtCidade.Text.Trim();
-                            dr["Cep"] = mtxtCep.Text.Trim();
-                            dr["Ativo"] = 1;
-                            //dr.Delete();//Para exclusão
-                        }
-                    }
-                    else if (tipoCadastro == 2)
-                    {
-                        if (tempdata.Length > 0)
-                        {
-                            dr = tempdata[0];
-                            dr["Locador"] = txtNomeLocador.Text.Trim();
-                            dr["Cpf"] = FormataDocPrioritario(mtxtCpfLocador.Text.Trim(), 1);
-                            dr["Cnpj"] = FormataDocPrioritario(mtxtCnpjLocador.Text.Trim(), 2);
-                            dr["Contato"] = txtContatoLocador.Text.Trim();
-                            dr["Ativo"] = 1;
-                            //dr.Delete();//Para exclusão
-                        }
-                    }
-                    else
-                    {
-                        if (tempdata.Length > 0)
-                        {
-                            dr = tempdata[0];
-                            dr["Locatario"] = txtNomeLocatario.Text.Trim();
-                            dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
-                            dr["Telefone"] = RetornaTelefoneSelecionado();
-                            dr["Email"] = txtEmail.Text.Trim();
-                            dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguel);
-                            dr["fkIdImovel"] = cbImoveis.SelectedValue.ToString().Trim();
-                            dr["fkIdLocador"] = cbLocadores.SelectedValue.ToString().Trim();
-                            dr["Ativo"] = 1;
-                            //dr.Delete();//Para exclusão
-                        }
-                    }
-                }
-
-                sdaInclusao.Update(dsInclusao);
-
-                Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
-            }
-            catch (Exception ex)
-            {
-                Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
-            }
-
-        }
-
-        private void ExcluirCadastro(int idCadastro)
-        {
-            //throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region Métodos Gerais
-
         private void tcCadastros_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tcCadastros.SelectedTab.Name == "tpLocatario")
@@ -454,6 +265,250 @@ namespace GestorDeCadastros
             InsereValores dlgInsereValores = new InsereValores();
             if (dlgInsereValores.ShowDialog() == DialogResult.OK)
                 txtAluguel.Text = dlgInsereValores.getValorInserido;
+        }
+
+        private void btExcluirCadastro_Click(object sender, EventArgs e)
+        {
+            if (sender == btExcluirLocatario)
+            {
+                ExcluiCadastro(3, lblIdLocatario.Text.Trim());
+            }
+            else if (sender == btExcluirLocador)
+            {
+                ExcluiCadastro(2, lblIdLocador.Text.Trim());
+            }
+            else if (sender == btExcluirImovel)
+            {
+                ExcluiCadastro(1, lblIdImovel.Text.Trim());
+            }
+        }
+
+        private void ExcluiCadastro(int tipoCadastro, string sIdCadastro)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(sIdCadastro) && sIdCadastro != "0")
+                {
+                    if (DialogResult.Yes == MessageBox.Show("O Cadastro será inutilizável após esse processo. Deseja continuar mesmo assim?", "Confirmação",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
+                    {
+                        RotinaDeDados(tipoCadastro, 3, Convert.ToInt32(sIdCadastro.Trim()));
+                        Auxiliar.MostraMensagemAlerta("Cadastro excluído com sucesso!", 1);                       
+                        this.Close();                     
+                    }
+                }
+                else
+                {
+                    Auxiliar.MostraMensagemAlerta("Os dados para exclusão foram perdidos e o procedimento não pode ser completado.", 3);
+                }
+            }
+            catch (Exception ex)
+            {
+                Auxiliar.MostraMensagemAlerta("Ocorreu um erro e não foi possivel excluir o cadastro.", 3);
+            }
+        }
+
+        #endregion
+
+        #region Ações Banco de Dados
+
+        private DataTable CarregaDadosTabela(int idCadastro, int tipoCadastro)
+        {
+            DataTable tabelaCombos = new DataTable();
+            SqlCeDataAdapter sdaSelecao;
+            DataSet dsSelecao;
+            PreencheDataset(out dsSelecao, out sdaSelecao, tipoCadastro, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), idCadastro);
+
+            tabelaCombos = dsSelecao.Tables[0];
+
+            return tabelaCombos;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dsDados"></param>
+        /// <param name="sdaDados"></param>
+        /// <param name="tipoCadastro"></param>
+        /// <param name="tipoAcao"></param>
+        /// <param name="idCadastro"></param>
+        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int tipoCadastro, int tipoAcao, int idCadastro)
+        {
+            sdaDados = new SqlCeDataAdapter();
+
+            SqlCeCommand cmd = Auxiliar.retornaConexao().CreateCommand();
+
+            if (tipoCadastro == 1)
+            {
+                if (tipoAcao == 2)
+                {
+                    cmd.CommandText = "select * from Imoveis where Ativo = 1 and Id = " + idCadastro + "";
+                }
+                else
+                {
+                    cmd.CommandText = "select * from Imoveis where Ativo = 1";
+                }
+            }
+            else if (tipoCadastro == 2)
+            {
+                if (tipoAcao == 2)
+                {
+                    cmd.CommandText = "select * from Locadores where Ativo = 1 and Id = " + idCadastro + "";
+                }
+                else
+                {
+                    cmd.CommandText = "select * from Locadores where Ativo = 1";
+                }
+
+            }
+            else
+            {
+                if (tipoAcao == 2)
+                {
+                    cmd.CommandText = "select * from Locatarios where Ativo = 1 and Id = " + idCadastro + "";
+                }
+                else
+                {
+                    cmd.CommandText = "select * from Locatarios where Ativo = 1";
+                }
+            }
+
+            sdaDados.SelectCommand = cmd;
+
+            SqlCeCommandBuilder cb = new SqlCeCommandBuilder(sdaDados);
+            sdaDados.UpdateCommand = cb.GetUpdateCommand();
+
+            dsDados = new DataSet();
+            sdaDados.Fill(dsDados);
+        }
+
+        /// <summary>        
+        ///tipoCadastro 1 = Imovel
+        ///tipoCadastro 2 = Locador
+        ///tipoCadastro 3 = Locatario
+        ///tipoAcao 1 = Cadastro
+        ///tipoAcao 2 = Atualizacao
+        ///tipoAcao 3 = Exclusão
+        /// </summary>
+        /// <param name="tipoCadastro"></param>
+        private void RotinaDeDados(int tipoCadastro, int tipoAcao, int idCadastro)
+        {
+            SqlCeDataAdapter sdaInclusao;
+            DataSet dsInclusao;
+            DataRow dr = null;
+            PreencheDataset(out dsInclusao, out sdaInclusao, tipoCadastro, tipoAcao, idCadastro);
+            //Cria nova Linha para a inserção.
+            dr = dsInclusao.Tables[0].NewRow();
+
+            DataRow[] tempdata = dsInclusao.Tables[0].AsEnumerable().Where(p => p["id"].ToString() == idCadastro.ToString()).ToArray();
+
+            if (tipoAcao == 1)
+            {
+                if (tipoCadastro == 1)
+                {
+                    dr["Endereco"] = txtEndereco.Text.Trim();
+                    dr["Bairro"] = txtBairro.Text.Trim();
+                    dr["Cidade"] = txtCidade.Text.Trim();
+                    dr["Cep"] = mtxtCep.Text.Trim();
+                    dr["Ativo"] = 1;
+                }
+                else if (tipoCadastro == 2)
+                {
+                    dr["Locador"] = txtNomeLocador.Text.Trim();
+                    dr["Cpf"] = FormataDocPrioritario(mtxtCpfLocador.Text.Trim(), 1);
+                    dr["Cnpj"] = FormataDocPrioritario(mtxtCnpjLocador.Text.Trim(), 2);
+                    dr["Contato"] = txtContatoLocador.Text.Trim();
+                    dr["Ativo"] = 1;
+                }
+                else
+                {
+                    dr["Locatario"] = txtNomeLocatario.Text.Trim();
+                    dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
+                    dr["Telefone"] = RetornaTelefoneSelecionado();
+                    dr["Email"] = txtEmail.Text.Trim();
+                    dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguel);
+                    dr["fkIdImovel"] = cbImoveis.SelectedValue.ToString().Trim();
+                    dr["fkIdLocador"] = cbLocadores.SelectedValue.ToString().Trim();
+                    dr["Ativo"] = 1;
+                }
+
+                dsInclusao.Tables[0].Rows.Add(dr);
+            }
+            else if (tipoAcao == 2)
+            {
+                if (tipoCadastro == 1)
+                {
+                    if (tempdata.Length > 0)
+                    {
+                        dr = tempdata[0];
+                        dr["Endereco"] = txtEndereco.Text.Trim();
+                        dr["Bairro"] = txtBairro.Text.Trim();
+                        dr["Cidade"] = txtCidade.Text.Trim();
+                        dr["Cep"] = mtxtCep.Text.Trim();
+                        dr["Ativo"] = 1;
+                    }
+                }
+                else if (tipoCadastro == 2)
+                {
+                    if (tempdata.Length > 0)
+                    {
+                        dr = tempdata[0];
+                        dr["Locador"] = txtNomeLocador.Text.Trim();
+                        dr["Cpf"] = FormataDocPrioritario(mtxtCpfLocador.Text.Trim(), 1);
+                        dr["Cnpj"] = FormataDocPrioritario(mtxtCnpjLocador.Text.Trim(), 2);
+                        dr["Contato"] = txtContatoLocador.Text.Trim();
+                        dr["Ativo"] = 1;
+                    }
+                }
+                else
+                {
+                    if (tempdata.Length > 0)
+                    {
+                        dr = tempdata[0];
+                        dr["Locatario"] = txtNomeLocatario.Text.Trim();
+                        dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
+                        dr["Telefone"] = RetornaTelefoneSelecionado();
+                        dr["Email"] = txtEmail.Text.Trim();
+                        dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguel);
+                        dr["fkIdImovel"] = cbImoveis.SelectedValue.ToString().Trim();
+                        dr["fkIdLocador"] = cbLocadores.SelectedValue.ToString().Trim();
+                        dr["Ativo"] = 1;
+                    }
+                }
+            }
+            else if (tipoAcao == 3)
+            {
+                if (tipoCadastro == 1)
+                {
+                    if (tempdata.Length > 0)
+                    {
+                        dr = tempdata[0];
+                        dr["Ativo"] = 0;
+                        //dr.Delete();//Para exclusão definitiva
+                    }
+                }
+                else if (tipoCadastro == 2)
+                {
+                    if (tempdata.Length > 0)
+                    {
+                        dr = tempdata[0];
+                        dr["Ativo"] = 0;
+                        //dr.Delete();//Para exclusão definitiva
+                    }
+                }
+                else
+                {
+                    if (tempdata.Length > 0)
+                    {
+                        dr = tempdata[0];
+                        dr["Ativo"] = 0;
+                        //dr.Delete();//Para exclusão definitiva
+                    }
+                }
+            }
+
+            sdaInclusao.Update(dsInclusao);
+
         }
 
         #endregion
@@ -517,14 +572,31 @@ namespace GestorDeCadastros
 
         private void IncluirImovel()
         {
-            InsereDados(1, 1, 0);
+            try
+            {
+                RotinaDeDados(1, 1, 0);
+                Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
+            }
+            catch (Exception ex)
+            {
+                Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
+            }
+
         }
 
         private void AtualizaImovel()
         {
             if (!string.IsNullOrEmpty(lblIdTipoAcao.Text.Trim()) && !string.IsNullOrEmpty(lblIdImovel.Text.Trim()))
             {
-                InsereDados(1, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), Convert.ToInt32(lblIdImovel.Text.Trim()));
+                try
+                {
+                    RotinaDeDados(1, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), Convert.ToInt32(lblIdImovel.Text.Trim()));
+                    Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
+                }
+                catch (Exception ex)
+                {
+                    Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
+                }
             }
             else
             {
@@ -609,14 +681,30 @@ namespace GestorDeCadastros
 
         private void IncluirLocador()
         {
-            InsereDados(2, 1, 0);
+            try
+            {
+                RotinaDeDados(2, 1, 0);
+                Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
+            }
+            catch (Exception ex)
+            {
+                Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
+            }
         }
 
         private void AtualizaLocador()
         {
             if (!string.IsNullOrEmpty(lblIdTipoAcao.Text.Trim()) && !string.IsNullOrEmpty(lblIdImovel.Text.Trim()))
             {
-                InsereDados(2, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), Convert.ToInt32(lblIdLocador.Text.Trim()));
+                try
+                {
+                    RotinaDeDados(2, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), Convert.ToInt32(lblIdLocador.Text.Trim()));
+                    Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
+                }
+                catch (Exception ex)
+                {
+                    Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
+                }
             }
             else
             {
@@ -655,6 +743,7 @@ namespace GestorDeCadastros
                 mtxtCnpjLocador.Enabled = false;
                 mtxtCnpjLocador.BackColor = Color.White;
 
+                mtxtCpfLocador.Focus();
                 mtxtCpfLocador.Enabled = true;
                 mtxtCpfLocador.BackColor = Color.PaleGreen;
             }
@@ -665,6 +754,7 @@ namespace GestorDeCadastros
                 mtxtCpfLocador.Enabled = false;
                 mtxtCpfLocador.BackColor = Color.White;
 
+                mtxtCnpjLocador.Focus();
                 mtxtCnpjLocador.Enabled = true;
                 mtxtCnpjLocador.BackColor = Color.PaleGreen;
             }
@@ -809,24 +899,36 @@ namespace GestorDeCadastros
 
         private void IncluirLocatario()
         {
-            InsereDados(3, 1, 0);
+            try
+            {
+                RotinaDeDados(3, 1, 0);
+                Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
+            }
+            catch (Exception ex)
+            {
+                Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
+            }
         }
 
         private void AtualizaLocatario()
         {
             if (!string.IsNullOrEmpty(lblIdTipoAcao.Text.Trim()) && !string.IsNullOrEmpty(lblIdImovel.Text.Trim()))
             {
-                InsereDados(3, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), Convert.ToInt32(lblIdLocatario.Text.Trim()));
+                try
+                {
+                    RotinaDeDados(3, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), Convert.ToInt32(lblIdLocatario.Text.Trim()));
+                    Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
+                }
+                catch (Exception ex)
+                {
+                    Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
+                }
+
             }
             else
             {
                 Auxiliar.MostraMensagemAlerta("Dados perdidos, não foi possivel atualizar o cadastro", 3);
             }
-        }
-
-        private void btExcluirLocatario_Click(object sender, EventArgs e)
-        {
-            //ExcluirCadastro(3);
         }
 
         private void btLimparFormLocatario_Click(object sender, EventArgs e)

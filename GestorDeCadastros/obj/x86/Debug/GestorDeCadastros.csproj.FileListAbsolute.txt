@@ -73,3 +73,4 @@ C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2
 C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.csproj.GenerateResource.Cache
 C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.exe
 C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.pdb
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Debug\GestorDeCadastros.Erro.resources

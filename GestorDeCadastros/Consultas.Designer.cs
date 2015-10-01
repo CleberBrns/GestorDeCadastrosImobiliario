@@ -63,6 +63,15 @@
             this.rbLocatarioRp = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvRecibosPrincipais = new System.Windows.Forms.DataGridView();
+            this.LocatarioRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LocadorRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EnderecoRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DataReciboRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btVisualizarRP = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btPreviewRP = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btRL = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdRL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpLocadores = new System.Windows.Forms.TabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
@@ -89,15 +98,6 @@
             this.IdImovel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AtivoLocador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btAlterarImovel = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.LocatarioRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LocadorRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EnderecoRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DataReciboRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btVisualizarRP = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btPreviewRP = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btRL = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.IdRP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdRL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.tpLocatarios.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -241,6 +241,7 @@
             this.dgvCadastros.ReadOnly = true;
             this.dgvCadastros.Size = new System.Drawing.Size(1115, 484);
             this.dgvCadastros.TabIndex = 0;
+            this.dgvCadastros.Visible = false;
             this.dgvCadastros.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCadastros_CellContentClick);
             // 
             // Locatario
@@ -523,6 +524,80 @@
             this.dgvRecibosPrincipais.TabIndex = 0;
             this.dgvRecibosPrincipais.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRecibosPrincipais_CellContentClick);
             // 
+            // LocatarioRP
+            // 
+            this.LocatarioRP.DataPropertyName = "LocatarioRP";
+            this.LocatarioRP.HeaderText = "Locatário";
+            this.LocatarioRP.Name = "LocatarioRP";
+            this.LocatarioRP.ReadOnly = true;
+            this.LocatarioRP.Width = 220;
+            // 
+            // LocadorRP
+            // 
+            this.LocadorRP.DataPropertyName = "LocadorRP";
+            this.LocadorRP.HeaderText = "Locador";
+            this.LocadorRP.Name = "LocadorRP";
+            this.LocadorRP.ReadOnly = true;
+            this.LocadorRP.Width = 220;
+            // 
+            // EnderecoRP
+            // 
+            this.EnderecoRP.DataPropertyName = "EnderecoRP";
+            this.EnderecoRP.HeaderText = "Endereço Imóvel";
+            this.EnderecoRP.Name = "EnderecoRP";
+            this.EnderecoRP.ReadOnly = true;
+            this.EnderecoRP.Width = 215;
+            // 
+            // DataReciboRP
+            // 
+            this.DataReciboRP.DataPropertyName = "DataReciboRP";
+            this.DataReciboRP.HeaderText = "Data Cadastro";
+            this.DataReciboRP.Name = "DataReciboRP";
+            this.DataReciboRP.ReadOnly = true;
+            this.DataReciboRP.Width = 150;
+            // 
+            // btVisualizarRP
+            // 
+            this.btVisualizarRP.HeaderText = "Visualizar";
+            this.btVisualizarRP.Name = "btVisualizarRP";
+            this.btVisualizarRP.ReadOnly = true;
+            this.btVisualizarRP.Text = "Ok";
+            this.btVisualizarRP.UseColumnTextForButtonValue = true;
+            // 
+            // btPreviewRP
+            // 
+            this.btPreviewRP.HeaderText = "Preview Impressão";
+            this.btPreviewRP.Name = "btPreviewRP";
+            this.btPreviewRP.ReadOnly = true;
+            this.btPreviewRP.Text = "Ok";
+            this.btPreviewRP.UseColumnTextForButtonValue = true;
+            this.btPreviewRP.Width = 150;
+            // 
+            // btRL
+            // 
+            this.btRL.HeaderText = "Recibo Locador";
+            this.btRL.Name = "btRL";
+            this.btRL.ReadOnly = true;
+            this.btRL.Text = "Ok";
+            this.btRL.UseColumnTextForButtonValue = true;
+            this.btRL.Width = 130;
+            // 
+            // IdRP
+            // 
+            this.IdRP.DataPropertyName = "IdRP";
+            this.IdRP.HeaderText = "IdRP";
+            this.IdRP.Name = "IdRP";
+            this.IdRP.ReadOnly = true;
+            this.IdRP.Visible = false;
+            // 
+            // IdRL
+            // 
+            this.IdRL.DataPropertyName = "IdRL";
+            this.IdRL.HeaderText = "IdRL";
+            this.IdRL.Name = "IdRL";
+            this.IdRL.ReadOnly = true;
+            this.IdRL.Visible = false;
+            // 
             // tpLocadores
             // 
             this.tpLocadores.BackColor = System.Drawing.Color.DimGray;
@@ -600,6 +675,7 @@
             this.dgvLocadores.ReadOnly = true;
             this.dgvLocadores.Size = new System.Drawing.Size(1071, 484);
             this.dgvLocadores.TabIndex = 0;
+            this.dgvLocadores.Visible = false;
             this.dgvLocadores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLocadores_CellContentClick);
             // 
             // dataGridViewTextBoxColumn6
@@ -735,6 +811,7 @@
             this.dgvImoveis.ReadOnly = true;
             this.dgvImoveis.Size = new System.Drawing.Size(901, 484);
             this.dgvImoveis.TabIndex = 0;
+            this.dgvImoveis.Visible = false;
             this.dgvImoveis.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvImoveis_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
@@ -793,86 +870,12 @@
             this.btAlterarImovel.Text = "Ok";
             this.btAlterarImovel.UseColumnTextForButtonValue = true;
             // 
-            // LocatarioRP
-            // 
-            this.LocatarioRP.DataPropertyName = "LocatarioRP";
-            this.LocatarioRP.HeaderText = "Locatário";
-            this.LocatarioRP.Name = "LocatarioRP";
-            this.LocatarioRP.ReadOnly = true;
-            this.LocatarioRP.Width = 220;
-            // 
-            // LocadorRP
-            // 
-            this.LocadorRP.DataPropertyName = "LocadorRP";
-            this.LocadorRP.HeaderText = "Locador";
-            this.LocadorRP.Name = "LocadorRP";
-            this.LocadorRP.ReadOnly = true;
-            this.LocadorRP.Width = 220;
-            // 
-            // EnderecoRP
-            // 
-            this.EnderecoRP.DataPropertyName = "EnderecoRP";
-            this.EnderecoRP.HeaderText = "Endereço Imóvel";
-            this.EnderecoRP.Name = "EnderecoRP";
-            this.EnderecoRP.ReadOnly = true;
-            this.EnderecoRP.Width = 215;
-            // 
-            // DataReciboRP
-            // 
-            this.DataReciboRP.DataPropertyName = "DataReciboRP";
-            this.DataReciboRP.HeaderText = "Data Cadastro";
-            this.DataReciboRP.Name = "DataReciboRP";
-            this.DataReciboRP.ReadOnly = true;
-            this.DataReciboRP.Width = 150;
-            // 
-            // btVisualizarRP
-            // 
-            this.btVisualizarRP.HeaderText = "Visualizar";
-            this.btVisualizarRP.Name = "btVisualizarRP";
-            this.btVisualizarRP.ReadOnly = true;
-            this.btVisualizarRP.Text = "Ok";
-            this.btVisualizarRP.UseColumnTextForButtonValue = true;
-            // 
-            // btPreviewRP
-            // 
-            this.btPreviewRP.HeaderText = "Preview Impressão";
-            this.btPreviewRP.Name = "btPreviewRP";
-            this.btPreviewRP.ReadOnly = true;
-            this.btPreviewRP.Text = "Ok";
-            this.btPreviewRP.UseColumnTextForButtonValue = true;
-            this.btPreviewRP.Width = 150;
-            // 
-            // btRL
-            // 
-            this.btRL.HeaderText = "Recibo Locador";
-            this.btRL.Name = "btRL";
-            this.btRL.ReadOnly = true;
-            this.btRL.Text = "Ok";
-            this.btRL.UseColumnTextForButtonValue = true;
-            this.btRL.Width = 130;
-            // 
-            // IdRP
-            // 
-            this.IdRP.DataPropertyName = "IdRP";
-            this.IdRP.HeaderText = "IdRP";
-            this.IdRP.Name = "IdRP";
-            this.IdRP.ReadOnly = true;
-            this.IdRP.Visible = false;
-            // 
-            // IdRL
-            // 
-            this.IdRL.DataPropertyName = "IdRL";
-            this.IdRL.HeaderText = "IdRL";
-            this.IdRL.Name = "IdRL";
-            this.IdRL.ReadOnly = true;
-            this.IdRL.Visible = false;
-            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1360, 615);
+            this.ClientSize = new System.Drawing.Size(1377, 615);
             this.Controls.Add(this.tcConsultas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Consultas";

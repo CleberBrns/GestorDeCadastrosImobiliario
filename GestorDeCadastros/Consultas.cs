@@ -49,7 +49,7 @@ namespace GestorDeCadastros
             }
         }
 
-        private void CarregaDadosAba(int tipoCadastro)
+        public void CarregaDadosAba(int tipoCadastro)
         {
             if (tipoCadastro == 4)
             {
@@ -198,21 +198,21 @@ namespace GestorDeCadastros
                 cmd.CommandText = "select Lc.Id, Lc.Locatario, Lc.CpfLocatario, Im.Endereco, Ld.Locador  from Locatarios Lc inner join Imoveis Im " +
                     "on Lc.fkIdImovel = Im.Id" +
                     " inner join Locadores Ld on Lc.fkIdLocador = Ld.Id" +
-                    " where Lc.Ativo = 1 and Im.Ativo = 1 and Lc.fkIdImovel = " + valorTabela + "";
+                    " where Lc.Ativo = 1 and Lc.fkIdImovel = " + valorTabela + "";
             }
             else if (tipoPesquisa == 2)
             {
                 cmd.CommandText = "select Lc.Id, Lc.Locatario, Lc.CpfLocatario, Im.Endereco, Ld.Locador  from Locatarios Lc inner join Imoveis Im " +
                     "on Lc.fkIdImovel = Im.Id" +
                     " inner join Locadores Ld on Lc.fkIdLocador = Ld.Id" +
-                    " where Lc.Ativo = 1 and Im.Ativo = 1 and Ld.Id = " + valorTabela + "";
+                    " where Lc.Ativo = 1 and Ld.Id = " + valorTabela + "";
             }
             else
             {
                 cmd.CommandText = "select Lc.Id, Lc.Locatario, Lc.CpfLocatario, Im.Endereco, Ld.Locador  from Locatarios Lc inner join Imoveis Im " +
                     "on Lc.fkIdImovel = Im.Id" +
                     " inner join Locadores Ld on Lc.fkIdLocador = Ld.Id" +
-                    " where Lc.Ativo = 1 and Im.Ativo = 1 and Lc.Id = " + valorTabela + "";
+                    " where Lc.Ativo = 1 and Lc.Id = " + valorTabela + "";
             }
 
             sdaDados.SelectCommand = cmd;
@@ -300,7 +300,7 @@ namespace GestorDeCadastros
             }
             else
             {
-                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP,"+
+                cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP," +
                                   " rp.Data as DataReciboRP, rl.Id as IdRL" +
                                   " from RecibosPrincipais rp" +
                                   " inner join Locatarios lct" +
@@ -356,26 +356,31 @@ namespace GestorDeCadastros
             }
             else
             {
-                DataTable dtSemDados = new DataTable();
-
-                dtSemDados.Columns.Add("Descricao");
-                dtSemDados.Columns.Add("Id");
-
-                dtSemDados.Rows.Add("Faltam dados cadastrados para exibir", 0);
-
-                cbPesquisa.DataSource = dtSemDados;
-                cbPesquisa.DisplayMember = "Descricao";
-                cbPesquisa.ValueMember = "Id";
-
-                cbPesquisa.Enabled = false;
+                ComboDefaultLct(cbPesquisa);
             }
+        }
+
+        private static void ComboDefaultLct(ComboBox cbPesquisa)
+        {
+            DataTable dtSemDados = new DataTable();
+
+            dtSemDados.Columns.Add("Descricao");
+            dtSemDados.Columns.Add("Id");
+
+            dtSemDados.Rows.Add("Faltam dados cadastrados para exibir", 0);
+
+            cbPesquisa.DataSource = dtSemDados;
+            cbPesquisa.DisplayMember = "Descricao";
+            cbPesquisa.ValueMember = "Id";
+
+            cbPesquisa.Enabled = false;
         }
 
         /// <summary>
         /// tipoCarramento 1 = Carrega Combos
         /// tipoCarramento 2 = Carrega Grid Aba Locatarios
         /// tipoCarramento 3 = Carrega Grid Aba Locadores e Imovéis
-        /// tipoPesquisa 1 = Endereço
+        /// tipoPesquisa 1 = Imovel
         /// tipoPesquisa 2 = Locador
         /// tipoPesquisa 3 = Locatário
         /// tipoPesquisa 4 = Recibos Principais
@@ -473,10 +478,12 @@ namespace GestorDeCadastros
             if (dadosPesquisa.Rows.Count > 0)
             {
                 dgvCadastros.DataSource = dadosPesquisa;
+                dgvCadastros.Visible = true;
             }
             else
             {
                 MessageBox.Show("Não existem Locatários cadastrados para essa pesquisa!");
+                dgvCadastros.Visible = false;
             }
         }
 
@@ -508,6 +515,9 @@ namespace GestorDeCadastros
                         Cadastros formCadastros = new Cadastros();
                         formCadastros.getIdLocatario = Convert.ToInt32(sIdCadastro);
                         formCadastros.getIdTipoAcao = 2;
+                        tcConsultas.SelectedTab = tpLocatarios;
+                        dgvCadastros.Visible = false;
+                        ComboDefaultLct(cbTipoPesquisa);
                         formCadastros.ShowDialog();
                     }
                 }
@@ -632,6 +642,10 @@ namespace GestorDeCadastros
                     {
                         Auxiliar.VisualizaRecibo(2, Convert.ToInt32(sIdRL));
                     }
+                    else
+                    {
+                        Auxiliar.MostraMensagemAlerta("Não foi possivel carregar esse Boleto pois o mesmo pode não ter sido salvo corretamente", 3);
+                    }
                 }
             }
         }
@@ -650,7 +664,16 @@ namespace GestorDeCadastros
             if (cboLocadores.SelectedValue.ToString() != "0" && cboLocadores.SelectedValue.ToString() != "System.Data.DataRowView")
             {
                 DataTable cadastros = PreencheDadosTabela(2, 3, Convert.ToInt32(cboLocadores.SelectedValue.ToString()), DateTime.Now, DateTime.Now);
-                dgvLocadores.DataSource = cadastros;
+                if (cadastros.Rows.Count > 0)
+                {
+                    dgvLocadores.DataSource = cadastros;
+                    dgvLocadores.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("Não existem Locadores cadastrados para essa pesquisa!");
+                    dgvLocadores.Visible = false;
+                }               
             }
         }
 
@@ -670,6 +693,8 @@ namespace GestorDeCadastros
                         Cadastros formCadastros = new Cadastros();
                         formCadastros.getIdLocador = Convert.ToInt32(sIdCadastro);
                         formCadastros.getIdTipoAcao = 2;
+                        tcConsultas.SelectedTab = tpLocatarios;
+                        dgvLocadores.Visible = false;
                         formCadastros.ShowDialog();
                     }
                 }
@@ -689,8 +714,17 @@ namespace GestorDeCadastros
         {
             if (cboImoveis.SelectedValue.ToString() != "0" && cboImoveis.SelectedValue.ToString() != "System.Data.DataRowView")
             {
-                DataTable cadastros = PreencheDadosTabela(1, 3, Convert.ToInt32(cboImoveis.SelectedValue.ToString()), DateTime.Now, DateTime.Now);
-                dgvImoveis.DataSource = cadastros;
+                DataTable cadastros = PreencheDadosTabela(1, 3, Convert.ToInt32(cboImoveis.SelectedValue.ToString()), DateTime.Now, DateTime.Now);               
+                if (cadastros.Rows.Count > 0)
+                {
+                    dgvImoveis.DataSource = cadastros;
+                    dgvImoveis.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show("Não existem Imóveis cadastrados para essa pesquisa!");
+                    dgvImoveis.Visible = false;
+                }
             }
         }
 
@@ -710,6 +744,8 @@ namespace GestorDeCadastros
                         Cadastros formCadastros = new Cadastros();
                         formCadastros.getIdImovel = Convert.ToInt32(sIdCadastro);
                         formCadastros.getIdTipoAcao = 2;
+                        dgvImoveis.Visible = false;
+                        tcConsultas.SelectedTab = tpLocatarios;
                         formCadastros.ShowDialog();
                     }
                 }
@@ -717,6 +753,5 @@ namespace GestorDeCadastros
         }
 
         #endregion
-
     }
 }

@@ -52,3 +52,4 @@ C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2
 C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Release\GestorDeCadastros.Properties.Resources.resources
 C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Release\GestorDeCadastros.Recibos.resources
 C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Release\GestorDeCadastros.csproj.GenerateResource.Cache
+C:\Users\Cleber - Work\Documents\Visual Studio 2010\Projects\GestorDeCadastrosV2\GestorDeCadastros\obj\x86\Release\GestorDeCadastros.Erro.resources

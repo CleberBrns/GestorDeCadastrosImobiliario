@@ -403,7 +403,7 @@
             // 
             this.lblDataFormatada.AutoSize = true;
             this.lblDataFormatada.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataFormatada.Location = new System.Drawing.Point(468, 511);
+            this.lblDataFormatada.Location = new System.Drawing.Point(468, 484);
             this.lblDataFormatada.Name = "lblDataFormatada";
             this.lblDataFormatada.Size = new System.Drawing.Size(271, 19);
             this.lblDataFormatada.TabIndex = 23;
@@ -413,7 +413,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(3, 511);
+            this.label22.Location = new System.Drawing.Point(3, 484);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(407, 19);
             this.label22.TabIndex = 22;
