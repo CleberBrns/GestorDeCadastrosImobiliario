@@ -26,7 +26,7 @@ namespace GestorDeCadastros
 
         private void Erro_Load(object sender, EventArgs e)
         {
-            txtDescricaoErro.Text = Erro;
+            txtDescricaoErro.Text = msgErro;
         }       
 
     }

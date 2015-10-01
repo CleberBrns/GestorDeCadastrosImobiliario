@@ -144,6 +144,7 @@ namespace GestorDeCadastros
             {
                 //Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
                 Auxiliar.MostraMensagemAlerta("Falha ao carregar os dados.", 3);
+                //Auxiliar.MostraFormDeErros(ex.ToString());
             }
         }
 
