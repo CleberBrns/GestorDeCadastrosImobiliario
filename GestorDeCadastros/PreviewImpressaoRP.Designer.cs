@@ -36,6 +36,7 @@
             this.label42 = new System.Windows.Forms.Label();
             this.lblLuz = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
+            this.txtDescComplemento = new System.Windows.Forms.TextBox();
             this.lblComPagamento = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.lblDespCondominio = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.txtTotalExtenso = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
-            this.lblReajuste = new System.Windows.Forms.Label();
             this.lblDataFormatada = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -78,14 +78,15 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.btImprimir = new System.Windows.Forms.Button();
             this.lblIdReciboPrincipal = new System.Windows.Forms.Label();
+            this.lblReajuste = new System.Windows.Forms.Label();
             this.lblDescComplemento = new System.Windows.Forms.Label();
-            this.txtDescComplemento = new System.Windows.Forms.TextBox();
             this.pnlImpressao.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlImpressao
             // 
             this.pnlImpressao.BackColor = System.Drawing.Color.White;
+            this.pnlImpressao.Controls.Add(this.lblReajuste);
             this.pnlImpressao.Controls.Add(this.lblTotal);
             this.pnlImpressao.Controls.Add(this.label45);
             this.pnlImpressao.Controls.Add(this.label43);
@@ -109,7 +110,6 @@
             this.pnlImpressao.Controls.Add(this.txtTotalExtenso);
             this.pnlImpressao.Controls.Add(this.label26);
             this.pnlImpressao.Controls.Add(this.label25);
-            this.pnlImpressao.Controls.Add(this.lblReajuste);
             this.pnlImpressao.Controls.Add(this.lblDataFormatada);
             this.pnlImpressao.Controls.Add(this.label22);
             this.pnlImpressao.Controls.Add(this.label21);
@@ -209,6 +209,19 @@
             this.label40.Size = new System.Drawing.Size(74, 22);
             this.label40.TabIndex = 41;
             this.label40.Text = "Luz R$:";
+            // 
+            // txtDescComplemento
+            // 
+            this.txtDescComplemento.BackColor = System.Drawing.Color.White;
+            this.txtDescComplemento.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescComplemento.Enabled = false;
+            this.txtDescComplemento.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescComplemento.Location = new System.Drawing.Point(387, 489);
+            this.txtDescComplemento.Multiline = true;
+            this.txtDescComplemento.Name = "txtDescComplemento";
+            this.txtDescComplemento.Size = new System.Drawing.Size(332, 32);
+            this.txtDescComplemento.TabIndex = 40;
+            this.txtDescComplemento.Visible = false;
             // 
             // lblComPagamento
             // 
@@ -357,22 +370,11 @@
             this.label25.TabIndex = 25;
             this.label25.Text = "Total Por Extenso:";
             // 
-            // lblReajuste
-            // 
-            this.lblReajuste.AutoSize = true;
-            this.lblReajuste.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReajuste.Location = new System.Drawing.Point(4, 456);
-            this.lblReajuste.Name = "lblReajuste";
-            this.lblReajuste.Size = new System.Drawing.Size(268, 22);
-            this.lblReajuste.TabIndex = 24;
-            this.lblReajuste.Text = "Reajuste a partir de 12/10/2015";
-            this.lblReajuste.Visible = false;
-            // 
             // lblDataFormatada
             // 
             this.lblDataFormatada.AutoSize = true;
             this.lblDataFormatada.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataFormatada.Location = new System.Drawing.Point(419, 489);
+            this.lblDataFormatada.Location = new System.Drawing.Point(419, 455);
             this.lblDataFormatada.Name = "lblDataFormatada";
             this.lblDataFormatada.Size = new System.Drawing.Size(336, 22);
             this.lblDataFormatada.TabIndex = 23;
@@ -382,7 +384,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(3, 493);
+            this.label22.Location = new System.Drawing.Point(3, 459);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(407, 19);
             this.label22.TabIndex = 22;
@@ -639,29 +641,27 @@
             this.lblIdReciboPrincipal.Text = "lblIdReciboPrincipal";
             this.lblIdReciboPrincipal.Visible = false;
             // 
+            // lblReajuste
+            // 
+            this.lblReajuste.AutoSize = true;
+            this.lblReajuste.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReajuste.Location = new System.Drawing.Point(2, 491);
+            this.lblReajuste.Name = "lblReajuste";
+            this.lblReajuste.Size = new System.Drawing.Size(268, 22);
+            this.lblReajuste.TabIndex = 48;
+            this.lblReajuste.Text = "Reajuste a partir de 12/10/2015";
+            this.lblReajuste.Visible = false;
+            // 
             // lblDescComplemento
             // 
             this.lblDescComplemento.AutoSize = true;
             this.lblDescComplemento.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescComplemento.Location = new System.Drawing.Point(355, 425);
+            this.lblDescComplemento.Location = new System.Drawing.Point(276, 493);
             this.lblDescComplemento.Name = "lblDescComplemento";
             this.lblDescComplemento.Size = new System.Drawing.Size(109, 19);
             this.lblDescComplemento.TabIndex = 39;
             this.lblDescComplemento.Text = "Descri, Comp.:";
             this.lblDescComplemento.Visible = false;
-            // 
-            // txtDescComplemento
-            // 
-            this.txtDescComplemento.BackColor = System.Drawing.Color.White;
-            this.txtDescComplemento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescComplemento.Enabled = false;
-            this.txtDescComplemento.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescComplemento.Location = new System.Drawing.Point(470, 407);
-            this.txtDescComplemento.Multiline = true;
-            this.txtDescComplemento.Name = "txtDescComplemento";
-            this.txtDescComplemento.Size = new System.Drawing.Size(210, 68);
-            this.txtDescComplemento.TabIndex = 40;
-            this.txtDescComplemento.Visible = false;
             // 
             // PreviewImpressaoRP
             // 
@@ -713,7 +713,6 @@
         private System.Windows.Forms.Label lblDataFormatada;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label lblReajuste;
         private System.Windows.Forms.Label lblFormaPagamento;
         private System.Windows.Forms.TextBox txtTotalExtenso;
         private System.Windows.Forms.Label lblComPagamento;
@@ -737,6 +736,7 @@
         private System.Windows.Forms.Button btImprimir;
         private System.Windows.Forms.Label lblIdReciboPrincipal;
         private System.Windows.Forms.TextBox txtDescComplemento;
+        private System.Windows.Forms.Label lblReajuste;
         private System.Windows.Forms.Label lblDescComplemento;
 
     }
