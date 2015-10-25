@@ -152,7 +152,7 @@
             // 
             this.txtDescricComplemento.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDescricComplemento.Enabled = false;
-            this.txtDescricComplemento.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescricComplemento.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescricComplemento.Location = new System.Drawing.Point(10, 30);
             this.txtDescricComplemento.Multiline = true;
             this.txtDescricComplemento.Name = "txtDescricComplemento";
@@ -204,20 +204,20 @@
             // lblComplemento
             // 
             this.lblComplemento.AutoSize = true;
-            this.lblComplemento.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComplemento.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblComplemento.Location = new System.Drawing.Point(224, 0);
             this.lblComplemento.Name = "lblComplemento";
-            this.lblComplemento.Size = new System.Drawing.Size(64, 21);
+            this.lblComplemento.Size = new System.Drawing.Size(64, 22);
             this.lblComplemento.TabIndex = 38;
             this.lblComplemento.Text = "xxxxxx";
             // 
             // lblSubTotal3
             // 
             this.lblSubTotal3.AutoSize = true;
-            this.lblSubTotal3.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal3.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal3.Location = new System.Drawing.Point(224, 44);
             this.lblSubTotal3.Name = "lblSubTotal3";
-            this.lblSubTotal3.Size = new System.Drawing.Size(64, 21);
+            this.lblSubTotal3.Size = new System.Drawing.Size(64, 22);
             this.lblSubTotal3.TabIndex = 62;
             this.lblSubTotal3.Text = "xxxxxx";
             // 
@@ -254,10 +254,10 @@
             // lblSubTotal2
             // 
             this.lblSubTotal2.AutoSize = true;
-            this.lblSubTotal2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal2.Location = new System.Drawing.Point(240, 188);
             this.lblSubTotal2.Name = "lblSubTotal2";
-            this.lblSubTotal2.Size = new System.Drawing.Size(64, 21);
+            this.lblSubTotal2.Size = new System.Drawing.Size(64, 22);
             this.lblSubTotal2.TabIndex = 58;
             this.lblSubTotal2.Text = "xxxxxx";
             // 
@@ -274,10 +274,10 @@
             // lblSubTotal1
             // 
             this.lblSubTotal1.AutoSize = true;
-            this.lblSubTotal1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal1.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal1.Location = new System.Drawing.Point(237, 98);
             this.lblSubTotal1.Name = "lblSubTotal1";
-            this.lblSubTotal1.Size = new System.Drawing.Size(64, 21);
+            this.lblSubTotal1.Size = new System.Drawing.Size(64, 22);
             this.lblSubTotal1.TabIndex = 56;
             this.lblSubTotal1.Text = "xxxxxx";
             // 
@@ -363,7 +363,7 @@
             // 
             this.txtDescricComplemento2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtDescricComplemento2.Enabled = false;
-            this.txtDescricComplemento2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescricComplemento2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescricComplemento2.Location = new System.Drawing.Point(10, 30);
             this.txtDescricComplemento2.Multiline = true;
             this.txtDescricComplemento2.Name = "txtDescricComplemento2";
@@ -383,10 +383,10 @@
             // lblAluguel2
             // 
             this.lblAluguel2.AutoSize = true;
-            this.lblAluguel2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAluguel2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAluguel2.Location = new System.Drawing.Point(232, 15);
             this.lblAluguel2.Name = "lblAluguel2";
-            this.lblAluguel2.Size = new System.Drawing.Size(64, 21);
+            this.lblAluguel2.Size = new System.Drawing.Size(64, 22);
             this.lblAluguel2.TabIndex = 69;
             this.lblAluguel2.Text = "xxxxxx";
             // 
@@ -425,20 +425,20 @@
             // lblComplemento2
             // 
             this.lblComplemento2.AutoSize = true;
-            this.lblComplemento2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComplemento2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblComplemento2.Location = new System.Drawing.Point(219, 7);
             this.lblComplemento2.Name = "lblComplemento2";
-            this.lblComplemento2.Size = new System.Drawing.Size(64, 21);
+            this.lblComplemento2.Size = new System.Drawing.Size(64, 22);
             this.lblComplemento2.TabIndex = 38;
             this.lblComplemento2.Text = "xxxxxx";
             // 
             // lblSubTotal3_2
             // 
             this.lblSubTotal3_2.AutoSize = true;
-            this.lblSubTotal3_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal3_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal3_2.Location = new System.Drawing.Point(219, 47);
             this.lblSubTotal3_2.Name = "lblSubTotal3_2";
-            this.lblSubTotal3_2.Size = new System.Drawing.Size(64, 21);
+            this.lblSubTotal3_2.Size = new System.Drawing.Size(64, 22);
             this.lblSubTotal3_2.TabIndex = 62;
             this.lblSubTotal3_2.Text = "xxxxxx";
             // 
@@ -455,10 +455,10 @@
             // lblMulta2
             // 
             this.lblMulta2.AutoSize = true;
-            this.lblMulta2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMulta2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMulta2.Location = new System.Drawing.Point(232, 44);
             this.lblMulta2.Name = "lblMulta2";
-            this.lblMulta2.Size = new System.Drawing.Size(64, 21);
+            this.lblMulta2.Size = new System.Drawing.Size(64, 22);
             this.lblMulta2.TabIndex = 70;
             this.lblMulta2.Text = "xxxxxx";
             // 
@@ -495,20 +495,20 @@
             // lblComissao2
             // 
             this.lblComissao2.AutoSize = true;
-            this.lblComissao2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComissao2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblComissao2.Location = new System.Drawing.Point(232, 129);
             this.lblComissao2.Name = "lblComissao2";
-            this.lblComissao2.Size = new System.Drawing.Size(64, 21);
+            this.lblComissao2.Size = new System.Drawing.Size(64, 22);
             this.lblComissao2.TabIndex = 72;
             this.lblComissao2.Text = "xxxxxx";
             // 
             // lblSubTotal2_2
             // 
             this.lblSubTotal2_2.AutoSize = true;
-            this.lblSubTotal2_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal2_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal2_2.Location = new System.Drawing.Point(232, 175);
             this.lblSubTotal2_2.Name = "lblSubTotal2_2";
-            this.lblSubTotal2_2.Size = new System.Drawing.Size(64, 21);
+            this.lblSubTotal2_2.Size = new System.Drawing.Size(64, 22);
             this.lblSubTotal2_2.TabIndex = 83;
             this.lblSubTotal2_2.Text = "xxxxxx";
             // 
@@ -535,20 +535,20 @@
             // lblTotal2
             // 
             this.lblTotal2.AutoSize = true;
-            this.lblTotal2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal2.Location = new System.Drawing.Point(232, 315);
             this.lblTotal2.Name = "lblTotal2";
-            this.lblTotal2.Size = new System.Drawing.Size(64, 21);
+            this.lblTotal2.Size = new System.Drawing.Size(64, 22);
             this.lblTotal2.TabIndex = 74;
             this.lblTotal2.Text = "xxxxxx";
             // 
             // lblSubTotal1_2
             // 
             this.lblSubTotal1_2.AutoSize = true;
-            this.lblSubTotal1_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal1_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSubTotal1_2.Location = new System.Drawing.Point(232, 96);
             this.lblSubTotal1_2.Name = "lblSubTotal1_2";
-            this.lblSubTotal1_2.Size = new System.Drawing.Size(64, 21);
+            this.lblSubTotal1_2.Size = new System.Drawing.Size(64, 22);
             this.lblSubTotal1_2.TabIndex = 81;
             this.lblSubTotal1_2.Text = "xxxxxx";
             // 
@@ -575,10 +575,10 @@
             // lblLocador2
             // 
             this.lblLocador2.AutoSize = true;
-            this.lblLocador2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocador2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocador2.Location = new System.Drawing.Point(154, 470);
             this.lblLocador2.Name = "lblLocador2";
-            this.lblLocador2.Size = new System.Drawing.Size(143, 21);
+            this.lblLocador2.Size = new System.Drawing.Size(165, 22);
             this.lblLocador2.TabIndex = 76;
             this.lblLocador2.Text = "Jamile Hanna Hair";
             this.lblLocador2.Visible = false;
@@ -606,10 +606,10 @@
             // lblDocLocador2
             // 
             this.lblDocLocador2.AutoSize = true;
-            this.lblDocLocador2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocLocador2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDocLocador2.Location = new System.Drawing.Point(154, 502);
             this.lblDocLocador2.Name = "lblDocLocador2";
-            this.lblDocLocador2.Size = new System.Drawing.Size(125, 21);
+            this.lblDocLocador2.Size = new System.Drawing.Size(136, 22);
             this.lblDocLocador2.TabIndex = 78;
             this.lblDocLocador2.Text = "999.999.999-99";
             this.lblDocLocador2.Visible = false;
@@ -617,10 +617,10 @@
             // lblDocLocador
             // 
             this.lblDocLocador.AutoSize = true;
-            this.lblDocLocador.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocLocador.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDocLocador.Location = new System.Drawing.Point(159, 504);
             this.lblDocLocador.Name = "lblDocLocador";
-            this.lblDocLocador.Size = new System.Drawing.Size(125, 21);
+            this.lblDocLocador.Size = new System.Drawing.Size(136, 22);
             this.lblDocLocador.TabIndex = 51;
             this.lblDocLocador.Text = "999.999.999-99";
             this.lblDocLocador.Visible = false;
@@ -638,10 +638,10 @@
             // lblLocador
             // 
             this.lblLocador.AutoSize = true;
-            this.lblLocador.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocador.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLocador.Location = new System.Drawing.Point(159, 472);
             this.lblLocador.Name = "lblLocador";
-            this.lblLocador.Size = new System.Drawing.Size(143, 21);
+            this.lblLocador.Size = new System.Drawing.Size(165, 22);
             this.lblLocador.TabIndex = 49;
             this.lblLocador.Text = "Jamile Hanna Hair";
             this.lblLocador.Visible = false;
@@ -659,10 +659,10 @@
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
-            this.lblTotal.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.Location = new System.Drawing.Point(237, 317);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(64, 21);
+            this.lblTotal.Size = new System.Drawing.Size(64, 22);
             this.lblTotal.TabIndex = 47;
             this.lblTotal.Text = "xxxxxx";
             // 
@@ -679,10 +679,10 @@
             // lblComissao
             // 
             this.lblComissao.AutoSize = true;
-            this.lblComissao.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComissao.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblComissao.Location = new System.Drawing.Point(237, 131);
             this.lblComissao.Name = "lblComissao";
-            this.lblComissao.Size = new System.Drawing.Size(64, 21);
+            this.lblComissao.Size = new System.Drawing.Size(64, 22);
             this.lblComissao.TabIndex = 36;
             this.lblComissao.Text = "xxxxxx";
             // 
@@ -699,20 +699,20 @@
             // lblMulta
             // 
             this.lblMulta.AutoSize = true;
-            this.lblMulta.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMulta.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMulta.Location = new System.Drawing.Point(237, 46);
             this.lblMulta.Name = "lblMulta";
-            this.lblMulta.Size = new System.Drawing.Size(64, 21);
+            this.lblMulta.Size = new System.Drawing.Size(64, 22);
             this.lblMulta.TabIndex = 32;
             this.lblMulta.Text = "xxxxxx";
             // 
             // lblAluguel
             // 
             this.lblAluguel.AutoSize = true;
-            this.lblAluguel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAluguel.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAluguel.Location = new System.Drawing.Point(237, 15);
             this.lblAluguel.Name = "lblAluguel";
-            this.lblAluguel.Size = new System.Drawing.Size(64, 21);
+            this.lblAluguel.Size = new System.Drawing.Size(64, 22);
             this.lblAluguel.TabIndex = 30;
             this.lblAluguel.Text = "xxxxxx";
             // 
