@@ -117,41 +117,49 @@ namespace GestorDeCadastros
         #region Ações Banco de Dados
 
         /// <summary>
+        /// tipoTabela 1 = Recibo Principal
+        /// tipoTabela 2 = Locadores por Id
         /// </summary>
         /// <param name="dsDados"></param>
         /// <param name="sdaDados"></param>
         /// <param name="tipoTabela"></param>
         /// <param name="idLocatario"></param>
-        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int idCadastro)
+        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int tipoTabela, string idBusca)
         {
             sdaDados = new SqlCeDataAdapter();
 
             SqlCeCommand cmd = Auxiliar.retornaConexao().CreateCommand();
 
+            if (tipoTabela == 1)
+            {
 
-            cmd.CommandText = "select lct.Locatario, rp.Quantidade, rp.Numero, rp.Data, rp.Periodo, rp.Iptu, rp.ParcelasIptu, rp.NumeroParcelaIptu, rp.DespesaCondominio," +
-                              " rp.Luz, rp.Agua, rp.Aluguel, rp.ComplementoPagamento, rp.DescricaoComplementoPagamento, rp.FormaPagamento, rp.DataPagamento," +
-                              " rp.TotalPagamento, rp.ExtensoTotalPagamento, rp.ReajusteAluguel, lcd.Locador, lcd.Cpf, lcd.Cnpj, lct.CpfLocatario, im.Endereco" +
-                              " from RecibosPrincipais Rp" +
-                              " inner join Locatarios lct" +
-                              " on rp.fkIdLocatario = lct.Id" +
-                              " inner join Imoveis im" +
-                              " on lct.fkIdImovel = im.Id" +
-                              " inner join Locadores lcd" +
-                              " on lct.fkIdLocador = lcd.Id" +
-                              " where rp.Id = " + idCadastro;
+                cmd.CommandText = "select lct.Locatario, lct.CpfLocatario, lct.Locatario2, lct.CpfLocatario2," +
+                                  " rp.Quantidade, rp.Numero, rp.Data, rp.Periodo, rp.Iptu, rp.Multa, rp.ParcelasIptu, rp.NumeroParcelaIptu," +
+                                  " rp.DespesaCondominio, rp.Luz, rp.Agua, rp.Aluguel, rp.ComplementoPagamento, rp.DescricaoComplementoPagamento," +
+                                  " rp.Observacao, rp.DataPagamento, rp.TotalPagamento, rp.ExtensoTotalPagamento, rp.ReajusteAluguel," +
+                                  " im.Endereco, im.fkIdLocador1, im.fkIdLocador2" +
+                                  " from RecibosPrincipais Rp" +
+                                  " inner join Locatarios lct on rp.fkIdLocatario = lct.Id" +
+                                  " inner join Imoveis im on lct.fkIdImovel = im.Id" +
+                                  " where rp.Id = " + idBusca;
+            }
+            else if (tipoTabela == 2)
+            {
+                cmd.CommandText = "select Id, Locador, Cpf, Cnpj from Locadores where id in (" + idBusca + ") and Ativo = 1 order by Locador";
+
+            }
 
             sdaDados.SelectCommand = cmd;
             dsDados = new DataSet();
             sdaDados.Fill(dsDados);
         }
 
-        private DataTable CarregaDadosTabela(int idCadastro)
+        private DataTable CarregaDadosTabela(int tipoTabela, string idBusca)
         {
             DataTable tabelaCombos = new DataTable();
             SqlCeDataAdapter sdaSelecao;
             DataSet dsSelecao;
-            PreencheDataset(out dsSelecao, out sdaSelecao, idCadastro);
+            PreencheDataset(out dsSelecao, out sdaSelecao, tipoTabela, idBusca);
 
             tabelaCombos = dsSelecao.Tables[0];
 
@@ -166,17 +174,17 @@ namespace GestorDeCadastros
         {
             try
             {
-                DataTable dadosLocatario = CarregaDadosTabela(Convert.ToInt32(lblIdReciboPrincipal.Text.Trim()));
-                if (dadosLocatario.Rows.Count > 0)
+                DataTable dadosLocatarios = CarregaDadosTabela(1, lblIdReciboPrincipal.Text.Trim());
+                if (dadosLocatarios.Rows.Count > 0)
                 {
-                    string quantidade = dadosLocatario.DefaultView[0]["Numero"].ToString() + "/" + dadosLocatario.DefaultView[0]["Quantidade"].ToString();
+                    string quantidade = dadosLocatarios.DefaultView[0]["Numero"].ToString() + "/" + dadosLocatarios.DefaultView[0]["Quantidade"].ToString();
                     HabilitaLabelTexto(quantidade, lblQtdNumeroRecibo);
 
-                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Periodo"].ToString()))
+                    if (!string.IsNullOrEmpty(dadosLocatarios.DefaultView[0]["Periodo"].ToString()))
                     {
                         try
                         {
-                            string[] aPeriodo = dadosLocatario.DefaultView[0]["Periodo"].ToString().Split('a');
+                            string[] aPeriodo = dadosLocatarios.DefaultView[0]["Periodo"].ToString().Split('a');
                             string periodo = "de " + aPeriodo[0].ToString() + " a " + aPeriodo[1].ToString();
 
                             HabilitaLabelTexto(periodo, lblPeriodo);
@@ -186,49 +194,41 @@ namespace GestorDeCadastros
 
                     try
                     {
-                        string vencimento = Convert.ToDateTime(dadosLocatario.DefaultView[0]["DataPagamento"].ToString()).ToShortDateString();
+                        string vencimento = Convert.ToDateTime(dadosLocatarios.DefaultView[0]["DataPagamento"].ToString()).ToShortDateString();
                         HabilitaLabelTexto(vencimento, lblVencimento);
                     }
                     catch (Exception ex) { }
 
-                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Locatario"].ToString().Trim(), lblLocatario);
-                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["CpfLocatario"].ToString().Trim(), lblCpfLocatario);
-                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Endereco"].ToString().Trim(), lblEnderecoImovel);
-                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Locador"].ToString().Trim(), lblLocador);
+                    CarregaDadosLocatarios(dadosLocatarios);
+                    CarregaDadosLocadores(dadosLocatarios);
 
-                    //VerificacaoDeDocumentoSalvo
-                    if (VerificaCampoDoc(dadosLocatario.DefaultView[0]["Cpf"].ToString()))
-                    {
-                        HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Cpf"].ToString().Trim(), lblDocLocador);
-                    }
-                    else if (VerificaCampoDoc(dadosLocatario.DefaultView[0]["Cnpj"].ToString()))
-                    {
-                        HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Cnpj"].ToString().Trim(), lblDocLocador);
-                    }
+                    HabilitaLabelTexto(dadosLocatarios.DefaultView[0]["Endereco"].ToString().Trim(), lblEnderecoImovel);
 
-                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["DescricaoComplementoPagamento"].ToString()))
+                    if (!string.IsNullOrEmpty(dadosLocatarios.DefaultView[0]["DescricaoComplementoPagamento"].ToString()))
                     {
-                        txtDescComplemento.Text = dadosLocatario.DefaultView[0]["DescricaoComplementoPagamento"].ToString().Trim();
-                        txtDescComplemento.Visible = true;
+                        lblDescComplemento.Text = dadosLocatarios.DefaultView[0]["DescricaoComplementoPagamento"].ToString().Trim();
                         lblDescComplemento.Visible = true;
                     }
 
-                    HabilitaTextBox(dadosLocatario.DefaultView[0]["DescricaoComplementoPagamento"].ToString(), txtDescComplemento);
-
-                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["FormaPagamento"].ToString(), lblFormaPagamento);
-                    HabilitaTextBox(dadosLocatario.DefaultView[0]["ExtensoTotalPagamento"].ToString(), txtTotalExtenso);
-                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["ReajusteAluguel"].ToString(), lblReajuste);
-
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), lblAluguel);
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Iptu"].ToString(), lblIptu);
-
-                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString()) && dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString() != "0")
+                    HabilitaLabelTexto(dadosLocatarios.DefaultView[0]["Observacao"].ToString(), lblObservacao);
+                    if (!string.IsNullOrEmpty(lblObservacao.Text.Trim()))
                     {
-                        if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString()) &&
-                       dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString() != "0")
+                        lblTextoObervecao.Visible = true;
+                    }
+
+                    HabilitaTextBox(dadosLocatarios.DefaultView[0]["ExtensoTotalPagamento"].ToString(), txtTotalExtenso);
+                    HabilitaLabelTexto(dadosLocatarios.DefaultView[0]["ReajusteAluguel"].ToString(), lblReajuste);
+
+                    HabilitaLabelValor(dadosLocatarios.DefaultView[0]["Aluguel"].ToString(), lblAluguel);
+                    HabilitaLabelValor(dadosLocatarios.DefaultView[0]["Iptu"].ToString(), lblIptu);
+
+                    if (!string.IsNullOrEmpty(dadosLocatarios.DefaultView[0]["ParcelasIptu"].ToString()) && dadosLocatarios.DefaultView[0]["ParcelasIptu"].ToString() != "0")
+                    {
+                        if (!string.IsNullOrEmpty(dadosLocatarios.DefaultView[0]["NumeroParcelaIptu"].ToString()) &&
+                       dadosLocatarios.DefaultView[0]["NumeroParcelaIptu"].ToString() != "0")
                         {
-                            string quatidadeIptu = dadosLocatario.DefaultView[0]["NumeroParcelaIptu"].ToString() + "/" +
-                                                   dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString();
+                            string quatidadeIptu = dadosLocatarios.DefaultView[0]["NumeroParcelaIptu"].ToString() + "/" +
+                                                   dadosLocatarios.DefaultView[0]["ParcelasIptu"].ToString();
 
                             HabilitaLabelTexto(quatidadeIptu, lblQtdNumeroIptu);
                             if (lblQtdNumeroIptu.Visible == true)
@@ -238,11 +238,12 @@ namespace GestorDeCadastros
                         }
                     }
 
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["DespesaCondominio"].ToString(), lblDespCondominio);
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Luz"].ToString(), lblLuz);
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Agua"].ToString(), lblAgua);
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["ComplementoPagamento"].ToString(), lblComPagamento);
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["TotalPagamento"].ToString(), lblTotal);
+                    HabilitaLabelValor(dadosLocatarios.DefaultView[0]["DespesaCondominio"].ToString(), lblDespCondominio);
+                    HabilitaLabelValor(dadosLocatarios.DefaultView[0]["Luz"].ToString(), lblLuz);
+                    HabilitaLabelValor(dadosLocatarios.DefaultView[0]["Agua"].ToString(), lblAgua);
+                    HabilitaLabelValor(dadosLocatarios.DefaultView[0]["ComplementoPagamento"].ToString(), lblCompPagamento);
+                    HabilitaLabelValor(dadosLocatarios.DefaultView[0]["Multa"].ToString(), lblMulta);
+                    HabilitaLabelValor(dadosLocatarios.DefaultView[0]["TotalPagamento"].ToString(), lblTotal);
 
                     //lblDataFormatada.Text = "São Paulo, " + RetornaDataFormatada();
 
@@ -252,6 +253,84 @@ namespace GestorDeCadastros
             {
                 //Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);               
                 Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Recibo.", 3);
+            }
+        }
+
+        private void CarregaDadosLocatarios(DataTable dadosLocatarios)
+        {
+            lblLocatarios.Text = dadosLocatarios.DefaultView[0]["Locatario"].ToString();
+            lblLocatarios.Visible = true;
+
+            if (!string.IsNullOrEmpty(dadosLocatarios.DefaultView[0]["Locatario2"].ToString().Trim()))
+            {
+                lblLocatarios.Text += " / " + dadosLocatarios.DefaultView[0]["Locatario2"].ToString().Trim();
+            }
+
+            lblCpfLocatarios.Text = dadosLocatarios.DefaultView[0]["CpfLocatario"].ToString().Trim();
+            lblCpfLocatarios.Visible = true;
+
+            if (!string.IsNullOrEmpty(dadosLocatarios.DefaultView[0]["CpfLocatario2"].ToString().Trim()))
+            {
+                lblCpfLocatarios.Text += " / " + dadosLocatarios.DefaultView[0]["CpfLocatario2"].ToString().Trim();
+            }
+        }
+
+        private void CarregaDadosLocadores(DataTable dadosLocatario)
+        {
+            string idLocadores = string.Empty;
+
+            if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString()) && dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString() != "0")
+            {
+                idLocadores = dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString().Trim();
+            }
+
+            if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString()) && dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString() != "0")
+            {
+                idLocadores += "," + dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString().Trim();
+            }
+
+            if (!string.IsNullOrEmpty(idLocadores))
+            {
+                DataTable dtLocadores = CarregaDadosTabela(2, idLocadores);
+
+                string locadores = string.Empty;
+                string docLocadores = string.Empty;
+
+                for (int i = 0; i < dtLocadores.Rows.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        locadores += " / " + dtLocadores.DefaultView[i]["Locador"].ToString().Trim();
+
+                        if (!string.IsNullOrEmpty(dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim()))
+                        {
+                            docLocadores += " / " + dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim();
+                        }
+                        else
+                        {
+                            docLocadores += " / " + dtLocadores.DefaultView[i]["Cpf"].ToString().Trim();
+                        }
+                    }
+                    else
+                    {
+                        locadores += dtLocadores.DefaultView[i]["Locador"].ToString().Trim();
+
+                        if (!string.IsNullOrEmpty(dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim()))
+                        {
+                            docLocadores += dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim();
+                        }
+                        else
+                        {
+                            docLocadores += dtLocadores.DefaultView[i]["Cpf"].ToString().Trim();
+                        }
+                    }
+                }
+
+                lblLocadores.Text = locadores;
+                lblLocadores.Visible = true;
+
+                lblDocLocadores.Text = docLocadores;
+                lblDocLocadores.Visible = true;
             }
         }
 

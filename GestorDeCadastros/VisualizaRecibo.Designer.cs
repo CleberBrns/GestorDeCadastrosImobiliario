@@ -32,6 +32,10 @@
             this.tcRecibos = new System.Windows.Forms.TabControl();
             this.tpPrincipal = new System.Windows.Forms.TabPage();
             this.pnlInfoLocatario = new System.Windows.Forms.Panel();
+            this.panel27 = new System.Windows.Forms.Panel();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.txtMultaRP = new System.Windows.Forms.TextBox();
             this.panel19 = new System.Windows.Forms.Panel();
             this.txtDataCadastro = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,7 +50,7 @@
             this.txtExtensoValorTotal = new System.Windows.Forms.TextBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.label31 = new System.Windows.Forms.Label();
-            this.txtFormaPagto = new System.Windows.Forms.TextBox();
+            this.txtObservacao = new System.Windows.Forms.TextBox();
             this.panel13 = new System.Windows.Forms.Panel();
             this.label34 = new System.Windows.Forms.Label();
             this.txtTotalRcPrincipal = new System.Windows.Forms.TextBox();
@@ -99,24 +103,32 @@
             this.txtRejuste = new System.Windows.Forms.TextBox();
             this.tpLocador = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel28 = new System.Windows.Forms.Panel();
+            this.label62 = new System.Windows.Forms.Label();
+            this.txtComp3RL = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
+            this.txtComp2RL = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtComp1RL = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.panel29 = new System.Windows.Forms.Panel();
+            this.txtDescComp3RL = new System.Windows.Forms.TextBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.txtDescComp2RL = new System.Windows.Forms.TextBox();
+            this.label58 = new System.Windows.Forms.Label();
+            this.txtDescComp1RL = new System.Windows.Forms.TextBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.panel20 = new System.Windows.Forms.Panel();
             this.label66 = new System.Windows.Forms.Label();
-            this.lblLocador = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtComplementoRL = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.txtDescricaoComplementoRL = new System.Windows.Forms.TextBox();
+            this.lblLocadores = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.btRP = new System.Windows.Forms.Button();
             this.btPVImpressaoRL = new System.Windows.Forms.Button();
             this.label51 = new System.Windows.Forms.Label();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.label47 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.txtSubTotal3 = new System.Windows.Forms.TextBox();
             this.panel23 = new System.Windows.Forms.Panel();
             this.label39 = new System.Windows.Forms.Label();
             this.txtSubTotal2 = new System.Windows.Forms.TextBox();
@@ -135,11 +147,9 @@
             this.label33 = new System.Windows.Forms.Label();
             this.txtComissao = new System.Windows.Forms.TextBox();
             this.panel16 = new System.Windows.Forms.Panel();
-            this.label44 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.nudPctMulta = new System.Windows.Forms.NumericUpDown();
             this.label45 = new System.Windows.Forms.Label();
-            this.txtMulta = new System.Windows.Forms.TextBox();
+            this.txtMultaRL = new System.Windows.Forms.TextBox();
             this.panel18 = new System.Windows.Forms.Panel();
             this.label38 = new System.Windows.Forms.Label();
             this.txtAluguelRcLocador = new System.Windows.Forms.TextBox();
@@ -149,6 +159,7 @@
             this.tcRecibos.SuspendLayout();
             this.tpPrincipal.SuspendLayout();
             this.pnlInfoLocatario.SuspendLayout();
+            this.panel27.SuspendLayout();
             this.panel19.SuspendLayout();
             this.panel25.SuspendLayout();
             this.panel15.SuspendLayout();
@@ -171,17 +182,17 @@
             this.pnlReajuste.SuspendLayout();
             this.tpLocador.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel20.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel28.SuspendLayout();
+            this.panel29.SuspendLayout();
+            this.panel20.SuspendLayout();
             this.panel26.SuspendLayout();
-            this.panel24.SuspendLayout();
             this.panel23.SuspendLayout();
             this.panel22.SuspendLayout();
             this.panel21.SuspendLayout();
             this.panel17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPctComissao)).BeginInit();
             this.panel16.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPctMulta)).BeginInit();
             this.panel18.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -212,6 +223,7 @@
             // 
             this.pnlInfoLocatario.BackColor = System.Drawing.Color.LightGray;
             this.pnlInfoLocatario.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlInfoLocatario.Controls.Add(this.panel27);
             this.pnlInfoLocatario.Controls.Add(this.panel19);
             this.pnlInfoLocatario.Controls.Add(this.lblIdReciboPrincipal);
             this.pnlInfoLocatario.Controls.Add(this.panel25);
@@ -233,6 +245,47 @@
             this.pnlInfoLocatario.Name = "pnlInfoLocatario";
             this.pnlInfoLocatario.Size = new System.Drawing.Size(1321, 680);
             this.pnlInfoLocatario.TabIndex = 0;
+            // 
+            // panel27
+            // 
+            this.panel27.BackColor = System.Drawing.Color.DarkGray;
+            this.panel27.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel27.Controls.Add(this.label55);
+            this.panel27.Controls.Add(this.label56);
+            this.panel27.Controls.Add(this.txtMultaRP);
+            this.panel27.Location = new System.Drawing.Point(781, 252);
+            this.panel27.Name = "panel27";
+            this.panel27.Size = new System.Drawing.Size(186, 44);
+            this.panel27.TabIndex = 136;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label55.Location = new System.Drawing.Point(58, 10);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(27, 18);
+            this.label55.TabIndex = 118;
+            this.label55.Text = "R$";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(5, 10);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(47, 18);
+            this.label56.TabIndex = 123;
+            this.label56.Text = "Multa";
+            // 
+            // txtMultaRP
+            // 
+            this.txtMultaRP.Enabled = false;
+            this.txtMultaRP.Location = new System.Drawing.Point(86, 7);
+            this.txtMultaRP.Name = "txtMultaRP";
+            this.txtMultaRP.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtMultaRP.Size = new System.Drawing.Size(86, 25);
+            this.txtMultaRP.TabIndex = 117;
             // 
             // panel19
             // 
@@ -372,7 +425,7 @@
             this.panel14.BackColor = System.Drawing.Color.DarkGray;
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel14.Controls.Add(this.label31);
-            this.panel14.Controls.Add(this.txtFormaPagto);
+            this.panel14.Controls.Add(this.txtObservacao);
             this.panel14.Location = new System.Drawing.Point(26, 342);
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(389, 45);
@@ -384,17 +437,17 @@
             this.label31.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.Location = new System.Drawing.Point(6, 10);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(157, 18);
+            this.label31.Size = new System.Drawing.Size(94, 18);
             this.label31.TabIndex = 83;
-            this.label31.Text = "Forma de Pagamento";
+            this.label31.Text = "Observação";
             // 
-            // txtFormaPagto
+            // txtObservacao
             // 
-            this.txtFormaPagto.Enabled = false;
-            this.txtFormaPagto.Location = new System.Drawing.Point(166, 7);
-            this.txtFormaPagto.Name = "txtFormaPagto";
-            this.txtFormaPagto.Size = new System.Drawing.Size(206, 25);
-            this.txtFormaPagto.TabIndex = 13;
+            this.txtObservacao.Enabled = false;
+            this.txtObservacao.Location = new System.Drawing.Point(106, 7);
+            this.txtObservacao.Name = "txtObservacao";
+            this.txtObservacao.Size = new System.Drawing.Size(266, 25);
+            this.txtObservacao.TabIndex = 13;
             // 
             // panel13
             // 
@@ -549,15 +602,15 @@
             this.label1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 22);
+            this.label1.Size = new System.Drawing.Size(128, 22);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Locatário;";
+            this.label1.Text = "Locatário(s);";
             // 
             // lblLocatario
             // 
             this.lblLocatario.AutoSize = true;
             this.lblLocatario.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocatario.Location = new System.Drawing.Point(103, 9);
+            this.lblLocatario.Location = new System.Drawing.Point(137, 9);
             this.lblLocatario.Name = "lblLocatario";
             this.lblLocatario.Size = new System.Drawing.Size(120, 22);
             this.lblLocatario.TabIndex = 48;
@@ -942,10 +995,9 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.panel20);
             this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.panel20);
             this.panel2.Controls.Add(this.panel26);
-            this.panel2.Controls.Add(this.panel24);
             this.panel2.Controls.Add(this.panel23);
             this.panel2.Controls.Add(this.panel22);
             this.panel2.Controls.Add(this.panel21);
@@ -959,15 +1011,195 @@
             this.panel2.Size = new System.Drawing.Size(1300, 680);
             this.panel2.TabIndex = 6;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.DarkGray;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.panel28);
+            this.panel1.Controls.Add(this.panel29);
+            this.panel1.Controls.Add(this.label26);
+            this.panel1.Location = new System.Drawing.Point(355, 167);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(367, 246);
+            this.panel1.TabIndex = 131;
+            // 
+            // panel28
+            // 
+            this.panel28.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel28.Controls.Add(this.label62);
+            this.panel28.Controls.Add(this.txtComp3RL);
+            this.panel28.Controls.Add(this.label60);
+            this.panel28.Controls.Add(this.txtComp2RL);
+            this.panel28.Controls.Add(this.label37);
+            this.panel28.Controls.Add(this.txtComp1RL);
+            this.panel28.Controls.Add(this.label9);
+            this.panel28.Location = new System.Drawing.Point(218, 32);
+            this.panel28.Name = "panel28";
+            this.panel28.Size = new System.Drawing.Size(133, 193);
+            this.panel28.TabIndex = 124;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.Location = new System.Drawing.Point(3, 140);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(27, 18);
+            this.label62.TabIndex = 125;
+            this.label62.Text = "R$";
+            // 
+            // txtComp3RL
+            // 
+            this.txtComp3RL.Enabled = false;
+            this.txtComp3RL.Location = new System.Drawing.Point(30, 137);
+            this.txtComp3RL.Name = "txtComp3RL";
+            this.txtComp3RL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtComp3RL.Size = new System.Drawing.Size(86, 25);
+            this.txtComp3RL.TabIndex = 127;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label60.Location = new System.Drawing.Point(3, 95);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(27, 18);
+            this.label60.TabIndex = 122;
+            this.label60.Text = "R$";
+            // 
+            // txtComp2RL
+            // 
+            this.txtComp2RL.Enabled = false;
+            this.txtComp2RL.Location = new System.Drawing.Point(30, 92);
+            this.txtComp2RL.Name = "txtComp2RL";
+            this.txtComp2RL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtComp2RL.Size = new System.Drawing.Size(86, 25);
+            this.txtComp2RL.TabIndex = 124;
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(3, 46);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(27, 18);
+            this.label37.TabIndex = 118;
+            this.label37.Text = "R$";
+            // 
+            // txtComp1RL
+            // 
+            this.txtComp1RL.Enabled = false;
+            this.txtComp1RL.Location = new System.Drawing.Point(30, 43);
+            this.txtComp1RL.Name = "txtComp1RL";
+            this.txtComp1RL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtComp1RL.Size = new System.Drawing.Size(86, 25);
+            this.txtComp1RL.TabIndex = 120;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(3, 6);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 18);
+            this.label9.TabIndex = 121;
+            this.label9.Text = "Valor";
+            // 
+            // panel29
+            // 
+            this.panel29.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel29.Controls.Add(this.txtDescComp3RL);
+            this.panel29.Controls.Add(this.label59);
+            this.panel29.Controls.Add(this.txtDescComp2RL);
+            this.panel29.Controls.Add(this.label58);
+            this.panel29.Controls.Add(this.txtDescComp1RL);
+            this.panel29.Controls.Add(this.label52);
+            this.panel29.Controls.Add(this.label57);
+            this.panel29.Location = new System.Drawing.Point(9, 32);
+            this.panel29.Name = "panel29";
+            this.panel29.Size = new System.Drawing.Size(196, 193);
+            this.panel29.TabIndex = 123;
+            // 
+            // txtDescComp3RL
+            // 
+            this.txtDescComp3RL.Location = new System.Drawing.Point(19, 137);
+            this.txtDescComp3RL.Name = "txtDescComp3RL";
+            this.txtDescComp3RL.Size = new System.Drawing.Size(167, 25);
+            this.txtDescComp3RL.TabIndex = 125;
+            // 
+            // label59
+            // 
+            this.label59.AutoSize = true;
+            this.label59.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label59.Location = new System.Drawing.Point(3, 140);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(16, 18);
+            this.label59.TabIndex = 126;
+            this.label59.Text = "3";
+            // 
+            // txtDescComp2RL
+            // 
+            this.txtDescComp2RL.Location = new System.Drawing.Point(19, 90);
+            this.txtDescComp2RL.Name = "txtDescComp2RL";
+            this.txtDescComp2RL.Size = new System.Drawing.Size(167, 25);
+            this.txtDescComp2RL.TabIndex = 123;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.Location = new System.Drawing.Point(3, 93);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(16, 18);
+            this.label58.TabIndex = 124;
+            this.label58.Text = "2";
+            // 
+            // txtDescComp1RL
+            // 
+            this.txtDescComp1RL.Location = new System.Drawing.Point(19, 43);
+            this.txtDescComp1RL.Name = "txtDescComp1RL";
+            this.txtDescComp1RL.Size = new System.Drawing.Size(167, 25);
+            this.txtDescComp1RL.TabIndex = 12;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.Location = new System.Drawing.Point(5, 6);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(79, 18);
+            this.label52.TabIndex = 81;
+            this.label52.Text = "Descrição";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(3, 46);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(16, 18);
+            this.label57.TabIndex = 122;
+            this.label57.Text = "1";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(3, 11);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(114, 18);
+            this.label26.TabIndex = 78;
+            this.label26.Text = "Complementos";
+            // 
             // panel20
             // 
             this.panel20.BackColor = System.Drawing.Color.DarkGray;
             this.panel20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel20.Controls.Add(this.label66);
-            this.panel20.Controls.Add(this.lblLocador);
+            this.panel20.Controls.Add(this.lblLocadores);
             this.panel20.Location = new System.Drawing.Point(41, 7);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(849, 45);
+            this.panel20.Size = new System.Drawing.Size(699, 45);
             this.panel20.TabIndex = 130;
             // 
             // label66
@@ -976,81 +1208,20 @@
             this.label66.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label66.Location = new System.Drawing.Point(3, 8);
             this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(95, 22);
+            this.label66.Size = new System.Drawing.Size(129, 22);
             this.label66.TabIndex = 1;
-            this.label66.Text = "Locador;";
+            this.label66.Text = "Locador(es);";
             // 
-            // lblLocador
+            // lblLocadores
             // 
-            this.lblLocador.AutoSize = true;
-            this.lblLocador.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocador.Location = new System.Drawing.Point(92, 8);
-            this.lblLocador.Name = "lblLocador";
-            this.lblLocador.Size = new System.Drawing.Size(110, 22);
-            this.lblLocador.TabIndex = 103;
-            this.lblLocador.Text = "lblLocador";
-            this.lblLocador.Visible = false;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.DarkGray;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.label26);
-            this.panel1.Controls.Add(this.txtComplementoRL);
-            this.panel1.Controls.Add(this.label37);
-            this.panel1.Controls.Add(this.label52);
-            this.panel1.Controls.Add(this.txtDescricaoComplementoRL);
-            this.panel1.Location = new System.Drawing.Point(357, 172);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(413, 120);
-            this.panel1.TabIndex = 129;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(3, 11);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(189, 18);
-            this.label26.TabIndex = 78;
-            this.label26.Text = "Complemento Pagamento";
-            // 
-            // txtComplementoRL
-            // 
-            this.txtComplementoRL.Enabled = false;
-            this.txtComplementoRL.Location = new System.Drawing.Point(220, 8);
-            this.txtComplementoRL.Name = "txtComplementoRL";
-            this.txtComplementoRL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtComplementoRL.Size = new System.Drawing.Size(86, 25);
-            this.txtComplementoRL.TabIndex = 120;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(191, 11);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(27, 18);
-            this.label37.TabIndex = 118;
-            this.label37.Text = "R$";
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.Location = new System.Drawing.Point(4, 48);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(264, 18);
-            this.label52.TabIndex = 81;
-            this.label52.Text = "Descrição Complemento Pagamento";
-            // 
-            // txtDescricaoComplementoRL
-            // 
-            this.txtDescricaoComplementoRL.Enabled = false;
-            this.txtDescricaoComplementoRL.Location = new System.Drawing.Point(9, 77);
-            this.txtDescricaoComplementoRL.Name = "txtDescricaoComplementoRL";
-            this.txtDescricaoComplementoRL.Size = new System.Drawing.Size(391, 25);
-            this.txtDescricaoComplementoRL.TabIndex = 12;
+            this.lblLocadores.AutoSize = true;
+            this.lblLocadores.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocadores.Location = new System.Drawing.Point(138, 8);
+            this.lblLocadores.Name = "lblLocadores";
+            this.lblLocadores.Size = new System.Drawing.Size(132, 22);
+            this.lblLocadores.TabIndex = 103;
+            this.lblLocadores.Text = "lblLocadores";
+            this.lblLocadores.Visible = false;
             // 
             // panel26
             // 
@@ -1113,47 +1284,6 @@
             this.label51.Size = new System.Drawing.Size(57, 19);
             this.label51.TabIndex = 128;
             this.label51.Text = "Ações";
-            // 
-            // panel24
-            // 
-            this.panel24.BackColor = System.Drawing.Color.DarkGray;
-            this.panel24.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel24.Controls.Add(this.label47);
-            this.panel24.Controls.Add(this.label40);
-            this.panel24.Controls.Add(this.txtSubTotal3);
-            this.panel24.Location = new System.Drawing.Point(357, 310);
-            this.panel24.Name = "panel24";
-            this.panel24.Size = new System.Drawing.Size(365, 93);
-            this.panel24.TabIndex = 122;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(10, 11);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(280, 18);
-            this.label47.TabIndex = 129;
-            this.label47.Text = "Operação = SubTotal 2 - Complemento";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(6, 54);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(106, 18);
-            this.label40.TabIndex = 118;
-            this.label40.Text = "SubTotal 3 R$";
-            // 
-            // txtSubTotal3
-            // 
-            this.txtSubTotal3.Enabled = false;
-            this.txtSubTotal3.Location = new System.Drawing.Point(114, 51);
-            this.txtSubTotal3.Name = "txtSubTotal3";
-            this.txtSubTotal3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtSubTotal3.Size = new System.Drawing.Size(86, 25);
-            this.txtSubTotal3.TabIndex = 117;
             // 
             // panel23
             // 
@@ -1243,7 +1373,7 @@
             this.panel21.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel21.Controls.Add(this.label23);
             this.panel21.Controls.Add(this.txtTotalRcLocador);
-            this.panel21.Location = new System.Drawing.Point(357, 416);
+            this.panel21.Location = new System.Drawing.Point(355, 430);
             this.panel21.Name = "panel21";
             this.panel21.Size = new System.Drawing.Size(311, 45);
             this.panel21.TabIndex = 122;
@@ -1337,68 +1467,42 @@
             // 
             this.panel16.BackColor = System.Drawing.Color.DarkGray;
             this.panel16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel16.Controls.Add(this.label44);
             this.panel16.Controls.Add(this.label18);
-            this.panel16.Controls.Add(this.nudPctMulta);
             this.panel16.Controls.Add(this.label45);
-            this.panel16.Controls.Add(this.txtMulta);
+            this.panel16.Controls.Add(this.txtMultaRL);
             this.panel16.Location = new System.Drawing.Point(39, 151);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(153, 82);
+            this.panel16.Size = new System.Drawing.Size(206, 52);
             this.panel16.TabIndex = 120;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(105, 8);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(21, 18);
-            this.label44.TabIndex = 125;
-            this.label44.Text = "%";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(6, 48);
+            this.label18.Location = new System.Drawing.Point(63, 12);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(27, 18);
             this.label18.TabIndex = 118;
             this.label18.Text = "R$";
             // 
-            // nudPctMulta
-            // 
-            this.nudPctMulta.Enabled = false;
-            this.nudPctMulta.Location = new System.Drawing.Point(58, 6);
-            this.nudPctMulta.Name = "nudPctMulta";
-            this.nudPctMulta.Size = new System.Drawing.Size(41, 25);
-            this.nudPctMulta.TabIndex = 124;
-            this.nudPctMulta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nudPctMulta.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            // 
             // label45
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(5, 8);
+            this.label45.Location = new System.Drawing.Point(5, 12);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(47, 18);
             this.label45.TabIndex = 123;
             this.label45.Text = "Multa";
             // 
-            // txtMulta
+            // txtMultaRL
             // 
-            this.txtMulta.Enabled = false;
-            this.txtMulta.Location = new System.Drawing.Point(34, 45);
-            this.txtMulta.Name = "txtMulta";
-            this.txtMulta.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtMulta.Size = new System.Drawing.Size(86, 25);
-            this.txtMulta.TabIndex = 117;
+            this.txtMultaRL.Enabled = false;
+            this.txtMultaRL.Location = new System.Drawing.Point(91, 9);
+            this.txtMultaRL.Name = "txtMultaRL";
+            this.txtMultaRL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtMultaRL.Size = new System.Drawing.Size(86, 25);
+            this.txtMultaRL.TabIndex = 117;
             // 
             // panel18
             // 
@@ -1408,7 +1512,7 @@
             this.panel18.Controls.Add(this.txtAluguelRcLocador);
             this.panel18.Location = new System.Drawing.Point(39, 62);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(291, 73);
+            this.panel18.Size = new System.Drawing.Size(206, 57);
             this.panel18.TabIndex = 119;
             // 
             // label38
@@ -1469,6 +1573,8 @@
             this.tpPrincipal.ResumeLayout(false);
             this.pnlInfoLocatario.ResumeLayout(false);
             this.pnlInfoLocatario.PerformLayout();
+            this.panel27.ResumeLayout(false);
+            this.panel27.PerformLayout();
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
             this.panel25.ResumeLayout(false);
@@ -1508,14 +1614,16 @@
             this.tpLocador.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel20.ResumeLayout(false);
-            this.panel20.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel28.ResumeLayout(false);
+            this.panel28.PerformLayout();
+            this.panel29.ResumeLayout(false);
+            this.panel29.PerformLayout();
+            this.panel20.ResumeLayout(false);
+            this.panel20.PerformLayout();
             this.panel26.ResumeLayout(false);
             this.panel26.PerformLayout();
-            this.panel24.ResumeLayout(false);
-            this.panel24.PerformLayout();
             this.panel23.ResumeLayout(false);
             this.panel23.PerformLayout();
             this.panel22.ResumeLayout(false);
@@ -1527,7 +1635,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudPctComissao)).EndInit();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudPctMulta)).EndInit();
             this.panel18.ResumeLayout(false);
             this.panel18.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -1558,7 +1665,7 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox txtFormaPagto;
+        private System.Windows.Forms.TextBox txtObservacao;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.TextBox txtDescricaoCompPagto;
         private System.Windows.Forms.Label label30;
@@ -1598,19 +1705,9 @@
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox txtComplementoRL;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.TextBox txtDescricaoComplementoRL;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.Button btPVImpressaoRL;
         private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.TextBox txtSubTotal3;
         private System.Windows.Forms.Panel panel23;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.TextBox txtSubTotal2;
@@ -1630,20 +1727,17 @@
         private System.Windows.Forms.TextBox txtComissao;
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox txtMulta;
+        private System.Windows.Forms.TextBox txtMultaRL;
         private System.Windows.Forms.Panel panel18;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TextBox txtAluguelRcLocador;
-        private System.Windows.Forms.Label lblLocador;
+        private System.Windows.Forms.Label lblLocadores;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label lblIdReciboLocador;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.Label lblIdReciboPrincipal;
         private System.Windows.Forms.TextBox txtPeriodo;
         private System.Windows.Forms.TextBox txtRejuste;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.NumericUpDown nudPctMulta;
         private System.Windows.Forms.Panel panel19;
         private System.Windows.Forms.TextBox txtDataCadastro;
         private System.Windows.Forms.Label label3;
@@ -1654,5 +1748,28 @@
         private System.Windows.Forms.Button btRP;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel27;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.TextBox txtMultaRP;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel28;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.TextBox txtComp3RL;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.TextBox txtComp2RL;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox txtComp1RL;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Panel panel29;
+        private System.Windows.Forms.TextBox txtDescComp3RL;
+        private System.Windows.Forms.Label label59;
+        private System.Windows.Forms.TextBox txtDescComp2RL;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.TextBox txtDescComp1RL;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label26;
     }
 }

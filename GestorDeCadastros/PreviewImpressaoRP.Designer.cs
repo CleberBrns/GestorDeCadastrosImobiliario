@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.pnlImpressao = new System.Windows.Forms.Panel();
+            this.lblMulta = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblCompPagamento = new System.Windows.Forms.Label();
+            this.lblDescComplemento = new System.Windows.Forms.Label();
             this.lblReajuste = new System.Windows.Forms.Label();
             this.lblTotal = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
@@ -37,10 +41,6 @@
             this.label42 = new System.Windows.Forms.Label();
             this.lblLuz = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
-            this.txtDescComplemento = new System.Windows.Forms.TextBox();
-            this.lblDescComplemento = new System.Windows.Forms.Label();
-            this.lblComPagamento = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
             this.lblDespCondominio = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.lblQtdNumeroIptu = new System.Windows.Forms.Label();
@@ -49,22 +49,22 @@
             this.label31 = new System.Windows.Forms.Label();
             this.lblAluguel = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.lblFormaPagamento = new System.Windows.Forms.Label();
+            this.lblObservacao = new System.Windows.Forms.Label();
             this.txtTotalExtenso = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
+            this.lblTextoObervecao = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.lblDataFormatada = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.lblDocLocador = new System.Windows.Forms.Label();
+            this.lblDocLocadores = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.lblLocador = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.lblLocadores = new System.Windows.Forms.Label();
+            this.lbllbl = new System.Windows.Forms.Label();
             this.lblEnderecoImovel = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.lblCpfLocatario = new System.Windows.Forms.Label();
+            this.lblCpfLocatarios = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.lblLocatario = new System.Windows.Forms.Label();
+            this.lblLocatarios = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblVencimento = new System.Windows.Forms.Label();
             this.lblQtdNumeroRecibo = new System.Windows.Forms.Label();
@@ -86,6 +86,10 @@
             // pnlImpressao
             // 
             this.pnlImpressao.BackColor = System.Drawing.Color.White;
+            this.pnlImpressao.Controls.Add(this.lblMulta);
+            this.pnlImpressao.Controls.Add(this.label9);
+            this.pnlImpressao.Controls.Add(this.lblCompPagamento);
+            this.pnlImpressao.Controls.Add(this.lblDescComplemento);
             this.pnlImpressao.Controls.Add(this.lblReajuste);
             this.pnlImpressao.Controls.Add(this.lblTotal);
             this.pnlImpressao.Controls.Add(this.label45);
@@ -94,10 +98,6 @@
             this.pnlImpressao.Controls.Add(this.label42);
             this.pnlImpressao.Controls.Add(this.lblLuz);
             this.pnlImpressao.Controls.Add(this.label40);
-            this.pnlImpressao.Controls.Add(this.txtDescComplemento);
-            this.pnlImpressao.Controls.Add(this.lblDescComplemento);
-            this.pnlImpressao.Controls.Add(this.lblComPagamento);
-            this.pnlImpressao.Controls.Add(this.label37);
             this.pnlImpressao.Controls.Add(this.lblDespCondominio);
             this.pnlImpressao.Controls.Add(this.label35);
             this.pnlImpressao.Controls.Add(this.lblQtdNumeroIptu);
@@ -106,22 +106,22 @@
             this.pnlImpressao.Controls.Add(this.label31);
             this.pnlImpressao.Controls.Add(this.lblAluguel);
             this.pnlImpressao.Controls.Add(this.label28);
-            this.pnlImpressao.Controls.Add(this.lblFormaPagamento);
+            this.pnlImpressao.Controls.Add(this.lblObservacao);
             this.pnlImpressao.Controls.Add(this.txtTotalExtenso);
-            this.pnlImpressao.Controls.Add(this.label26);
+            this.pnlImpressao.Controls.Add(this.lblTextoObervecao);
             this.pnlImpressao.Controls.Add(this.label25);
             this.pnlImpressao.Controls.Add(this.lblDataFormatada);
             this.pnlImpressao.Controls.Add(this.label22);
             this.pnlImpressao.Controls.Add(this.label21);
-            this.pnlImpressao.Controls.Add(this.lblDocLocador);
+            this.pnlImpressao.Controls.Add(this.lblDocLocadores);
             this.pnlImpressao.Controls.Add(this.label20);
-            this.pnlImpressao.Controls.Add(this.lblLocador);
-            this.pnlImpressao.Controls.Add(this.label18);
+            this.pnlImpressao.Controls.Add(this.lblLocadores);
+            this.pnlImpressao.Controls.Add(this.lbllbl);
             this.pnlImpressao.Controls.Add(this.lblEnderecoImovel);
             this.pnlImpressao.Controls.Add(this.label16);
-            this.pnlImpressao.Controls.Add(this.lblCpfLocatario);
+            this.pnlImpressao.Controls.Add(this.lblCpfLocatarios);
             this.pnlImpressao.Controls.Add(this.label14);
-            this.pnlImpressao.Controls.Add(this.lblLocatario);
+            this.pnlImpressao.Controls.Add(this.lblLocatarios);
             this.pnlImpressao.Controls.Add(this.label11);
             this.pnlImpressao.Controls.Add(this.lblVencimento);
             this.pnlImpressao.Controls.Add(this.lblQtdNumeroRecibo);
@@ -140,6 +140,50 @@
             this.pnlImpressao.Size = new System.Drawing.Size(750, 540);
             this.pnlImpressao.TabIndex = 0;
             // 
+            // lblMulta
+            // 
+            this.lblMulta.AutoSize = true;
+            this.lblMulta.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMulta.Location = new System.Drawing.Point(659, 271);
+            this.lblMulta.Name = "lblMulta";
+            this.lblMulta.Size = new System.Drawing.Size(64, 22);
+            this.lblMulta.TabIndex = 52;
+            this.lblMulta.Text = "xxxxxx";
+            this.lblMulta.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(557, 273);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 22);
+            this.label9.TabIndex = 51;
+            this.label9.Text = "Multa R$:";
+            // 
+            // lblCompPagamento
+            // 
+            this.lblCompPagamento.AutoSize = true;
+            this.lblCompPagamento.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompPagamento.Location = new System.Drawing.Point(659, 360);
+            this.lblCompPagamento.Name = "lblCompPagamento";
+            this.lblCompPagamento.Size = new System.Drawing.Size(64, 22);
+            this.lblCompPagamento.TabIndex = 50;
+            this.lblCompPagamento.Text = "xxxxxx";
+            this.lblCompPagamento.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblCompPagamento.Visible = false;
+            // 
+            // lblDescComplemento
+            // 
+            this.lblDescComplemento.AutoSize = true;
+            this.lblDescComplemento.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescComplemento.Location = new System.Drawing.Point(493, 360);
+            this.lblDescComplemento.Name = "lblDescComplemento";
+            this.lblDescComplemento.Size = new System.Drawing.Size(157, 22);
+            this.lblDescComplemento.TabIndex = 49;
+            this.lblDescComplemento.Text = "Complemento R$:";
+            this.lblDescComplemento.Visible = false;
+            // 
             // lblReajuste
             // 
             this.lblReajuste.AutoSize = true;
@@ -155,7 +199,7 @@
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(659, 373);
+            this.lblTotal.Location = new System.Drawing.Point(659, 415);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(64, 22);
             this.lblTotal.TabIndex = 47;
@@ -165,7 +209,7 @@
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(548, 375);
+            this.label45.Location = new System.Drawing.Point(548, 415);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(108, 22);
             this.label45.TabIndex = 46;
@@ -175,7 +219,7 @@
             // 
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(563, 349);
+            this.label43.Location = new System.Drawing.Point(563, 389);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(177, 19);
             this.label43.TabIndex = 45;
@@ -185,17 +229,18 @@
             // 
             this.lblAgua.AutoSize = true;
             this.lblAgua.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAgua.Location = new System.Drawing.Point(659, 327);
+            this.lblAgua.Location = new System.Drawing.Point(659, 329);
             this.lblAgua.Name = "lblAgua";
             this.lblAgua.Size = new System.Drawing.Size(64, 22);
             this.lblAgua.TabIndex = 44;
             this.lblAgua.Text = "xxxxxx";
+            this.lblAgua.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label42
             // 
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.Location = new System.Drawing.Point(564, 327);
+            this.label42.Location = new System.Drawing.Point(563, 329);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(87, 22);
             this.label42.TabIndex = 43;
@@ -205,65 +250,22 @@
             // 
             this.lblLuz.AutoSize = true;
             this.lblLuz.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLuz.Location = new System.Drawing.Point(661, 300);
+            this.lblLuz.Location = new System.Drawing.Point(659, 300);
             this.lblLuz.Name = "lblLuz";
             this.lblLuz.Size = new System.Drawing.Size(64, 22);
             this.lblLuz.TabIndex = 42;
             this.lblLuz.Text = "xxxxxx";
+            this.lblLuz.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label40
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(575, 300);
+            this.label40.Location = new System.Drawing.Point(577, 300);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(74, 22);
             this.label40.TabIndex = 41;
             this.label40.Text = "Luz R$:";
-            // 
-            // txtDescComplemento
-            // 
-            this.txtDescComplemento.BackColor = System.Drawing.Color.White;
-            this.txtDescComplemento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescComplemento.Enabled = false;
-            this.txtDescComplemento.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescComplemento.Location = new System.Drawing.Point(387, 489);
-            this.txtDescComplemento.Multiline = true;
-            this.txtDescComplemento.Name = "txtDescComplemento";
-            this.txtDescComplemento.Size = new System.Drawing.Size(332, 32);
-            this.txtDescComplemento.TabIndex = 40;
-            this.txtDescComplemento.Visible = false;
-            // 
-            // lblDescComplemento
-            // 
-            this.lblDescComplemento.AutoSize = true;
-            this.lblDescComplemento.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescComplemento.Location = new System.Drawing.Point(276, 493);
-            this.lblDescComplemento.Name = "lblDescComplemento";
-            this.lblDescComplemento.Size = new System.Drawing.Size(109, 19);
-            this.lblDescComplemento.TabIndex = 39;
-            this.lblDescComplemento.Text = "Descri, Comp.:";
-            this.lblDescComplemento.Visible = false;
-            // 
-            // lblComPagamento
-            // 
-            this.lblComPagamento.AutoSize = true;
-            this.lblComPagamento.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComPagamento.Location = new System.Drawing.Point(661, 273);
-            this.lblComPagamento.Name = "lblComPagamento";
-            this.lblComPagamento.Size = new System.Drawing.Size(64, 22);
-            this.lblComPagamento.TabIndex = 38;
-            this.lblComPagamento.Text = "xxxxxx";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(493, 273);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(157, 22);
-            this.label37.TabIndex = 37;
-            this.label37.Text = "Complemento R$:";
             // 
             // lblDespCondominio
             // 
@@ -274,33 +276,35 @@
             this.lblDespCondominio.Size = new System.Drawing.Size(64, 22);
             this.lblDespCondominio.TabIndex = 36;
             this.lblDespCondominio.Text = "xxxxxx";
+            this.lblDespCondominio.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label35
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(457, 243);
+            this.label35.Location = new System.Drawing.Point(491, 243);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(194, 22);
+            this.label35.Size = new System.Drawing.Size(159, 22);
             this.label35.TabIndex = 35;
-            this.label35.Text = "Desp. Condomínio R$:";
+            this.label35.Text = "Desp Condom R$:";
             // 
             // lblQtdNumeroIptu
             // 
             this.lblQtdNumeroIptu.AutoSize = true;
             this.lblQtdNumeroIptu.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdNumeroIptu.Location = new System.Drawing.Point(523, 213);
+            this.lblQtdNumeroIptu.Location = new System.Drawing.Point(511, 213);
             this.lblQtdNumeroIptu.Name = "lblQtdNumeroIptu";
             this.lblQtdNumeroIptu.Size = new System.Drawing.Size(55, 22);
             this.lblQtdNumeroIptu.TabIndex = 34;
             this.lblQtdNumeroIptu.Text = "08/05";
+            this.lblQtdNumeroIptu.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.lblQtdNumeroIptu.Visible = false;
             // 
             // lblParcelasIptu
             // 
             this.lblParcelasIptu.AutoSize = true;
             this.lblParcelasIptu.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblParcelasIptu.Location = new System.Drawing.Point(388, 213);
+            this.lblParcelasIptu.Location = new System.Drawing.Point(368, 213);
             this.lblParcelasIptu.Name = "lblParcelasIptu";
             this.lblParcelasIptu.Size = new System.Drawing.Size(136, 22);
             this.lblParcelasIptu.TabIndex = 33;
@@ -316,6 +320,7 @@
             this.lblIptu.Size = new System.Drawing.Size(64, 22);
             this.lblIptu.TabIndex = 32;
             this.lblIptu.Text = "xxxxxx";
+            this.lblIptu.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label31
             // 
@@ -336,6 +341,7 @@
             this.lblAluguel.Size = new System.Drawing.Size(64, 22);
             this.lblAluguel.TabIndex = 30;
             this.lblAluguel.Text = "xxxxxx";
+            this.lblAluguel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label28
             // 
@@ -347,40 +353,41 @@
             this.label28.TabIndex = 29;
             this.label28.Text = "Aluguel R$:";
             // 
-            // lblFormaPagamento
+            // lblObservacao
             // 
-            this.lblFormaPagamento.AutoSize = true;
-            this.lblFormaPagamento.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFormaPagamento.Location = new System.Drawing.Point(193, 422);
-            this.lblFormaPagamento.Name = "lblFormaPagamento";
-            this.lblFormaPagamento.Size = new System.Drawing.Size(162, 22);
-            this.lblFormaPagamento.TabIndex = 28;
-            this.lblFormaPagamento.Text = "Depósito Bancário";
-            this.lblFormaPagamento.Visible = false;
+            this.lblObservacao.AutoSize = true;
+            this.lblObservacao.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblObservacao.Location = new System.Drawing.Point(122, 422);
+            this.lblObservacao.Name = "lblObservacao";
+            this.lblObservacao.Size = new System.Drawing.Size(162, 22);
+            this.lblObservacao.TabIndex = 28;
+            this.lblObservacao.Text = "Depósito Bancário";
+            this.lblObservacao.Visible = false;
             // 
             // txtTotalExtenso
             // 
             this.txtTotalExtenso.BackColor = System.Drawing.Color.White;
             this.txtTotalExtenso.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtTotalExtenso.Enabled = false;
-            this.txtTotalExtenso.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTotalExtenso.Location = new System.Drawing.Point(164, 375);
+            this.txtTotalExtenso.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.txtTotalExtenso.Font = new System.Drawing.Font("Times New Roman", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalExtenso.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtTotalExtenso.Location = new System.Drawing.Point(158, 369);
             this.txtTotalExtenso.Multiline = true;
             this.txtTotalExtenso.Name = "txtTotalExtenso";
-            this.txtTotalExtenso.Size = new System.Drawing.Size(370, 41);
+            this.txtTotalExtenso.Size = new System.Drawing.Size(331, 50);
             this.txtTotalExtenso.TabIndex = 27;
             this.txtTotalExtenso.Text = "UM MIL E DUZENTO E NOVENTA E OITO REAIS E QUARENTA CENTAVOS";
             this.txtTotalExtenso.Visible = false;
             // 
-            // label26
+            // lblTextoObervecao
             // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(4, 422);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(191, 22);
-            this.label26.TabIndex = 26;
-            this.label26.Text = "Forma de Pagamento:";
+            this.lblTextoObervecao.AutoSize = true;
+            this.lblTextoObervecao.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTextoObervecao.Location = new System.Drawing.Point(4, 422);
+            this.lblTextoObervecao.Name = "lblTextoObervecao";
+            this.lblTextoObervecao.Size = new System.Drawing.Size(113, 22);
+            this.lblTextoObervecao.TabIndex = 26;
+            this.lblTextoObervecao.Text = "Observação:";
             // 
             // label25
             // 
@@ -388,9 +395,9 @@
             this.label25.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label25.Location = new System.Drawing.Point(3, 373);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(162, 22);
+            this.label25.Size = new System.Drawing.Size(149, 22);
             this.label25.TabIndex = 25;
-            this.label25.Text = "Total Por Extenso:";
+            this.label25.Text = "Total P/ Extenso:";
             // 
             // lblDataFormatada
             // 
@@ -422,16 +429,16 @@
             this.label21.TabIndex = 21;
             this.label21.Text = "Representado por Maximiano Games Filho";
             // 
-            // lblDocLocador
+            // lblDocLocadores
             // 
-            this.lblDocLocador.AutoSize = true;
-            this.lblDocLocador.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDocLocador.Location = new System.Drawing.Point(133, 304);
-            this.lblDocLocador.Name = "lblDocLocador";
-            this.lblDocLocador.Size = new System.Drawing.Size(136, 22);
-            this.lblDocLocador.TabIndex = 20;
-            this.lblDocLocador.Text = "999.999.999-99";
-            this.lblDocLocador.Visible = false;
+            this.lblDocLocadores.AutoSize = true;
+            this.lblDocLocadores.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocLocadores.Location = new System.Drawing.Point(117, 304);
+            this.lblDocLocadores.Name = "lblDocLocadores";
+            this.lblDocLocadores.Size = new System.Drawing.Size(136, 22);
+            this.lblDocLocadores.TabIndex = 20;
+            this.lblDocLocadores.Text = "999.999.999-99";
+            this.lblDocLocadores.Visible = false;
             // 
             // label20
             // 
@@ -439,36 +446,36 @@
             this.label20.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(3, 304);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(132, 22);
+            this.label20.Size = new System.Drawing.Size(108, 22);
             this.label20.TabIndex = 19;
-            this.label20.Text = "CPF ou CNPJ:";
+            this.label20.Text = "CPF/CNPJ:";
             // 
-            // lblLocador
+            // lblLocadores
             // 
-            this.lblLocador.AutoSize = true;
-            this.lblLocador.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocador.Location = new System.Drawing.Point(85, 273);
-            this.lblLocador.Name = "lblLocador";
-            this.lblLocador.Size = new System.Drawing.Size(165, 22);
-            this.lblLocador.TabIndex = 18;
-            this.lblLocador.Text = "Jamile Hanna Hair";
-            this.lblLocador.Visible = false;
+            this.lblLocadores.AutoSize = true;
+            this.lblLocadores.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocadores.Location = new System.Drawing.Point(122, 273);
+            this.lblLocadores.Name = "lblLocadores";
+            this.lblLocadores.Size = new System.Drawing.Size(165, 22);
+            this.lblLocadores.TabIndex = 18;
+            this.lblLocadores.Text = "Jamile Hanna Hair";
+            this.lblLocadores.Visible = false;
             // 
-            // label18
+            // lbllbl
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(3, 273);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(84, 22);
-            this.label18.TabIndex = 17;
-            this.label18.Text = "Locador:";
+            this.lbllbl.AutoSize = true;
+            this.lbllbl.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbllbl.Location = new System.Drawing.Point(3, 273);
+            this.lbllbl.Name = "lbllbl";
+            this.lbllbl.Size = new System.Drawing.Size(113, 22);
+            this.lbllbl.TabIndex = 17;
+            this.lbllbl.Text = "Locador(es):";
             // 
             // lblEnderecoImovel
             // 
             this.lblEnderecoImovel.AutoSize = true;
             this.lblEnderecoImovel.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnderecoImovel.Location = new System.Drawing.Point(113, 243);
+            this.lblEnderecoImovel.Location = new System.Drawing.Point(123, 243);
             this.lblEnderecoImovel.Name = "lblEnderecoImovel";
             this.lblEnderecoImovel.Size = new System.Drawing.Size(348, 22);
             this.lblEnderecoImovel.TabIndex = 16;
@@ -481,20 +488,20 @@
             this.label16.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.Location = new System.Drawing.Point(3, 243);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(113, 22);
+            this.label16.Size = new System.Drawing.Size(108, 22);
             this.label16.TabIndex = 15;
-            this.label16.Text = "End. Imóvel:";
+            this.label16.Text = "End Imóvel:";
             // 
-            // lblCpfLocatario
+            // lblCpfLocatarios
             // 
-            this.lblCpfLocatario.AutoSize = true;
-            this.lblCpfLocatario.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCpfLocatario.Location = new System.Drawing.Point(53, 213);
-            this.lblCpfLocatario.Name = "lblCpfLocatario";
-            this.lblCpfLocatario.Size = new System.Drawing.Size(136, 22);
-            this.lblCpfLocatario.TabIndex = 14;
-            this.lblCpfLocatario.Text = "999.999.999-99";
-            this.lblCpfLocatario.Visible = false;
+            this.lblCpfLocatarios.AutoSize = true;
+            this.lblCpfLocatarios.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCpfLocatarios.Location = new System.Drawing.Point(59, 213);
+            this.lblCpfLocatarios.Name = "lblCpfLocatarios";
+            this.lblCpfLocatarios.Size = new System.Drawing.Size(136, 22);
+            this.lblCpfLocatarios.TabIndex = 14;
+            this.lblCpfLocatarios.Text = "999.999.999-99";
+            this.lblCpfLocatarios.Visible = false;
             // 
             // label14
             // 
@@ -506,16 +513,16 @@
             this.label14.TabIndex = 13;
             this.label14.Text = "CPF:";
             // 
-            // lblLocatario
+            // lblLocatarios
             // 
-            this.lblLocatario.AutoSize = true;
-            this.lblLocatario.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocatario.Location = new System.Drawing.Point(94, 185);
-            this.lblLocatario.Name = "lblLocatario";
-            this.lblLocatario.Size = new System.Drawing.Size(262, 22);
-            this.lblLocatario.TabIndex = 12;
-            this.lblLocatario.Text = "Cleber do Nascimento de Brito";
-            this.lblLocatario.Visible = false;
+            this.lblLocatarios.AutoSize = true;
+            this.lblLocatarios.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocatarios.Location = new System.Drawing.Point(123, 185);
+            this.lblLocatarios.Name = "lblLocatarios";
+            this.lblLocatarios.Size = new System.Drawing.Size(262, 22);
+            this.lblLocatarios.TabIndex = 12;
+            this.lblLocatarios.Text = "Cleber do Nascimento de Brito";
+            this.lblLocatarios.Visible = false;
             // 
             // label11
             // 
@@ -523,9 +530,9 @@
             this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(2, 185);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(95, 22);
+            this.label11.Size = new System.Drawing.Size(115, 22);
             this.label11.TabIndex = 11;
-            this.label11.Text = "Locatário:";
+            this.label11.Text = "Locatário(s):";
             // 
             // lblVencimento
             // 
@@ -536,13 +543,14 @@
             this.lblVencimento.Size = new System.Drawing.Size(100, 22);
             this.lblVencimento.TabIndex = 10;
             this.lblVencimento.Text = "10/09/2015";
+            this.lblVencimento.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.lblVencimento.Visible = false;
             // 
             // lblQtdNumeroRecibo
             // 
             this.lblQtdNumeroRecibo.AutoSize = true;
             this.lblQtdNumeroRecibo.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdNumeroRecibo.Location = new System.Drawing.Point(431, 158);
+            this.lblQtdNumeroRecibo.Location = new System.Drawing.Point(438, 158);
             this.lblQtdNumeroRecibo.Name = "lblQtdNumeroRecibo";
             this.lblQtdNumeroRecibo.Size = new System.Drawing.Size(55, 22);
             this.lblQtdNumeroRecibo.TabIndex = 9;
@@ -553,18 +561,19 @@
             // 
             this.lblPeriodo.AutoSize = true;
             this.lblPeriodo.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeriodo.Location = new System.Drawing.Point(113, 131);
+            this.lblPeriodo.Location = new System.Drawing.Point(118, 131);
             this.lblPeriodo.Name = "lblPeriodo";
             this.lblPeriodo.Size = new System.Drawing.Size(234, 22);
             this.lblPeriodo.TabIndex = 8;
             this.lblPeriodo.Text = "de 05/08/2015 a 05/09/2015";
+            this.lblPeriodo.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.lblPeriodo.Visible = false;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(481, 131);
+            this.label7.Location = new System.Drawing.Point(472, 131);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(149, 22);
             this.label7.TabIndex = 7;
@@ -700,23 +709,21 @@
         private System.Windows.Forms.Label lblQtdNumeroRecibo;
         private System.Windows.Forms.Label lblEnderecoImovel;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label lblCpfLocatario;
+        private System.Windows.Forms.Label lblCpfLocatarios;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label lblLocatario;
+        private System.Windows.Forms.Label lblLocatarios;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label lblDocLocador;
+        private System.Windows.Forms.Label lblDocLocadores;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label lblLocador;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblLocadores;
+        private System.Windows.Forms.Label lbllbl;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label lblDataFormatada;
-        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lblTextoObervecao;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.Label lblFormaPagamento;
+        private System.Windows.Forms.Label lblObservacao;
         private System.Windows.Forms.TextBox txtTotalExtenso;
-        private System.Windows.Forms.Label lblComPagamento;
-        private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label lblDespCondominio;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label lblQtdNumeroIptu;
@@ -735,8 +742,10 @@
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.Button btImprimir;
         private System.Windows.Forms.Label lblIdReciboPrincipal;
-        private System.Windows.Forms.TextBox txtDescComplemento;
         private System.Windows.Forms.Label lblReajuste;
+        private System.Windows.Forms.Label lblMulta;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblCompPagamento;
         private System.Windows.Forms.Label lblDescComplemento;
 
     }

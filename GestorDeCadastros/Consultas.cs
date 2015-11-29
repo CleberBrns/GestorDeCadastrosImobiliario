@@ -165,11 +165,13 @@ namespace GestorDeCadastros
 
             if (tipoTabela == 1)
             {
-                cmd.CommandText = "select * from Imoveis where Ativo = 1 and Id = " + idCadastro + "";
+                cmd.CommandText = "select Id, Endereco, Bairro, Cidade, Cep "+
+                    "from Imoveis where Ativo = 1 and Id = " + idCadastro + "";
             }
             else if (tipoTabela == 2)
             {
-                cmd.CommandText = "select * from Locadores where Ativo = 1 and Id = " + idCadastro + "";
+                cmd.CommandText = "select Id, Locador, Cpf, Cnpj  " +
+                "from Locadores where Ativo = 1 and Id = " + idCadastro + "";
             }
 
             sdaDados.SelectCommand = cmd;
@@ -195,24 +197,24 @@ namespace GestorDeCadastros
 
             if (tipoPesquisa == 1)
             {
-                cmd.CommandText = "select Lc.Id, Lc.Locatario, Lc.CpfLocatario, Im.Endereco, Ld.Locador  from Locatarios Lc inner join Imoveis Im " +
-                    "on Lc.fkIdImovel = Im.Id" +
-                    " inner join Locadores Ld on Lc.fkIdLocador = Ld.Id" +
-                    " where Lc.Ativo = 1 and Lc.fkIdImovel = " + valorTabela + "";
+                cmd.CommandText = "select lct.Id, lct.Locatario, lct.CpfLocatario, Im.Endereco, lcds.Locador from Locatarios lct "+
+                    " inner join Imoveis Im on lct.fkIdImovel = Im.Id" +
+                    " inner join Locadores lcds on im.fkIdLocador1 = lcds.Id" +
+                    " where lct.Ativo = 1 and lct.fkIdImovel = " + valorTabela + "";
             }
             else if (tipoPesquisa == 2)
-            {
-                cmd.CommandText = "select Lc.Id, Lc.Locatario, Lc.CpfLocatario, Im.Endereco, Ld.Locador  from Locatarios Lc inner join Imoveis Im " +
-                    "on Lc.fkIdImovel = Im.Id" +
-                    " inner join Locadores Ld on Lc.fkIdLocador = Ld.Id" +
-                    " where Lc.Ativo = 1 and Ld.Id = " + valorTabela + "";
+            {          
+                cmd.CommandText = "select lct.Id, lct.Locatario, lct.CpfLocatario, Im.Endereco, lcds.Locador from Locatarios lct "+
+                   " inner join Imoveis Im on lct.fkIdImovel = Im.Id" +
+                   " inner join Locadores lcds on im.fkIdLocador1 = lcds.Id" +
+                   " where lct.Ativo = 1 and lcds.Id = " + valorTabela + "";
             }
             else
             {
-                cmd.CommandText = "select Lc.Id, Lc.Locatario, Lc.CpfLocatario, Im.Endereco, Ld.Locador  from Locatarios Lc inner join Imoveis Im " +
-                    "on Lc.fkIdImovel = Im.Id" +
-                    " inner join Locadores Ld on Lc.fkIdLocador = Ld.Id" +
-                    " where Lc.Ativo = 1 and Lc.Id = " + valorTabela + "";
+                cmd.CommandText = "select lct.Id, lct.Locatario, lct.CpfLocatario, Im.Endereco, lcds.Locador  from Locatarios lct"+
+                    " inner join Imoveis Im on lct.fkIdImovel = Im.Id" +
+                    " inner join Locadores lcds on im.fkIdLocador1 = lcds.Id" +
+                    " where lct.Ativo = 1 and lct.Id = " + valorTabela + "";
             }
 
             sdaDados.SelectCommand = cmd;
@@ -258,14 +260,10 @@ namespace GestorDeCadastros
                 cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP," +
                                                 " rp.Data as DataReciboRP, rl.Id as IdRL" +
                                                 " from RecibosPrincipais rp" +
-                                                " inner join Locatarios lct" +
-                                                " on lct.Id = rp.fkIdLocatario " +
-                                                " inner join Imoveis im" +
-                                                " on lct.fkIdImovel = im.Id " +
-                                                " inner join Locadores lcds" +
-                                                " on lct.fkIdLocador = lcds.Id " +
-                                                " inner join RecibosLocadores rl" +
-                                                " on rl.fkIdRecibo = rp.Id " +
+                                                " inner join Locatarios lct on lct.Id = rp.fkIdLocatario " +
+                                                " inner join Imoveis im on lct.fkIdImovel = im.Id " +
+                                                " inner join Locadores lcds on im.fkIdLocador1 = lcds.Id " +
+                                                " inner join RecibosLocadores rl on rl.fkIdRecibo = rp.Id " +
                                                 comandoData + " order by rp.Data desc";
             }
             else if (tipoPesquisa == 1)
@@ -273,14 +271,10 @@ namespace GestorDeCadastros
                 cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP," +
                                                 " rp.Data as DataReciboRP, rl.Id as IdRL" +
                                                 " from RecibosPrincipais rp" +
-                                                " inner join Locatarios lct" +
-                                                " on lct.Id = rp.fkIdLocatario " +
-                                                " inner join Imoveis im" +
-                                                " on lct.fkIdImovel = im.Id " +
-                                                " inner join Locadores lcds" +
-                                                " on lct.fkIdLocador = lcds.Id " +
-                                                " inner join RecibosLocadores rl" +
-                                                " on rl.fkIdRecibo = rp.Id " +
+                                                " inner join Locatarios lct on lct.Id = rp.fkIdLocatario " +
+                                                " inner join Imoveis im on lct.fkIdImovel = im.Id " +
+                                                " inner join Locadores lcds on im.fkIdLocador1 = lcds.Id " +
+                                                " inner join RecibosLocadores rl on rl.fkIdRecibo = rp.Id " +
                                                 comandoData + " and im.Id = " + idCadastro + " order by rp.Data desc";
             }
             else if (tipoPesquisa == 2)
@@ -288,14 +282,10 @@ namespace GestorDeCadastros
                 cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP," +
                                 " rp.Data as DataReciboRP, rl.Id as IdRL" +
                                 " from RecibosPrincipais rp" +
-                                " inner join Locatarios lct" +
-                                " on lct.Id = rp.fkIdLocatario " +
-                                " inner join Imoveis im" +
-                                " on lct.fkIdImovel = im.Id " +
-                                " inner join Locadores lcds" +
-                                " on lct.fkIdLocador = lcds.Id " +
-                                " inner join RecibosLocadores rl" +
-                                " on rl.fkIdRecibo = rp.Id " +
+                                " inner join Locatarios lct on lct.Id = rp.fkIdLocatario " +
+                                " inner join Imoveis im on lct.fkIdImovel = im.Id " +
+                                " inner join Locadores lcds on im.fkIdLocador1 = lcds.Id " +
+                                " inner join RecibosLocadores rl on rl.fkIdRecibo = rp.Id " +
                                 comandoData + " and lcds.Id = " + idCadastro + " order by rp.Data desc";
             }
             else
@@ -303,14 +293,10 @@ namespace GestorDeCadastros
                 cmd.CommandText = "select rp.Id as IdRP, lct.Locatario as LocatarioRP, lcds.Locador as LocadorRP, im.Endereco as EnderecoRP," +
                                   " rp.Data as DataReciboRP, rl.Id as IdRL" +
                                   " from RecibosPrincipais rp" +
-                                  " inner join Locatarios lct" +
-                                  " on lct.Id = rp.fkIdLocatario " +
-                                  " inner join Imoveis im" +
-                                  " on lct.fkIdImovel = im.Id " +
-                                  " inner join Locadores lcds" +
-                                  " on lct.fkIdLocador = lcds.Id " +
-                                  " inner join RecibosLocadores rl" +
-                                  " on rl.fkIdRecibo = rp.Id " +
+                                  " inner join Locatarios lct on lct.Id = rp.fkIdLocatario " +
+                                  " inner join Imoveis im on lct.fkIdImovel = im.Id " +
+                                  " inner join Locadores lcds on im.fkIdLocador1 = lcds.Id " +
+                                  " inner join RecibosLocadores rl on rl.fkIdRecibo = rp.Id " +
                                   comandoData + " and lct.Id = " + idCadastro + " order by rp.Data desc";
             }
 

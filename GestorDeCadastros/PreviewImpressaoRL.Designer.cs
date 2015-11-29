@@ -29,16 +29,19 @@
         private void InitializeComponent()
         {
             this.pnlImpressao = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pnlDescricComplemento = new System.Windows.Forms.Panel();
-            this.txtDescricComplemento = new System.Windows.Forms.TextBox();
+            this.lblLocador2 = new System.Windows.Forms.Label();
+            this.lblTextoDocs2 = new System.Windows.Forms.Label();
+            this.lblTextoLocador2 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.lblDescComp3 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblDescComp2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.pnlSubTotal3 = new System.Windows.Forms.Panel();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.lblComplemento = new System.Windows.Forms.Label();
-            this.lblSubTotal3 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblComplemento3 = new System.Windows.Forms.Label();
+            this.lblComplemento2 = new System.Windows.Forms.Label();
+            this.lblDescComp1 = new System.Windows.Forms.Label();
+            this.lblComplemento1 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSubTotal2 = new System.Windows.Forms.Label();
@@ -47,34 +50,34 @@
             this.label1 = new System.Windows.Forms.Label();
             this.lblPorcentMulta = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.pnlDescricComplemento2 = new System.Windows.Forms.Panel();
-            this.txtDescricComplemento2 = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblAluguel2 = new System.Windows.Forms.Label();
-            this.pnlSubTotal3_2 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.lblComplemento2 = new System.Windows.Forms.Label();
-            this.lblSubTotal3_2 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.lblDescComp3_2 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.lblAluguel2 = new System.Windows.Forms.Label();
+            this.lblDescComp2_2 = new System.Windows.Forms.Label();
             this.lblMulta2 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.lblComplemento3_2 = new System.Windows.Forms.Label();
             this.lblPorcentComissao2 = new System.Windows.Forms.Label();
+            this.lblComplemento2_2 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.lblDescComp1_2 = new System.Windows.Forms.Label();
             this.lblComissao2 = new System.Windows.Forms.Label();
             this.lblSubTotal2_2 = new System.Windows.Forms.Label();
+            this.lblComplemento1_2 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.lblTotal2 = new System.Windows.Forms.Label();
+            this.lblTotal_2 = new System.Windows.Forms.Label();
             this.lblSubTotal1_2 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.lblLocador2 = new System.Windows.Forms.Label();
+            this.lblLocador_2 = new System.Windows.Forms.Label();
             this.lblPorcentMulta2 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.lblDocLocador2 = new System.Windows.Forms.Label();
+            this.lblDocLocador_2 = new System.Windows.Forms.Label();
             this.lblDocLocador = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.lblLocador = new System.Windows.Forms.Label();
@@ -89,20 +92,32 @@
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.btImprimir = new System.Windows.Forms.Button();
             this.lblIdReciboLocador = new System.Windows.Forms.Label();
+            this.lblDocLocador2 = new System.Windows.Forms.Label();
+            this.lblDocLocador2_2 = new System.Windows.Forms.Label();
+            this.lblLocador2_2 = new System.Windows.Forms.Label();
+            this.lblTextoDocs2_2 = new System.Windows.Forms.Label();
+            this.lblTextoLocador2_2 = new System.Windows.Forms.Label();
             this.pnlImpressao.SuspendLayout();
-            this.pnlDescricComplemento.SuspendLayout();
-            this.pnlSubTotal3.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.pnlDescricComplemento2.SuspendLayout();
-            this.pnlSubTotal3_2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlImpressao
             // 
             this.pnlImpressao.BackColor = System.Drawing.Color.White;
+            this.pnlImpressao.Controls.Add(this.lblDocLocador2);
+            this.pnlImpressao.Controls.Add(this.lblLocador2);
+            this.pnlImpressao.Controls.Add(this.lblTextoDocs2);
+            this.pnlImpressao.Controls.Add(this.lblTextoLocador2);
+            this.pnlImpressao.Controls.Add(this.label22);
+            this.pnlImpressao.Controls.Add(this.lblDescComp3);
+            this.pnlImpressao.Controls.Add(this.label13);
+            this.pnlImpressao.Controls.Add(this.lblDescComp2);
+            this.pnlImpressao.Controls.Add(this.label6);
+            this.pnlImpressao.Controls.Add(this.lblComplemento3);
+            this.pnlImpressao.Controls.Add(this.lblComplemento2);
+            this.pnlImpressao.Controls.Add(this.lblDescComp1);
+            this.pnlImpressao.Controls.Add(this.lblComplemento1);
             this.pnlImpressao.Controls.Add(this.label8);
-            this.pnlImpressao.Controls.Add(this.pnlDescricComplemento);
-            this.pnlImpressao.Controls.Add(this.pnlSubTotal3);
             this.pnlImpressao.Controls.Add(this.label4);
             this.pnlImpressao.Controls.Add(this.label2);
             this.pnlImpressao.Controls.Add(this.lblSubTotal2);
@@ -128,128 +143,161 @@
             this.pnlImpressao.Size = new System.Drawing.Size(750, 540);
             this.pnlImpressao.TabIndex = 0;
             // 
-            // label8
+            // lblLocador2
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(52, 289);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(274, 24);
-            this.label8.TabIndex = 66;
-            this.label8.Text = "________________________";
+            this.lblLocador2.AutoSize = true;
+            this.lblLocador2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocador2.Location = new System.Drawing.Point(106, 466);
+            this.lblLocador2.Name = "lblLocador2";
+            this.lblLocador2.Size = new System.Drawing.Size(165, 22);
+            this.lblLocador2.TabIndex = 83;
+            this.lblLocador2.Text = "Jamile Hanna Hair";
+            this.lblLocador2.Visible = false;
             // 
-            // pnlDescricComplemento
+            // lblTextoDocs2
             // 
-            this.pnlDescricComplemento.Controls.Add(this.txtDescricComplemento);
-            this.pnlDescricComplemento.Controls.Add(this.label6);
-            this.pnlDescricComplemento.Location = new System.Drawing.Point(15, 352);
-            this.pnlDescricComplemento.Name = "pnlDescricComplemento";
-            this.pnlDescricComplemento.Size = new System.Drawing.Size(364, 117);
-            this.pnlDescricComplemento.TabIndex = 0;
-            this.pnlDescricComplemento.Visible = false;
+            this.lblTextoDocs2.AutoSize = true;
+            this.lblTextoDocs2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTextoDocs2.Location = new System.Drawing.Point(7, 503);
+            this.lblTextoDocs2.Name = "lblTextoDocs2";
+            this.lblTextoDocs2.Size = new System.Drawing.Size(108, 22);
+            this.lblTextoDocs2.TabIndex = 82;
+            this.lblTextoDocs2.Text = "CPF/CNPJ:";
+            this.lblTextoDocs2.Visible = false;
             // 
-            // txtDescricComplemento
+            // lblTextoLocador2
             // 
-            this.txtDescricComplemento.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescricComplemento.Enabled = false;
-            this.txtDescricComplemento.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescricComplemento.Location = new System.Drawing.Point(10, 30);
-            this.txtDescricComplemento.Multiline = true;
-            this.txtDescricComplemento.Name = "txtDescricComplemento";
-            this.txtDescricComplemento.Size = new System.Drawing.Size(344, 83);
-            this.txtDescricComplemento.TabIndex = 65;
+            this.lblTextoLocador2.AutoSize = true;
+            this.lblTextoLocador2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTextoLocador2.Location = new System.Drawing.Point(6, 466);
+            this.lblTextoLocador2.Name = "lblTextoLocador2";
+            this.lblTextoLocador2.Size = new System.Drawing.Size(94, 22);
+            this.lblTextoLocador2.TabIndex = 81;
+            this.lblTextoLocador2.Text = "Locador2;";
+            this.lblTextoLocador2.Visible = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(163, 302);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(39, 22);
+            this.label22.TabIndex = 80;
+            this.label22.Text = "R$:";
+            // 
+            // lblDescComp3
+            // 
+            this.lblDescComp3.AutoSize = true;
+            this.lblDescComp3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescComp3.Location = new System.Drawing.Point(4, 302);
+            this.lblDescComp3.Name = "lblDescComp3";
+            this.lblDescComp3.Size = new System.Drawing.Size(113, 19);
+            this.lblDescComp3.TabIndex = 79;
+            this.lblDescComp3.Text = "Complemento 3";
+            this.lblDescComp3.Visible = false;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(163, 265);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(39, 22);
+            this.label13.TabIndex = 78;
+            this.label13.Text = "R$:";
+            // 
+            // lblDescComp2
+            // 
+            this.lblDescComp2.AutoSize = true;
+            this.lblDescComp2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescComp2.Location = new System.Drawing.Point(5, 265);
+            this.lblDescComp2.Name = "lblDescComp2";
+            this.lblDescComp2.Size = new System.Drawing.Size(113, 19);
+            this.lblDescComp2.TabIndex = 77;
+            this.lblDescComp2.Text = "Complemento 2";
+            this.lblDescComp2.Visible = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(3, 5);
+            this.label6.Location = new System.Drawing.Point(163, 230);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(215, 22);
-            this.label6.TabIndex = 64;
-            this.label6.Text = "Descrição Complemento;";
+            this.label6.Size = new System.Drawing.Size(39, 22);
+            this.label6.TabIndex = 76;
+            this.label6.Text = "R$:";
             // 
-            // pnlSubTotal3
+            // lblComplemento3
             // 
-            this.pnlSubTotal3.Controls.Add(this.label37);
-            this.pnlSubTotal3.Controls.Add(this.label5);
-            this.pnlSubTotal3.Controls.Add(this.lblComplemento);
-            this.pnlSubTotal3.Controls.Add(this.lblSubTotal3);
-            this.pnlSubTotal3.Controls.Add(this.label7);
-            this.pnlSubTotal3.Location = new System.Drawing.Point(16, 217);
-            this.pnlSubTotal3.Name = "pnlSubTotal3";
-            this.pnlSubTotal3.Size = new System.Drawing.Size(350, 84);
-            this.pnlSubTotal3.TabIndex = 64;
+            this.lblComplemento3.AutoSize = true;
+            this.lblComplemento3.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComplemento3.Location = new System.Drawing.Point(242, 302);
+            this.lblComplemento3.Name = "lblComplemento3";
+            this.lblComplemento3.Size = new System.Drawing.Size(64, 22);
+            this.lblComplemento3.TabIndex = 75;
+            this.lblComplemento3.Text = "xxxxxx";
             // 
-            // label37
+            // lblComplemento2
             // 
-            this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(29, 4);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(157, 22);
-            this.label37.TabIndex = 37;
-            this.label37.Text = "Complemento R$:";
+            this.lblComplemento2.AutoSize = true;
+            this.lblComplemento2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComplemento2.Location = new System.Drawing.Point(242, 265);
+            this.lblComplemento2.Name = "lblComplemento2";
+            this.lblComplemento2.Size = new System.Drawing.Size(64, 22);
+            this.lblComplemento2.TabIndex = 73;
+            this.lblComplemento2.Text = "xxxxxx";
             // 
-            // label5
+            // lblDescComp1
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(145, 37);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(39, 22);
-            this.label5.TabIndex = 63;
-            this.label5.Text = "R$:";
+            this.lblDescComp1.AutoSize = true;
+            this.lblDescComp1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescComp1.Location = new System.Drawing.Point(5, 230);
+            this.lblDescComp1.Name = "lblDescComp1";
+            this.lblDescComp1.Size = new System.Drawing.Size(113, 19);
+            this.lblDescComp1.TabIndex = 67;
+            this.lblDescComp1.Text = "Complemento 1";
+            this.lblDescComp1.Visible = false;
             // 
-            // lblComplemento
+            // lblComplemento1
             // 
-            this.lblComplemento.AutoSize = true;
-            this.lblComplemento.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComplemento.Location = new System.Drawing.Point(224, 0);
-            this.lblComplemento.Name = "lblComplemento";
-            this.lblComplemento.Size = new System.Drawing.Size(64, 22);
-            this.lblComplemento.TabIndex = 38;
-            this.lblComplemento.Text = "xxxxxx";
+            this.lblComplemento1.AutoSize = true;
+            this.lblComplemento1.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComplemento1.Location = new System.Drawing.Point(242, 226);
+            this.lblComplemento1.Name = "lblComplemento1";
+            this.lblComplemento1.Size = new System.Drawing.Size(64, 22);
+            this.lblComplemento1.TabIndex = 68;
+            this.lblComplemento1.Text = "xxxxxx";
             // 
-            // lblSubTotal3
+            // label8
             // 
-            this.lblSubTotal3.AutoSize = true;
-            this.lblSubTotal3.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal3.Location = new System.Drawing.Point(224, 44);
-            this.lblSubTotal3.Name = "lblSubTotal3";
-            this.lblSubTotal3.Size = new System.Drawing.Size(64, 22);
-            this.lblSubTotal3.TabIndex = 62;
-            this.lblSubTotal3.Text = "xxxxxx";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(36, 15);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(250, 22);
-            this.label7.TabIndex = 61;
-            this.label7.Text = "________________________";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(32, 329);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(274, 24);
+            this.label8.TabIndex = 66;
+            this.label8.Text = "________________________";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(161, 188);
+            this.label4.Location = new System.Drawing.Point(65, 188);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 22);
+            this.label4.Size = new System.Drawing.Size(137, 22);
             this.label4.TabIndex = 60;
-            this.label4.Text = "R$:";
+            this.label4.Text = "SubTotal 2  R$:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(161, 98);
+            this.label2.Location = new System.Drawing.Point(82, 101);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 22);
+            this.label2.Size = new System.Drawing.Size(122, 22);
             this.label2.TabIndex = 59;
-            this.label2.Text = "R$:";
+            this.label2.Text = "SubTotal  R$:";
             // 
             // lblSubTotal2
             // 
@@ -303,41 +351,73 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblDocLocador2_2);
+            this.panel1.Controls.Add(this.label11);
+            this.panel1.Controls.Add(this.lblLocador2_2);
             this.panel1.Controls.Add(this.label9);
+            this.panel1.Controls.Add(this.lblTextoDocs2_2);
+            this.panel1.Controls.Add(this.lblDescComp3_2);
+            this.panel1.Controls.Add(this.lblTextoLocador2_2);
             this.panel1.Controls.Add(this.label36);
-            this.panel1.Controls.Add(this.pnlDescricComplemento2);
+            this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.lblAluguel2);
-            this.panel1.Controls.Add(this.pnlSubTotal3_2);
+            this.panel1.Controls.Add(this.lblDescComp2_2);
             this.panel1.Controls.Add(this.lblMulta2);
+            this.panel1.Controls.Add(this.label24);
             this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.lblComplemento3_2);
             this.panel1.Controls.Add(this.lblPorcentComissao2);
+            this.panel1.Controls.Add(this.lblComplemento2_2);
             this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.lblDescComp1_2);
             this.panel1.Controls.Add(this.lblComissao2);
             this.panel1.Controls.Add(this.lblSubTotal2_2);
+            this.panel1.Controls.Add(this.lblComplemento1_2);
             this.panel1.Controls.Add(this.label31);
             this.panel1.Controls.Add(this.label21);
-            this.panel1.Controls.Add(this.lblTotal2);
+            this.panel1.Controls.Add(this.lblTotal_2);
             this.panel1.Controls.Add(this.lblSubTotal1_2);
             this.panel1.Controls.Add(this.label29);
             this.panel1.Controls.Add(this.label23);
-            this.panel1.Controls.Add(this.lblLocador2);
+            this.panel1.Controls.Add(this.lblLocador_2);
             this.panel1.Controls.Add(this.lblPorcentMulta2);
             this.panel1.Controls.Add(this.label26);
-            this.panel1.Controls.Add(this.lblDocLocador2);
+            this.panel1.Controls.Add(this.lblDocLocador_2);
             this.panel1.Location = new System.Drawing.Point(385, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(385, 540);
             this.panel1.TabIndex = 52;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(156, 300);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(39, 22);
+            this.label11.TabIndex = 92;
+            this.label11.Text = "R$:";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(47, 288);
+            this.label9.Location = new System.Drawing.Point(46, 331);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(250, 22);
             this.label9.TabIndex = 87;
             this.label9.Text = "________________________";
+            // 
+            // lblDescComp3_2
+            // 
+            this.lblDescComp3_2.AutoSize = true;
+            this.lblDescComp3_2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescComp3_2.Location = new System.Drawing.Point(5, 302);
+            this.lblDescComp3_2.Name = "lblDescComp3_2";
+            this.lblDescComp3_2.Size = new System.Drawing.Size(113, 19);
+            this.lblDescComp3_2.TabIndex = 91;
+            this.lblDescComp3_2.Text = "Complemento 3";
+            this.lblDescComp3_2.Visible = false;
             // 
             // label36
             // 
@@ -349,36 +429,15 @@
             this.label36.TabIndex = 68;
             this.label36.Text = "Aluguel R$:";
             // 
-            // pnlDescricComplemento2
+            // label15
             // 
-            this.pnlDescricComplemento2.Controls.Add(this.txtDescricComplemento2);
-            this.pnlDescricComplemento2.Controls.Add(this.label10);
-            this.pnlDescricComplemento2.Location = new System.Drawing.Point(10, 350);
-            this.pnlDescricComplemento2.Name = "pnlDescricComplemento2";
-            this.pnlDescricComplemento2.Size = new System.Drawing.Size(351, 117);
-            this.pnlDescricComplemento2.TabIndex = 67;
-            this.pnlDescricComplemento2.Visible = false;
-            // 
-            // txtDescricComplemento2
-            // 
-            this.txtDescricComplemento2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtDescricComplemento2.Enabled = false;
-            this.txtDescricComplemento2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescricComplemento2.Location = new System.Drawing.Point(10, 30);
-            this.txtDescricComplemento2.Multiline = true;
-            this.txtDescricComplemento2.Name = "txtDescricComplemento2";
-            this.txtDescricComplemento2.Size = new System.Drawing.Size(325, 83);
-            this.txtDescricComplemento2.TabIndex = 65;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(3, 5);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(215, 22);
-            this.label10.TabIndex = 64;
-            this.label10.Text = "Descrição Complemento;";
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(158, 265);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(39, 22);
+            this.label15.TabIndex = 90;
+            this.label15.Text = "R$:";
             // 
             // lblAluguel2
             // 
@@ -390,113 +449,103 @@
             this.lblAluguel2.TabIndex = 69;
             this.lblAluguel2.Text = "xxxxxx";
             // 
-            // pnlSubTotal3_2
+            // lblDescComp2_2
             // 
-            this.pnlSubTotal3_2.Controls.Add(this.label11);
-            this.pnlSubTotal3_2.Controls.Add(this.label12);
-            this.pnlSubTotal3_2.Controls.Add(this.lblComplemento2);
-            this.pnlSubTotal3_2.Controls.Add(this.lblSubTotal3_2);
-            this.pnlSubTotal3_2.Controls.Add(this.label15);
-            this.pnlSubTotal3_2.Location = new System.Drawing.Point(11, 215);
-            this.pnlSubTotal3_2.Name = "pnlSubTotal3_2";
-            this.pnlSubTotal3_2.Size = new System.Drawing.Size(350, 84);
-            this.pnlSubTotal3_2.TabIndex = 86;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(25, 10);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(157, 22);
-            this.label11.TabIndex = 37;
-            this.label11.Text = "Complemento R$:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(143, 46);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(39, 22);
-            this.label12.TabIndex = 63;
-            this.label12.Text = "R$:";
-            // 
-            // lblComplemento2
-            // 
-            this.lblComplemento2.AutoSize = true;
-            this.lblComplemento2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComplemento2.Location = new System.Drawing.Point(219, 7);
-            this.lblComplemento2.Name = "lblComplemento2";
-            this.lblComplemento2.Size = new System.Drawing.Size(64, 22);
-            this.lblComplemento2.TabIndex = 38;
-            this.lblComplemento2.Text = "xxxxxx";
-            // 
-            // lblSubTotal3_2
-            // 
-            this.lblSubTotal3_2.AutoSize = true;
-            this.lblSubTotal3_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal3_2.Location = new System.Drawing.Point(219, 47);
-            this.lblSubTotal3_2.Name = "lblSubTotal3_2";
-            this.lblSubTotal3_2.Size = new System.Drawing.Size(64, 22);
-            this.lblSubTotal3_2.TabIndex = 62;
-            this.lblSubTotal3_2.Text = "xxxxxx";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(36, 22);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(250, 22);
-            this.label15.TabIndex = 61;
-            this.label15.Text = "________________________";
+            this.lblDescComp2_2.AutoSize = true;
+            this.lblDescComp2_2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescComp2_2.Location = new System.Drawing.Point(5, 265);
+            this.lblDescComp2_2.Name = "lblDescComp2_2";
+            this.lblDescComp2_2.Size = new System.Drawing.Size(113, 19);
+            this.lblDescComp2_2.TabIndex = 89;
+            this.lblDescComp2_2.Text = "Complemento 2";
+            this.lblDescComp2_2.Visible = false;
             // 
             // lblMulta2
             // 
             this.lblMulta2.AutoSize = true;
             this.lblMulta2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMulta2.Location = new System.Drawing.Point(232, 44);
+            this.lblMulta2.Location = new System.Drawing.Point(232, 45);
             this.lblMulta2.Name = "lblMulta2";
             this.lblMulta2.Size = new System.Drawing.Size(64, 22);
             this.lblMulta2.TabIndex = 70;
             this.lblMulta2.Text = "xxxxxx";
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(158, 228);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(39, 22);
+            this.label24.TabIndex = 88;
+            this.label24.Text = "R$:";
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(156, 174);
+            this.label16.Location = new System.Drawing.Point(158, 193);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(39, 22);
             this.label16.TabIndex = 85;
             this.label16.Text = "R$:";
             // 
+            // lblComplemento3_2
+            // 
+            this.lblComplemento3_2.AutoSize = true;
+            this.lblComplemento3_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComplemento3_2.Location = new System.Drawing.Point(232, 302);
+            this.lblComplemento3_2.Name = "lblComplemento3_2";
+            this.lblComplemento3_2.Size = new System.Drawing.Size(64, 22);
+            this.lblComplemento3_2.TabIndex = 87;
+            this.lblComplemento3_2.Text = "xxxxxx";
+            // 
             // lblPorcentComissao2
             // 
             this.lblPorcentComissao2.AutoSize = true;
             this.lblPorcentComissao2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPorcentComissao2.Location = new System.Drawing.Point(27, 128);
+            this.lblPorcentComissao2.Location = new System.Drawing.Point(27, 133);
             this.lblPorcentComissao2.Name = "lblPorcentComissao2";
             this.lblPorcentComissao2.Size = new System.Drawing.Size(168, 22);
             this.lblPorcentComissao2.TabIndex = 71;
             this.lblPorcentComissao2.Text = "- Comissão 8% R$:";
             // 
+            // lblComplemento2_2
+            // 
+            this.lblComplemento2_2.AutoSize = true;
+            this.lblComplemento2_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComplemento2_2.Location = new System.Drawing.Point(232, 265);
+            this.lblComplemento2_2.Name = "lblComplemento2_2";
+            this.lblComplemento2_2.Size = new System.Drawing.Size(64, 22);
+            this.lblComplemento2_2.TabIndex = 86;
+            this.lblComplemento2_2.Text = "xxxxxx";
+            // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(156, 96);
+            this.label17.Location = new System.Drawing.Point(156, 101);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(39, 22);
             this.label17.TabIndex = 84;
             this.label17.Text = "R$:";
             // 
+            // lblDescComp1_2
+            // 
+            this.lblDescComp1_2.AutoSize = true;
+            this.lblDescComp1_2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescComp1_2.Location = new System.Drawing.Point(4, 230);
+            this.lblDescComp1_2.Name = "lblDescComp1_2";
+            this.lblDescComp1_2.Size = new System.Drawing.Size(113, 19);
+            this.lblDescComp1_2.TabIndex = 81;
+            this.lblDescComp1_2.Text = "Complemento 1";
+            this.lblDescComp1_2.Visible = false;
+            // 
             // lblComissao2
             // 
             this.lblComissao2.AutoSize = true;
             this.lblComissao2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComissao2.Location = new System.Drawing.Point(232, 129);
+            this.lblComissao2.Location = new System.Drawing.Point(232, 133);
             this.lblComissao2.Name = "lblComissao2";
             this.lblComissao2.Size = new System.Drawing.Size(64, 22);
             this.lblComissao2.TabIndex = 72;
@@ -506,17 +555,27 @@
             // 
             this.lblSubTotal2_2.AutoSize = true;
             this.lblSubTotal2_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal2_2.Location = new System.Drawing.Point(232, 175);
+            this.lblSubTotal2_2.Location = new System.Drawing.Point(232, 193);
             this.lblSubTotal2_2.Name = "lblSubTotal2_2";
             this.lblSubTotal2_2.Size = new System.Drawing.Size(64, 22);
             this.lblSubTotal2_2.TabIndex = 83;
             this.lblSubTotal2_2.Text = "xxxxxx";
             // 
+            // lblComplemento1_2
+            // 
+            this.lblComplemento1_2.AutoSize = true;
+            this.lblComplemento1_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComplemento1_2.Location = new System.Drawing.Point(232, 226);
+            this.lblComplemento1_2.Name = "lblComplemento1_2";
+            this.lblComplemento1_2.Size = new System.Drawing.Size(64, 22);
+            this.lblComplemento1_2.TabIndex = 82;
+            this.lblComplemento1_2.Text = "xxxxxx";
+            // 
             // label31
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(87, 314);
+            this.label31.Location = new System.Drawing.Point(84, 358);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(108, 22);
             this.label31.TabIndex = 73;
@@ -526,27 +585,27 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(45, 152);
+            this.label21.Location = new System.Drawing.Point(46, 159);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(250, 22);
             this.label21.TabIndex = 82;
             this.label21.Text = "________________________";
             // 
-            // lblTotal2
+            // lblTotal_2
             // 
-            this.lblTotal2.AutoSize = true;
-            this.lblTotal2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal2.Location = new System.Drawing.Point(232, 315);
-            this.lblTotal2.Name = "lblTotal2";
-            this.lblTotal2.Size = new System.Drawing.Size(64, 22);
-            this.lblTotal2.TabIndex = 74;
-            this.lblTotal2.Text = "xxxxxx";
+            this.lblTotal_2.AutoSize = true;
+            this.lblTotal_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal_2.Location = new System.Drawing.Point(232, 356);
+            this.lblTotal_2.Name = "lblTotal_2";
+            this.lblTotal_2.Size = new System.Drawing.Size(64, 22);
+            this.lblTotal_2.TabIndex = 74;
+            this.lblTotal_2.Text = "xxxxxx";
             // 
             // lblSubTotal1_2
             // 
             this.lblSubTotal1_2.AutoSize = true;
             this.lblSubTotal1_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal1_2.Location = new System.Drawing.Point(232, 96);
+            this.lblSubTotal1_2.Location = new System.Drawing.Point(232, 101);
             this.lblSubTotal1_2.Name = "lblSubTotal1_2";
             this.lblSubTotal1_2.Size = new System.Drawing.Size(64, 22);
             this.lblSubTotal1_2.TabIndex = 81;
@@ -556,38 +615,37 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(63, 470);
+            this.label29.Location = new System.Drawing.Point(5, 394);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(84, 22);
             this.label29.TabIndex = 75;
-            this.label29.Text = "Locador:";
+            this.label29.Text = "Locador;";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(45, 64);
+            this.label23.Location = new System.Drawing.Point(46, 73);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(250, 22);
             this.label23.TabIndex = 80;
             this.label23.Text = "________________________";
             // 
-            // lblLocador2
+            // lblLocador_2
             // 
-            this.lblLocador2.AutoSize = true;
-            this.lblLocador2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocador2.Location = new System.Drawing.Point(154, 470);
-            this.lblLocador2.Name = "lblLocador2";
-            this.lblLocador2.Size = new System.Drawing.Size(165, 22);
-            this.lblLocador2.TabIndex = 76;
-            this.lblLocador2.Text = "Jamile Hanna Hair";
-            this.lblLocador2.Visible = false;
+            this.lblLocador_2.AutoSize = true;
+            this.lblLocador_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocador_2.Location = new System.Drawing.Point(109, 394);
+            this.lblLocador_2.Name = "lblLocador_2";
+            this.lblLocador_2.Size = new System.Drawing.Size(165, 22);
+            this.lblLocador_2.TabIndex = 76;
+            this.lblLocador_2.Text = "Jamile Hanna Hair";
             // 
             // lblPorcentMulta2
             // 
             this.lblPorcentMulta2.AutoSize = true;
             this.lblPorcentMulta2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPorcentMulta2.Location = new System.Drawing.Point(56, 43);
+            this.lblPorcentMulta2.Location = new System.Drawing.Point(63, 45);
             this.lblPorcentMulta2.Name = "lblPorcentMulta2";
             this.lblPorcentMulta2.Size = new System.Drawing.Size(141, 22);
             this.lblPorcentMulta2.TabIndex = 79;
@@ -597,70 +655,67 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(10, 501);
+            this.label26.Location = new System.Drawing.Point(5, 427);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(132, 22);
+            this.label26.Size = new System.Drawing.Size(108, 22);
             this.label26.TabIndex = 77;
-            this.label26.Text = "CPF ou CNPJ:";
+            this.label26.Text = "CPF/CNPJ:";
             // 
-            // lblDocLocador2
+            // lblDocLocador_2
             // 
-            this.lblDocLocador2.AutoSize = true;
-            this.lblDocLocador2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDocLocador2.Location = new System.Drawing.Point(154, 502);
-            this.lblDocLocador2.Name = "lblDocLocador2";
-            this.lblDocLocador2.Size = new System.Drawing.Size(136, 22);
-            this.lblDocLocador2.TabIndex = 78;
-            this.lblDocLocador2.Text = "999.999.999-99";
-            this.lblDocLocador2.Visible = false;
+            this.lblDocLocador_2.AutoSize = true;
+            this.lblDocLocador_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocLocador_2.Location = new System.Drawing.Point(124, 427);
+            this.lblDocLocador_2.Name = "lblDocLocador_2";
+            this.lblDocLocador_2.Size = new System.Drawing.Size(136, 22);
+            this.lblDocLocador_2.TabIndex = 78;
+            this.lblDocLocador_2.Text = "999.999.999-99";
             // 
             // lblDocLocador
             // 
             this.lblDocLocador.AutoSize = true;
             this.lblDocLocador.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDocLocador.Location = new System.Drawing.Point(159, 504);
+            this.lblDocLocador.Location = new System.Drawing.Point(124, 427);
             this.lblDocLocador.Name = "lblDocLocador";
             this.lblDocLocador.Size = new System.Drawing.Size(136, 22);
             this.lblDocLocador.TabIndex = 51;
             this.lblDocLocador.Text = "999.999.999-99";
-            this.lblDocLocador.Visible = false;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(20, 501);
+            this.label20.Location = new System.Drawing.Point(6, 427);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(132, 22);
+            this.label20.Size = new System.Drawing.Size(108, 22);
             this.label20.TabIndex = 50;
-            this.label20.Text = "CPF ou CNPJ:";
+            this.label20.Text = "CPF/CNPJ:";
             // 
             // lblLocador
             // 
             this.lblLocador.AutoSize = true;
             this.lblLocador.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocador.Location = new System.Drawing.Point(159, 472);
+            this.lblLocador.Location = new System.Drawing.Point(99, 394);
             this.lblLocador.Name = "lblLocador";
             this.lblLocador.Size = new System.Drawing.Size(165, 22);
             this.lblLocador.TabIndex = 49;
             this.lblLocador.Text = "Jamile Hanna Hair";
-            this.lblLocador.Visible = false;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(68, 472);
+            this.label18.Location = new System.Drawing.Point(5, 394);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(84, 22);
             this.label18.TabIndex = 48;
-            this.label18.Text = "Locador:";
+            this.label18.Text = "Locador;";
             // 
             // lblTotal
             // 
             this.lblTotal.AutoSize = true;
             this.lblTotal.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(237, 317);
+            this.lblTotal.Location = new System.Drawing.Point(237, 357);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(64, 22);
             this.lblTotal.TabIndex = 47;
@@ -670,7 +725,7 @@
             // 
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(92, 316);
+            this.label45.Location = new System.Drawing.Point(92, 356);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(108, 22);
             this.label45.TabIndex = 46;
@@ -690,7 +745,7 @@
             // 
             this.lblPorcentComissao.AutoSize = true;
             this.lblPorcentComissao.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPorcentComissao.Location = new System.Drawing.Point(32, 130);
+            this.lblPorcentComissao.Location = new System.Drawing.Point(36, 131);
             this.lblPorcentComissao.Name = "lblPorcentComissao";
             this.lblPorcentComissao.Size = new System.Drawing.Size(168, 22);
             this.lblPorcentComissao.TabIndex = 35;
@@ -748,6 +803,61 @@
             this.lblIdReciboLocador.Text = "lblIdReciboLocador";
             this.lblIdReciboLocador.Visible = false;
             // 
+            // lblDocLocador2
+            // 
+            this.lblDocLocador2.AutoSize = true;
+            this.lblDocLocador2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocLocador2.Location = new System.Drawing.Point(121, 503);
+            this.lblDocLocador2.Name = "lblDocLocador2";
+            this.lblDocLocador2.Size = new System.Drawing.Size(136, 22);
+            this.lblDocLocador2.TabIndex = 84;
+            this.lblDocLocador2.Text = "999.999.999-99";
+            this.lblDocLocador2.Visible = false;
+            // 
+            // lblDocLocador2_2
+            // 
+            this.lblDocLocador2_2.AutoSize = true;
+            this.lblDocLocador2_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDocLocador2_2.Location = new System.Drawing.Point(120, 503);
+            this.lblDocLocador2_2.Name = "lblDocLocador2_2";
+            this.lblDocLocador2_2.Size = new System.Drawing.Size(136, 22);
+            this.lblDocLocador2_2.TabIndex = 88;
+            this.lblDocLocador2_2.Text = "999.999.999-99";
+            this.lblDocLocador2_2.Visible = false;
+            // 
+            // lblLocador2_2
+            // 
+            this.lblLocador2_2.AutoSize = true;
+            this.lblLocador2_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocador2_2.Location = new System.Drawing.Point(105, 466);
+            this.lblLocador2_2.Name = "lblLocador2_2";
+            this.lblLocador2_2.Size = new System.Drawing.Size(165, 22);
+            this.lblLocador2_2.TabIndex = 87;
+            this.lblLocador2_2.Text = "Jamile Hanna Hair";
+            this.lblLocador2_2.Visible = false;
+            // 
+            // lblTextoDocs2_2
+            // 
+            this.lblTextoDocs2_2.AutoSize = true;
+            this.lblTextoDocs2_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTextoDocs2_2.Location = new System.Drawing.Point(6, 503);
+            this.lblTextoDocs2_2.Name = "lblTextoDocs2_2";
+            this.lblTextoDocs2_2.Size = new System.Drawing.Size(108, 22);
+            this.lblTextoDocs2_2.TabIndex = 86;
+            this.lblTextoDocs2_2.Text = "CPF/CNPJ:";
+            this.lblTextoDocs2_2.Visible = false;
+            // 
+            // lblTextoLocador2_2
+            // 
+            this.lblTextoLocador2_2.AutoSize = true;
+            this.lblTextoLocador2_2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTextoLocador2_2.Location = new System.Drawing.Point(5, 466);
+            this.lblTextoLocador2_2.Name = "lblTextoLocador2_2";
+            this.lblTextoLocador2_2.Size = new System.Drawing.Size(94, 22);
+            this.lblTextoLocador2_2.TabIndex = 85;
+            this.lblTextoLocador2_2.Text = "Locador2;";
+            this.lblTextoLocador2_2.Visible = false;
+            // 
             // PreviewImpressaoRL
             // 
             this.BackColor = System.Drawing.Color.DimGray;
@@ -764,16 +874,8 @@
             this.Load += new System.EventHandler(this.ImpressaoRL_Load);
             this.pnlImpressao.ResumeLayout(false);
             this.pnlImpressao.PerformLayout();
-            this.pnlDescricComplemento.ResumeLayout(false);
-            this.pnlDescricComplemento.PerformLayout();
-            this.pnlSubTotal3.ResumeLayout(false);
-            this.pnlSubTotal3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.pnlDescricComplemento2.ResumeLayout(false);
-            this.pnlDescricComplemento2.PerformLayout();
-            this.pnlSubTotal3_2.ResumeLayout(false);
-            this.pnlSubTotal3_2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -782,8 +884,6 @@
         #endregion       
 
         private System.Windows.Forms.Panel pnlImpressao;
-        private System.Windows.Forms.Label lblComplemento;
-        private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label lblComissao;
         private System.Windows.Forms.Label lblPorcentComissao;
         private System.Windows.Forms.Label lblMulta;
@@ -806,26 +906,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblSubTotal2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lblSubTotal3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Panel pnlSubTotal3;
-        private System.Windows.Forms.Panel pnlDescricComplemento;
-        private System.Windows.Forms.TextBox txtDescricComplemento;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Panel pnlDescricComplemento2;
-        private System.Windows.Forms.TextBox txtDescricComplemento2;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblAluguel2;
-        private System.Windows.Forms.Panel pnlSubTotal3_2;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label lblComplemento2;
-        private System.Windows.Forms.Label lblSubTotal3_2;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblMulta2;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lblPorcentComissao2;
@@ -834,14 +918,40 @@
         private System.Windows.Forms.Label lblSubTotal2_2;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label lblTotal2;
+        private System.Windows.Forms.Label lblTotal_2;
         private System.Windows.Forms.Label lblSubTotal1_2;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label lblLocador2;
+        private System.Windows.Forms.Label lblLocador_2;
         private System.Windows.Forms.Label lblPorcentMulta2;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label lblDocLocador_2;
+        private System.Windows.Forms.Label lblDescComp3;
+        private System.Windows.Forms.Label lblDescComp2;
+        private System.Windows.Forms.Label lblComplemento3;
+        private System.Windows.Forms.Label lblComplemento2;
+        private System.Windows.Forms.Label lblDescComp1;
+        private System.Windows.Forms.Label lblComplemento1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblDescComp3_2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblDescComp2_2;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label lblComplemento3_2;
+        private System.Windows.Forms.Label lblComplemento2_2;
+        private System.Windows.Forms.Label lblDescComp1_2;
+        private System.Windows.Forms.Label lblComplemento1_2;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblLocador2;
+        private System.Windows.Forms.Label lblTextoDocs2;
+        private System.Windows.Forms.Label lblTextoLocador2;
         private System.Windows.Forms.Label lblDocLocador2;
+        private System.Windows.Forms.Label lblDocLocador2_2;
+        private System.Windows.Forms.Label lblLocador2_2;
+        private System.Windows.Forms.Label lblTextoDocs2_2;
+        private System.Windows.Forms.Label lblTextoLocador2_2;
 
     }
 }

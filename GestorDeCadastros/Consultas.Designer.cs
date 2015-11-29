@@ -81,7 +81,6 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btAlterarLocador = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdLocador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ativo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,8 +91,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dgvImoveis = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdImovel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AtivoLocador = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -326,7 +325,7 @@
             this.tpRcbPrincipais.Padding = new System.Windows.Forms.Padding(3);
             this.tpRcbPrincipais.Size = new System.Drawing.Size(1246, 579);
             this.tpRcbPrincipais.TabIndex = 9;
-            this.tpRcbPrincipais.Text = "Recibos Principais";
+            this.tpRcbPrincipais.Text = "Recibos";
             // 
             // panel4
             // 
@@ -665,7 +664,6 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
             this.btAlterarLocador,
             this.IdLocador,
             this.Ativo});
@@ -684,7 +682,7 @@
             this.dataGridViewTextBoxColumn6.HeaderText = "Locador";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 250;
+            this.dataGridViewTextBoxColumn6.Width = 300;
             // 
             // dataGridViewTextBoxColumn7
             // 
@@ -692,7 +690,7 @@
             this.dataGridViewTextBoxColumn7.HeaderText = "CPF";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 200;
+            this.dataGridViewTextBoxColumn7.Width = 250;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -700,23 +698,16 @@
             this.dataGridViewTextBoxColumn8.HeaderText = "Cnpj";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
-            this.dataGridViewTextBoxColumn8.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Contato";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Contato";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 250;
+            this.dataGridViewTextBoxColumn8.Width = 250;
             // 
             // btAlterarLocador
             // 
-            this.btAlterarLocador.HeaderText = "Alterar";
+            this.btAlterarLocador.HeaderText = "Alterar / Visualizar";
             this.btAlterarLocador.Name = "btAlterarLocador";
             this.btAlterarLocador.ReadOnly = true;
             this.btAlterarLocador.Text = "Ok";
             this.btAlterarLocador.UseColumnTextForButtonValue = true;
+            this.btAlterarLocador.Width = 200;
             // 
             // IdLocador
             // 
@@ -799,8 +790,8 @@
             this.dgvImoveis.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvImoveis.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.IdImovel,
             this.AtivoLocador,
@@ -820,15 +811,7 @@
             this.dataGridViewTextBoxColumn1.HeaderText = "Endereço";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 250;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Cidade";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Cidade";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Width = 200;
+            this.dataGridViewTextBoxColumn1.Width = 230;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -836,7 +819,15 @@
             this.dataGridViewTextBoxColumn2.HeaderText = "Bairro";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 150;
+            this.dataGridViewTextBoxColumn2.Width = 130;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Cidade";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Cidade";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 160;
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -864,18 +855,19 @@
             // 
             // btAlterarImovel
             // 
-            this.btAlterarImovel.HeaderText = "Alterar";
+            this.btAlterarImovel.HeaderText = "Alterar / Visualizar";
             this.btAlterarImovel.Name = "btAlterarImovel";
             this.btAlterarImovel.ReadOnly = true;
             this.btAlterarImovel.Text = "Ok";
             this.btAlterarImovel.UseColumnTextForButtonValue = true;
+            this.btAlterarImovel.Width = 180;
             // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1377, 615);
+            this.ClientSize = new System.Drawing.Size(1360, 615);
             this.Controls.Add(this.tcConsultas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "Consultas";
@@ -938,20 +930,6 @@
         private System.Windows.Forms.ComboBox cboImoveis;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvImoveis;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewButtonColumn btAlterarLocador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdLocador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ativo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdImovel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AtivoLocador;
-        private System.Windows.Forms.DataGridViewButtonColumn btAlterarImovel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Locatario;
         private System.Windows.Forms.DataGridViewTextBoxColumn CpfLocatario;
         private System.Windows.Forms.DataGridViewTextBoxColumn EnderecoImovel;
@@ -977,6 +955,19 @@
         private System.Windows.Forms.DataGridViewButtonColumn btRL;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdRP;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdRL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewButtonColumn btAlterarLocador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdLocador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ativo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdImovel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AtivoLocador;
+        private System.Windows.Forms.DataGridViewButtonColumn btAlterarImovel;
 
 
     }

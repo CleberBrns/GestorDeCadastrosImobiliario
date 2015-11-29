@@ -105,30 +105,30 @@ namespace GestorDeCadastros
             return conexao;
         }
 
-        public static bool validaCampoTxt(TextBox txtCampo, ErrorProvider errorProvider)
+        public static bool validaTextBox(TextBox txt, ErrorProvider errorProvider)
         {
             bool campoValido = false;
 
-            if (!string.IsNullOrEmpty(txtCampo.Text))
+            if (!string.IsNullOrEmpty(txt.Text))
             {
                 campoValido = true;
-                errorProvider.SetError(txtCampo, string.Empty);
+                errorProvider.SetError(txt, string.Empty);
             }
             else
             {
                 campoValido = false;
-                errorProvider.SetError(txtCampo, "O campo deve ser preenchido");
+                errorProvider.SetError(txt, "O campo deve ser preenchido");
             }
 
             return campoValido;
         }
 
-        public static bool validaCampoMtxt(MaskedTextBox MtxtCampo, ErrorProvider erroProvider)
+        public static bool validaMaskedTextBox(MaskedTextBox mtxt, ErrorProvider erroProvider)
         {
             bool campoValido = false;
-            string valorCampo = MtxtCampo.Text.Trim();
+            string valorCampo = mtxt.Text.Trim();
 
-            if (MtxtCampo.Text.Contains(',') || MtxtCampo.Text.Contains('.') || MtxtCampo.Text.Contains('-'))
+            if (mtxt.Text.Contains(',') || mtxt.Text.Contains('.') || mtxt.Text.Contains('-'))
             {
                 valorCampo = valorCampo.Replace(",", "").Replace(".", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty).Trim();
             }
@@ -136,12 +136,30 @@ namespace GestorDeCadastros
             if (!string.IsNullOrEmpty(valorCampo))
             {
                 campoValido = true;
-                erroProvider.SetError(MtxtCampo, string.Empty);
+                erroProvider.SetError(mtxt, string.Empty);
             }
             else
             {
                 campoValido = false;
-                erroProvider.SetError(MtxtCampo, "O campo deve ser preenchido");
+                erroProvider.SetError(mtxt, "O campo deve ser preenchido");
+            }
+
+            return campoValido;
+        }
+
+        public static bool validaComboBox(ComboBox cb, ErrorProvider errorProvider)
+        {
+            bool campoValido = false;
+
+            if (!string.IsNullOrEmpty(cb.SelectedValue.ToString()) && cb.SelectedValue.ToString() != "0")
+            {
+                campoValido = true;
+                errorProvider.SetError(cb, string.Empty);
+            }
+            else
+            {
+                campoValido = false;
+                errorProvider.SetError(cb, "Uma seleção válida deve ser feita");
             }
 
             return campoValido;
@@ -180,7 +198,7 @@ namespace GestorDeCadastros
             string valorFinal = string.Empty;
             decimal dValor = 0;           
 
-            if (!string.IsNullOrEmpty(valor) || valor != "0")
+            if (!string.IsNullOrEmpty(valor) && valor != "0")
             {
                 dValor = Convert.ToDecimal(valor);
                 valorFinal = string.Format("{0:C}", dValor).Replace("R$", string.Empty).Trim();

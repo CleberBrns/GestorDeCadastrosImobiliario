@@ -24,7 +24,7 @@ namespace GestorDeCadastros
 
         public Recibos()
         {
-            InitializeComponent();          
+            InitializeComponent();
         }
 
         private void Recibos_Load(object sender, EventArgs e)
@@ -50,12 +50,13 @@ namespace GestorDeCadastros
         /// tipoTabela 2 = Recibo Locador
         /// tipoTabela 3 = Locatarios (Quando ainda não existem Recibos Cadastrados)
         /// tipoTabela 4 = Recibo Principal + Locadores
+        /// tipoTabela 5 = Locadores por Id
         /// </summary>
         /// <param name="dsDados"></param>
         /// <param name="sdaDados"></param>
         /// <param name="tipoTabela"></param>
-        /// <param name="idLocatario"></param>
-        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int tipoTabela, int idLocatario)
+        /// <param name="idBusca"></param>
+        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int tipoTabela, string idBusca)
         {
             sdaDados = new SqlCeDataAdapter();
 
@@ -71,18 +72,21 @@ namespace GestorDeCadastros
             }
             else if (tipoTabela == 3)
             {
-                cmd.CommandText = "select Lc.Locatario, Lc.Aluguel from Locatarios Lc where Ativo = 1 and Id = " + idLocatario + "";
+                cmd.CommandText = "select Lc.Locatario, Lc.Locatario2, Lc.Aluguel from Locatarios Lc where Ativo = 1 and Id = " + idBusca + "";
             }
-            else
+            else if (tipoTabela == 4)
             {
-                cmd.CommandText = "select top(1) Lct.Locatario, Lct.Aluguel, Rp.Quantidade, Rp.Numero, Rp.Iptu, Rp.ParcelasIptu, Rp.DespesaCondominio, Rp.Luz, Rp.Agua," +
-                                  " Rp.Data, Rp.Id as IdRecibo, Rp.NumeroParcelaIptu, Lcd.Locador" +
+                cmd.CommandText = "select top(1) Lct.Locatario, Lct.Locatario2, Lct.Aluguel, Rp.Quantidade, Rp.Numero, Rp.Iptu, Rp.ParcelasIptu, Rp.DespesaCondominio, Rp.Luz, Rp.Agua," +
+                                  " Rp.Data, Rp.Id as IdRecibo, Rp.NumeroParcelaIptu, Rp.Multa, Lct.fkIdImovel, im.fkIdLocador1, im.fkIdLocador2" +
                                   " from Locatarios Lct" +
-                                  " inner join RecibosPrincipais Rp" +
-                                  " on Lct.Id = Rp.fkIdLocatario" +
-                                  " inner join Locadores Lcd" +
-                                  " on Lct.fkIdLocador = Lcd.Id" +
-                                  " where Lct.Ativo = 1 and Lct.Id = " + idLocatario + " order by Rp.Data desc";
+                                  " inner join RecibosPrincipais Rp on Lct.Id = Rp.fkIdLocatario" +
+                                  " inner join Imoveis im on Lct.fkIdImovel = im.Id" +
+                                  " where Lct.Ativo = 1 and Lct.Id = " + idBusca + " order by Rp.Data desc";
+
+            }
+            else if (tipoTabela == 5)
+            {
+                cmd.CommandText = "select Locador, Id from Locadores where id in (" + idBusca + ") and Ativo = 1 order by Locador";
 
             }
 
@@ -108,7 +112,7 @@ namespace GestorDeCadastros
             SqlCeDataAdapter sdaInclusao;
             DataSet dsInclusao;
             DataRow dr = null;
-            PreencheDataset(out dsInclusao, out sdaInclusao, tipoInsercao, Convert.ToInt32(lblIdLocatario.Text.Trim()));
+            PreencheDataset(out dsInclusao, out sdaInclusao, tipoInsercao, lblIdLocatario.Text.Trim());
             //Cria nova Linha para a inserção.
             dr = dsInclusao.Tables[0].NewRow();
 
@@ -126,9 +130,10 @@ namespace GestorDeCadastros
                 dr["Luz"] = Auxiliar.FormataValorParaUso(txtLuz);
                 dr["Agua"] = Auxiliar.FormataValorParaUso(txtAgua);
                 dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguelRcPrincipal);
-                dr["ComplementoPagamento"] = RetornaValorCamposOpcionais(txtCompPagto);
+                dr["ComplementoPagamento"] = RetornaValorCamposOpcionais(txtCompPagtoRP);
                 dr["DescricaoComplementoPagamento"] = txtDescricaoCompPagto.Text.Trim();
-                dr["FormaPagamento"] = txtFormaPagto.Text.Trim();
+                dr["Multa"] = RetornaValorCamposOpcionais(txtMultaRP);
+                dr["Observacao"] = txtObservacao.Text.Trim();
                 dr["DataPagamento"] = Convert.ToDateTime(dtpVencimento.Value).ToShortDateString();
                 dr["TotalPagamento"] = Auxiliar.FormataValorParaUso(txtTotalRcPrincipal);
                 dr["ExtensoTotalPagamento"] = txtExtensoValorTotal.Text.Trim();
@@ -147,11 +152,15 @@ namespace GestorDeCadastros
             {
                 dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguelRcLocador);
                 dr["PorcentagemMulta"] = Convert.ToInt32(nudPctMulta.Value);
-                dr["Multa"] = RetornaValorCamposOpcionais(txtMulta);
+                dr["Multa"] = RetornaValorCamposOpcionais(txtMultaRL);
                 dr["PorcentagemComissao"] = Convert.ToInt32(nudPctComissao.Value);
                 dr["Comissao"] = Auxiliar.FormataValorParaUso(txtComissao);
-                dr["Complemento"] = RetornaValorCamposOpcionais(txtComplementoRL);
-                dr["DescricaoComplemento"] = txtDescricaoComplementoRL.Text.Trim();
+                dr["Complemento"] = RetornaValorCamposOpcionais(txtComp1RL);
+                dr["DescricaoComplemento"] = txtDescComp1RL.Text.Trim();
+                dr["Complemento2"] = RetornaValorCamposOpcionais(txtComp2RL);
+                dr["DescricaoComplemento2"] = txtDescComp2RL.Text.Trim();
+                dr["Complemento3"] = RetornaValorCamposOpcionais(txtComp3RL);
+                dr["DescricaoComplemento3"] = txtDescComp3RL.Text.Trim();
                 dr["Total"] = Auxiliar.FormataValorParaUso(txtTotalRcLocador);
                 dr["fkIdRecibo"] = Convert.ToInt32(lblIdRecibo.Text.Trim());
             }
@@ -182,21 +191,89 @@ namespace GestorDeCadastros
             return DateTime.Now.ToShortDateString();
         }
 
-        private DataTable CarregaDadosTabela(int tipoPesquisa)
+        private DataTable CarregaDadosTabela(int tipoPesquisa, string idPesquisa)
         {
-            DataTable tabelaCombos = new DataTable();
+            DataTable tabelaDados = new DataTable();
             SqlCeDataAdapter sdaSelecao;
             DataSet dsSelecao;
-            PreencheDataset(out dsSelecao, out sdaSelecao, tipoPesquisa, Convert.ToInt32(lblIdLocatario.Text.Trim()));
+            PreencheDataset(out dsSelecao, out sdaSelecao, tipoPesquisa, idPesquisa);
 
-            tabelaCombos = dsSelecao.Tables[0];
+            tabelaDados = dsSelecao.Tables[0];
 
-            return tabelaCombos;
+            return tabelaDados;
         }
 
         #endregion
 
         #region Ações Gerais
+
+        private void ckbDesmarcaComplementos_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender == ckbDesmarcaCompRP)
+            {
+                rbAcrescimoRP.Checked = false;
+                rbDescontoRP.Checked = false;
+                txtCompPagtoRP.BackColor = Color.White;
+                txtCompPagtoRP.Text = string.Empty;
+            }
+        }
+
+        private decimal RetornaAcrescimoOuDesconto(RadioButton rbAcrescimo, RadioButton rbDesconto, TextBox txtValorInserir, decimal valorCalular)
+        {
+            if (!string.IsNullOrEmpty(txtValorInserir.Text.Trim()))
+            {
+                if (rbAcrescimo.Checked)
+                {
+                    if (Auxiliar.validaTextBox(txtCompPagtoRP, errorProvider1))
+                    {
+                        valorCalular = valorCalular + Auxiliar.FormataValorParaUso(txtValorInserir);
+                    }
+                }
+                else if (rbDesconto.Checked)
+                {
+                    if (Auxiliar.validaTextBox(txtCompPagtoRP, errorProvider1))
+                    {
+                        valorCalular = valorCalular - Auxiliar.FormataValorParaUso(txtValorInserir);
+                    }
+                }
+            }
+            return valorCalular;
+        }
+
+        private decimal RetornaAcrescimoOuDesconto(CheckBox ckbDesconto, TextBox txtValorInserir, decimal valorCalular)
+        {
+            if (!string.IsNullOrEmpty(txtValorInserir.Text.Trim()))
+            {
+                if (ckbDesconto.Checked)
+                {
+                    if (Auxiliar.validaTextBox(txtValorInserir, errorProvider1))
+                    {
+                        valorCalular = valorCalular - Auxiliar.FormataValorParaUso(txtValorInserir);
+                    }
+                }
+                else
+                {
+                    if (Auxiliar.validaTextBox(txtValorInserir, errorProvider1))
+                    {
+                        valorCalular = valorCalular + Auxiliar.FormataValorParaUso(txtValorInserir);
+                    }
+                }
+            }
+            return valorCalular;
+        }
+
+        private string calculaPorcentagem(decimal porcentagem, string valorCalcular)
+        {
+            decimal valorPorcentagem = 0;
+
+            if (valorCalcular.Contains("."))
+                valorCalcular = valorCalcular.Replace(".", string.Empty).Trim();
+
+            valorPorcentagem = Convert.ToDecimal(valorCalcular);
+            valorPorcentagem = (valorPorcentagem * porcentagem / 100);
+
+            return Auxiliar.FormataValoresExibicao(valorPorcentagem.ToString());
+        }
 
         /// <summary>
         /// tipoPreview 1 = Preview RP
@@ -209,13 +286,13 @@ namespace GestorDeCadastros
             {
                 if (tipoPreview == 1)
                 {
-                    DataTable dtRP = CarregaDadosTabela(1);
+                    DataTable dtRP = CarregaDadosTabela(1, string.Empty);
                     lblIdReciboPrincipal.Text = dtRP.DefaultView[0]["Id"].ToString();
                     btPreviewRP.Visible = true;
                 }
                 else
                 {
-                    DataTable dtRL = CarregaDadosTabela(2);
+                    DataTable dtRL = CarregaDadosTabela(2, string.Empty);
                     lblIdReciboLocador.Text = dtRL.DefaultView[0]["Id"].ToString();
                     btPreviewRL.Visible = true;
                 }
@@ -270,7 +347,7 @@ namespace GestorDeCadastros
             }
             else if (sender == btCompPagto)
             {
-                ModalInsereValores(txtCompPagto);
+                ModalInsereValores(txtCompPagtoRP);
             }
             else if (sender == btTotalRcPrincipal)
             {
@@ -280,17 +357,25 @@ namespace GestorDeCadastros
             {
                 ModalInsereValores(txtAluguelRcLocador);
             }
-            else if (sender == btMulta)
+            else if (sender == btMultaRL)
             {
-                ModalInsereValores(txtMulta);
+                ModalInsereValores(txtMultaRL);
             }
             else if (sender == btComissao)
             {
                 ModalInsereValores(txtComissao);
             }
-            else if (sender == btComplementoRL)
+            else if (sender == btComp1RL)
             {
-                ModalInsereValores(txtComplementoRL);
+                ModalInsereValores(txtComp1RL);
+            }
+            else if (sender == btComp2RL)
+            {
+                ModalInsereValores(txtComp2RL);
+            }
+            else if (sender == btComp3RL)
+            {
+                ModalInsereValores(txtComp3RL);
             }
         }
 
@@ -319,19 +404,11 @@ namespace GestorDeCadastros
             }
         }
 
-        private void ckbDesmarcaComPagto_CheckedChanged(object sender, EventArgs e)
-        {
-            rbAcrescimo.Checked = false;
-            rbDesconto.Checked = false;
-            txtCompPagto.BackColor = Color.White;
-            txtCompPagto.Text = string.Empty;
-        }
-
         private void txtCompPagto_TextChanged(object sender, EventArgs e)
         {
-            if (!rbAcrescimo.Checked && !rbDesconto.Checked)
+            if (!rbAcrescimoRP.Checked && !rbDescontoRP.Checked)
             {
-                rbAcrescimo.Checked = true;
+                rbAcrescimoRP.Checked = true;
             }
         }
 
@@ -346,9 +423,14 @@ namespace GestorDeCadastros
 
         private void CarregaDadosReciboPrincipal()
         {
+            dtpInicial.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dtpFinal.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+
             try
             {
-                DataTable dadosLocatario = CarregaDadosTabela(4);
+                nudPctMulta.Value = Convert.ToDecimal(ConfigurationSettings.AppSettings["PorcentagemMulta"]);
+
+                DataTable dadosLocatario = CarregaDadosTabela(4, lblIdLocatario.Text.Trim());
                 if (dadosLocatario.Rows.Count > 0)//Já possui Recibos Cadastrados
                 {
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Data"].ToString()))
@@ -358,6 +440,11 @@ namespace GestorDeCadastros
 
                     lblLocatario.Text = dadosLocatario.DefaultView[0]["Locatario"].ToString();
                     lblLocatario.Visible = true;
+
+                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Locatario2"].ToString().Trim()))
+                    {
+                        lblLocatario.Text += " / " + dadosLocatario.DefaultView[0]["Locatario2"].ToString().Trim();
+                    }
 
                     nudQtdRecibos.Value = Convert.ToDecimal(dadosLocatario.DefaultView[0]["Quantidade"].ToString());
                     nudParcelasIptu.Value = Convert.ToDecimal(dadosLocatario.DefaultView[0]["ParcelasIptu"].ToString());
@@ -395,18 +482,25 @@ namespace GestorDeCadastros
                         }
                     }
 
-                    txtLuz.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Luz"].ToString());
-                    txtAgua.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Agua"].ToString());
+                    //txtLuz.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Luz"].ToString());
+                    //txtAgua.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Agua"].ToString());
+                    //txtMultaRP.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Multa"].ToString());
 
                     txtAluguelRcPrincipal.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());
                 }
                 else//Cadastro do primeiro recibo
                 {
-                    dadosLocatario = CarregaDadosTabela(3);
+                    dadosLocatario = CarregaDadosTabela(3, lblIdLocatario.Text.Trim());
                     if (dadosLocatario.Rows.Count > 0)
                     {
                         lblLocatario.Text = dadosLocatario.DefaultView[0]["Locatario"].ToString();
                         lblLocatario.Visible = true;
+
+                        if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Locatario2"].ToString().Trim()))
+                        {
+                            lblLocatario.Text += " / " + dadosLocatario.DefaultView[0]["Locatario2"].ToString().Trim();
+                        }
+
                         txtAluguelRcPrincipal.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());
                     }
                 }
@@ -421,21 +515,21 @@ namespace GestorDeCadastros
 
         private void rbComplementoPagto_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbAcrescimo.Checked)
+            if (rbAcrescimoRP.Checked)
             {
-                txtCompPagto.BackColor = Color.PaleGreen;
+                txtCompPagtoRP.BackColor = Color.PaleGreen;
             }
-            else if (rbDesconto.Checked)
+            else if (rbDescontoRP.Checked)
             {
-                txtCompPagto.BackColor = Color.PaleGreen;
+                txtCompPagtoRP.BackColor = Color.PaleGreen;
             }
             else
             {
-                txtCompPagto.BackColor = Color.White;
+                txtCompPagtoRP.BackColor = Color.White;
             }
 
-            ckbDesmarcaComPagto.Enabled = true;
-            ckbDesmarcaComPagto.Checked = false;
+            ckbDesmarcaCompRP.Enabled = true;
+            ckbDesmarcaCompRP.Checked = false;
         }
 
         private void ckbEdicaoNumeros_CheckedChanged(object sender, EventArgs e)
@@ -470,7 +564,33 @@ namespace GestorDeCadastros
                     nudNumeroParcIptu.BackColor = Color.White;
                 }
             }
+        }
 
+        private void txtAluguelRcPrincipal_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtAluguelRcPrincipal.Text.Trim()))
+            {
+                ckbComMulta.Enabled = true;
+            }
+            else
+            {
+                ckbComMulta.Enabled = false;
+            }
+        }
+
+        private void ckbComMulta_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtAluguelRcPrincipal.Text))
+            {
+                if (ckbComMulta.Checked)
+                {
+                    txtMultaRP.Text = Auxiliar.FormataValoresExibicao(calculaPorcentagem(nudPctMulta.Value, txtAluguelRcPrincipal.Text.Trim()));
+                }
+                else
+                {
+                    txtMultaRP.Text = string.Empty;
+                }
+            }
         }
 
         private void ckbEditaValorExtenso_CheckedChanged(object sender, EventArgs e)
@@ -491,37 +611,14 @@ namespace GestorDeCadastros
         {
             if (!string.IsNullOrEmpty(lblIdLocatario.Text.Trim()))
             {
-                if (Auxiliar.validaCampoTxt(txtAluguelRcPrincipal, errorProvider1))
+                if (Auxiliar.validaTextBox(txtAluguelRcPrincipal, errorProvider1))
                 {
-                    if (Auxiliar.validaCampoTxt(txtAluguelRcPrincipal, errorProvider1))
+                    if (Auxiliar.validaTextBox(txtExtensoValorTotal, errorProvider1))
                     {
-                        if (Auxiliar.validaCampoTxt(txtExtensoValorTotal, errorProvider1))
+                        if (nudQtdRecibos.Value == 0)
                         {
-                            if (nudQtdRecibos.Value == 0)
-                            {
-                                if (DialogResult.Yes == MessageBox.Show("O campo Quatidade de Recibos está zerado. Deseja continuar mesmo assim?", "Confirmação",
-                                    MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
-                                {
-                                    try
-                                    {
-                                        InsereDados(1);
-                                        Auxiliar.MostraMensagemAlerta("Recibo armazenado com Sucesso!", 1);
-                                        btConcluir.Enabled = false;
-                                        btFechaRP.Visible = true;
-
-                                        HabilitaPreviewImpressao(1);
-
-                                        tcRecibos.TabPages.Add(tpLocador);
-                                        tcRecibos.SelectedTab = tpLocador;                                        
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        //MessageBox.Show(ex.ToString());                                        
-                                        Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
-                                    }
-                                }
-                            }
-                            else
+                            if (DialogResult.Yes == MessageBox.Show("O campo Quatidade de Recibos está zerado. Deseja continuar mesmo assim?", "Confirmação",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
                             {
                                 try
                                 {
@@ -537,9 +634,29 @@ namespace GestorDeCadastros
                                 }
                                 catch (Exception ex)
                                 {
-                                    //MessageBox.Show(ex.ToString());                                    
+                                    //MessageBox.Show(ex.ToString());                                        
                                     Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
                                 }
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                InsereDados(1);
+                                Auxiliar.MostraMensagemAlerta("Recibo armazenado com Sucesso!", 1);
+                                btConcluir.Enabled = false;
+                                btFechaRP.Visible = true;
+
+                                HabilitaPreviewImpressao(1);
+
+                                tcRecibos.TabPages.Add(tpLocador);
+                                tcRecibos.SelectedTab = tpLocador;
+                            }
+                            catch (Exception ex)
+                            {
+                                //MessageBox.Show(ex.ToString());                                    
+                                Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
                             }
                         }
                     }
@@ -580,22 +697,14 @@ namespace GestorDeCadastros
                 valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtAluguelRcPrincipal);
             }
 
-            if (!string.IsNullOrEmpty(txtCompPagto.Text.Trim()))
+            if (!string.IsNullOrEmpty(txtCompPagtoRP.Text.Trim()))
             {
-                if (rbAcrescimo.Checked)
-                {
-                    if (Auxiliar.validaCampoTxt(txtCompPagto, errorProvider1))
-                    {
-                        valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtCompPagto);
-                    }
-                }
-                else if (rbDesconto.Checked)
-                {
-                    if (Auxiliar.validaCampoTxt(txtCompPagto, errorProvider1))
-                    {
-                        valorTotal = valorTotal - Auxiliar.FormataValorParaUso(txtCompPagto);
-                    }
-                }
+                valorTotal = RetornaAcrescimoOuDesconto(rbAcrescimoRP, rbDescontoRP, txtCompPagtoRP, valorTotal);
+            }
+
+            if (!string.IsNullOrEmpty(txtMultaRP.Text.Trim()))
+            {
+                valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtMultaRP);
             }
 
             txtExtensoValorTotal.Text = Auxiliar.valorPorExtenso(valorTotal);
@@ -606,7 +715,7 @@ namespace GestorDeCadastros
         {
             try
             {
-                if (Auxiliar.validaCampoTxt(txtTotalRcPrincipal, errorProvider1))
+                if (Auxiliar.validaTextBox(txtTotalRcPrincipal, errorProvider1))
                 {
                     decimal valorTotal = Auxiliar.FormataValorParaUso(txtTotalRcPrincipal);
                     txtExtensoValorTotal.Text = Auxiliar.valorPorExtenso(valorTotal);
@@ -625,7 +734,7 @@ namespace GestorDeCadastros
             {
                 this.Hide();
                 Auxiliar.PreviewReciboImpressao(1, Convert.ToInt32(lblIdReciboPrincipal.Text.Trim()));
-            }          
+            }
         }
 
         #endregion
@@ -636,17 +745,18 @@ namespace GestorDeCadastros
         {
             try
             {
-                nudPctMulta.Value = Convert.ToDecimal(ConfigurationSettings.AppSettings["PorcentagemMulta"]);
                 nudPctComissao.Value = Convert.ToDecimal(ConfigurationSettings.AppSettings["PorcentagemComissao"]);
 
-                DataTable dadosLocatario = CarregaDadosTabela(4);
+                DataTable dadosLocatario = CarregaDadosTabela(4, lblIdLocatario.Text.Trim());
                 if (dadosLocatario.Rows.Count > 0)
                 {
                     lblIdRecibo.Text = dadosLocatario.DefaultView[0]["IdRecibo"].ToString();
-                    lblLocador.Text = dadosLocatario.DefaultView[0]["Locador"].ToString();
-                    lblLocador.Visible = true;
 
+                    CarregaLocadores(dadosLocatario);
+
+                    txtMultaRL.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Multa"].ToString());
                     txtAluguelRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());
+
                 }
             }
             catch (Exception ex)
@@ -657,10 +767,48 @@ namespace GestorDeCadastros
             }
         }
 
+        private void CarregaLocadores(DataTable dadosLocatario)
+        {
+            string idLocadores = string.Empty;
+
+            if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString()) && dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString() != "0")
+            {
+                idLocadores = dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString().Trim();
+            }
+
+            if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString()) && dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString() != "0")
+            {
+                idLocadores += "," + dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString().Trim();
+            }
+
+            if (!string.IsNullOrEmpty(idLocadores))
+            {
+                DataTable dtLocadores = CarregaDadosTabela(5, idLocadores);
+
+                string locadores = string.Empty;
+
+                for (int i = 0; i < dtLocadores.Rows.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        locadores += " / " + dtLocadores.DefaultView[i]["Locador"].ToString().Trim();
+                    }
+                    else
+                    {
+                        locadores += dtLocadores.DefaultView[i]["Locador"].ToString().Trim();
+                    }
+                }
+
+                lblLocadores.Text = locadores;
+                lblLocadores.Visible = true;
+            }
+
+        }
+
         private void btCalcularTotalLocador_Click(object sender, EventArgs e)
         {
             decimal valorTotal = 0;
-            if (Auxiliar.validaCampoTxt(txtAluguelRcLocador, errorProvider1))
+            if (Auxiliar.validaTextBox(txtAluguelRcLocador, errorProvider1))
             {
                 if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text))
                 {
@@ -668,12 +816,12 @@ namespace GestorDeCadastros
                 }
             }
 
-            if (!string.IsNullOrEmpty(txtMulta.Text))
+            if (!string.IsNullOrEmpty(txtMultaRL.Text))
             {
-                valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtMulta);
+                valorTotal = valorTotal + Auxiliar.FormataValorParaUso(txtMultaRL);
             }
 
-            if (Auxiliar.validaCampoTxt(txtComissao, errorProvider1))
+            if (Auxiliar.validaTextBox(txtComissao, errorProvider1))
             {
                 if (!string.IsNullOrEmpty(txtComissao.Text.Trim()))
                 {
@@ -681,9 +829,9 @@ namespace GestorDeCadastros
                 }
             }
 
-            if (!string.IsNullOrEmpty(txtComplementoRL.Text))
+            if (!string.IsNullOrEmpty(txtComp1RL.Text))
             {
-                valorTotal = valorTotal - Auxiliar.FormataValorParaUso(txtComplementoRL);
+                valorTotal = valorTotal - Auxiliar.FormataValorParaUso(txtComp1RL);
             }
 
             txtTotalRcLocador.Text = Auxiliar.FormataValoresExibicao(valorTotal.ToString());
@@ -693,11 +841,11 @@ namespace GestorDeCadastros
         {
             if (!string.IsNullOrEmpty(lblIdRecibo.Text.Trim()))
             {
-                if (Auxiliar.validaCampoTxt(txtAluguelRcLocador, errorProvider1))
+                if (Auxiliar.validaTextBox(txtAluguelRcLocador, errorProvider1))
                 {
-                    if (Auxiliar.validaCampoTxt(txtComissao, errorProvider1))
+                    if (Auxiliar.validaTextBox(txtComissao, errorProvider1))
                     {
-                        if (Auxiliar.validaCampoTxt(txtTotalRcLocador, errorProvider1))
+                        if (Auxiliar.validaTextBox(txtTotalRcLocador, errorProvider1))
                         {
                             try
                             {
@@ -721,49 +869,27 @@ namespace GestorDeCadastros
 
         private void txtAluguelRcLocador_TextChanged(object sender, EventArgs e)
         {
-            if (ckbComMulta.Checked)
-            {
-                if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text))
-                {
-                    txtMulta.Text = Auxiliar.FormataValoresExibicao(calculaPorcentagem(nudPctMulta.Value, txtAluguelRcLocador.Text.Trim()));
-
-                    CalculaExibeComissaoSubTotal1();
-                }
-            }
-            else
+            if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text))
             {
                 CalculaExibeComissaoSubTotal1();
             }
-
         }
 
         private void CalculaExibeComissaoSubTotal1()
         {
-            if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && !string.IsNullOrEmpty(txtMulta.Text.Trim()))
+            if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && !string.IsNullOrEmpty(txtMultaRL.Text.Trim()))
             {
-                decimal subTotal1 = Auxiliar.FormataValorParaUso(txtAluguelRcLocador) + Auxiliar.FormataValorParaUso(txtMulta);
+                decimal subTotal1 = Auxiliar.FormataValorParaUso(txtAluguelRcLocador) + Auxiliar.FormataValorParaUso(txtMultaRL);
                 txtSubTotal1.Text = subTotal1.ToString();
                 txtComissao.Text = calculaPorcentagem(nudPctComissao.Value, subTotal1.ToString());
             }
-            else if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && string.IsNullOrEmpty(txtMulta.Text.Trim()))
+            else if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && string.IsNullOrEmpty(txtMultaRL.Text.Trim()))
             {
                 txtSubTotal1.Text = txtAluguelRcLocador.Text;
                 txtComissao.Text = calculaPorcentagem(nudPctComissao.Value, Auxiliar.FormataValorParaUso(txtAluguelRcLocador).ToString());
             }
 
-        }
-
-        private string calculaPorcentagem(decimal porcentagem, string valorCalcular)
-        {
-            decimal valorPorcentagem = 0;
-
-            if (valorCalcular.Contains("."))
-                valorCalcular = valorCalcular.Replace(".", string.Empty).Trim();
-
-            valorPorcentagem = Convert.ToDecimal(valorCalcular);
-            valorPorcentagem = (valorPorcentagem * porcentagem / 100);
-
-            return Auxiliar.FormataValoresExibicao(valorPorcentagem.ToString());
+            txtSubTotal1.Text = Auxiliar.FormataValoresExibicao(txtSubTotal1.Text.Trim());
         }
 
         private void btCalculaSubTotais_Click(object sender, EventArgs e)
@@ -771,30 +897,20 @@ namespace GestorDeCadastros
             errorProvider1.Clear();
             if (sender == btSubTotal1)
             {
-                if (Auxiliar.validaCampoTxt(txtAluguelRcLocador, errorProvider1))
+                if (Auxiliar.validaTextBox(txtAluguelRcLocador, errorProvider1))
                 {
                     decimal valor1 = Auxiliar.FormataValorParaUso(txtAluguelRcLocador);
                     decimal valor2 = 0;
 
-                    if (!string.IsNullOrEmpty(txtMulta.Text.Trim()))
+                    if (!string.IsNullOrEmpty(txtMultaRL.Text.Trim()))
                     {
-                        valor2 = Auxiliar.FormataValorParaUso(txtMulta);
+                        valor2 = Auxiliar.FormataValorParaUso(txtMultaRL);
                     }
 
                     txtSubTotal1.Text = Auxiliar.FormataValoresExibicao((valor1 + valor2).ToString());
                 }
 
                 CalculaExibeComissaoSubTotal1();
-
-            }
-            else if (sender == btSubTotal3)
-            {
-                if (Auxiliar.validaCampoTxt(txtSubTotal2, errorProvider1))
-                {
-                    decimal subTotal2 = Auxiliar.FormataValorParaUso(txtSubTotal2);
-
-                    CalculaSubTotal3(subTotal2);
-                }
             }
         }
 
@@ -826,22 +942,22 @@ namespace GestorDeCadastros
 
         private void CalculaSubTotal3(decimal subTotal2)
         {
-            decimal dComplemento = 0;
+            decimal dComplemento = subTotal2;
 
-            if (!string.IsNullOrEmpty(txtComplementoRL.Text.Trim()))
+            if (!string.IsNullOrEmpty(txtComp1RL.Text.Trim()))
             {
-                dComplemento = Auxiliar.FormataValorParaUso(txtComplementoRL);
+                dComplemento = RetornaAcrescimoOuDesconto(ckbDescontoComp1RL, txtComp1RL, dComplemento);
             }
 
-            txtSubTotal3.Text = Auxiliar.FormataValoresExibicao((subTotal2 - dComplemento).ToString());
-        }
-
-        private void txtSubTotal3_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtSubTotal3.Text.Trim()))
+            if (!string.IsNullOrEmpty(txtComp2RL.Text.Trim()))
             {
-                txtTotalRcLocador.Text = Auxiliar.FormataValoresExibicao(txtSubTotal3.Text.Trim());
+                dComplemento = RetornaAcrescimoOuDesconto(ckbDescontoComp2RL, txtComp2RL, dComplemento);
             }
+
+            if (!string.IsNullOrEmpty(txtComp3RL.Text.Trim()))
+            {
+                dComplemento = RetornaAcrescimoOuDesconto(ckbDescontoComp3RL, txtComp3RL, dComplemento);
+            }           
         }
 
         private void btPreviewRL_Click(object sender, EventArgs e)
@@ -850,10 +966,45 @@ namespace GestorDeCadastros
             {
                 this.Hide();
                 Auxiliar.PreviewReciboImpressao(2, Convert.ToInt32(lblIdReciboLocador.Text.Trim()));
-            }          
+            }
         }
 
-        #endregion              
-      
+        private void ckbDescontoComp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender == ckbDescontoComp1RL)
+            {
+                FormataCampoComplemento(ckbDescontoComp1RL, txtDescComp1RL);
+            }
+            else if (sender == ckbDescontoComp2RL)
+            {
+                FormataCampoComplemento(ckbDescontoComp2RL, txtDescComp2RL);
+            }
+            else if (sender == ckbDescontoComp3RL)
+            {
+                FormataCampoComplemento(ckbDescontoComp3RL, txtDescComp3RL);
+            }
+        }
+
+        private void FormataCampoComplemento(CheckBox ckbDescontoCompRL, TextBox txtDescCompRL)
+        {
+            if (ckbDescontoCompRL.Checked)
+            {
+                if (!string.IsNullOrEmpty(txtDescCompRL.Text.Trim()))
+                {
+                    txtDescCompRL.Text = "Desconto; " + txtDescCompRL.Text;
+                }
+                else
+                {
+                    txtDescCompRL.Text = "Desconto; ";                    
+                }
+            }
+            else
+            {
+                txtDescCompRL.Text = txtDescCompRL.Text.Replace("Desconto;", string.Empty).Trim();
+            }
+        }
+
+        #endregion      
+
     }
 }

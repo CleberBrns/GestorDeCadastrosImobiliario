@@ -71,14 +71,13 @@ namespace GestorDeCadastros
         /// <summary>
         /// tipoTabela 1 = Recibo Principal
         /// tipoTabela 2 = Recibo Locador
-        /// tipoTabela 3 = Locatarios (Quando ainda não existem Recibos Cadastrados)
-        /// tipoTabela 4 = Recibo Principal + Locadores
+        /// tipoTabela 3 = Locadores por Id
         /// </summary>
         /// <param name="dsDados"></param>
         /// <param name="sdaDados"></param>
         /// <param name="tipoTabela"></param>
         /// <param name="idLocatario"></param>
-        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int tipoTabela, int idCadastro)
+        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int tipoTabela, string idBusca)
         {
             sdaDados = new SqlCeDataAdapter();
 
@@ -86,28 +85,29 @@ namespace GestorDeCadastros
 
             if (tipoTabela == 1)
             {
-                cmd.CommandText = "select lct.Locatario, rp.Quantidade, rp.Numero, rp.Data, rp.Periodo, rp.Iptu, rp.ParcelasIptu, rp.NumeroParcelaIptu, rp.DespesaCondominio," +
-                                  " rp.Luz, rp.Agua, rp.Aluguel, rp.ComplementoPagamento, rp.DescricaoComplementoPagamento, rp.FormaPagamento, rp.DataPagamento," +
-                                  " rp.TotalPagamento, rp.ExtensoTotalPagamento, rp.ReajusteAluguel, rl.Id as IdRL" +
+                cmd.CommandText = "select lct.Locatario, lct.Locatario2, rp.Quantidade, rp.Numero, rp.Data, rp.Periodo, rp.Iptu, rp.ParcelasIptu, rp.NumeroParcelaIptu,"+
+                                  " rp.DespesaCondominio, rp.Luz, rp.Agua, rp.Aluguel, rp.ComplementoPagamento, rp.DescricaoComplementoPagamento, rp.Observacao,"+
+                                  " rp.DataPagamento, rp.TotalPagamento, rp.ExtensoTotalPagamento, rp.ReajusteAluguel, rp.Multa, rl.Id as IdRL" +
                                   " from RecibosPrincipais Rp" +
-                                  " inner join Locatarios lct" +
-                                  " on rp.fkIdLocatario = lct.Id" +
-                                  " inner join RecibosLocadores rl" +
-                                  " on rp.Id = rl.Id" +
-                                  " where rp.Id = " + idCadastro;
+                                  " inner join Locatarios lct on rp.fkIdLocatario = lct.Id" +
+                                  " inner join RecibosLocadores rl on rp.Id = rl.fkIdRecibo" +
+                                  " where rp.Id = " + idBusca;            
             }
-            else
+            else if (tipoTabela == 2)
             {
-                cmd.CommandText = "select lcd.Locador, rl.Aluguel, rl.PorcentagemMulta, rl.Multa, rl.PorcentagemComissao, rl.Comissao, rl.Complemento," +
-                                  " rl.DescricaoComplemento, rl.Total, rp.Id as IdRP" +
+                cmd.CommandText = "select rl.Aluguel, rl.PorcentagemMulta, rl.Multa, rl.PorcentagemComissao, rl.Comissao, rl.Complemento, rl.DescricaoComplemento,"+
+                                  " rl.Complemento2, rl.DescricaoComplemento2, rl.Complemento3, rl.DescricaoComplemento3, rl.Total, rp.Id as IdRP,"+
+                                  " im.fkIdLocador1, im.fkIdLocador2" +
                                   " from RecibosLocadores rl" +
-                                  " inner join RecibosPrincipais rp" +
-                                  " on rl.fkIdRecibo = rp.Id" +
-                                  " inner join Locatarios lct" +
-                                  " on rp.fkIdLocatario = lct.Id" +
-                                  " inner join Locadores lcd" +
-                                  " on lct.fkIdLocador = lcd.Id" +
-                                  " where rl.Id = " + idCadastro + "";
+                                  " inner join RecibosPrincipais rp on rl.fkIdRecibo = rp.Id" +
+                                  " inner join Locatarios lct on rp.fkIdLocatario = lct.Id" +
+                                  " inner join Imoveis im on lct.fkIdImovel = im.Id" +                           
+                                  " where rl.Id = " + idBusca + "";
+            }
+            else if (tipoTabela == 3)
+            {
+                cmd.CommandText = "select Locador, Id from Locadores where id in (" + idBusca + ") and Ativo = 1 order by Locador";
+
             }
 
             sdaDados.SelectCommand = cmd;
@@ -120,12 +120,12 @@ namespace GestorDeCadastros
             return DateTime.Now.ToShortDateString();
         }
 
-        private DataTable CarregaDadosTabela(int tipoPesquisa, int idCadastro)
+        private DataTable CarregaDadosTabela(int tipoPesquisa, string idBusca)
         {
             DataTable tabelaCombos = new DataTable();
             SqlCeDataAdapter sdaSelecao;
             DataSet dsSelecao;
-            PreencheDataset(out dsSelecao, out sdaSelecao, tipoPesquisa, idCadastro);
+            PreencheDataset(out dsSelecao, out sdaSelecao, tipoPesquisa, idBusca);
 
             tabelaCombos = dsSelecao.Tables[0];
 
@@ -140,7 +140,7 @@ namespace GestorDeCadastros
         {
             try
             {
-                DataTable dadosLocatario = CarregaDadosTabela(1, Convert.ToInt32(lblIdReciboPrincipal.Text.Trim()));
+                DataTable dadosLocatario = CarregaDadosTabela(1, lblIdReciboPrincipal.Text.Trim());
                 if (dadosLocatario.Rows.Count > 0)
                 {
                     lblLocatario.Text = dadosLocatario.DefaultView[0]["Locatario"].ToString();
@@ -212,7 +212,13 @@ namespace GestorDeCadastros
 
                     txtDescricaoCompPagto.Text = dadosLocatario.DefaultView[0]["DescricaoComplementoPagamento"].ToString();
 
-                    txtFormaPagto.Text = dadosLocatario.DefaultView[0]["FormaPagamento"].ToString();
+                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Multa"].ToString()) &&
+                      dadosLocatario.DefaultView[0]["Multa"].ToString() != "0")
+                    {
+                        txtMultaRP.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Multa"].ToString());
+                    }
+
+                    txtObservacao.Text = dadosLocatario.DefaultView[0]["Observacao"].ToString();
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["DataPagamento"].ToString()))
                     {
@@ -291,34 +297,21 @@ namespace GestorDeCadastros
         {
             try
             {
-                DataTable dadosLocatario = CarregaDadosTabela(2, Convert.ToInt32(lblIdReciboLocador.Text.Trim()));
+                DataTable dadosLocatario = CarregaDadosTabela(2, lblIdReciboLocador.Text.Trim());
                 if (dadosLocatario.Rows.Count > 0)
                 {
-                    lblLocador.Text = dadosLocatario.DefaultView[0]["Locador"].ToString();
-                    lblLocador.Visible = true;
+                    CarregaLocadores(dadosLocatario);
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["IdRP"].ToString().Trim()))
                     {
                         lblIdReciboPrincipal.Text = dadosLocatario.DefaultView[0]["IdRP"].ToString().Trim();
                     }
 
-                    txtAluguelRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());
-
-                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["PorcentagemMulta"].ToString()))
-                    {
-                        try
-                        {
-                            nudPctMulta.Value = Convert.ToDecimal(dadosLocatario.DefaultView[0]["PorcentagemMulta"].ToString().Trim());
-                        }
-                        catch (Exception)
-                        {
-                            nudPctMulta.Value = Convert.ToDecimal(ConfigurationSettings.AppSettings["PorcentagemMulta"]);
-                        }
-                    }
+                    txtAluguelRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());                    
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Multa"].ToString()) && dadosLocatario.DefaultView[0]["Multa"].ToString() != "0")
                     {
-                        txtMulta.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Multa"].ToString());
+                        txtMultaRL.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Multa"].ToString());
                     }
 
                     CalculaExibeSubTotal1();
@@ -339,13 +332,28 @@ namespace GestorDeCadastros
 
                     CalculaExibeSubTotal2();
 
-                    txtDescricaoComplementoRL.Text = dadosLocatario.DefaultView[0]["DescricaoComplemento"].ToString();
+                    txtDescComp1RL.Text = dadosLocatario.DefaultView[0]["DescricaoComplemento"].ToString();
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Complemento"].ToString()) && dadosLocatario.DefaultView[0]["Complemento"].ToString() != "0")
                     {
-                        txtComplementoRL.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Complemento"].ToString());
-                        CalculaSubTotal3(Auxiliar.FormataValorParaUso(txtComplementoRL));
+                        txtComp1RL.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Complemento"].ToString());                        
                     }
+
+                    txtDescComp2RL.Text = dadosLocatario.DefaultView[0]["DescricaoComplemento2"].ToString();
+
+                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Complemento2"].ToString()) && dadosLocatario.DefaultView[0]["Complemento2"].ToString() != "0")
+                    {
+                        txtComp2RL.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Complemento2"].ToString());
+                    }
+
+                    txtDescComp3RL.Text = dadosLocatario.DefaultView[0]["DescricaoComplemento3"].ToString();
+
+                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Complemento3"].ToString()) && dadosLocatario.DefaultView[0]["Complemento3"].ToString() != "0")
+                    {
+                        txtComp3RL.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Complemento3"].ToString());
+                    }
+
+                    CalculaSubTotal3(Auxiliar.FormataValorParaUso(txtSubTotal2));
 
                     txtTotalRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Total"].ToString());
 
@@ -358,14 +366,52 @@ namespace GestorDeCadastros
             }
         }
 
+        private void CarregaLocadores(DataTable dadosLocatario)
+        {
+            string idLocadores = string.Empty;
+
+            if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString()) && dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString() != "0")
+            {
+                idLocadores = dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString().Trim();
+            }
+
+            if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString()) && dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString() != "0")
+            {
+                idLocadores += "," + dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString().Trim();
+            }
+
+            if (!string.IsNullOrEmpty(idLocadores))
+            {
+                DataTable dtLocadores = CarregaDadosTabela(3, idLocadores);
+
+                string locadores = string.Empty;
+
+                for (int i = 0; i < dtLocadores.Rows.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        locadores += " / " + dtLocadores.DefaultView[i]["Locador"].ToString().Trim();
+                    }
+                    else
+                    {
+                        locadores += dtLocadores.DefaultView[i]["Locador"].ToString().Trim();
+                    }
+                }
+
+                lblLocadores.Text = locadores;
+                lblLocadores.Visible = true;
+            }
+
+        }
+
         private void CalculaExibeSubTotal1()
         {
-            if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && !string.IsNullOrEmpty(txtMulta.Text.Trim()))
+            if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && !string.IsNullOrEmpty(txtMultaRL.Text.Trim()))
             {
-                decimal subTotal1 = Auxiliar.FormataValorParaUso(txtAluguelRcLocador) + Auxiliar.FormataValorParaUso(txtMulta);
+                decimal subTotal1 = Auxiliar.FormataValorParaUso(txtAluguelRcLocador) + Auxiliar.FormataValorParaUso(txtMultaRL);
                 txtSubTotal1.Text = subTotal1.ToString();
             }
-            else if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && string.IsNullOrEmpty(txtMulta.Text.Trim()))
+            else if (!string.IsNullOrEmpty(txtAluguelRcLocador.Text.Trim()) && string.IsNullOrEmpty(txtMultaRL.Text.Trim()))
             {
                 txtSubTotal1.Text = txtAluguelRcLocador.Text;
             }
@@ -391,12 +437,20 @@ namespace GestorDeCadastros
         {
             decimal dComplemento = 0;
 
-            if (!string.IsNullOrEmpty(txtComplementoRL.Text.Trim()))
+            if (!string.IsNullOrEmpty(txtComp1RL.Text.Trim()))
             {
-                dComplemento = Auxiliar.FormataValorParaUso(txtComplementoRL);
+                dComplemento = Auxiliar.FormataValorParaUso(txtComp1RL);
             }
 
-            txtSubTotal3.Text = Auxiliar.FormataValoresExibicao((subTotal2 - dComplemento).ToString());
+            if (!string.IsNullOrEmpty(txtComp2RL.Text.Trim()))
+            {
+                dComplemento = Auxiliar.FormataValorParaUso(txtComp2RL) + dComplemento;
+            }
+
+            if (!string.IsNullOrEmpty(txtComp3RL.Text.Trim()))
+            {
+                dComplemento = Auxiliar.FormataValorParaUso(txtComp3RL) + dComplemento;
+            }            
         }
 
         private string calculaPorcentagem(decimal porcentagem, string valorCalcular)

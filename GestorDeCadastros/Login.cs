@@ -19,9 +19,9 @@ namespace GestorDeCadastros
 
         private void btAcessar_Click(object sender, EventArgs e)
         {
-            if (Auxiliar.validaCampoTxt(txtLogin, errorProvider1))
+            if (Auxiliar.validaTextBox(txtLogin, errorProvider1))
             {
-                if (Auxiliar.validaCampoTxt(txtSenha, errorProvider1))
+                if (Auxiliar.validaTextBox(txtSenha, errorProvider1))
                 {
                     ValidaLogin(txtLogin.Text.Trim(), txtSenha.Text.Trim());
                 }

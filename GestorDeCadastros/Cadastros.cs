@@ -57,10 +57,14 @@ namespace GestorDeCadastros
 
             try
             {
-                if (tcCadastros.SelectedTab.Name == "tpLocatario")
+                if (tcCadastros.SelectedTab.Name == "tpImovel")
                 {
-                    rbTelefone.Checked = true;
-                    CarregaCombos();
+                    if (idTipoAcao == 1)
+                        CarregaCombosImovel(0);
+                }
+                else if (tcCadastros.SelectedTab.Name == "tpLocatario")
+                {
+                    CarregaCombosLocatario();
                 }
             }
             catch (Exception ex)
@@ -151,73 +155,81 @@ namespace GestorDeCadastros
 
         private void CarregaDadosCadastro(int idCadastro, int tipoCadastro)
         {
-            DataTable dadosCadastro = CarregaDadosTabela(idCadastro, tipoCadastro);
+            DataTable dadosCadastro = CarregaDadosTabela(idCadastro, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), tipoCadastro);
 
             if (dadosCadastro.Rows.Count > 0)
             {
                 if (tipoCadastro == 1)
                 {
+                    bool com2Locadores = false;
+                    if (!string.IsNullOrEmpty(dadosCadastro.DefaultView[0]["fkIdLocador2"].ToString().Trim()) &&
+                       dadosCadastro.DefaultView[0]["fkIdLocador2"].ToString().Trim() != "0")
+                    {
+                        CarregaCombosImovel(Convert.ToInt32(dadosCadastro.DefaultView[0]["fkIdLocador2"].ToString().Trim()));
+                        com2Locadores = true;
+                    }
+                    else
+                    {
+                        CarregaCombosImovel(0);
+                    }
+
                     txtEndereco.Text = dadosCadastro.DefaultView[0]["Endereco"].ToString();
                     txtBairro.Text = dadosCadastro.DefaultView[0]["Bairro"].ToString();
                     txtCidade.Text = dadosCadastro.DefaultView[0]["Cidade"].ToString();
                     mtxtCep.Text = dadosCadastro.DefaultView[0]["Cep"].ToString();
+
+                    if (!string.IsNullOrEmpty(dadosCadastro.DefaultView[0]["fkIdLocador1"].ToString().Trim()) &&
+                        dadosCadastro.DefaultView[0]["fkIdLocador1"].ToString().Trim() != "0")
+                    {
+                        cbLocadoresImovel1.SelectedValue = dadosCadastro.DefaultView[0]["fkIdLocador1"].ToString();
+                    }
+
+                    if (com2Locadores)
+                    {
+                        cbLocadoresImovel2.SelectedValue = dadosCadastro.DefaultView[0]["fkIdLocador2"].ToString();
+                    }
+
                 }
                 else if (tipoCadastro == 2)
                 {
                     txtNomeLocador.Text = dadosCadastro.DefaultView[0]["Locador"].ToString();
+                    mtxtCpfLocador.Text = dadosCadastro.DefaultView[0]["Cpf"].ToString();
+                    mtxtCnpjLocador.Text = dadosCadastro.DefaultView[0]["Cnpj"].ToString();
+                    mtxtTelResLocador.Text = dadosCadastro.DefaultView[0]["TelResidencial"].ToString();
+                    mtxtTelCelLocador.Text = dadosCadastro.DefaultView[0]["Celular"].ToString();
 
-                    if (!string.IsNullOrEmpty(dadosCadastro.DefaultView[0]["Cpf"].ToString()))
-                    {
-                        mtxtCpfLocador.Text = dadosCadastro.DefaultView[0]["Cpf"].ToString();
-                        rbCpf.Checked = true;
-                    }
-                    else if (!string.IsNullOrEmpty(dadosCadastro.DefaultView[0]["Cnpj"].ToString()))
-                    {
-                        mtxtCnpjLocador.Text = dadosCadastro.DefaultView[0]["Cnpj"].ToString();
-                        rbCnpj.Checked = true;
-                    }
+                    CarregaFixoOuCelular(rbFixoComLocador, rbCelComLocador, mtxtFixoComLocador, mtxtCelComLocador,
+                                         dadosCadastro.DefaultView[0]["TelComercial"].ToString());
 
-                    txtContatoLocador.Text = dadosCadastro.DefaultView[0]["Contato"].ToString();
+                    txtEmailLocador.Text = dadosCadastro.DefaultView[0]["Email"].ToString();
                 }
                 else if (tipoCadastro == 3)
                 {
-                    CarregaCombos();
+                    CarregaCombosLocatario();
 
                     txtNomeLocatario.Text = dadosCadastro.DefaultView[0]["Locatario"].ToString();
                     mtxtCpfLocatario.Text = dadosCadastro.DefaultView[0]["CpfLocatario"].ToString();
-                    VerificaTelefoneCadastrado(dadosCadastro.DefaultView[0]["Telefone"].ToString());
+                    mtxtTelefone.Text = dadosCadastro.DefaultView[0]["TelResidencial"].ToString();
+                    mtxtCelular.Text = dadosCadastro.DefaultView[0]["Celular"].ToString();
+
+                    CarregaFixoOuCelular(rbFixoCom, rbCelCom, mtxtFixoCom, mtxtCelCom, dadosCadastro.DefaultView[0]["TelComercial"].ToString());
+
+                    CarregaFixoOuCelular(rbCelOutro, rbCelOutro, mtxtFixoOutro, mtxtCelOutro, dadosCadastro.DefaultView[0]["TelComercial"].ToString());
+
                     txtEmail.Text = dadosCadastro.DefaultView[0]["Email"].ToString();
                     txtAluguel.Text = Auxiliar.FormataValoresExibicao(dadosCadastro.DefaultView[0]["Aluguel"].ToString());
-                    cbImoveis.SelectedValue = dadosCadastro.DefaultView[0]["fkIdImovel"].ToString();
-                    cbLocadores.SelectedValue = dadosCadastro.DefaultView[0]["fkIdLocador"].ToString();
+                    cbImoveisLct.SelectedValue = dadosCadastro.DefaultView[0]["fkIdImovel"].ToString();
                 }
             }
+
         }
-
-        private void VerificaTelefoneCadastrado(string telefone)
-        {
-            if (!string.IsNullOrEmpty(telefone))
-            {
-                string testaTelefone = telefone.Replace("(", string.Empty).Replace(")", string.Empty).Replace("-", string.Empty).Replace(" ", string.Empty).Trim();
-
-                if (testaTelefone.Length == 11)
-                {
-                    mtxtCelular.Text = telefone;
-                }
-                else if (testaTelefone.Length == 10)
-                {
-                    mtxtTelefone.Text = telefone;
-                }
-            }
-        }
-
         private void tcCadastros_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tcCadastros.SelectedTab.Name == "tpLocatario")
             {
                 DadosDefaultLocador();
                 DadosDefaultImovel();
-                CarregaCombos();
+                CarregaCombosLocatario();
             }
             else if (tcCadastros.SelectedTab.Name == "tpLocador")
             {
@@ -228,30 +240,49 @@ namespace GestorDeCadastros
             {
                 DadosDefaultLocatario();
                 DadosDefaultLocador();
+
+                if (idTipoAcao == 1)
+                    CarregaCombosImovel(0);
             }
         }
 
-        private string FormataDocPrioritario(string docPrioritario, int tipoDoc)
+        /// <summary>
+        /// tipoDoc 1 = CPF
+        /// tipoDoc 2 = CNPJ
+        /// tipoDoc 3 = Telefone
+        /// </summary>
+        /// <param name="campoSalvar"></param>
+        /// <param name="tipoDoc"></param>
+        /// <returns></returns>
+        private string FormataCampoSalvar(string campoSalvar, int tipoDoc)
         {
             string testeCampo = string.Empty;
             if (tipoDoc == 1)
             {
-                testeCampo = docPrioritario.Replace(".", string.Empty).Replace(",", string.Empty).Replace("-", string.Empty).Trim();
+                testeCampo = campoSalvar.Replace(".", string.Empty).Replace(",", string.Empty).Replace("-", string.Empty).Trim();
                 if (string.IsNullOrEmpty(testeCampo))
                 {
-                    docPrioritario = string.Empty;
+                    campoSalvar = string.Empty;
+                }
+            }
+            else if (tipoDoc == 2)
+            {
+                testeCampo = campoSalvar.Replace(".", string.Empty).Replace(",", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty).Trim();
+                if (string.IsNullOrEmpty(testeCampo))
+                {
+                    campoSalvar = string.Empty;
                 }
             }
             else
             {
-                testeCampo = docPrioritario.Replace(".", string.Empty).Replace(",", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty).Trim();
+                testeCampo = campoSalvar.Replace("-", string.Empty).Replace("(", string.Empty).Replace(")", string.Empty).Trim();
                 if (string.IsNullOrEmpty(testeCampo))
                 {
-                    docPrioritario = string.Empty;
+                    campoSalvar = string.Empty;
                 }
             }
 
-            return docPrioritario;
+            return campoSalvar;
         }
 
         private void btInicio_Click(object sender, EventArgs e)
@@ -295,8 +326,8 @@ namespace GestorDeCadastros
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2))
                     {
                         RotinaDeDados(tipoCadastro, 3, Convert.ToInt32(sIdCadastro.Trim()));
-                        Auxiliar.MostraMensagemAlerta("Cadastro excluído com sucesso!", 1);                       
-                        this.Close();                     
+                        Auxiliar.MostraMensagemAlerta("Cadastro excluído com sucesso!", 1);
+                        this.Close();
                     }
                 }
                 else
@@ -314,12 +345,12 @@ namespace GestorDeCadastros
 
         #region Ações Banco de Dados
 
-        private DataTable CarregaDadosTabela(int idCadastro, int tipoCadastro)
+        private DataTable CarregaDadosTabela(int idCadastro, int idTipoAcao, int tipoCadastro)
         {
             DataTable tabelaCombos = new DataTable();
             SqlCeDataAdapter sdaSelecao;
             DataSet dsSelecao;
-            PreencheDataset(out dsSelecao, out sdaSelecao, tipoCadastro, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), idCadastro);
+            PreencheDataset(out dsSelecao, out sdaSelecao, tipoCadastro, idTipoAcao, idCadastro);
 
             tabelaCombos = dsSelecao.Tables[0];
 
@@ -357,6 +388,10 @@ namespace GestorDeCadastros
                 {
                     cmd.CommandText = "select * from Locadores where Ativo = 1 and Id = " + idCadastro + "";
                 }
+                else if (tipoAcao == 4)
+                {
+                    cmd.CommandText = "select * from Locadores where Ativo = 1 and Id <> " + idCadastro + "";
+                }
                 else
                 {
                     cmd.CommandText = "select * from Locadores where Ativo = 1";
@@ -391,6 +426,7 @@ namespace GestorDeCadastros
         ///tipoAcao 1 = Cadastro
         ///tipoAcao 2 = Atualizacao
         ///tipoAcao 3 = Exclusão
+        ///tipoAcao 4 = Cadastro menos cadastro especifico
         /// </summary>
         /// <param name="tipoCadastro"></param>
         private void RotinaDeDados(int tipoCadastro, int tipoAcao, int idCadastro)
@@ -412,25 +448,39 @@ namespace GestorDeCadastros
                     dr["Bairro"] = txtBairro.Text.Trim();
                     dr["Cidade"] = txtCidade.Text.Trim();
                     dr["Cep"] = mtxtCep.Text.Trim();
+                    dr["fkIdLocador1"] = cbLocadoresImovel1.SelectedValue.ToString().Trim();
+
+                    if (cbLocadoresImovel2.SelectedValue.ToString().Trim() != "0")
+                    {
+                        dr["fkIdLocador2"] = cbLocadoresImovel2.SelectedValue.ToString().Trim();
+                    }
+
                     dr["Ativo"] = 1;
                 }
                 else if (tipoCadastro == 2)
                 {
                     dr["Locador"] = txtNomeLocador.Text.Trim();
-                    dr["Cpf"] = FormataDocPrioritario(mtxtCpfLocador.Text.Trim(), 1);
-                    dr["Cnpj"] = FormataDocPrioritario(mtxtCnpjLocador.Text.Trim(), 2);
-                    dr["Contato"] = txtContatoLocador.Text.Trim();
+                    dr["Cpf"] = FormataCampoSalvar(mtxtCpfLocador.Text.Trim(), 1);
+                    dr["Cnpj"] = FormataCampoSalvar(mtxtCnpjLocador.Text.Trim(), 2);
+                    dr["TelResidencial"] = FormataCampoSalvar(mtxtTelResLocador.Text.Trim(), 3);
+                    dr["Celular"] = FormataCampoSalvar(mtxtTelCelLocador.Text.Trim(), 3);
+                    dr["TelComercial"] = RetornaFixoOuCelular(rbFixoComLocador, rbCelComLocador, mtxtFixoComLocador, mtxtCelComLocador);
+                    dr["Email"] = txtEmailLocador.Text.Trim();
                     dr["Ativo"] = 1;
                 }
                 else
                 {
                     dr["Locatario"] = txtNomeLocatario.Text.Trim();
                     dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
-                    dr["Telefone"] = RetornaTelefoneSelecionado();
+                    dr["Locatario2"] = txtNomeLocatario2.Text.Trim();
+                    dr["CpfLocatario2"] = mtxtCpfLocatario2.Text.Trim().Replace(",", ".");
+                    dr["TelResidencial"] = FormataCampoSalvar(mtxtTelefone.Text.Trim(), 3);
+                    dr["Celular"] = FormataCampoSalvar(mtxtCelular.Text.Trim(), 3);
+                    dr["TelComercial"] = RetornaFixoOuCelular(rbFixoCom, rbCelCom, mtxtFixoCom, mtxtCelCom);
+                    dr["TelOutro"] = RetornaFixoOuCelular(rbFixoOutro, rbCelOutro, mtxtFixoOutro, mtxtCelOutro);
                     dr["Email"] = txtEmail.Text.Trim();
                     dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguel);
-                    dr["fkIdImovel"] = cbImoveis.SelectedValue.ToString().Trim();
-                    dr["fkIdLocador"] = cbLocadores.SelectedValue.ToString().Trim();
+                    dr["fkIdImovel"] = cbImoveisLct.SelectedValue.ToString().Trim();
                     dr["Ativo"] = 1;
                 }
 
@@ -447,6 +497,17 @@ namespace GestorDeCadastros
                         dr["Bairro"] = txtBairro.Text.Trim();
                         dr["Cidade"] = txtCidade.Text.Trim();
                         dr["Cep"] = mtxtCep.Text.Trim();
+                        dr["fkIdLocador1"] = cbLocadoresImovel1.SelectedValue.ToString().Trim();
+
+                        if (cbLocadoresImovel2.SelectedValue.ToString().Trim() != "0")
+                        {
+                            dr["fkIdLocador2"] = cbLocadoresImovel2.SelectedValue.ToString().Trim();
+                        }
+                        else
+                        {
+                            dr["fkIdLocador2"] = DBNull.Value;
+                        }
+
                         dr["Ativo"] = 1;
                     }
                 }
@@ -456,9 +517,12 @@ namespace GestorDeCadastros
                     {
                         dr = tempdata[0];
                         dr["Locador"] = txtNomeLocador.Text.Trim();
-                        dr["Cpf"] = FormataDocPrioritario(mtxtCpfLocador.Text.Trim(), 1);
-                        dr["Cnpj"] = FormataDocPrioritario(mtxtCnpjLocador.Text.Trim(), 2);
-                        dr["Contato"] = txtContatoLocador.Text.Trim();
+                        dr["Cpf"] = FormataCampoSalvar(mtxtCpfLocador.Text.Trim(), 1);
+                        dr["Cnpj"] = FormataCampoSalvar(mtxtCnpjLocador.Text.Trim(), 2);
+                        dr["TelResidencial"] = FormataCampoSalvar(mtxtTelResLocador.Text.Trim(), 3);
+                        dr["Celular"] = FormataCampoSalvar(mtxtTelCelLocador.Text.Trim(), 3);
+                        dr["TelComercial"] = RetornaFixoOuCelular(rbFixoComLocador, rbCelComLocador, mtxtFixoComLocador, mtxtCelComLocador);
+                        dr["Email"] = txtEmailLocador.Text.Trim();
                         dr["Ativo"] = 1;
                     }
                 }
@@ -469,11 +533,15 @@ namespace GestorDeCadastros
                         dr = tempdata[0];
                         dr["Locatario"] = txtNomeLocatario.Text.Trim();
                         dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
-                        dr["Telefone"] = RetornaTelefoneSelecionado();
+                        dr["Locatario2"] = txtNomeLocatario2.Text.Trim();
+                        dr["CpfLocatario2"] = mtxtCpfLocatario2.Text.Trim().Replace(",", ".");
+                        dr["TelResidencial"] = FormataCampoSalvar(mtxtTelefone.Text.Trim(), 3);
+                        dr["Celular"] = FormataCampoSalvar(mtxtCelular.Text.Trim(), 3);
+                        dr["TelComercial"] = RetornaFixoOuCelular(rbFixoCom, rbCelCom, mtxtFixoCom, mtxtCelCom);
+                        dr["TelOutro"] = RetornaFixoOuCelular(rbFixoOutro, rbCelOutro, mtxtFixoOutro, mtxtCelOutro);
                         dr["Email"] = txtEmail.Text.Trim();
                         dr["Aluguel"] = Auxiliar.FormataValorParaUso(txtAluguel);
-                        dr["fkIdImovel"] = cbImoveis.SelectedValue.ToString().Trim();
-                        dr["fkIdLocador"] = cbLocadores.SelectedValue.ToString().Trim();
+                        dr["fkIdImovel"] = cbImoveisLct.SelectedValue.ToString().Trim();
                         dr["Ativo"] = 1;
                     }
                 }
@@ -536,98 +604,13 @@ namespace GestorDeCadastros
 
         #endregion
 
-        #region Ações Imóvel
-
-        private void cadastraAtualizaImovel_Click(object sender, EventArgs e)
-        {
-            if (Auxiliar.validaCampoTxt(txtEndereco, errorProvider1))
-            {
-                if (Auxiliar.validaCampoTxt(txtBairro, errorProvider1))
-                {
-                    if (Auxiliar.validaCampoTxt(txtCidade, errorProvider1))
-                    {
-                        if (Auxiliar.validaCampoMtxt(mtxtCep, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCep, errorProvider1))
-                        {
-                            try
-                            {
-                                if (sender == btCadastrarImovel)
-                                {
-                                    IncluirImovel();
-                                    DadosDefaultImovel();
-                                }
-                                else
-                                {
-                                    AtualizaImovel();
-                                    btAtualizarImovel.Enabled = false;
-                                }
-
-                            }
-                            catch (Exception ex)
-                            {
-                                Auxiliar.MostraMensagemAlerta("Ocorreu um erro durante a operação e não foi possível finaliza-la com sucesso", 3);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void IncluirImovel()
-        {
-            try
-            {
-                RotinaDeDados(1, 1, 0);
-                Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
-            }
-            catch (Exception ex)
-            {
-                Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
-            }
-
-        }
-
-        private void AtualizaImovel()
-        {
-            if (!string.IsNullOrEmpty(lblIdTipoAcao.Text.Trim()) && !string.IsNullOrEmpty(lblIdImovel.Text.Trim()))
-            {
-                try
-                {
-                    RotinaDeDados(1, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), Convert.ToInt32(lblIdImovel.Text.Trim()));
-                    Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
-                }
-                catch (Exception ex)
-                {
-                    Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
-                }
-            }
-            else
-            {
-                Auxiliar.MostraMensagemAlerta("Dados perdidos, não foi possivel atualizar o cadastro", 3);
-            }
-        }
-
-        private void btLimparIm_Click(object sender, EventArgs e)
-        {
-            DadosDefaultImovel();
-        }
-
-        private void DadosDefaultImovel()
-        {
-            txtEndereco.Text = string.Empty;
-            txtBairro.Text = string.Empty;
-            txtCidade.Text = string.Empty;
-            mtxtCep.Text = string.Empty;
-        }
-
-        #endregion
-
         #region Ações Locador
 
         private void cadastraAtualizaLocador_Click(object sender, EventArgs e)
         {
-            if (Auxiliar.validaCampoTxt(txtNomeLocador, errorProvider1))
+            if (Auxiliar.validaTextBox(txtNomeLocador, errorProvider1))
             {
-                if (verificaDocPrioritario())
+                if (verificaDocLocador())
                 {
                     try
                     {
@@ -652,30 +635,13 @@ namespace GestorDeCadastros
             }
         }
 
-        private bool verificaDocPrioritario()
+        private bool verificaDocLocador()
         {
             bool campoValido = false;
 
-            if (rbCpf.Checked == false && rbCnpj.Checked == false)
+            if (Auxiliar.validaMaskedTextBox(mtxtCpfLocador, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCpfLocador, errorProvider1))
             {
-                errorProvider1.SetError(lblVerificaDocPri, "Favor selecionar um dos documentos para finalizar o cadastro!");
-            }
-            else
-            {
-                if (rbCpf.Checked)
-                {
-                    if (Auxiliar.validaCampoMtxt(mtxtCpfLocador, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCpfLocador, errorProvider1))
-                    {
-                        campoValido = true;
-                    }
-                }
-                else if (rbCnpj.Checked)
-                {
-                    if (Auxiliar.validaCampoMtxt(mtxtCnpjLocador, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCnpjLocador, errorProvider1))
-                    {
-                        campoValido = true;
-                    }
-                }
+                campoValido = true;
             }
 
             return campoValido;
@@ -722,51 +688,177 @@ namespace GestorDeCadastros
         private void DadosDefaultLocador()
         {
             txtNomeLocador.Text = string.Empty;
-
             mtxtCpfLocador.Text = string.Empty;
-            mtxtCpfLocador.BackColor = Color.White;
-            mtxtCpfLocador.Enabled = false;
-
             mtxtCnpjLocador.Text = string.Empty;
-            mtxtCnpjLocador.BackColor = Color.White;
-            mtxtCnpjLocador.Enabled = false;
-
-            txtContatoLocador.Text = string.Empty;
-            rbCnpj.Checked = false;
-            rbCpf.Checked = false;
+            mtxtTelResLocador.Text = string.Empty;
+            mtxtTelCelLocador.Text = string.Empty;
+            mtxtFixoComLocador.Text = string.Empty;
+            mtxtCelComLocador.Text = string.Empty;
+            txtEmailLocador.Text = string.Empty;
         }
 
-        private void rbDocPriritario_CheckedChanged(object sender, EventArgs e)
+        #endregion
+
+        #region Ações Imóvel
+
+        private void CarregaCombosImovel(int idLocador2)
         {
-            if (rbCpf.Checked)
-            {
-                errorProvider1.Clear();
-                mtxtCnpjLocador.Text = string.Empty;
-                mtxtCnpjLocador.Enabled = false;
-                mtxtCnpjLocador.BackColor = Color.White;
+            DataTable locadores = new DataTable();
 
-                mtxtCpfLocador.Focus();
-                mtxtCpfLocador.Enabled = true;
-                mtxtCpfLocador.BackColor = Color.PaleGreen;
-            }
-            else if (rbCnpj.Checked)
+            if (idLocador2 == 0)
             {
-                errorProvider1.Clear();
-                mtxtCpfLocador.Text = string.Empty;
-                mtxtCpfLocador.Enabled = false;
-                mtxtCpfLocador.BackColor = Color.White;
-
-                mtxtCnpjLocador.Focus();
-                mtxtCnpjLocador.Enabled = true;
-                mtxtCnpjLocador.BackColor = Color.PaleGreen;
+                locadores = CarregaTabelasCombos(2);
             }
+            else
+            {
+                locadores = CarregaDadosTabela(idLocador2, 4, 2);
+            }
+
+            if (locadores.Rows.Count > 0)
+            {
+                locadores.Rows.Add(0, "Por favor, selecione um Locador...");
+                locadores.DefaultView.Sort = "Id";
+
+                cbLocadoresImovel1.DataSource = locadores.DefaultView;
+                cbLocadoresImovel1.DisplayMember = "Locador";
+                cbLocadoresImovel1.ValueMember = "Id";
+
+                cbLocadoresImovel1.Enabled = true;
+            }
+            else
+            {
+                CarregaCombosVazios("locadores", cbLocadoresImovel1);
+            }
+        }
+
+        private void cbLocadoresImovel1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            bool carregarDados = false;
+            if (!string.IsNullOrEmpty(cbLocadoresImovel1.SelectedValue.ToString()) && cbLocadoresImovel1.SelectedValue.ToString() != "0"
+                && cbLocadoresImovel1.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                string teste = cbLocadoresImovel1.SelectedItem.ToString();
+                DataTable locadores2 = CarregaDadosTabela(Convert.ToInt32(cbLocadoresImovel1.SelectedValue.ToString().Trim()), 4, 2);
+                if (locadores2.Rows.Count > 0)
+                {
+                    locadores2.Rows.Add(0, "Caso deseje, selecione um novo Locador...");
+                    locadores2.DefaultView.Sort = "Id";
+
+                    cbLocadoresImovel2.DataSource = locadores2.DefaultView;
+                    cbLocadoresImovel2.DisplayMember = "Locador";
+                    cbLocadoresImovel2.ValueMember = "Id";
+
+                    cbLocadoresImovel2.Enabled = true;
+
+                    carregarDados = true;
+                }
+            }
+
+            if (!carregarDados)
+            {
+                DataTable semValores = new DataTable();
+                semValores.Columns.Add("Id");
+                semValores.Columns.Add("Nome");
+
+                semValores.Rows.Add(0, "Sem cadastros para exibir!");
+
+                cbLocadoresImovel2.DataSource = semValores; ;
+                cbLocadoresImovel2.DisplayMember = "Nome";
+                cbLocadoresImovel2.ValueMember = "Id";
+
+                cbLocadoresImovel2.Enabled = false;
+            }
+
+        }
+
+        private void cadastraAtualizaImovel_Click(object sender, EventArgs e)
+        {
+            if (Auxiliar.validaTextBox(txtEndereco, errorProvider1))
+            {
+                if (Auxiliar.validaTextBox(txtBairro, errorProvider1))
+                {
+                    if (Auxiliar.validaTextBox(txtCidade, errorProvider1))
+                    {
+                        if (Auxiliar.validaMaskedTextBox(mtxtCep, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCep, errorProvider1))
+                        {
+                            if (Auxiliar.validaComboBox(cbLocadoresImovel1, errorProvider1))
+                            {
+                                try
+                                {
+                                    if (sender == btCadastrarImovel)
+                                    {
+                                        IncluirImovel();
+                                        DadosDefaultImovel();
+                                    }
+                                    else
+                                    {
+                                        AtualizaImovel();
+                                        btAtualizarImovel.Enabled = false;
+                                    }
+
+                                }
+                                catch (Exception ex)
+                                {
+                                    Auxiliar.MostraMensagemAlerta("Ocorreu um erro durante a operação e não foi possível finaliza-la com sucesso", 3);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void IncluirImovel()
+        {
+            RotinaDeDados(1, 1, 0);
+            Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
+        }
+
+        private void AtualizaImovel()
+        {
+            if (!string.IsNullOrEmpty(lblIdTipoAcao.Text.Trim()) && !string.IsNullOrEmpty(lblIdImovel.Text.Trim()))
+            {
+                try
+                {
+                    RotinaDeDados(1, Convert.ToInt32(lblIdTipoAcao.Text.Trim()), Convert.ToInt32(lblIdImovel.Text.Trim()));
+                    Auxiliar.MostraMensagemAlerta("Cadastro concluído com Sucesso!", 1);
+                }
+                catch (Exception ex)
+                {
+                    Auxiliar.MostraMensagemAlerta("Ocorreu um erro ao efetuar o Cadastro", 3);
+                }
+            }
+            else
+            {
+                Auxiliar.MostraMensagemAlerta("Dados perdidos, não foi possivel atualizar o cadastro", 3);
+            }
+        }
+
+        private void btLimparIm_Click(object sender, EventArgs e)
+        {
+            DadosDefaultImovel();
+        }
+
+        private void DadosDefaultImovel()
+        {
+            txtEndereco.Text = string.Empty;
+            txtBairro.Text = string.Empty;
+            txtCidade.Text = string.Empty;
+            mtxtCep.Text = string.Empty;
+            cbLocadoresImovel1.SelectedValue = "0";
+
+            rbFixoComLocador.Checked = false;
+            rbCelComLocador.Checked = false;
+
+            if (cbLocadoresImovel2.Items.Count > 0)
+                cbLocadoresImovel2.SelectedValue = "0";
         }
 
         #endregion
 
         #region Ações Locatário
 
-        private void CarregaCombos()
+        private void CarregaCombosLocatario()
         {
             DataTable imoveis = CarregaTabelasCombos(1);
             if (imoveis.Rows.Count > 0)
@@ -774,32 +866,15 @@ namespace GestorDeCadastros
                 imoveis.Rows.Add(0, "Por favor, selecione um Imóvel...");
                 imoveis.DefaultView.Sort = "Id";
 
-                cbImoveis.DataSource = imoveis.DefaultView;
-                cbImoveis.DisplayMember = "Endereco";
-                cbImoveis.ValueMember = "Id";
+                cbImoveisLct.DataSource = imoveis.DefaultView;
+                cbImoveisLct.DisplayMember = "Endereco";
+                cbImoveisLct.ValueMember = "Id";
 
-                cbImoveis.Enabled = true;
+                cbImoveisLct.Enabled = true;
             }
             else
             {
-                CarregaCombosVazios("imóveis", cbImoveis);
-            }
-
-            DataTable locadores = CarregaTabelasCombos(2);
-            if (locadores.Rows.Count > 0)
-            {
-                locadores.Rows.Add(0, "Por favor, selecione um Locador...");
-                locadores.DefaultView.Sort = "Id";
-
-                cbLocadores.DataSource = locadores.DefaultView;
-                cbLocadores.DisplayMember = "Locador";
-                cbLocadores.ValueMember = "Id";
-
-                cbLocadores.Enabled = true;
-            }
-            else
-            {
-                CarregaCombosVazios("locadores", cbLocadores);
+                CarregaCombosVazios("imóveis", cbImoveisLct);
             }
 
         }
@@ -833,70 +908,35 @@ namespace GestorDeCadastros
 
         private void cadastraAtualizaLocatario_Click(object sender, EventArgs e)
         {
-            if (Auxiliar.validaCampoTxt(txtNomeLocatario, errorProvider1))
+            if (Auxiliar.validaTextBox(txtNomeLocatario, errorProvider1))
             {
-                if (Auxiliar.validaCampoMtxt(mtxtCpfLocatario, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCpfLocatario, errorProvider1))
+                if (Auxiliar.validaMaskedTextBox(mtxtCpfLocatario, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCpfLocatario, errorProvider1))
                 {
-                    if (verificaTelPrioritario())
+                    if (Auxiliar.validaTextBox(txtAluguel, errorProvider1))
                     {
-                        if (Auxiliar.validaCampoTxt(txtAluguel, errorProvider1))
+                        if (validaCombo(cbImoveisLct))
                         {
-                            if (validaCombo(cbImoveis))
+                            try
                             {
-                                if (validaCombo(cbLocadores))
+                                if (sender == btCadastrarLocatario)
                                 {
-                                    try
-                                    {
-                                        if (sender == btCadastrarLocatario)
-                                        {
-                                            IncluirLocatario();
-                                            DadosDefaultLocatario();
-                                        }
-                                        else
-                                        {
-                                            AtualizaLocatario();
-                                            btAtualizarLocatario.Enabled = false;
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Auxiliar.MostraMensagemAlerta("Ocorreu um erro durante a operação e não foi possível finaliza-la com sucesso", 3);
-                                    }
+                                    IncluirLocatario();
+                                    DadosDefaultLocatario();
                                 }
+                                else
+                                {
+                                    AtualizaLocatario();
+                                    btAtualizarLocatario.Enabled = false;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Auxiliar.MostraMensagemAlerta("Ocorreu um erro durante a operação e não foi possível finaliza-la com sucesso", 3);
                             }
                         }
                     }
                 }
             }
-        }
-
-        private bool verificaTelPrioritario()
-        {
-            bool campoValido = false;
-
-            if (rbTelefone.Checked == false && rbCelular.Checked == false)
-            {
-                errorProvider1.SetError(lblTelPri, "Favor selecionar e preencher um dos campos para finalizar o cadastro!");
-            }
-            else
-            {
-                if (rbTelefone.Checked)
-                {
-                    if (Auxiliar.validaCampoMtxt(mtxtTelefone, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtTelefone, errorProvider1))
-                    {
-                        campoValido = true;
-                    }
-                }
-                else if (rbCelular.Checked)
-                {
-                    if (Auxiliar.validaCampoMtxt(mtxtCelular, errorProvider1) && Auxiliar.verificaPrenchimentoMtxt(mtxtCelular, errorProvider1))
-                    {
-                        campoValido = true;
-                    }
-                }
-            }
-
-            return campoValido;
         }
 
         private void IncluirLocatario()
@@ -942,56 +982,105 @@ namespace GestorDeCadastros
         {
             txtNomeLocatario.Text = string.Empty;
             mtxtCpfLocatario.Text = string.Empty;
+            txtNomeLocatario2.Text = string.Empty;
+            mtxtCpfLocatario2.Text = string.Empty;
+
             mtxtTelefone.Text = string.Empty;
+            mtxtCelular.Text = string.Empty;
+            mtxtFixoCom.Text = string.Empty;
+            mtxtCelCom.Text = string.Empty;
+            mtxtFixoOutro.Text = string.Empty;
+            mtxtCelOutro.Text = string.Empty;
             txtEmail.Text = string.Empty;
             txtAluguel.Text = string.Empty;
-            cbImoveis.SelectedValue = "0";
-            cbLocadores.SelectedValue = "0";
-            rbTelefone.Checked = true;
-            mtxtTelefone.BackColor = Color.PaleGreen;
-            rbCelular.Checked = false;
-            mtxtCelular.BackColor = Color.White;
+            cbImoveisLct.SelectedValue = "0";
+
+            rbFixoCom.Checked = false;
+            rbCelCom.Checked = false;
+
+            rbFixoOutro.Checked = false;
+            rbCelOutro.Checked = false;
         }
 
-        private void rbTelPriritario_CheckedChanged(object sender, EventArgs e)
+        private void rbFixoOuCelular_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbTelefone.Checked)
+            if (sender == rbFixoCom || sender == rbCelCom)
             {
-                errorProvider1.Clear();
-                mtxtCelular.Text = string.Empty;
+                SecionaFixoOuCelular(rbFixoCom, rbCelCom, mtxtFixoCom, mtxtCelCom);
+            }
+            else if (sender == rbFixoOutro || sender == rbCelOutro)
+            {
+                SecionaFixoOuCelular(rbFixoOutro, rbCelOutro, mtxtFixoOutro, mtxtCelOutro);
+            }
+            else if (sender == rbFixoComLocador || sender == rbCelComLocador)
+            {
+                SecionaFixoOuCelular(rbFixoComLocador, rbCelComLocador, mtxtFixoComLocador, mtxtCelComLocador);
+            }
+
+        }
+
+        private void SecionaFixoOuCelular(RadioButton rbFixo, RadioButton rbCelular, MaskedTextBox mtxtFixo, MaskedTextBox mtxtCelular)
+        {
+            if (rbFixo.Checked)
+            {
+                mtxtFixo.Enabled = true;
+                mtxtFixo.BackColor = Color.PaleGreen;
+
                 mtxtCelular.Enabled = false;
                 mtxtCelular.BackColor = Color.White;
-                mtxtCelular.Focus();
-
-                mtxtTelefone.Enabled = true;
-                mtxtTelefone.BackColor = Color.PaleGreen;
-
+                mtxtCelular.Text = string.Empty;
             }
-            else if (rbCelular.Checked)
+            else
             {
-                errorProvider1.Clear();
-                mtxtTelefone.Text = string.Empty;
-                mtxtTelefone.Enabled = false;
-                mtxtTelefone.BackColor = Color.White;
-                mtxtTelefone.Focus();
+                mtxtFixo.Enabled = false;
+                mtxtFixo.BackColor = Color.White;
+                mtxtFixo.Text = string.Empty;
 
                 mtxtCelular.Enabled = true;
                 mtxtCelular.BackColor = Color.PaleGreen;
             }
         }
 
-        private string RetornaTelefoneSelecionado()
+        private string RetornaFixoOuCelular(RadioButton rbFixo, RadioButton rbCelular, MaskedTextBox mtxtFixo, MaskedTextBox mtxtCelular)
         {
-            if (rbCelular.Checked)
+            string celOuFixo = string.Empty;
+
+            if (rbFixo.Checked)
             {
-                return mtxtCelular.Text.Trim();
+                celOuFixo = mtxtFixo.Text.Trim();
             }
-            else
+            else if (rbCelular.Checked)
             {
-                return mtxtTelefone.Text.Trim();
+                celOuFixo = mtxtCelular.Text.Trim();
+            }
+
+            return FormataCampoSalvar(celOuFixo, 3);
+        }
+
+        private void CarregaFixoOuCelular(RadioButton rbFixo, RadioButton rbCelular, MaskedTextBox mtxtFixo, MaskedTextBox mtxtCelular, string celOuFixo)
+        {
+            if (!string.IsNullOrEmpty(celOuFixo.Trim()))
+            {
+                if (celOuFixo.Length == 11)
+                {
+                    mtxtFixo.Text = celOuFixo;
+                    rbFixo.Checked = true;
+
+                    mtxtCelular.Text = string.Empty;
+                    rbCelular.Checked = false;
+                }
+                else if (celOuFixo.Length == 12)
+                {
+                    mtxtCelular.Text = celOuFixo;
+                    rbCelular.Checked = true;
+
+                    mtxtFixo.Text = string.Empty;
+                    rbFixo.Checked = false;
+                }
             }
         }
 
         #endregion
+
     }
 }

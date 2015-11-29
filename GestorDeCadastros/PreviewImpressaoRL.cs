@@ -79,11 +79,8 @@ namespace GestorDeCadastros
             lblSubTotal2.Text = string.Empty;
             lblSubTotal2_2.Text = string.Empty;
 
-            lblComplemento.Text = string.Empty;
-            lblComplemento2.Text = string.Empty;
-
-            lblSubTotal3.Text = string.Empty;
-            lblSubTotal3_2.Text = string.Empty;
+            lblComplemento1.Text = string.Empty;
+            lblComplemento2.Text = string.Empty;   
         }
 
         #endregion
@@ -146,34 +143,39 @@ namespace GestorDeCadastros
         /// <param name="sdaDados"></param>
         /// <param name="tipoTabela"></param>
         /// <param name="idLocatario"></param>
-        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int idCadastro)
+        private static void PreencheDataset(out DataSet dsDados, out SqlCeDataAdapter sdaDados, int tipoTabela, string idBusca)
         {
             sdaDados = new SqlCeDataAdapter();
 
             SqlCeCommand cmd = Auxiliar.retornaConexao().CreateCommand();
 
-            cmd.CommandText = "select lcd.Locador, lcd.Cpf, lcd.Cnpj, rl.Aluguel, rl.PorcentagemMulta, rl.Multa, rl.PorcentagemComissao, rl.Comissao, rl.Complemento," +
-                              " rl.DescricaoComplemento, rl.Total" +
-                              " from RecibosLocadores rl" +
-                              " inner join RecibosPrincipais rp" +
-                              " on rl.fkIdRecibo = rp.Id" +
-                              " inner join Locatarios lct" +
-                              " on rp.fkIdLocatario = lct.Id" +
-                              " inner join Locadores lcd" +
-                              " on lct.fkIdLocador = lcd.Id" +
-                              " where rl.Id = " + idCadastro + "";
+            if (tipoTabela == 1)
+            {
+                cmd.CommandText = "select rl.Aluguel, rl.PorcentagemMulta, rl.Multa, rl.PorcentagemComissao, rl.Comissao, rl.Complemento, rl.DescricaoComplemento,"+
+                                  " rl.Complemento2, rl.DescricaoComplemento2, rl.Complemento3, rl.DescricaoComplemento3, rl.Total, im.fkIdLocador1, im.fkIdLocador2" +
+                                  " from RecibosLocadores rl" +
+                                  " inner join RecibosPrincipais rp on rl.fkIdRecibo = rp.Id" +
+                                  " inner join Locatarios lct on rp.fkIdLocatario = lct.Id" +
+                                  " inner join Imoveis im on lct.fkIdImovel = im.Id" +
+                                  " where rl.Id = " + idBusca + "";
+            }
+            else if (tipoTabela == 2)
+            {
+                cmd.CommandText = "select Id, Locador, Cpf, Cnpj from Locadores where id in (" + idBusca + ") and Ativo = 1 order by Locador";
+
+            }
 
             sdaDados.SelectCommand = cmd;
             dsDados = new DataSet();
             sdaDados.Fill(dsDados);
         }
 
-        private DataTable CarregaDadosTabela(int idCadastro)
+        private DataTable CarregaDadosTabela(int tipoTabela, string idBusca)
         {
             DataTable tabelaCombos = new DataTable();
             SqlCeDataAdapter sdaSelecao;
             DataSet dsSelecao;
-            PreencheDataset(out dsSelecao, out sdaSelecao, idCadastro);
+            PreencheDataset(out dsSelecao, out sdaSelecao, tipoTabela, idBusca);
 
             tabelaCombos = dsSelecao.Tables[0];
 
@@ -188,71 +190,156 @@ namespace GestorDeCadastros
         {
             try
             {
-                DataTable dadosLocatario = CarregaDadosTabela(Convert.ToInt32(lblIdReciboLocador.Text.Trim()));
-                if (dadosLocatario.Rows.Count > 0)
+                DataTable dadosRecibo = CarregaDadosTabela(1, lblIdReciboLocador.Text.Trim());
+                if (dadosRecibo.Rows.Count > 0)
                 {
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), lblAluguel);
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Aluguel"].ToString(), lblAluguel2);              
-                    
-                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["PorcentagemMulta"].ToString()) &&
-                        dadosLocatario.DefaultView[0]["PorcentagemMulta"].ToString() == "0")
+                    HabilitaLabelValor(dadosRecibo.DefaultView[0]["Aluguel"].ToString(), lblAluguel);
+                    HabilitaLabelValor(dadosRecibo.DefaultView[0]["Aluguel"].ToString(), lblAluguel2);
+
+                    if (!string.IsNullOrEmpty(dadosRecibo.DefaultView[0]["PorcentagemMulta"].ToString()) &&
+                        dadosRecibo.DefaultView[0]["PorcentagemMulta"].ToString() == "0")
                     {
-                        lblPorcentMulta.Text = "Multa " + dadosLocatario.DefaultView[0]["PorcentagemMulta"].ToString().Trim() + " % R$:";
-                        lblPorcentMulta2.Text = "Multa " + dadosLocatario.DefaultView[0]["PorcentagemMulta"].ToString().Trim() + " % R$:";
+                        lblPorcentMulta.Text = "Multa " + dadosRecibo.DefaultView[0]["PorcentagemMulta"].ToString().Trim() + " % R$:";
+                        lblPorcentMulta2.Text = "Multa " + dadosRecibo.DefaultView[0]["PorcentagemMulta"].ToString().Trim() + " % R$:";
                     }
 
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Multa"].ToString(), lblMulta);
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Multa"].ToString(), lblMulta2);
+                    HabilitaLabelValor(dadosRecibo.DefaultView[0]["Multa"].ToString(), lblMulta);
+                    HabilitaLabelValor(dadosRecibo.DefaultView[0]["Multa"].ToString(), lblMulta2);
 
                     CalculaExibeSubTotal1();
 
-                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["PorcentagemComissao"].ToString()) &&
-                      dadosLocatario.DefaultView[0]["PorcentagemComissao"].ToString() == "0")
+                    if (!string.IsNullOrEmpty(dadosRecibo.DefaultView[0]["PorcentagemComissao"].ToString()) &&
+                      dadosRecibo.DefaultView[0]["PorcentagemComissao"].ToString() == "0")
                     {
-                        lblPorcentComissao.Text = "- Comissão " + dadosLocatario.DefaultView[0]["PorcentagemComissao"].ToString().Trim() + " % R$:";
-                        lblPorcentComissao2.Text = "- Comissão " + dadosLocatario.DefaultView[0]["PorcentagemComissao"].ToString().Trim() + " % R$:";
+                        lblPorcentComissao.Text = "- Comissão " + dadosRecibo.DefaultView[0]["PorcentagemComissao"].ToString().Trim() + " % R$:";
+                        lblPorcentComissao2.Text = "- Comissão " + dadosRecibo.DefaultView[0]["PorcentagemComissao"].ToString().Trim() + " % R$:";
                     }
 
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Comissao"].ToString(), lblComissao);
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Comissao"].ToString(), lblComissao2);                    
+                    HabilitaLabelValor(dadosRecibo.DefaultView[0]["Comissao"].ToString(), lblComissao);
+                    HabilitaLabelValor(dadosRecibo.DefaultView[0]["Comissao"].ToString(), lblComissao2);
 
-                    CalculaExibeSubTotal2();                    
+                    CalculaExibeSubTotal2();
 
-                    if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Complemento"].ToString()) && dadosLocatario.DefaultView[0]["Complemento"].ToString() != "0")
+                    if (!string.IsNullOrEmpty(dadosRecibo.DefaultView[0]["Complemento"].ToString()) && dadosRecibo.DefaultView[0]["Complemento"].ToString() != "0")
                     {
-                        pnlSubTotal3.Visible = true;
-                        pnlSubTotal3_2.Visible = true;
-                        HabilitaLabelValor(dadosLocatario.DefaultView[0]["Complemento"].ToString(), lblComplemento);
-                        HabilitaLabelValor(dadosLocatario.DefaultView[0]["Complemento"].ToString(), lblComplemento2);
-
-                        CalculaSubTotal3(Auxiliar.FormataValorParaUso(lblComplemento));
+                        HabilitaLabelValor(dadosRecibo.DefaultView[0]["Complemento"].ToString(), lblComplemento1);
+                        HabilitaLabelValor(dadosRecibo.DefaultView[0]["Complemento"].ToString(), lblComplemento1_2);
                     }
 
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Total"].ToString(), lblTotal);
-                    HabilitaLabelValor(dadosLocatario.DefaultView[0]["Total"].ToString(), lblTotal2); 
-
-                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Locador"].ToString(), lblLocador);
-                    HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Locador"].ToString(), lblLocador2);
-
-                    if (VerificaCampoDoc(dadosLocatario.DefaultView[0]["Cpf"].ToString()))
+                    if (!string.IsNullOrEmpty(dadosRecibo.DefaultView[0]["Complemento2"].ToString()) && dadosRecibo.DefaultView[0]["Complemento2"].ToString() != "0")
                     {
-                        HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Cpf"].ToString(), lblDocLocador);
-                        HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Cpf"].ToString(), lblDocLocador2);
-                    }
-                    else if (VerificaCampoDoc(dadosLocatario.DefaultView[0]["Cnpj"].ToString()))
-                    {
-                        HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Cnpj"].ToString(), lblDocLocador);
-                        HabilitaLabelTexto(dadosLocatario.DefaultView[0]["Cnpj"].ToString(), lblDocLocador2);
+                        HabilitaLabelValor(dadosRecibo.DefaultView[0]["Complemento2"].ToString(), lblComplemento2);
+                        HabilitaLabelValor(dadosRecibo.DefaultView[0]["Complemento2"].ToString(), lblComplemento2_2);
                     }
 
-                    HabilitaTextBox(dadosLocatario.DefaultView[0]["DescricaoComplemento"].ToString(), txtDescricComplemento, pnlDescricComplemento);
-                    HabilitaTextBox(dadosLocatario.DefaultView[0]["DescricaoComplemento"].ToString(), txtDescricComplemento2, pnlDescricComplemento2);
+                    if (!string.IsNullOrEmpty(dadosRecibo.DefaultView[0]["Complemento3"].ToString()) && dadosRecibo.DefaultView[0]["Complemento3"].ToString() != "0")
+                    {
+                        HabilitaLabelValor(dadosRecibo.DefaultView[0]["Complemento3"].ToString(), lblComplemento3);
+                        HabilitaLabelValor(dadosRecibo.DefaultView[0]["Complemento3"].ToString(), lblComplemento3_2);
+                    }
+
+                    //CalculaSubTotal3(Auxiliar.FormataValorParaUso(lblSubTotal2));
+
+                    if (!string.IsNullOrEmpty(dadosRecibo.DefaultView[0]["DescricaoComplemento"].ToString()))
+                    {
+                        HabilitaLabelTexto(dadosRecibo.DefaultView[0]["DescricaoComplemento"].ToString(), lblDescComp1);
+                        HabilitaLabelTexto(dadosRecibo.DefaultView[0]["DescricaoComplemento"].ToString(), lblDescComp1_2);
+                    }
+
+                    if (!string.IsNullOrEmpty(dadosRecibo.DefaultView[0]["DescricaoComplemento2"].ToString()))
+                    {
+                        HabilitaLabelTexto(dadosRecibo.DefaultView[0]["DescricaoComplemento2"].ToString(), lblDescComp2);
+                        HabilitaLabelTexto(dadosRecibo.DefaultView[0]["DescricaoComplemento2"].ToString(), lblDescComp2_2);
+                    }
+
+                    if (!string.IsNullOrEmpty(dadosRecibo.DefaultView[0]["DescricaoComplemento3"].ToString()))
+                    {
+                        HabilitaLabelTexto(dadosRecibo.DefaultView[0]["DescricaoComplemento3"].ToString(), lblDescComp3);
+                        HabilitaLabelTexto(dadosRecibo.DefaultView[0]["DescricaoComplemento3"].ToString(), lblDescComp3_2);
+                    }
+
+
+                    HabilitaLabelValor(dadosRecibo.DefaultView[0]["Total"].ToString(), lblTotal);
+                    HabilitaLabelValor(dadosRecibo.DefaultView[0]["Total"].ToString(), lblTotal_2);
+
+                    CarregaDadosLocadores(dadosRecibo);                    
                 }
             }
             catch (Exception ex)
             {
                 //Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
                 Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Usuário.", 3);
+            }
+        }
+
+        private void CarregaDadosLocadores(DataTable dadosLocatario)
+        {
+            string idLocadores = string.Empty;
+
+            if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString()) && dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString() != "0")
+            {
+                idLocadores = dadosLocatario.DefaultView[0]["fkIdLocador1"].ToString().Trim();
+            }
+
+            if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString()) && dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString() != "0")
+            {
+                idLocadores += "," + dadosLocatario.DefaultView[0]["fkIdLocador2"].ToString().Trim();
+            }
+
+            if (!string.IsNullOrEmpty(idLocadores))
+            {
+                DataTable dtLocadores = CarregaDadosTabela(2, idLocadores);
+
+                string locadores = string.Empty;
+                string docLocadores = string.Empty;
+
+                for (int i = 0; i < dtLocadores.Rows.Count; i++)
+                {
+                    if (i != 0)
+                    {
+                        lblLocador2.Text = dtLocadores.DefaultView[i]["Locador"].ToString().Trim();
+                        lblLocador2_2.Text = dtLocadores.DefaultView[i]["Locador"].ToString().Trim();
+
+                        if (!string.IsNullOrEmpty(dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim()))
+                        {
+                            lblDocLocador2.Text = dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim();
+                            lblDocLocador2_2.Text = dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim();
+                        }
+                        else
+                        {
+                            lblDocLocador2.Text = dtLocadores.DefaultView[i]["Cpf"].ToString().Trim();
+                            lblDocLocador2_2.Text = dtLocadores.DefaultView[i]["Cpf"].ToString().Trim();
+                        }
+
+                        lblTextoLocador2.Visible = true;
+                        lblTextoLocador2_2.Visible = true;
+
+                        lblLocador2.Visible = true;
+                        lblLocador2_2.Visible = true;
+
+                        lblTextoDocs2.Visible = true;
+                        lblTextoDocs2_2.Visible = true;
+
+                        lblDocLocador2.Visible = true;
+                        lblDocLocador2_2.Visible = true;
+                    }
+                    else
+                    {
+                        lblLocador.Text = dtLocadores.DefaultView[i]["Locador"].ToString().Trim();
+                        lblLocador_2.Text = dtLocadores.DefaultView[i]["Locador"].ToString().Trim();                      
+
+                        if (!string.IsNullOrEmpty(dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim()))
+                        {
+                            lblDocLocador.Text = dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim();
+                            lblDocLocador_2.Text = dtLocadores.DefaultView[i]["Cnpj"].ToString().Trim();
+                        }
+                        else
+                        {
+                            lblDocLocador.Text = dtLocadores.DefaultView[i]["Cpf"].ToString().Trim();
+                            lblDocLocador_2.Text = dtLocadores.DefaultView[i]["Cpf"].ToString().Trim();
+                        }
+                    }
+                }                          
             }
         }
 
@@ -292,13 +379,34 @@ namespace GestorDeCadastros
         {
             decimal dComplemento = 0;
 
-            if (!string.IsNullOrEmpty(lblComplemento.Text.Trim()))
+            if (!string.IsNullOrEmpty(lblComplemento1.Text.Trim()) && IsDecimalValido(lblComplemento1.Text.Trim()))
             {
-                dComplemento = Auxiliar.FormataValorParaUso(lblComplemento);
+                dComplemento = Auxiliar.FormataValorParaUso(lblComplemento1);
             }
 
-            lblSubTotal3.Text = Auxiliar.FormataValoresExibicao((subTotal2 - dComplemento).ToString());
-            lblSubTotal3_2.Text = Auxiliar.FormataValoresExibicao((subTotal2 - dComplemento).ToString());
+            if (!string.IsNullOrEmpty(lblComplemento2.Text.Trim()) && IsDecimalValido(lblComplemento2.Text.Trim()))
+            {
+                dComplemento = Auxiliar.FormataValorParaUso(lblComplemento2) + dComplemento;
+            }
+
+            if (!string.IsNullOrEmpty(lblComplemento3.Text.Trim()) && IsDecimalValido(lblComplemento3.Text.Trim()))
+            {
+                dComplemento = Auxiliar.FormataValorParaUso(lblComplemento3) + dComplemento;
+            }          
+        }
+
+        private bool IsDecimalValido(string valor)
+        {
+            try
+            {
+                decimal dTeste = Convert.ToDecimal(valor);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+           
         }
 
         private string calculaPorcentagem(decimal porcentagem, string valorCalcular)
@@ -354,7 +462,7 @@ namespace GestorDeCadastros
             }
         }
 
-        #endregion
-
+        #endregion 
+        
     }
 }
