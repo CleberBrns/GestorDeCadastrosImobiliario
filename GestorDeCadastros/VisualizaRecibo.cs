@@ -14,6 +14,8 @@ namespace GestorDeCadastros
 {
     public partial class VisualizaRecibo : Form
     {
+        private bool ExecucaoParaTestes = false;
+
         private int idReciboPrincipal;
         private int idReciboLocador;
 
@@ -40,6 +42,8 @@ namespace GestorDeCadastros
         {
             try
             {
+                ExecucaoParaTestes = Auxiliar.VerificaTipoExecucao();
+
                 //idReciboPrincipal = 1;
                 if (idReciboPrincipal != 0)
                 {
@@ -61,8 +65,14 @@ namespace GestorDeCadastros
             }
             catch (Exception ex)
             {
-                //Auxiliar.MostraMensagemAlerta(ex.ToString(), 2);
-                Auxiliar.MostraMensagemAlerta("Não foi possivel resgatar os dados da pesquisa.", 2);
+                if (ExecucaoParaTestes)
+                {
+                    Auxiliar.MostraMensagemAlerta(ex.ToString(), 2);
+                }
+                else
+                {
+                    Auxiliar.MostraMensagemAlerta("Não foi possivel resgatar os dados da pesquisa.", 2);
+                }
             }
         }
 
@@ -85,23 +95,23 @@ namespace GestorDeCadastros
 
             if (tipoTabela == 1)
             {
-                cmd.CommandText = "select lct.Locatario, lct.Locatario2, rp.Quantidade, rp.Numero, rp.Data, rp.Periodo, rp.Iptu, rp.ParcelasIptu, rp.NumeroParcelaIptu,"+
-                                  " rp.DespesaCondominio, rp.Luz, rp.Agua, rp.Aluguel, rp.ComplementoPagamento, rp.DescricaoComplementoPagamento, rp.Observacao,"+
+                cmd.CommandText = "select lct.Locatario, lct.Locatario2, rp.Quantidade, rp.Numero, rp.Data, rp.Periodo, rp.Iptu, rp.ParcelasIptu, rp.NumeroParcelaIptu," +
+                                  " rp.DespesaCondominio, rp.Luz, rp.Agua, rp.Aluguel, rp.ComplementoPagamento, rp.DescricaoComplementoPagamento, rp.Observacao," +
                                   " rp.DataPagamento, rp.TotalPagamento, rp.ExtensoTotalPagamento, rp.ReajusteAluguel, rp.Multa, rl.Id as IdRL" +
                                   " from RecibosPrincipais Rp" +
                                   " inner join Locatarios lct on rp.fkIdLocatario = lct.Id" +
                                   " inner join RecibosLocadores rl on rp.Id = rl.fkIdRecibo" +
-                                  " where rp.Id = " + idBusca;            
+                                  " where rp.Id = " + idBusca;
             }
             else if (tipoTabela == 2)
             {
-                cmd.CommandText = "select rl.Aluguel, rl.PorcentagemMulta, rl.Multa, rl.PorcentagemComissao, rl.Comissao, rl.Complemento, rl.DescricaoComplemento,"+
-                                  " rl.Complemento2, rl.DescricaoComplemento2, rl.Complemento3, rl.DescricaoComplemento3, rl.Total, rp.Id as IdRP,"+
+                cmd.CommandText = "select rl.Aluguel, rl.PorcentagemMulta, rl.Multa, rl.PorcentagemComissao, rl.Comissao, rl.Complemento, rl.DescricaoComplemento," +
+                                  " rl.Complemento2, rl.DescricaoComplemento2, rl.Complemento3, rl.DescricaoComplemento3, rl.Total, rp.Id as IdRP," +
                                   " im.fkIdLocador1, im.fkIdLocador2" +
                                   " from RecibosLocadores rl" +
                                   " inner join RecibosPrincipais rp on rl.fkIdRecibo = rp.Id" +
                                   " inner join Locatarios lct on rp.fkIdLocatario = lct.Id" +
-                                  " inner join Imoveis im on lct.fkIdImovel = im.Id" +                           
+                                  " inner join Imoveis im on lct.fkIdImovel = im.Id" +
                                   " where rl.Id = " + idBusca + "";
             }
             else if (tipoTabela == 3)
@@ -259,8 +269,14 @@ namespace GestorDeCadastros
             }
             catch (Exception ex)
             {
-                //Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);               
-                Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Recibo.", 3);
+                if (ExecucaoParaTestes)
+                {
+                    Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
+                }
+                else
+                {
+                    Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Recibo.", 3);
+                }
             }
         }
 
@@ -280,7 +296,7 @@ namespace GestorDeCadastros
                 {
                     tcRecibos.TabPages.Add(tpLocador);
                 }
-                
+
                 tcRecibos.SelectedTab = tpLocador;
             }
             else
@@ -307,7 +323,7 @@ namespace GestorDeCadastros
                         lblIdReciboPrincipal.Text = dadosLocatario.DefaultView[0]["IdRP"].ToString().Trim();
                     }
 
-                    txtAluguelRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());                    
+                    txtAluguelRcLocador.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Aluguel"].ToString());
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Multa"].ToString()) && dadosLocatario.DefaultView[0]["Multa"].ToString() != "0")
                     {
@@ -336,7 +352,7 @@ namespace GestorDeCadastros
 
                     if (!string.IsNullOrEmpty(dadosLocatario.DefaultView[0]["Complemento"].ToString()) && dadosLocatario.DefaultView[0]["Complemento"].ToString() != "0")
                     {
-                        txtComp1RL.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Complemento"].ToString());                        
+                        txtComp1RL.Text = Auxiliar.FormataValoresExibicao(dadosLocatario.DefaultView[0]["Complemento"].ToString());
                     }
 
                     txtDescComp2RL.Text = dadosLocatario.DefaultView[0]["DescricaoComplemento2"].ToString();
@@ -361,8 +377,14 @@ namespace GestorDeCadastros
             }
             catch (Exception ex)
             {
-                //Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
-                Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Recibo.", 3);
+                if (ExecucaoParaTestes)
+                {
+                    Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
+                }
+                else
+                {
+                    Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Recibo.", 3);
+                }
             }
         }
 
@@ -450,7 +472,7 @@ namespace GestorDeCadastros
             if (!string.IsNullOrEmpty(txtComp3RL.Text.Trim()))
             {
                 dComplemento = Auxiliar.FormataValorParaUso(txtComp3RL) + dComplemento;
-            }            
+            }
         }
 
         private string calculaPorcentagem(decimal porcentagem, string valorCalcular)
@@ -480,9 +502,9 @@ namespace GestorDeCadastros
                 CarregaDadosReciboPrincipal();
                 if (!tcRecibos.TabPages.Contains(tpPrincipal))
                 {
-                     tcRecibos.TabPages.Add(tpPrincipal);
+                    tcRecibos.TabPages.Add(tpPrincipal);
                 }
-               
+
                 tcRecibos.SelectedTab = tpPrincipal;
             }
             else

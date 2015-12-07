@@ -59,7 +59,7 @@ namespace GestorDeCadastros
             {
                 if (tcCadastros.SelectedTab.Name == "tpImovel")
                 {
-                    if (idTipoAcao == 1)
+                    if (idTipoAcao != 2)
                         CarregaCombosImovel(0);
                 }
                 else if (tcCadastros.SelectedTab.Name == "tpLocatario")
@@ -241,7 +241,7 @@ namespace GestorDeCadastros
                 DadosDefaultLocatario();
                 DadosDefaultLocador();
 
-                if (idTipoAcao == 1)
+                if (idTipoAcao != 2)
                     CarregaCombosImovel(0);
             }
         }
@@ -256,27 +256,27 @@ namespace GestorDeCadastros
         /// <returns></returns>
         private string FormataCampoSalvar(string campoSalvar, int tipoDoc)
         {
-            string testeCampo = string.Empty;
+            string testaCampo = string.Empty;
             if (tipoDoc == 1)
             {
-                testeCampo = campoSalvar.Replace(".", string.Empty).Replace(",", string.Empty).Replace("-", string.Empty).Trim();
-                if (string.IsNullOrEmpty(testeCampo))
+                testaCampo = campoSalvar.Replace(".", string.Empty).Replace(",", string.Empty).Replace("-", string.Empty).Trim();
+                if (string.IsNullOrEmpty(testaCampo))
                 {
                     campoSalvar = string.Empty;
                 }
             }
             else if (tipoDoc == 2)
             {
-                testeCampo = campoSalvar.Replace(".", string.Empty).Replace(",", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty).Trim();
-                if (string.IsNullOrEmpty(testeCampo))
+                testaCampo = campoSalvar.Replace(".", string.Empty).Replace(",", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty).Trim();
+                if (string.IsNullOrEmpty(testaCampo))
                 {
                     campoSalvar = string.Empty;
                 }
             }
             else
             {
-                testeCampo = campoSalvar.Replace("-", string.Empty).Replace("(", string.Empty).Replace(")", string.Empty).Trim();
-                if (string.IsNullOrEmpty(testeCampo))
+                testaCampo = campoSalvar.Replace("-", string.Empty).Replace("(", string.Empty).Replace(")", string.Empty).Trim();
+                if (string.IsNullOrEmpty(testaCampo))
                 {
                     campoSalvar = string.Empty;
                 }
@@ -471,9 +471,9 @@ namespace GestorDeCadastros
                 else
                 {
                     dr["Locatario"] = txtNomeLocatario.Text.Trim();
-                    dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
+                    dr["CpfLocatario"] = FormataCampoSalvar(mtxtCpfLocatario.Text.Trim(), 1);
                     dr["Locatario2"] = txtNomeLocatario2.Text.Trim();
-                    dr["CpfLocatario2"] = mtxtCpfLocatario2.Text.Trim().Replace(",", ".");
+                    dr["CpfLocatario2"] = FormataCampoSalvar(mtxtCpfLocatario2.Text.Trim(), 1);
                     dr["TelResidencial"] = FormataCampoSalvar(mtxtTelefone.Text.Trim(), 3);
                     dr["Celular"] = FormataCampoSalvar(mtxtCelular.Text.Trim(), 3);
                     dr["TelComercial"] = RetornaFixoOuCelular(rbFixoCom, rbCelCom, mtxtFixoCom, mtxtCelCom);
@@ -532,9 +532,9 @@ namespace GestorDeCadastros
                     {
                         dr = tempdata[0];
                         dr["Locatario"] = txtNomeLocatario.Text.Trim();
-                        dr["CpfLocatario"] = mtxtCpfLocatario.Text.Trim().Replace(",", ".");
+                        dr["CpfLocatario"] = FormataCampoSalvar(mtxtCpfLocatario.Text.Trim(), 1);
                         dr["Locatario2"] = txtNomeLocatario2.Text.Trim();
-                        dr["CpfLocatario2"] = mtxtCpfLocatario2.Text.Trim().Replace(",", ".");
+                        dr["CpfLocatario2"] = FormataCampoSalvar(mtxtCpfLocatario2.Text.Trim(), 1);
                         dr["TelResidencial"] = FormataCampoSalvar(mtxtTelefone.Text.Trim(), 3);
                         dr["Celular"] = FormataCampoSalvar(mtxtCelular.Text.Trim(), 3);
                         dr["TelComercial"] = RetornaFixoOuCelular(rbFixoCom, rbCelCom, mtxtFixoCom, mtxtCelCom);
@@ -701,17 +701,17 @@ namespace GestorDeCadastros
 
         #region Ações Imóvel
 
-        private void CarregaCombosImovel(int idLocador2)
+        private void CarregaCombosImovel(int idBusca)
         {
             DataTable locadores = new DataTable();
 
-            if (idLocador2 == 0)
+            if (idBusca == 0)
             {
                 locadores = CarregaTabelasCombos(2);
             }
             else
             {
-                locadores = CarregaDadosTabela(idLocador2, 4, 2);
+                locadores = CarregaDadosTabela(idBusca, 4, 2);
             }
 
             if (locadores.Rows.Count > 0)

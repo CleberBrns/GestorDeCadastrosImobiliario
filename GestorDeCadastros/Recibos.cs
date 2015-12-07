@@ -14,6 +14,8 @@ namespace GestorDeCadastros
 {
     public partial class Recibos : Form
     {
+        private bool ExecucaoParaTestes = false;
+
         private int idLocatario;
 
         public int getIdLocatario
@@ -29,6 +31,8 @@ namespace GestorDeCadastros
 
         private void Recibos_Load(object sender, EventArgs e)
         {
+            ExecucaoParaTestes = Auxiliar.VerificaTipoExecucao();
+
             try
             {
                 //idLocatario = 2;
@@ -38,8 +42,14 @@ namespace GestorDeCadastros
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
-                Auxiliar.MostraMensagemAlerta("Não foi possivel carregar dados para essa pesquisa", 2);
+                if (ExecucaoParaTestes)
+                {
+                    Auxiliar.MostraMensagemAlerta(ex.ToString(), 2);
+                }
+                else
+                {
+                    Auxiliar.MostraMensagemAlerta("Não foi possivel carregar dados para essa pesquisa", 2);
+                }
             }
         }
 
@@ -507,8 +517,14 @@ namespace GestorDeCadastros
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());                
-                Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Recibo.", 3);
+                if (ExecucaoParaTestes)
+                {
+                    Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
+                }
+                else
+                {
+                    Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Recibo.", 3);
+                }
             }
 
         }
@@ -634,8 +650,14 @@ namespace GestorDeCadastros
                                 }
                                 catch (Exception ex)
                                 {
-                                    //MessageBox.Show(ex.ToString());                                        
-                                    Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
+                                    if (ExecucaoParaTestes)
+                                    {
+                                        Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
+                                    }
+                                    else
+                                    {
+                                        Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
+                                    }
                                 }
                             }
                         }
@@ -655,8 +677,14 @@ namespace GestorDeCadastros
                             }
                             catch (Exception ex)
                             {
-                                //MessageBox.Show(ex.ToString());                                    
-                                Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
+                                if (ExecucaoParaTestes)
+                                {
+                                    Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
+                                }
+                                else
+                                {
+                                    Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
+                                }
                             }
                         }
                     }
@@ -761,9 +789,14 @@ namespace GestorDeCadastros
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.ToString());
-                Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Usuário.", 3);
-                //MessageBox.Show("Falha ao carregador os dados do Usuário.");
+                if (ExecucaoParaTestes)
+                {
+                    Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
+                }
+                else
+                {
+                    Auxiliar.MostraMensagemAlerta("Falha ao carregador os dados do Usuário.", 3);
+                }
             }
         }
 
@@ -829,10 +862,7 @@ namespace GestorDeCadastros
                 }
             }
 
-            if (!string.IsNullOrEmpty(txtComp1RL.Text))
-            {
-                valorTotal = valorTotal - Auxiliar.FormataValorParaUso(txtComp1RL);
-            }
+            valorTotal = CalculaComplementos(valorTotal);
 
             txtTotalRcLocador.Text = Auxiliar.FormataValoresExibicao(valorTotal.ToString());
         }
@@ -858,8 +888,14 @@ namespace GestorDeCadastros
                             }
                             catch (Exception ex)
                             {
-                                //MessageBox.Show(ex.ToString());
-                                Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo", 3);
+                                if (ExecucaoParaTestes)
+                                {
+                                    Auxiliar.MostraMensagemAlerta(ex.ToString(), 3);
+                                }
+                                else
+                                {
+                                    Auxiliar.MostraMensagemAlerta("Falha ao salvar os dados do Recibo.", 3);
+                                }
                             }
                         }
                     }
@@ -931,16 +967,7 @@ namespace GestorDeCadastros
             }
         }
 
-        private void somaSubTotal3_TextChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(txtSubTotal2.Text))
-            {
-                decimal subTotal2 = Auxiliar.FormataValorParaUso(txtSubTotal2);
-                CalculaSubTotal3(subTotal2);
-            }
-        }
-
-        private void CalculaSubTotal3(decimal subTotal2)
+        public decimal CalculaComplementos(decimal subTotal2)
         {
             decimal dComplemento = subTotal2;
 
@@ -957,7 +984,9 @@ namespace GestorDeCadastros
             if (!string.IsNullOrEmpty(txtComp3RL.Text.Trim()))
             {
                 dComplemento = RetornaAcrescimoOuDesconto(ckbDescontoComp3RL, txtComp3RL, dComplemento);
-            }           
+            }
+
+            return dComplemento;
         }
 
         private void btPreviewRL_Click(object sender, EventArgs e)
@@ -995,7 +1024,7 @@ namespace GestorDeCadastros
                 }
                 else
                 {
-                    txtDescCompRL.Text = "Desconto; ";                    
+                    txtDescCompRL.Text = "Desconto; ";
                 }
             }
             else
@@ -1004,7 +1033,7 @@ namespace GestorDeCadastros
             }
         }
 
-        #endregion      
+        #endregion
 
     }
 }

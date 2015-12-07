@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlServerCe;
 using System.IO;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace GestorDeCadastros
 {
@@ -367,5 +368,17 @@ namespace GestorDeCadastros
         }
 
         #endregion
+
+        public static bool VerificaTipoExecucao()
+        {
+            bool execucaoTestes = false;
+
+            if (Convert.ToString(ConfigurationSettings.AppSettings["ExecucaoParaTestes"]) == "1")
+            {
+                execucaoTestes = true;
+            }
+
+            return execucaoTestes;
+        }
     }
 }

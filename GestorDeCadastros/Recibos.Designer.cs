@@ -1475,6 +1475,7 @@
             this.ckbDescontoComp3RL.TabIndex = 136;
             this.ckbDescontoComp3RL.Text = "Desconto";
             this.ckbDescontoComp3RL.UseVisualStyleBackColor = true;
+            this.ckbDescontoComp3RL.CheckedChanged += new System.EventHandler(this.ckbDesmarcaComplementos_CheckedChanged);
             // 
             // ckbDescontoComp2RL
             // 
@@ -1486,6 +1487,7 @@
             this.ckbDescontoComp2RL.TabIndex = 133;
             this.ckbDescontoComp2RL.Text = "Desconto";
             this.ckbDescontoComp2RL.UseVisualStyleBackColor = true;
+            this.ckbDescontoComp2RL.CheckedChanged += new System.EventHandler(this.ckbDesmarcaComplementos_CheckedChanged);
             // 
             // label62
             // 
